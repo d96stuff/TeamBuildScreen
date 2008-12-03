@@ -1,0 +1,15 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+	x:Class="TeamBuildScreensaver.Views.Main"
+	x:Name="Window"
+	Title="Main" xmlns:BuildStatus="clr-namespace:TeamBuildScreensaver.Views" MouseDown="Main_MouseDown" KeyDown="Main_KeyDown" WindowState="Maximized" WindowStyle="None" Cursor="None">
+    <Window.Background>
+        <RadialGradientBrush>
+            <GradientStop Color="#FF000000" Offset="0.0" />
+            <GradientStop Color="#FF333333" Offset="1.0" />
+        </RadialGradientBrush>
+    </Window.Background>
+    <UniformGrid x:Name="LayoutRoot" VerticalAlignment="Top"/>
+</Window>
