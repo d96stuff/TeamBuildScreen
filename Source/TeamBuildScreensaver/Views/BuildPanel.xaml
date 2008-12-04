@@ -7,12 +7,10 @@
 	x:Class="TeamBuildScreensaver.Views.BuildPanel"
 	x:Name="UserControl" xmlns:BuildStatus="clr-namespace:TeamBuildScreensaver.Views" Height="144" Width="650" Background="{x:Null}">
     <UserControl.Resources>
-        <BuildStatus:BuildStatusColorConverter x:Key="buildStatusColorConverter"/>
         <Storyboard x:Key="FadeToGreen">
             <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#802B7720" Duration="0:0:0.5"/>
         </Storyboard>
         <Storyboard x:Key="FadeToRed">
-            <!--<DoubleAnimation Storyboard.TargetName="BackgroundThing" Storyboard.TargetProperty="(UIElement.BitmapEffect).(BitmapEffectGroup.Children)[0].(OuterGlowBitmapEffect.GlowSize)" From="50" To="200" Duration="0:0:1" AutoReverse="True" RepeatBehavior="Forever"/>-->
             <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#80CF2C00" Duration="0:0:0.5"/>
         </Storyboard>
         <Storyboard x:Key="FadeToGrey">
@@ -36,7 +34,6 @@
                         </Rectangle.RenderTransform>
                         <Rectangle.BitmapEffect>
                             <BitmapEffectGroup>
-                                <OuterGlowBitmapEffect GlowColor="#FFCF2C00" GlowSize="0" Opacity="1.0" Noise="0" />
                                 <DropShadowBitmapEffect Softness="0.377953" ShadowDepth="8" Opacity="0.6" Color="#FF000000" Direction="135" Noise="0"/>
                             </BitmapEffectGroup>
                         </Rectangle.BitmapEffect>

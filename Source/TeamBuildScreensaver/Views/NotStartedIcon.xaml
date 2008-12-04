@@ -4,7 +4,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
-	x:Class="TeamBuildScreensaver.Views.QueuedIcon"
+	x:Class="TeamBuildScreensaver.Views.NotStartedIcon"
 	x:Name="UserControl" Width="256" Height="256">
 
 		<Viewbox Stretch="Fill" VerticalAlignment="Stretch">
@@ -54,5 +54,6 @@
                     <Path Width="26.7463" Height="7.6418" Canvas.Left="49.6717" Canvas.Top="53.4925" Stretch="Fill" Fill="#FF4A4A4A" Data="M 76.418,53.4926L 49.6717,53.4925L 49.6717,61.1343L 76.418,61.1343L 76.418,53.4926 Z "/>
                 </Canvas>
             </Viewbox>
-        </Canvas>    </Viewbox>
+        </Canvas>
+    </Viewbox>
 </UserControl>

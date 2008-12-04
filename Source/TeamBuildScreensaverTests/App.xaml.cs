@@ -28,9 +28,9 @@ namespace TeamBuildScreensaverTests
 
             TeamFoundationServer tfsServer = new TeamFoundationServer(tfsUri);
 
-            builds.Add("TeamProject;MyFirstBuild");
-            builds.Add("TeamProject;MySecondBuild");
-            builds.Add("TeamProject;MyThirdBuild");
+            builds.Add("TeamProject;MyFirstBuild;Release;Any CPU");
+            builds.Add("TeamProject;MySecondBuild;Release;Any CPU");
+            builds.Add("TeamProject;MyThirdBuild;Release;Any CPU");
 
             this.serverQuery = new MockBuildServerQuery();
 

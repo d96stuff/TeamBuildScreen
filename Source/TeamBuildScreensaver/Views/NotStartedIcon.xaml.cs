@@ -1,9 +1,9 @@
 ﻿
 namespace TeamBuildScreensaver.Views
 {
-	public partial class QueuedIcon
+	public partial class NotStartedIcon
 	{
-        public QueuedIcon()
+        public NotStartedIcon()
 		{
 			this.InitializeComponent();
 

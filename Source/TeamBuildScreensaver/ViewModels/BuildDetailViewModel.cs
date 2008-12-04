@@ -103,14 +103,12 @@ namespace TeamBuildScreensaver.ViewModels
             {
                 text.AppendLine("Completed on " + this.dataModel.Model.FinishTime);
 
-                //IConfigurationSummary configurationSummary = this.configurationSummaryHandler(this.dataModel.Model, "Release", "Any CPU");
-                IList<IConfigurationSummary> configurationSummaries = InformationNodeConverters.GetConfigurationSummaries(this.dataModel.Model);
+                IConfigurationSummary configurationSummary = this.configurationSummaryHandler(this.dataModel.Model, this.dataModel.Configuration, this.dataModel.Platform);
 
-                if (configurationSummaries != null &&
-                    configurationSummaries.Count > 0 &&
-                    configurationSummaries[0].TestSummaries.Count > 0)
+                if (configurationSummary != null &&
+                    configurationSummary.TestSummaries.Count > 0)
                 {
-                    ITestSummary summary = configurationSummaries[0].TestSummaries[0];
+                    ITestSummary summary = configurationSummary.TestSummaries[0];
                     text.AppendLine(string.Format("Test results: {0} passed, {1} failed, {2} total.", summary.TestsPassed, summary.TestsFailed, summary.TestsTotal));
                 }
                 else

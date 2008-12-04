@@ -86,8 +86,10 @@ namespace TeamBuildScreensaver.Views
                 string[] buildParts = build.Split(';');
                 string teamProject = buildParts[0];
                 string definitionName = buildParts[1];
+                string configuration = buildParts[2];
+                string platform = buildParts[3];
 
-                BuildDetailDataModel dataModel = new BuildDetailDataModel(teamProject, definitionName, serverQuery);
+                BuildDetailDataModel dataModel = new BuildDetailDataModel(teamProject, definitionName, configuration, platform, serverQuery);
 
                 BuildPanel panel;
 

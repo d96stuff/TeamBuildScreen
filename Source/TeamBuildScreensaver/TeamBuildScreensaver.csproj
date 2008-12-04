@@ -101,15 +101,15 @@
     <Compile Include="Views\BuildPanel.xaml.cs">
       <DependentUpon>BuildPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\BuildStatusIconConverter.cs" />
     <Compile Include="Views\BuildStatusIcon.xaml.cs">
       <DependentUpon>BuildStatusIcon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BuildStatusStringConverter.cs" />
     <Compile Include="Views\EditSettings.xaml.cs">
       <DependentUpon>EditSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\QueuedIcon.xaml.cs">
-      <DependentUpon>QueuedIcon.xaml</DependentUpon>
+    <Compile Include="Views\NotStartedIcon.xaml.cs">
+      <DependentUpon>NotStartedIcon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PausedIcon.xaml.cs">
       <DependentUpon>PausedIcon.xaml</DependentUpon>
@@ -153,7 +153,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\QueuedIcon.xaml">
+    <Page Include="Views\NotStartedIcon.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
