@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamBuildScreenSaver", "Source\TeamBuildScreensaver\TeamBuildScreenSaver.csproj", "{40B36C3C-325C-4E09-8D1C-3346C213C7B8}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TeamBuildScreenSaverSetup", "Source\TeamBuildScreensaverSetup\TeamBuildScreensaverSetup.vdproj", "{3CCD02A4-6B92-4673-87B2-D949DB234E36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamBuildScreenSaverTests", "Source\TeamBuildScreensaverTests\TeamBuildScreenSaverTests.csproj", "{80AEAB5C-1EA5-4195-8E48-FAD7A5AEB36F}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs03.codeplex.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Source\\TeamBuildScreensaver\\TeamBuildScreensaver.csproj
+		SccProjectName1 = Source/TeamBuildScreensaver
+		SccLocalPath1 = Source\\TeamBuildScreensaver
+		SccProjectUniqueName2 = Source\\TeamBuildScreensaverSetup\\TeamBuildScreensaverSetup.vdproj
+		SccProjectName2 = Source/TeamBuildScreensaverSetup
+		SccLocalPath2 = Source\\TeamBuildScreensaverSetup
+		SccProjectUniqueName3 = Source\\TeamBuildScreensaverTests\\TeamBuildScreensaverTests.csproj
+		SccProjectName3 = Source/TeamBuildScreensaverTests
+		SccLocalPath3 = Source\\TeamBuildScreensaverTests
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{40B36C3C-325C-4E09-8D1C-3346C213C7B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40B36C3C-325C-4E09-8D1C-3346C213C7B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40B36C3C-325C-4E09-8D1C-3346C213C7B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40B36C3C-325C-4E09-8D1C-3346C213C7B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CCD02A4-6B92-4673-87B2-D949DB234E36}.Debug|Any CPU.ActiveCfg = Debug
+		{3CCD02A4-6B92-4673-87B2-D949DB234E36}.Release|Any CPU.ActiveCfg = Release
+		{80AEAB5C-1EA5-4195-8E48-FAD7A5AEB36F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80AEAB5C-1EA5-4195-8E48-FAD7A5AEB36F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80AEAB5C-1EA5-4195-8E48-FAD7A5AEB36F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80AEAB5C-1EA5-4195-8E48-FAD7A5AEB36F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
