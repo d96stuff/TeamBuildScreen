@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_04EDFC32FAE14CE78F0AC7824F989CBC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_08A73C803AAC80F783EEA5110AB2ACE9"
         "OwnerKey" = "8:_BE4BD147B28886E819C9C99B9F8C5B70"
         "MsmSig" = "8:_UNDEFINED"
@@ -351,7 +357,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\TeamBuildScreensaverSetup.msi"
+        "OutputFilename" = "8:Debug\\TeamBuildScreenSaverSetup.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -388,7 +394,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\TeamBuildScreensaverSetup.msi"
+        "OutputFilename" = "8:Release\\TeamBuildScreenSaverSetup.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -448,6 +454,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_04EDFC32FAE14CE78F0AC7824F989CBC"
+            {
+            "SourcePath" = "8:Microsoft Public License.rtf"
+            "TargetName" = "8:Microsoft Public License.rtf"
+            "Tag" = "8:"
+            "Folder" = "8:_951F4562C8C343399DCF0F57D5ED2FE2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_08A73C803AAC80F783EEA5110AB2ACE9"
             {
             "AssemblyRegister" = "3:1"
@@ -731,7 +757,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TeamBuildScreensaver, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TeamBuildScreenSaver, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_46E367550E774610A8CB2A6E79C81796"
@@ -1034,7 +1060,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_951F4562C8C343399DCF0F57D5ED2FE2"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFilesFolder]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -1049,21 +1075,21 @@
         {
             "{836E08B8-0285-4809-BA42-01DB6754A45D}:_3947963682A74358B72836F86DFCE60B"
             {
-            "Name" = "8:Visual Studio 2008"
-            "Condition" = "8:VS2008INSTALLED"
-            "Message" = "8:Visual Studio 2008 is required."
-            "InstallUrl" = "8:"
+            "Name" = "8:Visual Studio Team System 2008 Team Explorer"
+            "Condition" = "8:TE2008INSTALLED"
+            "Message" = "8:Visual Studio Team System 2008 Team Explorer is required."
+            "InstallUrl" = "8:https://www.microsoft.com/downloads/details.aspx?FamilyID=0ed12659-3d41-4420-bbb0-a46e51bfca86&displaylang=en|"
             }
         }
         "Locator"
         {
             "{CF66B7F7-B7DA-4B08-A67A-233430638C9C}:_5A75915D24A24D7E8C85E2C1BC95A72E"
             {
-            "Name" = "8:Search for Visual Studio 2008"
-            "Root" = "2:3"
-            "RegKey" = "8:VisualStudio.DTE.9.0"
-            "Value" = "8:"
-            "Property" = "8:VS2008INSTALLED"
+            "Name" = "8:Search for Visual Studio Team System 2008 Team Explorer"
+            "Root" = "2:1"
+            "RegKey" = "8:SOFTWARE\\Microsoft\\VisualStudio\\9.0\\InstalledProducts\\Team Explorer"
+            "Value" = "8:UseInterface"
+            "Property" = "8:TE2008INSTALLED"
             }
         }
         "MsiBootstrapper"
@@ -1074,19 +1100,19 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Team Build Screensaver"
-        "ProductCode" = "8:{47076B5A-F95C-49DB-B169-1F4D53D43AB1}"
-        "PackageCode" = "8:{53EDA7CB-8F3A-4BE8-82ED-192F2858A24D}"
+        "ProductName" = "8:Team Build Screen Saver"
+        "ProductCode" = "8:{1CC5C1EF-4736-4885-8CD0-FD856477FCFF}"
+        "PackageCode" = "8:{4DF98CF5-41D6-4630-AEDE-B3D9A488288C}"
         "UpgradeCode" = "8:{A0558686-D411-41E9-8371-ACE2ECDBB2DC}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.2"
+        "ProductVersion" = "8:1.0.3"
         "Manufacturer" = "8:Jim Liddell"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Team Build Screensaver"
+        "Title" = "8:Team Build Screen Saver"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Jim Liddell"
         "Keywords" = "8:"
@@ -1379,6 +1405,54 @@
                             }
                         }
                     }
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_C1EA13E076D240B28CDD424AE8B02BC6"
+                    {
+                    "Sequence" = "3:110"
+                    "DisplayName" = "8:License Agreement"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminLicenseDlg.wid"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:2"
+                            "Value" = "8:_F2DB88E68E6B4B9D9BE612A8C3D60EFB"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "EulaText"
+                            {
+                            "Name" = "8:EulaText"
+                            "DisplayName" = "8:#1008"
+                            "Description" = "8:#1108"
+                            "Type" = "3:6"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:2"
+                            "Value" = "8:_04EDFC32FAE14CE78F0AC7824F989CBC"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Sunken"
+                            {
+                            "Name" = "8:Sunken"
+                            "DisplayName" = "8:#1007"
+                            "Description" = "8:#1107"
+                            "Type" = "3:5"
+                            "ContextData" = "8:4;True=4;False=0"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:0"
+                            "Value" = "3:4"
+                            "DefaultValue" = "3:4"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_E8C43367ACDC4C9AAA319EF1A0DED85C"
                     {
                     "Sequence" = "3:200"
@@ -1413,7 +1487,7 @@
                 {
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_89117D896B68442CBD9BB54BD68681AA"
                     {
-                    "Sequence" = "3:110"
+                    "Sequence" = "3:200"
                     "DisplayName" = "8:Installation Folder"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
@@ -1447,9 +1521,57 @@
                             }
                         }
                     }
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_CD2F329AABA242AA93BE5FB952226E4B"
+                    {
+                    "Sequence" = "3:110"
+                    "DisplayName" = "8:License Agreement"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdLicenseDlg.wid"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:2"
+                            "Value" = "8:_F2DB88E68E6B4B9D9BE612A8C3D60EFB"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "EulaText"
+                            {
+                            "Name" = "8:EulaText"
+                            "DisplayName" = "8:#1008"
+                            "Description" = "8:#1108"
+                            "Type" = "3:6"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:2"
+                            "Value" = "8:_04EDFC32FAE14CE78F0AC7824F989CBC"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Sunken"
+                            {
+                            "Name" = "8:Sunken"
+                            "DisplayName" = "8:#1007"
+                            "Description" = "8:#1107"
+                            "Type" = "3:5"
+                            "ContextData" = "8:4;True=4;False=0"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:0"
+                            "Value" = "3:4"
+                            "DefaultValue" = "3:4"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_D0E736DFC5DD4548AFCDE33E02D638A8"
                     {
-                    "Sequence" = "3:200"
+                    "Sequence" = "3:300"
                     "DisplayName" = "8:Confirm Installation"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"

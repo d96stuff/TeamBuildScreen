@@ -164,6 +164,8 @@ namespace TeamBuildScreenSaver.ViewModels
         private void SaveExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             this.dataModel.Save();
+
+            Application.Current.Shutdown();
         }
 
         #endregion

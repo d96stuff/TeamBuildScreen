@@ -35,7 +35,7 @@ namespace TeamBuildScreenSaver.DataModels
         private Hashtable builds;
 
         /// <summary>
-        /// The URL of the Team Foundation Server to query
+        /// The URL of the Team Foundation Server to query.
         /// </summary>
         private string tfsUrl;
 

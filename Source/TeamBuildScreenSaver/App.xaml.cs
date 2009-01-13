@@ -34,19 +34,25 @@ namespace TeamBuildScreenSaver
 
         private void Application_Startup(object sender, StartupEventArgs e)   
         {
-            if (e.Args.Length == 1 && e.Args[0].ToLower().StartsWith("/p"))       
+            if (e.Args.Length >= 2 && e.Args[0].ToLower().StartsWith("/p"))       
             {
                 this.LoadMain();
 
-                this.ShowPreview(Convert.ToInt32(e.Args[1]));
+                if (this.main != null)
+                {
+                    this.ShowPreview(Convert.ToInt32(e.Args[1]));
+                }
             }
             else if (e.Args.Length == 1 && e.Args[0].ToLower().StartsWith("/s"))
             {
                 this.LoadMain();
 
-                // normal mode (either preview or otherwise)
-                this.main.Show();
-                this.serverQuery.Start();
+                if (this.main != null)
+                {
+                    // normal mode
+                    this.main.Show();
+                    this.serverQuery.Start();
+                }
             }
             else if (e.Args.Length == 1 && e.Args[0].ToLower().StartsWith("/c"))        
             {
@@ -84,6 +90,7 @@ namespace TeamBuildScreenSaver
             this.winWPFContent = new HwndSource(sourceParams);
             this.winWPFContent.Disposed += new EventHandler(winWPFContent_Disposed);
             this.winWPFContent.RootVisual = this.main.LayoutRoot;
+
             this.serverQuery.Start();
         }
 
@@ -114,15 +121,22 @@ namespace TeamBuildScreenSaver
         private void main_Closed(object sender, EventArgs e)
         {
             Application.Current.Shutdown();
-        }   
+        } 
 
         private void winWPFContent_Disposed(object sender, EventArgs e)
         {
             this.main.Close();
+
+            Application.Current.Shutdown();
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
+            if (this.winWPFContent != null)
+            {
+                this.winWPFContent.Dispose();
+            }
+
             if (this.serverQuery != null)
             {
                 this.serverQuery.Dispose();
@@ -131,7 +145,13 @@ namespace TeamBuildScreenSaver
 
         private void Application_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
-            MessageBox.Show("An error has been detected in the application that has caused the application to shutdown.");
+            MessageBox.Show(
+                string.Format(
+                "An error has been detected in the application that has caused the application to shutdown:\n\n{0}\n\nApologies for any inconvenience.",
+                e.Exception.Message),
+                "Team Build Screen Saver",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
 
             e.Handled = true;
 

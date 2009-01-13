@@ -8,7 +8,7 @@
   </Window.Resources>
   <Window.Background>
     <LinearGradientBrush>
-      <GradientStop Color="#FF2B7720" Offset="4"/>
+      <GradientStop Color="#FF2B2077" Offset="4"/>
       <GradientStop Color="#FFFFFFFF" Offset="0"/>
     </LinearGradientBrush>
   </Window.Background>
@@ -19,33 +19,37 @@
     <Button Height="26.52" Margin="0,8,8,0" VerticalAlignment="Top" Command="{Binding Path=SelectTfsServer}" Width="86.478" HorizontalAlignment="Right" Grid.Column="1" Content="Select..."/>
     <Label Height="28" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="8,8,0,0" VerticalAlignment="Top" Width="151" FontWeight="Bold" Content="Team Foundation Server:" d:LayoutOverrides="GridBox"/>
     <ListView Margin="8,72,8,104" SelectionMode="Multiple" ItemsSource="{Binding Path=Builds}" Background="#7FFFFFFF" d:LayoutOverrides="GridBox">
+      <ListView.ItemContainerStyle>
+        <Style TargetType="ListViewItem">
+          <Setter Property="HorizontalContentAlignment"
+                  Value="Stretch" />
+        </Style>
+      </ListView.ItemContainerStyle>
       <ListView.View>
         <GridView AllowsColumnReorder="True">
-          <GridViewColumn Width="30">
+          <GridViewColumn>
             <GridViewColumn.CellTemplate>
               <DataTemplate>
-                <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Path=IsEnabled}" Margin="2,0,2,0"/>
+                <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Path=IsEnabled}" Margin="2,0,2,0" />
               </DataTemplate>
             </GridViewColumn.CellTemplate>
           </GridViewColumn>
-          <GridViewColumn Header="Team Project" DisplayMemberBinding="{Binding Path=TeamProject}" Width="80" />
-          <GridViewColumn Header="Build Definition" DisplayMemberBinding="{Binding Path=DefinitionName}" Width="170" />
-          <GridViewColumn Header="Configuration" Width="95">
+          <GridViewColumn Header="Team Project" DisplayMemberBinding="{Binding Path=TeamProject}" />
+          <GridViewColumn Header="Build Definition" DisplayMemberBinding="{Binding Path=DefinitionName}" Width="175" />
+          <GridViewColumn Header="Configuration">
             <GridViewColumn.CellTemplate>
               <DataTemplate>
-                <ComboBox IsEditable="True" IsEnabled="{Binding Path=IsEnabled}" VerticalAlignment="Center" Margin="2,0,2,0">
-                  <ComboBoxItem Content="{Binding Path=Configuration}" IsSelected="True" Grid.Column="4"/>
+                <ComboBox IsEditable="True" Text="{Binding Path=Configuration}" IsEnabled="{Binding Path=IsEnabled}" VerticalAlignment="Center" Margin="2,0,2,0">
                   <ComboBoxItem Content="Release"/>
                   <ComboBoxItem Content="Debug"/>
                 </ComboBox>
               </DataTemplate>
             </GridViewColumn.CellTemplate>
           </GridViewColumn>
-          <GridViewColumn Header="Platform" Width="95">
+          <GridViewColumn Header="Platform">
             <GridViewColumn.CellTemplate>
               <DataTemplate>
-                <ComboBox IsEditable="True" IsEnabled="{Binding Path=IsEnabled}" VerticalAlignment="Center" Margin="2,0,2,0">
-                  <ComboBoxItem Content="{Binding Path=Platform}" IsSelected="True"/>
+                <ComboBox IsEditable="True" Text="{Binding Path=Platform}" IsEnabled="{Binding Path=IsEnabled}" VerticalAlignment="Center" Margin="2,0,2,0">
                   <ComboBoxItem Content="Any CPU"/>
                 </ComboBox>
               </DataTemplate>

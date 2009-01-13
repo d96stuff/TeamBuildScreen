@@ -37,6 +37,11 @@ namespace TeamBuildScreenSaver.ViewModels
 
         private ConfigurationSummaryHandler configurationSummaryHandler;
 
+        /// <summary>
+        /// A static synchronisation lock used to synchronise access across all instances.
+        /// </summary>
+        private static object synchronisationLock = new object();
+
         #endregion
 
         #region Properties
@@ -76,7 +81,14 @@ namespace TeamBuildScreenSaver.ViewModels
         public BuildDetailViewModel(BuildDetailDataModel dataModel)
         {
             this.Init(dataModel);
-            this.configurationSummaryHandler = InformationNodeConverters.GetConfigurationSummary;
+
+            this.configurationSummaryHandler = delegate(IBuildDetail build, string flavour, string platform)
+            {
+                lock (synchronisationLock)
+                {
+                    return InformationNodeConverters.GetConfigurationSummary(build, flavour, platform);
+                }
+            };
         }
 
         /// <summary>
@@ -87,6 +99,7 @@ namespace TeamBuildScreenSaver.ViewModels
         public BuildDetailViewModel(BuildDetailDataModel dataModel, ConfigurationSummaryHandler configurationSummaryHandler)
         {
             this.Init(dataModel);
+
             this.configurationSummaryHandler = configurationSummaryHandler;
         }
 
