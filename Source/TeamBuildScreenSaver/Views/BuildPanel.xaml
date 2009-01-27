@@ -6,123 +6,123 @@
 	mc:Ignorable="d"
 	x:Class="TeamBuildScreenSaver.Views.BuildPanel"
 	x:Name="UserControl" xmlns:BuildStatus="clr-namespace:TeamBuildScreenSaver.Views" Height="144" Width="650" Background="{x:Null}">
-    <UserControl.Resources>
-        <Storyboard x:Key="FadeToGreen">
-            <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#802B7720" Duration="0:0:0.5"/>
-        </Storyboard>
-        <Storyboard x:Key="FadeToRed">
-            <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#80CF2C00" Duration="0:0:0.5"/>
-        </Storyboard>
-        <Storyboard x:Key="FadeToGrey">
-            <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#80717171" Duration="0:0:0.5"/>
-        </Storyboard>
-        <ControlTemplate x:Key="BuildPanelTemplate">
-            <Grid x:Name="LayoutRoot">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="144"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.ColumnSpan="2">
-                    <Rectangle x:Name="BackgroundThing" Stroke="#FF000000" StrokeThickness="1" RenderTransformOrigin="0.5,0.5" RadiusX="16" RadiusY="16" Fill="#FFFFFFFF" HorizontalAlignment="Stretch">
-                        <Rectangle.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform ScaleX="1" ScaleY="1"/>
-                                <SkewTransform AngleX="0" AngleY="0"/>
-                                <RotateTransform Angle="-180"/>
-                                <TranslateTransform X="0" Y="0"/>
-                            </TransformGroup>
-                        </Rectangle.RenderTransform>
-                        <Rectangle.BitmapEffect>
-                            <BitmapEffectGroup>
-                                <DropShadowBitmapEffect Softness="0.377953" ShadowDepth="8" Opacity="0.6" Color="#FF000000" Direction="135" Noise="0"/>
-                            </BitmapEffectGroup>
-                        </Rectangle.BitmapEffect>
-                    </Rectangle>
-                    <Rectangle x:Name="FadedBackground" Stroke="{x:Null}" StrokeThickness="1" RenderTransformOrigin="0.5,0.5" RadiusX="15" RadiusY="15" Margin="2,2,2,2">
-                        <Rectangle.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform ScaleX="1" ScaleY="1"/>
-                                <SkewTransform AngleX="0" AngleY="0"/>
-                                <RotateTransform Angle="-180"/>
-                                <TranslateTransform X="0" Y="0"/>
-                            </TransformGroup>
-                        </Rectangle.RenderTransform>
-                        <Rectangle.Fill>
-                            <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                                <GradientStop Color="#FFFFFFFF" Offset="1"/>
-                                <GradientStop Color="#FFFFFFFF" Offset="0"/>
-                            </LinearGradientBrush>
-                        </Rectangle.Fill>
-                    </Rectangle>
-                    <TextBlock FontSize="16" Margin="154,8,6,6" TextWrapping="Wrap" Text="{Binding Summary}" />
-                </Grid>
-                <Viewbox Stretch="Fill" Margin="8,8,8,8">
-                    <BuildStatus:BuildStatusIcon Status="{Binding Status}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="128" Width="128"/>
-                </Viewbox>
-            </Grid>
-            <ControlTemplate.Triggers>
-                <DataTrigger Binding="{Binding Status}" Value="Succeeded">
-                    <DataTrigger.EnterActions>
-                        <StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
-                        <BeginStoryboard Storyboard="{StaticResource FadeToGreen}" Name="BeginSucceededStoryboard"/>
-                    </DataTrigger.EnterActions>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Status}" Value="Failed">
-                    <DataTrigger.EnterActions>
-                        <StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
-                        <BeginStoryboard Storyboard="{StaticResource FadeToRed}" Name="BeginFailedStoryboard"/>
-                    </DataTrigger.EnterActions>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Status}" Value="InProgress">
-                    <DataTrigger.EnterActions>
-                        <StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
-                        <BeginStoryboard Storyboard="{StaticResource FadeToGrey}" Name="BeginInProgressStoryboard"/>
-                    </DataTrigger.EnterActions>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Status}" Value="PartiallySucceeded">
-                    <DataTrigger.EnterActions>
-                        <StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
-                        <BeginStoryboard Storyboard="{StaticResource FadeToRed}" Name="BeginPartiallySucceededStoryboard"/>
-                    </DataTrigger.EnterActions>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Status}" Value="Stopped">
-                    <DataTrigger.EnterActions>
-                        <StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
-                        <BeginStoryboard Storyboard="{StaticResource FadeToRed}" Name="BeginStoppedStoryboard"/>
-                    </DataTrigger.EnterActions>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Status}" Value="NotStarted">
-                    <DataTrigger.EnterActions>
-                        <StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
-                        <StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
-                        <BeginStoryboard Storyboard="{StaticResource FadeToGrey}" Name="BeginNotStartedStoryboard"/>
-                    </DataTrigger.EnterActions>
-                </DataTrigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
-    </UserControl.Resources>
-    <ContentControl Template="{StaticResource BuildPanelTemplate}" />
+  <UserControl.Resources>
+    <Storyboard x:Key="FadeToGreen">
+      <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#802B7720" Duration="0:0:0.5"/>
+    </Storyboard>
+    <Storyboard x:Key="FadeToRed">
+      <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#80CF2C00" Duration="0:0:0.5"/>
+    </Storyboard>
+    <Storyboard x:Key="FadeToGrey">
+      <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#80717171" Duration="0:0:0.5"/>
+    </Storyboard>
+    <ControlTemplate x:Key="BuildPanelTemplate">
+      <Grid x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="144"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.ColumnSpan="2">
+          <Rectangle x:Name="BackgroundThing" Stroke="#FF000000" StrokeThickness="1" RenderTransformOrigin="0.5,0.5" RadiusX="16" RadiusY="16" Fill="#FFFFFFFF" HorizontalAlignment="Stretch">
+            <Rectangle.RenderTransform>
+              <TransformGroup>
+                <ScaleTransform ScaleX="1" ScaleY="1"/>
+                <SkewTransform AngleX="0" AngleY="0"/>
+                <RotateTransform Angle="-180"/>
+                <TranslateTransform X="0" Y="0"/>
+              </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.BitmapEffect>
+              <BitmapEffectGroup>
+                <DropShadowBitmapEffect Softness="0.377953" ShadowDepth="8" Opacity="0.6" Color="#FF000000" Direction="135" Noise="0"/>
+              </BitmapEffectGroup>
+            </Rectangle.BitmapEffect>
+          </Rectangle>
+          <Rectangle x:Name="FadedBackground" Stroke="{x:Null}" StrokeThickness="1" RenderTransformOrigin="0.5,0.5" RadiusX="15" RadiusY="15" Margin="2,2,2,2">
+            <Rectangle.RenderTransform>
+              <TransformGroup>
+                <ScaleTransform ScaleX="1" ScaleY="1"/>
+                <SkewTransform AngleX="0" AngleY="0"/>
+                <RotateTransform Angle="-180"/>
+                <TranslateTransform X="0" Y="0"/>
+              </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+              <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                <GradientStop Color="#FFFFFFFF" Offset="1"/>
+                <GradientStop Color="#FFFFFFFF" Offset="0"/>
+              </LinearGradientBrush>
+            </Rectangle.Fill>
+          </Rectangle>
+          <TextBlock FontSize="16" Margin="154,8,6,6" TextWrapping="Wrap" Text="{Binding Summary}" />
+        </Grid>
+        <Viewbox Stretch="Fill" Margin="8,8,8,8">
+          <BuildStatus:BuildStatusIcon Status="{Binding Status}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="128" Width="128"/>
+        </Viewbox>
+      </Grid>
+      <ControlTemplate.Triggers>
+        <DataTrigger Binding="{Binding Status}" Value="Succeeded">
+          <DataTrigger.EnterActions>
+            <StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
+            <BeginStoryboard Storyboard="{StaticResource FadeToGreen}" Name="BeginSucceededStoryboard"/>
+          </DataTrigger.EnterActions>
+        </DataTrigger>
+        <DataTrigger Binding="{Binding Status}" Value="Failed">
+          <DataTrigger.EnterActions>
+            <StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
+            <BeginStoryboard Storyboard="{StaticResource FadeToRed}" Name="BeginFailedStoryboard"/>
+          </DataTrigger.EnterActions>
+        </DataTrigger>
+        <DataTrigger Binding="{Binding Status}" Value="InProgress">
+          <DataTrigger.EnterActions>
+            <StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
+            <BeginStoryboard Storyboard="{StaticResource FadeToGrey}" Name="BeginInProgressStoryboard"/>
+          </DataTrigger.EnterActions>
+        </DataTrigger>
+        <DataTrigger Binding="{Binding Status}" Value="PartiallySucceeded">
+          <DataTrigger.EnterActions>
+            <StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
+            <BeginStoryboard Storyboard="{StaticResource FadeToRed}" Name="BeginPartiallySucceededStoryboard"/>
+          </DataTrigger.EnterActions>
+        </DataTrigger>
+        <DataTrigger Binding="{Binding Status}" Value="Stopped">
+          <DataTrigger.EnterActions>
+            <StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
+            <BeginStoryboard Storyboard="{StaticResource FadeToRed}" Name="BeginStoppedStoryboard"/>
+          </DataTrigger.EnterActions>
+        </DataTrigger>
+        <DataTrigger Binding="{Binding Status}" Value="NotStarted">
+          <DataTrigger.EnterActions>
+            <StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
+            <StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
+            <BeginStoryboard Storyboard="{StaticResource FadeToGrey}" Name="BeginNotStartedStoryboard"/>
+          </DataTrigger.EnterActions>
+        </DataTrigger>
+      </ControlTemplate.Triggers>
+    </ControlTemplate>
+  </UserControl.Resources>
+  <ContentControl Template="{StaticResource BuildPanelTemplate}" />
 </UserControl>

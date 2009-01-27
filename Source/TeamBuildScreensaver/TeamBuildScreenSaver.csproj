@@ -109,32 +109,11 @@
       <DependentUpon>BuildStatusIcon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BuildStatusStringConverter.cs" />
-    <Compile Include="Views\NotStartedIcon.xaml.cs">
-      <DependentUpon>NotStartedIcon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PausedIcon.xaml.cs">
-      <DependentUpon>PausedIcon.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\ScreenSaverSettings.xaml.cs">
       <DependentUpon>ScreenSaverSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\StoppedIcon.xaml.cs">
-      <DependentUpon>StoppedIcon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\FailedIcon.xaml.cs">
-      <DependentUpon>FailedIcon.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\InProgressIcon.xaml.cs">
-      <DependentUpon>InProgressIcon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PartiallySucceededIcon.xaml.cs">
-      <DependentUpon>PartiallySucceededIcon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SuccessIcon.xaml.cs">
-      <DependentUpon>SuccessIcon.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -153,11 +132,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\NotStartedIcon.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\PausedIcon.xaml">
+    <Page Include="Views\Dictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -165,27 +140,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\StoppedIcon.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\FailedIcon.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\Main.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\InProgressIcon.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\PartiallySucceededIcon.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\SuccessIcon.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
