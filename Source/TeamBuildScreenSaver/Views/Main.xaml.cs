@@ -11,10 +11,8 @@ namespace TeamBuildScreenSaver.Views
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
-    using Microsoft.TeamFoundation.Client;
     using TeamBuildScreenSaver.DataModels;
     using System.Collections.Specialized;
-    using System;
     using TeamBuildScreenSaver.ViewModels;
 
     #endregion
@@ -33,7 +31,7 @@ namespace TeamBuildScreenSaver.Views
         {
             set
             {
-                foreach (UIElement element in this.LayoutRoot.Children)
+                foreach (UIElement element in this.BuildGrid.Children)
                 {
                     Viewbox viewbox = element as Viewbox;
 
@@ -57,7 +55,7 @@ namespace TeamBuildScreenSaver.Views
         {
             set
             {
-                this.LayoutRoot.Columns = value;
+                this.BuildGrid.Columns = value;
             }
         }
 
@@ -106,8 +104,10 @@ namespace TeamBuildScreenSaver.Views
                 viewbox.Child = panel;
                 viewbox.Margin = new Thickness(8);
 
-                this.LayoutRoot.Children.Add(viewbox);
+                this.BuildGrid.Children.Add(viewbox);
             }
+
+            this.Message.DataContext = new BuildServerQueryMessageViewModel(serverQuery);
         }
 
         #endregion

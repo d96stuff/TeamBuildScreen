@@ -62,7 +62,7 @@ namespace TeamBuildScreenSaverTests
                     string teamProject = build[0];
                     string definitionName = build[1];
 
-                    int rand = random.Next(6);
+                    int rand = random.Next(7);
                     BuildStatus status = BuildStatus.NotStarted;
 
                     switch (rand)
@@ -85,6 +85,9 @@ namespace TeamBuildScreenSaverTests
                         case 5:
                             status = BuildStatus.NotStarted;
                             break;
+                        case 6:
+                            this.OnError();
+                            return;
                     }
 
                     IBuildDetail latestBuild = new MockBuildDetail(status, "DOMAIN\\Joe Blogs", DateTime.Now, true, DateTime.Now, new MockBuildDefinition(teamProject, definitionName));
@@ -109,6 +112,14 @@ namespace TeamBuildScreenSaverTests
             }
         }
 
+        private void OnError()
+        {
+            if (this.Error != null)
+            {
+                this.Error(this, EventArgs.Empty);
+            }
+        }
+
         #endregion
 
         #region IBuildServerQuery Members
@@ -122,6 +133,8 @@ namespace TeamBuildScreenSaverTests
         }
 
         public event EventHandler QueryCompleted;
+
+        public event EventHandler Error;
 
         public IBuildDetail this[string key]
         {

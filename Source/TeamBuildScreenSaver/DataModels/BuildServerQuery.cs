@@ -14,6 +14,7 @@ namespace TeamBuildScreenSaver.DataModels
     using System.Threading;
     using Microsoft.TeamFoundation.Build.Client;
     using Microsoft.TeamFoundation.Client;
+using System.Collections.Generic;
 
     #endregion
 
@@ -32,12 +33,12 @@ namespace TeamBuildScreenSaver.DataModels
         /// <summary>
         /// Stores the list of build definitions to query.
         /// </summary>
-        private Hashtable builds;
+        private IDictionary<IBuildDetailSpec, IBuildDetail> builds;
 
         /// <summary>
-        /// The URL of the Team Foundation Server to query.
+        /// The Team Foundation Server to query.
         /// </summary>
-        private string tfsUrl;
+        private IBuildServer buildServer;
 
         /// <summary>
         /// The interval between queries.
@@ -52,7 +53,12 @@ namespace TeamBuildScreenSaver.DataModels
         {
             get
             {
-                return this.builds[key] as IBuildDetail;
+                string teamProject;
+                string definitionName;
+
+                BuildServerQuery.ParseBuild(key, out teamProject, out definitionName);
+
+                return this.builds.Single(x => x.Key.DefinitionSpec.Name == definitionName && x.Key.DefinitionSpec.TeamProject == teamProject).Value;
             }
         }
 
@@ -66,8 +72,9 @@ namespace TeamBuildScreenSaver.DataModels
         /// <param name="tfsUrl">The URL of the Team Foundation Server to query.</param>
         public BuildServerQuery(string tfsUrl)
         {
-            this.tfsUrl = tfsUrl;
-            this.builds = new Hashtable();
+            TeamFoundationServer tfs = TeamFoundationServerFactory.GetServer(tfsUrl);
+            this.buildServer = (IBuildServer)tfs.GetService(typeof(IBuildServer));
+            this.builds = new Dictionary<IBuildDetailSpec, IBuildDetail>();
         }
 
         /// <summary>
@@ -92,7 +99,16 @@ namespace TeamBuildScreenSaver.DataModels
         {
             lock (this.builds)
             {
-                this.builds.Add(key, null);
+                string teamProject;
+                string definitionName;
+
+                BuildServerQuery.ParseBuild(key, out teamProject, out definitionName);
+
+                IBuildDetailSpec spec = this.buildServer.CreateBuildDetailSpec(teamProject, definitionName);
+                spec.MaxBuildsPerDefinition = 1;
+                spec.QueryOrder = BuildQueryOrder.FinishTimeDescending;
+
+                this.builds.Add(spec, null);
             }
         }
 
@@ -113,34 +129,35 @@ namespace TeamBuildScreenSaver.DataModels
         /// <param name="stateInfo"></param>
         private void Query(object stateInfo)
         {
-            TeamFoundationServer tfs = TeamFoundationServerFactory.GetServer(this.tfsUrl);
-
-            IBuildServer buildServer = (IBuildServer)tfs.GetService(typeof(IBuildServer));
-            Hashtable latestBuilds = new Hashtable();
-
             lock (this.builds)
             {
-                foreach (string key in this.builds.Keys)
+                IBuildDetailSpec[] buildDetailSpecs = (from b in this.builds select b.Key).ToArray();
+                IBuildQueryResult[] results;
+
+                try
                 {
-                    string[] build = key.Split(';');
-                    string teamProject = build[0];
-                    string definitionName = build[1];
+                    results = this.buildServer.QueryBuilds(buildDetailSpecs);
+                }
+                catch (Exception)
+                {
+                    this.OnError();
 
-                    IBuildDefinitionSpec spec = buildServer.CreateBuildDefinitionSpec(teamProject, definitionName);
-
-                    IBuildDetail[] builds = buildServer.QueryBuilds(spec);
-
-                    if (builds.Length > 0)
-                    {
-                        IBuildDetail latestBuild = builds.Last();
-
-                        latestBuilds.Add(key, latestBuild);
-                    }
+                    return;
                 }
 
-                foreach (string key in latestBuilds.Keys)
+                foreach (IBuildQueryResult result in results)
                 {
-                    this.builds[key] = latestBuilds[key];
+                    IBuildDetail detail = result.Builds[0];
+
+                    string teamProject = detail.BuildDefinition.TeamProject;
+                    string definitionName = detail.BuildDefinition.Name;
+
+                    IBuildDetailSpec spec =
+                        this.builds.Keys.Single(x =>
+                            x.DefinitionSpec.Name == definitionName &&
+                            x.DefinitionSpec.TeamProject == teamProject);
+
+                    this.builds[spec] = detail;
                 }
             }
 
@@ -158,6 +175,25 @@ namespace TeamBuildScreenSaver.DataModels
             }
         }
 
+        /// <summary>
+        /// Raises the <see cref="BuildServerQuery.Error"/> event.
+        /// </summary>
+        private void OnError()
+        {
+            if (this.Error != null)
+            {
+                this.Error(this, EventArgs.Empty);
+            }
+        }
+
+        private static void ParseBuild(string key, out string teamProject, out string definitionName)
+        {
+            string[] build = key.Split(';');
+            
+            teamProject = build[0];
+            definitionName = build[1];
+        }
+
         #endregion
 
         #region Events
@@ -166,6 +202,11 @@ namespace TeamBuildScreenSaver.DataModels
         /// Occurs when a query is completed.
         /// </summary>
         public event EventHandler QueryCompleted;
+
+        /// <summary>
+        /// Occurs when an error occurs.
+        /// </summary>
+        public event EventHandler Error;
 
         #endregion
 

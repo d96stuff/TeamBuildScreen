@@ -216,10 +216,10 @@ namespace TeamBuildScreenSaverTests
             }
         }
 
-        public BuildReason Reason
-        {
-            get { throw new NotImplementedException(); }
-        }
+        //public BuildReason Reason
+        //{
+        //    get { throw new NotImplementedException(); }
+        //}
 
         public void Refresh(string[] informationTypes, QueryOptions queryOptions)
         {

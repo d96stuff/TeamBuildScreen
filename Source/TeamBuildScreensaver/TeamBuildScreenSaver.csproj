@@ -99,7 +99,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\BuildDetailViewModel.cs" />
+    <Compile Include="ViewModels\BuildServerQueryMessageViewModel.cs" />
     <Compile Include="ViewModels\ConfigurationSummaryHandler.cs" />
+    <Compile Include="ViewModels\IMessageViewModel.cs" />
     <Compile Include="ViewModels\ScreenSaverSettingsViewModel.cs" />
     <Compile Include="Views\AttachedProperties.cs" />
     <Compile Include="Views\BuildPanel.xaml.cs">
@@ -109,6 +111,9 @@
       <DependentUpon>BuildStatusIcon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BuildStatusStringConverter.cs" />
+    <Compile Include="Views\MessagePanel.xaml.cs">
+      <DependentUpon>MessagePanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ScreenSaverSettings.xaml.cs">
       <DependentUpon>ScreenSaverSettings.xaml</DependentUpon>
     </Compile>
@@ -135,6 +140,10 @@
     <Page Include="Views\Dictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MessagePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ScreenSaverSettings.xaml">
       <Generator>MSBuild:Compile</Generator>

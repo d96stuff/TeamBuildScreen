@@ -40,6 +40,11 @@ namespace TeamBuildScreenSaver.DataModels
         /// </summary>
         event EventHandler QueryCompleted;
 
+        /// <summary>
+        /// Occurs when an error occurs.
+        /// </summary>
+        event EventHandler Error;
+
         #endregion
 
         #region Indexer
