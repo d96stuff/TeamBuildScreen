@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TeamBuildScreenSaverTests.Properties {
-    using System;
-    
-    
+namespace TeamBuildScreenSaverTests.Properties
+{
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>

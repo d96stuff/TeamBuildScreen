@@ -9,11 +9,8 @@ namespace TeamBuildScreenSaver.ViewModels
     #region Usings
 
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using TeamBuildScreenSaver.DataModels;
     using System.ComponentModel;
+    using TeamBuildScreenSaver.DataModels;
 
     #endregion
 

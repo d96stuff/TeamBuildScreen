@@ -9,9 +9,6 @@ namespace TeamBuildScreenSaverTests
     #region Usings
 
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Microsoft.TeamFoundation.Build.Client;
 
     #endregion
@@ -216,10 +213,10 @@ namespace TeamBuildScreenSaverTests
             }
         }
 
-        //public BuildReason Reason
-        //{
-        //    get { throw new NotImplementedException(); }
-        //}
+        public BuildReason Reason
+        {
+            get { throw new NotImplementedException(); }
+        }
 
         public void Refresh(string[] informationTypes, QueryOptions queryOptions)
         {

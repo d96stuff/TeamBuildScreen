@@ -8,15 +8,12 @@ namespace TeamBuildScreenSaver.DataModels
 {
     #region Usings
 
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-using Microsoft.TeamFoundation.Client;
-    using Microsoft.TeamFoundation.Build.Client;
-    using Microsoft.TeamFoundation.VersionControl.Client;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
+    using Microsoft.TeamFoundation.Build.Client;
+    using Microsoft.TeamFoundation.Client;
+    using Microsoft.TeamFoundation.VersionControl.Client;
 
     #endregion
 

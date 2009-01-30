@@ -9,16 +9,12 @@ namespace TeamBuildScreenSaverTests
     #region Usings
 
     using System;
-    using System.Collections.Generic;
-    using System.Configuration;
-    using System.Data;
-    using System.Linq;
-    using System.Windows;
     using System.Collections.Specialized;
+    using System.Windows;
+    using Microsoft.TeamFoundation.Build.Client;
     using Microsoft.TeamFoundation.Client;
     using TeamBuildScreenSaver.DataModels;
     using TeamBuildScreenSaver.Views;
-    using Microsoft.TeamFoundation.Build.Client;
 
     #endregion
 

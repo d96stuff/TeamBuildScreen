@@ -9,12 +9,11 @@ namespace TeamBuildScreenSaver.DataModels
     #region Usings
 
     using System;
-    using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
     using Microsoft.TeamFoundation.Build.Client;
     using Microsoft.TeamFoundation.Client;
-using System.Collections.Generic;
 
     #endregion
 
@@ -58,7 +57,9 @@ using System.Collections.Generic;
 
                 BuildServerQuery.ParseBuild(key, out teamProject, out definitionName);
 
-                return this.builds.Single(x => x.Key.DefinitionSpec.Name == definitionName && x.Key.DefinitionSpec.TeamProject == teamProject).Value;
+                return this.builds.Single(x =>
+                    x.Key.DefinitionSpec.Name == definitionName &&
+                    x.Key.DefinitionSpec.TeamProject == teamProject).Value;
             }
         }
 
@@ -132,6 +133,12 @@ using System.Collections.Generic;
             lock (this.builds)
             {
                 IBuildDetailSpec[] buildDetailSpecs = (from b in this.builds select b.Key).ToArray();
+
+                if (buildDetailSpecs.Count() == 0)
+                {
+                    return;
+                }
+
                 IBuildQueryResult[] results;
 
                 try

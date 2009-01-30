@@ -12,7 +12,7 @@ namespace TeamBuildScreenSaver.DataModels
     using System.ComponentModel;
     using System.Windows.Threading;
     using Microsoft.TeamFoundation.Build.Client;
-    using TeamBuildScreenSaver.ViewModels;
+
 
     #endregion
 

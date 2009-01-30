@@ -8,16 +8,12 @@ namespace TeamBuildScreenSaver.ViewModels
 {
     #region Usings
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.ComponentModel;
-    using TeamBuildScreenSaver.DataModels;
     using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    using System.Windows;
     using System.Windows.Input;
     using Microsoft.TeamFoundation.Proxy;
-    using System.Windows;
+    using TeamBuildScreenSaver.DataModels;
 
     #endregion
 

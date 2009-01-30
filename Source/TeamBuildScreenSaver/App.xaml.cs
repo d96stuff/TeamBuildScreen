@@ -9,14 +9,13 @@ namespace TeamBuildScreenSaver
     #region Usings
 
     using System;
+    using System.Collections.Specialized;
     using System.Windows;
     using System.Windows.Interop;
-    using TeamBuildScreenSaver.Views;
-    using System.Collections.Specialized;
+    using System.Windows.Threading;
     using Microsoft.TeamFoundation.Client;
     using TeamBuildScreenSaver.DataModels;
-    using Microsoft.TeamFoundation.Build.Client;
-    using System.Windows.Threading; 
+    using TeamBuildScreenSaver.Views; 
 
     #endregion
 
