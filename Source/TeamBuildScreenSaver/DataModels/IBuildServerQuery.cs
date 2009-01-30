@@ -27,6 +27,20 @@ namespace TeamBuildScreenSaver.DataModels
         void AddBuild(string key);
 
         /// <summary>
+        /// Gets the <see cref="Microsoft.TeamFoundation.Build.Client.IBuildDetail"/> for the build with the specified key.
+        /// </summary>
+        /// <param name="key">The key of the build definition.</param>
+        /// <returns>The <see cref="Microsoft.TeamFoundation.Build.Client.IBuildDetail"/> for the build with the specified key.</returns>
+        IBuildDetail GetBuildDetail(string key);
+
+        /// <summary>
+        /// Returns a value that indicates whether the build with the specified key has any builds queued.
+        /// </summary>
+        /// <param name="key">The key of the build definition.</param>
+        /// <returns>true if the specified build has any builds queued, otherwise; false.</returns>
+        bool IsQueued(string key);
+
+        /// <summary>
         /// Starts querying the server.
         /// </summary>
         void Start();
@@ -44,12 +58,6 @@ namespace TeamBuildScreenSaver.DataModels
         /// Occurs when an error occurs.
         /// </summary>
         event EventHandler Error;
-
-        #endregion
-
-        #region Indexer
-
-        IBuildDetail this[string key] { get; }
 
         #endregion
     }

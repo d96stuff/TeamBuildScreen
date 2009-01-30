@@ -120,6 +120,13 @@ namespace TeamBuildScreenSaverTests
 
         #region IBuildServerQuery Members
 
+        public bool IsQueued(string key)
+        {
+            Random random = new Random();
+
+            return Convert.ToBoolean(random.Next(2));
+        }
+
         public void AddBuild(string key)
         {
             lock (this.builds)
@@ -132,12 +139,9 @@ namespace TeamBuildScreenSaverTests
 
         public event EventHandler Error;
 
-        public IBuildDetail this[string key]
+        public IBuildDetail GetBuildDetail(string key)
         {
-            get
-            {
-                return this.builds[key] as IBuildDetail;
-            }
+            return this.builds[key] as IBuildDetail;
         }
 
         #endregion

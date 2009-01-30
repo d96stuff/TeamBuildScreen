@@ -37,6 +37,8 @@ namespace TeamBuildScreenSaver.ViewModels
 
         private ConfigurationSummaryHandler configurationSummaryHandler;
 
+        private bool isQueued = false;
+
         /// <summary>
         /// A static synchronisation lock used to synchronise access across all instances.
         /// </summary>
@@ -65,6 +67,17 @@ namespace TeamBuildScreenSaver.ViewModels
             get
             {
                 return this.summary;
+            }
+        }
+
+        /// <summary>
+        /// Gets a value that indicates whether the build has any builds queued.
+        /// </summary>
+        public bool IsQueued
+        {
+            get
+            {
+                return this.isQueued;
             }
         }
 
@@ -126,6 +139,7 @@ namespace TeamBuildScreenSaver.ViewModels
         private void UpdateFromModel()
         {
             this.status = this.dataModel.Model.Status;
+            this.isQueued = this.dataModel.IsQueued;
 
             StringBuilder text = new StringBuilder();
 
@@ -157,6 +171,7 @@ namespace TeamBuildScreenSaver.ViewModels
 
             this.summary = text.ToString();
 
+            this.OnPropertyChanged("IsQueued");
             this.OnPropertyChanged("Status");
             this.OnPropertyChanged("Summary");
         }

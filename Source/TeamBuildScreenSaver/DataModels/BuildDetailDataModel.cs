@@ -48,6 +48,8 @@ namespace TeamBuildScreenSaver.DataModels
         /// </summary>
         private string platform;
 
+        private bool isQueued = false;
+
         #endregion
 
         #region Constructors
@@ -93,7 +95,6 @@ namespace TeamBuildScreenSaver.DataModels
             {
                 return this.model;
             }
-
             private set
             {
                 this.model = value;
@@ -124,6 +125,23 @@ namespace TeamBuildScreenSaver.DataModels
             }
         }
 
+        /// <summary>
+        /// Gets a value that indicates whether the build has any builds queued.
+        /// </summary>
+        public bool IsQueued
+        {
+            get
+            {
+                return this.isQueued;
+            }
+            private set
+            {
+                this.isQueued = value;
+
+                this.OnPropertyChanged("IsQueued");
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -139,12 +157,14 @@ namespace TeamBuildScreenSaver.DataModels
                 DispatcherPriority.DataBind,
                 new Action(delegate
                     {
-                        IBuildDetail model = this.serverQuery[this.key];
+                        IBuildDetail model = this.serverQuery.GetBuildDetail(this.key);
 
                         if (model != null)
                         {
                             this.Model = model;
                         }
+
+                        this.IsQueued = this.serverQuery.IsQueued(this.key);
                     }));
         }
 
