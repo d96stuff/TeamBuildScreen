@@ -107,7 +107,7 @@ namespace TeamBuildScreenSaver.DataModels
 
                 IBuildDetailSpec spec = this.buildServer.CreateBuildDetailSpec(teamProject, definitionName);
                 spec.MaxBuildsPerDefinition = 1;
-                spec.QueryOrder = BuildQueryOrder.FinishTimeDescending;
+                spec.QueryOrder = BuildQueryOrder.StartTimeDescending;
 
                 this.builds.Add(spec, null);
             }
