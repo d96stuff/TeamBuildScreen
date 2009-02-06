@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="MockBuildServerQuery.cs" company="Jim Liddell"> 
+// <copyright file="MockBuildServerService.cs" company="Jim Liddell"> 
 //    Copyright © Jim Liddell. All rights reserved. 
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace TeamBuildScreenSaverTests
+namespace TeamBuildScreenSaverDemo
 {
     #region Usings
 
@@ -12,11 +12,11 @@ namespace TeamBuildScreenSaverTests
     using System.Collections;
     using System.Threading;
     using Microsoft.TeamFoundation.Build.Client;
-    using TeamBuildScreenSaver.DataModels;
+    using TeamBuildScreenSaver.Models;
 
     #endregion
 
-    public class MockBuildServerQuery : IBuildServerQuery
+    public class MockBuildServerService : IBuildServerService
     {
         #region Fields
 
@@ -28,7 +28,7 @@ namespace TeamBuildScreenSaverTests
 
         #region Constructors
 
-        public MockBuildServerQuery()
+        public MockBuildServerService()
         {
             this.builds = new Hashtable();
         }
@@ -118,7 +118,7 @@ namespace TeamBuildScreenSaverTests
 
         #endregion
 
-        #region IBuildServerQuery Members
+        #region IBuildServerService Members
 
         public bool IsQueued(string key)
         {

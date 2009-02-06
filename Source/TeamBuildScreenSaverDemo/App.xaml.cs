@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace TeamBuildScreenSaverTests
+namespace TeamBuildScreenSaverDemo
 {
     #region Usings
 
@@ -13,8 +13,9 @@ namespace TeamBuildScreenSaverTests
     using System.Windows;
     using Microsoft.TeamFoundation.Build.Client;
     using Microsoft.TeamFoundation.Client;
-    using TeamBuildScreenSaver.DataModels;
+    using TeamBuildScreenSaver.Models;
     using TeamBuildScreenSaver.Views;
+    using TeamBuildScreenSaver.ViewModels;
 
     #endregion
 
@@ -26,7 +27,7 @@ namespace TeamBuildScreenSaverTests
         #region Fields
 
         private Main main;
-        private IBuildServerQuery serverQuery;
+        private IBuildServerService serverQuery;
 
         #endregion
 
@@ -44,12 +45,15 @@ namespace TeamBuildScreenSaverTests
             builds.Add("TeamProject;MySecondBuild;Release;Any CPU");
             builds.Add("TeamProject;MyThirdBuild;Release;Any CPU");
 
-            this.serverQuery = new MockBuildServerQuery();
+            this.serverQuery = new MockBuildServerService();
 
             tfsServer.Dispose();
 
-            this.main = new Main(this.serverQuery, builds, MockConfigurationSummaryHandler);
-            this.main.Columns = columns;
+            MainViewModel viewModel = new MainViewModel(this.serverQuery, builds, MockConfigurationSummaryHandler);
+            viewModel.Columns = columns;
+
+            this.main = new Main();
+            this.main.DataContext = viewModel;
             this.main.Closed += new EventHandler(main_Closed);
             this.main.Show();
             this.serverQuery.Start();

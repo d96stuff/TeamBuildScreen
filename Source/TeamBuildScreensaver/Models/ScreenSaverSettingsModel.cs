@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="ScreenSaverSettingsDataModel.cs" company="Jim Liddell">
+// <copyright file="ScreenSaverSettingsModel.cs" company="Jim Liddell">
 //    Copyright © Jim Liddell. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace TeamBuildScreenSaver.DataModels
+namespace TeamBuildScreenSaver.Models
 {
     #region Usings
 
@@ -17,7 +17,7 @@ namespace TeamBuildScreenSaver.DataModels
 
     #endregion
 
-    public class ScreenSaverSettingsDataModel : INotifyPropertyChanged
+    public class ScreenSaverSettingsModel : INotifyPropertyChanged
     {
         #region Fields
 
@@ -94,7 +94,7 @@ namespace TeamBuildScreenSaver.DataModels
 
         #region Constructors
 
-        public ScreenSaverSettingsDataModel()
+        public ScreenSaverSettingsModel()
         {
             this.settings = Settings.Default;
             this.builds = new ObservableCollection<BuildSetting>();

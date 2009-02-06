@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="BuildServerQueryMessageViewModel.cs" company="Jim Liddell">
+// <copyright file="BuildServerServiceMessageViewModel.cs" company="Jim Liddell">
 //    Copyright © Jim Liddell. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -10,19 +10,19 @@ namespace TeamBuildScreenSaver.ViewModels
 
     using System;
     using System.ComponentModel;
-    using TeamBuildScreenSaver.DataModels;
+    using TeamBuildScreenSaver.Models;
 
     #endregion
 
-    public class BuildServerQueryMessageViewModel : IMessageViewModel, INotifyPropertyChanged
+    public class BuildServerServiceMessageViewModel : IMessageViewModel, INotifyPropertyChanged
     {
         #region Constuctors
 
-        public BuildServerQueryMessageViewModel(IBuildServerQuery serverQuery)
+        public BuildServerServiceMessageViewModel(IBuildServerService service)
         {
             this.Message = "Unable to contact Team Foundation Server.";
-            serverQuery.QueryCompleted += OnQueryCompleted;
-            serverQuery.Error += OnError;
+            service.QueryCompleted += OnQueryCompleted;
+            service.Error += OnError;
         }
 
         #endregion

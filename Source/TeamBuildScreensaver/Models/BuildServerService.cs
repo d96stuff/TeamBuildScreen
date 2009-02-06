@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="BuildServerQuery.cs" company="Jim Liddell">
+// <copyright file="BuildServerService.cs" company="Jim Liddell">
 //    Copyright © Jim Liddell. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace TeamBuildScreenSaver.DataModels
+namespace TeamBuildScreenSaver.Models
 {
     #region Usings
 
@@ -22,7 +22,7 @@ namespace TeamBuildScreenSaver.DataModels
     /// <summary>
     /// Periodically queries the status of current build definitions against a Team Foundation Server.
     /// </summary>
-    public class BuildServerQuery : IBuildServerQuery
+    public class BuildServerService : IBuildServerService
     {
         #region Fields
 
@@ -56,10 +56,10 @@ namespace TeamBuildScreenSaver.DataModels
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BuildServerQuery"/> class. The server will be queried every 30 seconds.
+        /// Initializes a new instance of the <see cref="BuildServerService"/> class. The server will be queried every 30 seconds.
         /// </summary>
         /// <param name="tfsUrl">The URL of the Team Foundation Server to query.</param>
-        public BuildServerQuery(string tfsUrl)
+        public BuildServerService(string tfsUrl)
         {
             TeamFoundationServer tfs = TeamFoundationServerFactory.GetServer(tfsUrl);
             this.buildServer = (IBuildServer)tfs.GetService(typeof(IBuildServer));
@@ -68,11 +68,11 @@ namespace TeamBuildScreenSaver.DataModels
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BuildServerQuery"/> class.
+        /// Initializes a new instance of the <see cref="BuildServerService"/> class.
         /// </summary>
         /// <param name="tfsUrl">The URL of the Team Foundation Server to query.</param>
         /// <param name="period">The interval between queries (in milliseconds).</param>
-        public BuildServerQuery(string tfsUrl, int period) : this(tfsUrl)
+        public BuildServerService(string tfsUrl, int period) : this(tfsUrl)
         {
             this.period = period;
         }
@@ -91,7 +91,7 @@ namespace TeamBuildScreenSaver.DataModels
             string teamProject;
             string definitionName;
 
-            BuildServerQuery.ParseBuild(key, out teamProject, out definitionName);
+            BuildServerService.ParseBuild(key, out teamProject, out definitionName);
 
             return this.builds.Single(x =>
                 x.Key.DefinitionSpec.Name == definitionName &&
@@ -108,7 +108,7 @@ namespace TeamBuildScreenSaver.DataModels
             string teamProject;
             string definitionName;
 
-            BuildServerQuery.ParseBuild(key, out teamProject, out definitionName);
+            BuildServerService.ParseBuild(key, out teamProject, out definitionName);
 
             return this.buildQueues.First(q => q.TeamProject == teamProject).QueuedBuilds.Any(b => b.BuildDefinition.Name == definitionName);
         }
@@ -124,7 +124,7 @@ namespace TeamBuildScreenSaver.DataModels
                 string teamProject;
                 string definitionName;
 
-                BuildServerQuery.ParseBuild(key, out teamProject, out definitionName);
+                BuildServerService.ParseBuild(key, out teamProject, out definitionName);
 
                 IBuildDetailSpec buildDetailSpec = this.buildServer.CreateBuildDetailSpec(teamProject, definitionName);
 
@@ -214,7 +214,7 @@ namespace TeamBuildScreenSaver.DataModels
         }
 
         /// <summary>
-        /// Raises the <see cref="TeamBuildScreenSaver.DataModels.BuildServerQuery.QueryCompleted"/> event.
+        /// Raises the <see cref="TeamBuildScreenSaver.Models.IBuildServerService.QueryCompleted"/> event.
         /// </summary>
         private void OnQueryCompleted()
         {
@@ -225,7 +225,7 @@ namespace TeamBuildScreenSaver.DataModels
         }
 
         /// <summary>
-        /// Raises the <see cref="TeamBuildScreenSaver.DataModels.BuildServerQuery.Error"/> event.
+        /// Raises the <see cref="TeamBuildScreenSaver.Models.IBuildServerService.Error"/> event.
         /// </summary>
         private void OnError()
         {

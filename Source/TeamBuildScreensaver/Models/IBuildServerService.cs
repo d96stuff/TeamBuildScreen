@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="IBuildServerQuery.cs" company="Jim Liddell">
+// <copyright file="IBuildServerService.cs" company="Jim Liddell">
 //    Copyright © Jim Liddell. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace TeamBuildScreenSaver.DataModels
+namespace TeamBuildScreenSaver.Models
 {
     #region Usings
 
@@ -16,7 +16,7 @@ namespace TeamBuildScreenSaver.DataModels
     /// <summary>
     /// Provides an interface for a class that periodically queries the status of current build definitions against a Team Foundation Server.
     /// </summary>
-    public interface IBuildServerQuery : IDisposable
+    public interface IBuildServerService : IDisposable
     {
         #region Methods
 

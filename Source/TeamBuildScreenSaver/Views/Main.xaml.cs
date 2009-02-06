@@ -12,7 +12,7 @@ namespace TeamBuildScreenSaver.Views
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
-    using TeamBuildScreenSaver.DataModels;
+    using TeamBuildScreenSaver.Models;
     using TeamBuildScreenSaver.ViewModels;
 
     #endregion
@@ -27,22 +27,6 @@ namespace TeamBuildScreenSaver.Views
 
         #region Properties
 
-        public double InnerMargin
-        {
-            set
-            {
-                foreach (UIElement element in this.BuildGrid.Children)
-                {
-                    Viewbox viewbox = element as Viewbox;
-
-                    if (viewbox != null)
-                    {
-                        viewbox.Margin = new Thickness(value);
-                    }
-                }
-            }
-        }
-
         public bool IsInteractive
         {
             set
@@ -51,63 +35,13 @@ namespace TeamBuildScreenSaver.Views
             }
         }
 
-        public int Columns
-        {
-            set
-            {
-                this.BuildGrid.Columns = value;
-            }
-        }
-
         #endregion
 
         #region Constructors
 
-        public Main(IBuildServerQuery serverQuery, StringCollection builds)
+        public Main()
         {
             this.InitializeComponent();
-
-            this.InitializeBuildPanels(serverQuery, builds, null);
-        }
-
-        public Main(IBuildServerQuery serverQuery, StringCollection builds, ConfigurationSummaryHandler configurationSummaryHandler)
-        {
-            this.InitializeComponent();
-
-            this.InitializeBuildPanels(serverQuery, builds, configurationSummaryHandler);
-        }
-
-        private void InitializeBuildPanels(IBuildServerQuery serverQuery, StringCollection builds, ConfigurationSummaryHandler configurationSummaryHandler)
-        {
-            foreach (string build in builds)
-            {
-                string[] buildParts = build.Split(';');
-                string teamProject = buildParts[0];
-                string definitionName = buildParts[1];
-                string configuration = buildParts[2];
-                string platform = buildParts[3];
-
-                BuildDetailDataModel dataModel = new BuildDetailDataModel(teamProject, definitionName, configuration, platform, serverQuery);
-
-                BuildPanel panel;
-
-                if (configurationSummaryHandler == null)
-                {
-                    panel = new BuildPanel(dataModel);
-                }
-                else
-                {
-                    panel = new BuildPanel(dataModel, configurationSummaryHandler);
-                }
-
-                Viewbox viewbox = new Viewbox();
-                viewbox.Child = panel;
-                viewbox.Margin = new Thickness(8);
-
-                this.BuildGrid.Children.Add(viewbox);
-            }
-
-            this.Message.DataContext = new BuildServerQueryMessageViewModel(serverQuery);
         }
 
         #endregion
@@ -116,6 +50,7 @@ namespace TeamBuildScreenSaver.Views
 
         private void Main_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            // TODO: This should be encapsulted as a Command on MainViewModel
             if (this.isInteractive)
             {
                 Application.Current.Shutdown();
@@ -124,6 +59,7 @@ namespace TeamBuildScreenSaver.Views
 
         private void Main_KeyDown(object sender, KeyEventArgs e)
         {
+            // TODO: This should be encapsulted as a Command on MainViewModel
             if (this.isInteractive)
             {
                 Application.Current.Shutdown();

@@ -11,7 +11,7 @@ namespace TeamBuildScreenSaver.ViewModels
     using System.ComponentModel;
     using System.Text;
     using Microsoft.TeamFoundation.Build.Client;
-    using TeamBuildScreenSaver.DataModels;
+    using TeamBuildScreenSaver.Models;
     using TeamBuildScreenSaver.Views;
 
     #endregion
@@ -23,7 +23,7 @@ namespace TeamBuildScreenSaver.ViewModels
         /// <summary>
         /// The model underlying the <see cref="BuildDetailViewModel"/>.
         /// </summary>
-        private BuildDetailDataModel dataModel;
+        private BuildDetailModel dataModel;
 
         /// <summary>
         /// The summary for the <see cref="BuildDetailViewModel"/>.
@@ -91,7 +91,7 @@ namespace TeamBuildScreenSaver.ViewModels
         /// to resolve the configuration summary for the <see cref="BuildDetailViewModel"/>.
         /// </summary>
         /// <param name="dataModel">The model underlying the <see cref="BuildDetailViewModel"/>.</param>
-        public BuildDetailViewModel(BuildDetailDataModel dataModel)
+        public BuildDetailViewModel(BuildDetailModel dataModel)
         {
             this.Init(dataModel);
 
@@ -109,7 +109,7 @@ namespace TeamBuildScreenSaver.ViewModels
         /// </summary>
         /// <param name="dataModel">The model underlying the <see cref="BuildDetailViewModel"/>.</param>
         /// <param name="configurationSummaryHandler">The delegate that resolves the configuration summary for the <see cref="BuildDetailViewModel"/>.</param>
-        public BuildDetailViewModel(BuildDetailDataModel dataModel, ConfigurationSummaryHandler configurationSummaryHandler)
+        public BuildDetailViewModel(BuildDetailModel dataModel, ConfigurationSummaryHandler configurationSummaryHandler)
         {
             this.Init(dataModel);
 
@@ -124,7 +124,7 @@ namespace TeamBuildScreenSaver.ViewModels
         /// Initializes the <see cref="BuildDetailViewModel"/> with the specified <see cref="BuildDetailDataModel"/>.
         /// </summary>
         /// <param name="dataModel">The model that is encapsulated by the <see cref="BuildDetailViewModel"/>.</param>
-        private void Init(BuildDetailDataModel dataModel)
+        private void Init(BuildDetailModel dataModel)
         {
             this.dataModel = dataModel;
             this.dataModel.PropertyChanged += delegate(object sender, System.ComponentModel.PropertyChangedEventArgs e)

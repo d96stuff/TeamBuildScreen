@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="BuildDetailDataModel.cs" company="Jim Liddell">
+// <copyright file="BuildDetailModel.cs" company="Jim Liddell">
 //    Copyright © Jim Liddell. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace TeamBuildScreenSaver.DataModels
+namespace TeamBuildScreenSaver.Models
 {
     #region Usings
 
@@ -13,38 +13,37 @@ namespace TeamBuildScreenSaver.DataModels
     using System.Windows.Threading;
     using Microsoft.TeamFoundation.Build.Client;
 
-
     #endregion
 
     /// <summary>
     /// Represents the current details of an individual build definition.
     /// </summary>
-    public class BuildDetailDataModel : INotifyPropertyChanged
+    public class BuildDetailModel : INotifyPropertyChanged
     {
         #region Fields
 
         /// <summary>
-        /// The <see cref="IBuildServerQuery"/> for the <see cref="BuildDetailDataModel"/>.
+        /// The <see cref="IBuildServerService"/> for the <see cref="BuildDetailModel"/>.
         /// </summary>
-        private IBuildServerQuery serverQuery;
+        private IBuildServerService service;
 
         /// <summary>
-        /// The model for the <see cref="BuildDetailDataModel"/>.
+        /// The model for the <see cref="BuildDetailModel"/>.
         /// </summary>
         private IBuildDetail model;
 
         /// <summary>
-        /// The key for the <see cref="BuildDetailDataModel"/>.
+        /// The key for the <see cref="BuildDetailModel"/>.
         /// </summary>
         private string key;
 
         /// <summary>
-        /// The configuration for the <see cref="BuildDetailDataModel"/> (e.g. 'Release').
+        /// The configuration for the <see cref="BuildDetailModel"/> (e.g. 'Release').
         /// </summary>
         private string configuration;
 
         /// <summary>
-        /// The platform for the <see cref="BuildDetailDataModel"/> (e.g. 'Any CPU').
+        /// The platform for the <see cref="BuildDetailModel"/> (e.g. 'Any CPU').
         /// </summary>
         private string platform;
 
@@ -55,22 +54,22 @@ namespace TeamBuildScreenSaver.DataModels
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BuildDetailDataModel"/> class.
+        /// Initializes a new instance of the <see cref="BuildDetailModel"/> class.
         /// </summary>
-        /// <param name="teamProject">The name of the Team Project for the <see cref="BuildDetailDataModel"/>.</param>
-        /// <param name="definitionName">The name of the build defintionf or the <see cref="BuildDetailDataModel"/>.</param>
-        /// <param name="configuration">The configuration for the <see cref="BuildDetailDataModel"/> (e.g. 'Release').</param>
-        /// <param name="platform">The platform for the <see cref="BuildDetailDataModel"/> (e.g. 'Any CPU').</param>
-        /// <param name="serverQuery">The <see cref="IBuildServerQuery"/> for the <see cref="BuildDetailDataModel"/>.</param>
-        public BuildDetailDataModel(string teamProject, string definitionName, string configuration, string platform, IBuildServerQuery serverQuery)
+        /// <param name="teamProject">The name of the Team Project for the <see cref="BuildDetailModel"/>.</param>
+        /// <param name="definitionName">The name of the build defintionf or the <see cref="BuildDetailModel"/>.</param>
+        /// <param name="configuration">The configuration for the <see cref="BuildDetailModel"/> (e.g. 'Release').</param>
+        /// <param name="platform">The platform for the <see cref="BuildDetailModel"/> (e.g. 'Any CPU').</param>
+        /// <param name="service">The <see cref="IBuildServerService"/> for the <see cref="BuildDetailModel"/>.</param>
+        public BuildDetailModel(string teamProject, string definitionName, string configuration, string platform, IBuildServerService service)
         {
             this.key = string.Format("{0};{1}", teamProject, definitionName);
             this.configuration = configuration;
             this.platform = platform;
-            this.serverQuery = serverQuery;
+            this.service = service;
 
-            this.serverQuery.AddBuild(this.key);
-            this.serverQuery.QueryCompleted += this.UpdateModel;
+            this.service.AddBuild(this.key);
+            this.service.QueryCompleted += this.UpdateModel;
         }
 
         #endregion
@@ -87,7 +86,7 @@ namespace TeamBuildScreenSaver.DataModels
         #region Properties
 
         /// <summary>
-        /// Gets the model for the <see cref="BuildDetailDataModel"/>.
+        /// Gets the model for the <see cref="BuildDetailModel"/>.
         /// </summary>
         public IBuildDetail Model
         {
@@ -104,7 +103,7 @@ namespace TeamBuildScreenSaver.DataModels
         }
 
         /// <summary>
-        /// Gets the configuration for the <see cref="BuildDetailDataModel"/> (e.g. 'Release').
+        /// Gets the configuration for the <see cref="BuildDetailModel"/> (e.g. 'Release').
         /// </summary>
         public string Configuration
         {
@@ -115,7 +114,7 @@ namespace TeamBuildScreenSaver.DataModels
         }
 
         /// <summary>
-        /// Gets the platform for the <see cref="BuildDetailDataModel"/> (e.g. 'Any CPU').
+        /// Gets the platform for the <see cref="BuildDetailModel"/> (e.g. 'Any CPU').
         /// </summary>
         public string Platform
         {
@@ -147,7 +146,7 @@ namespace TeamBuildScreenSaver.DataModels
         #region Methods
 
         /// <summary>
-        /// Updates the <see cref="BuildDetailDataModel.Model"/> from the <see cref="IBuildServerQuery"/>.
+        /// Updates the <see cref="BuildDetailModel.Model"/> from the <see cref="IBuildServerService"/>.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -157,14 +156,14 @@ namespace TeamBuildScreenSaver.DataModels
                 DispatcherPriority.DataBind,
                 new Action(delegate
                     {
-                        IBuildDetail model = this.serverQuery.GetBuildDetail(this.key);
+                        IBuildDetail model = this.service.GetBuildDetail(this.key);
 
                         if (model != null)
                         {
                             this.Model = model;
                         }
 
-                        this.IsQueued = this.serverQuery.IsQueued(this.key);
+                        this.IsQueued = this.service.IsQueued(this.key);
                     }));
         }
 

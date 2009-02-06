@@ -13,7 +13,7 @@ namespace TeamBuildScreenSaver.ViewModels
     using System.Windows;
     using System.Windows.Input;
     using Microsoft.TeamFoundation.Proxy;
-    using TeamBuildScreenSaver.DataModels;
+    using TeamBuildScreenSaver.Models;
 
     #endregion
 
@@ -21,7 +21,7 @@ namespace TeamBuildScreenSaver.ViewModels
     {
         #region Fields
 
-        private ScreenSaverSettingsDataModel dataModel;
+        private ScreenSaverSettingsModel dataModel;
         private readonly CommandBindingCollection commandBindings;
         private ICommand selectTfsCommand;
 
@@ -93,7 +93,7 @@ namespace TeamBuildScreenSaver.ViewModels
 
         #region Constructors
 
-        public ScreenSaverSettingsViewModel(ScreenSaverSettingsDataModel dataModel)
+        public ScreenSaverSettingsViewModel(ScreenSaverSettingsModel dataModel)
         {
             this.dataModel = dataModel;
 

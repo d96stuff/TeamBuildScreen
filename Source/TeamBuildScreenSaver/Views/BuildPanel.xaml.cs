@@ -8,7 +8,7 @@ namespace TeamBuildScreenSaver.Views
 {
     #region Usings
 
-    using TeamBuildScreenSaver.DataModels;
+    using TeamBuildScreenSaver.Models;
     using TeamBuildScreenSaver.ViewModels;
 
     #endregion
@@ -17,18 +17,9 @@ namespace TeamBuildScreenSaver.Views
     {
         #region Constructors
 
-        public BuildPanel(BuildDetailDataModel dataModel)
+        public BuildPanel()
 		{
 			this.InitializeComponent();
-
-            this.DataContext = new BuildDetailViewModel(dataModel);
-        }
-
-        public BuildPanel(BuildDetailDataModel dataModel, ConfigurationSummaryHandler configurationSummaryHandler)
-        {
-            this.InitializeComponent();
-
-            this.DataContext = new BuildDetailViewModel(dataModel, configurationSummaryHandler);
         }
 
         #endregion

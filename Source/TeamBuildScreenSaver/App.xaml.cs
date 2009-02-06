@@ -14,8 +14,9 @@ namespace TeamBuildScreenSaver
     using System.Windows.Interop;
     using System.Windows.Threading;
     using Microsoft.TeamFoundation.Client;
-    using TeamBuildScreenSaver.DataModels;
-    using TeamBuildScreenSaver.Views; 
+    using TeamBuildScreenSaver.Models;
+    using TeamBuildScreenSaver.Views;
+    using TeamBuildScreenSaver.ViewModels; 
 
     #endregion
 
@@ -25,7 +26,7 @@ namespace TeamBuildScreenSaver
 
         private HwndSource winWPFContent;
         private Main main;
-        private IBuildServerQuery serverQuery;
+        private IBuildServerService service;
 
         #endregion
 
@@ -50,13 +51,13 @@ namespace TeamBuildScreenSaver
                 {
                     // normal mode
                     this.main.Show();
-                    this.serverQuery.Start();
+                    this.service.Start();
                 }
             }
             else if (e.Args.Length == 1 && e.Args[0].ToLower().StartsWith("/c"))        
             {
                 // configuration mode
-                ScreenSaverSettings settings = new ScreenSaverSettings(new ScreenSaverSettingsDataModel());
+                ScreenSaverSettings settings = new ScreenSaverSettings(new ScreenSaverSettingsModel());
                 settings.ShowDialog();
             }
             else
@@ -68,7 +69,7 @@ namespace TeamBuildScreenSaver
 
         private void ShowPreview(int previewHandle)
         {
-            this.main.InnerMargin = 1;
+            ((MainViewModel)this.main.DataContext).InnerMargin = 1;
             // set this property so that the preview window does not close when clicked on
             this.main.IsInteractive = false;
 
@@ -90,7 +91,7 @@ namespace TeamBuildScreenSaver
             this.winWPFContent.Disposed += new EventHandler(winWPFContent_Disposed);
             this.winWPFContent.RootVisual = this.main.LayoutRoot;
 
-            this.serverQuery.Start();
+            this.service.Start();
         }
 
         private void LoadMain()
@@ -108,12 +109,15 @@ namespace TeamBuildScreenSaver
 
             TeamFoundationServer tfsServer = new TeamFoundationServer(tfsUri);
 
-            this.serverQuery = new BuildServerQuery(tfsServer.Uri.AbsoluteUri);
+            this.service = new BuildServerService(tfsServer.Uri.AbsoluteUri);
 
             tfsServer.Dispose();
 
-            this.main = new Main(this.serverQuery, builds);
-            this.main.Columns = Settings.Default.Columns;
+            MainViewModel viewModel = new MainViewModel(this.service, builds);
+            viewModel.Columns = Settings.Default.Columns;
+
+            this.main = new Main();
+            this.main.DataContext = viewModel;
             this.main.Closed += new EventHandler(this.main_Closed);
         }
 
@@ -136,14 +140,15 @@ namespace TeamBuildScreenSaver
                 this.winWPFContent.Dispose();
             }
 
-            if (this.serverQuery != null)
+            if (this.service != null)
             {
-                this.serverQuery.Dispose();
+                this.service.Dispose();
             }
         }
 
         private void Application_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
+            // TODO: Log details
             MessageBox.Show(
                 string.Format(
                 "An error has been detected in the application that has caused the application to shutdown:\n\n{0}\n\nApologies for any inconvenience.",

@@ -10,7 +10,7 @@ namespace TeamBuildScreenSaver.Views
 
     using System.Windows;
     using System.Windows.Input;
-    using TeamBuildScreenSaver.DataModels;
+    using TeamBuildScreenSaver.Models;
     using TeamBuildScreenSaver.ViewModels;
 
     #endregion
@@ -22,7 +22,7 @@ namespace TeamBuildScreenSaver.Views
     {
         #region Constructors
 
-        public ScreenSaverSettings(ScreenSaverSettingsDataModel dataModel)
+        public ScreenSaverSettings(ScreenSaverSettingsModel dataModel)
         {
             InitializeComponent();
 

@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace TeamBuildScreenSaver.DataModels
+namespace TeamBuildScreenSaver.Models
 {
     #region Usings
 

@@ -87,11 +87,11 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="DataModels\BuildDetailDataModel.cs" />
-    <Compile Include="DataModels\BuildServerQuery.cs" />
-    <Compile Include="DataModels\BuildSetting.cs" />
-    <Compile Include="DataModels\IBuildServerQuery.cs" />
-    <Compile Include="DataModels\ScreenSaverSettingsDataModel.cs" />
+    <Compile Include="Models\BuildDetailModel.cs" />
+    <Compile Include="Models\BuildServerService.cs" />
+    <Compile Include="Models\BuildSetting.cs" />
+    <Compile Include="Models\IBuildServerService.cs" />
+    <Compile Include="Models\ScreenSaverSettingsModel.cs" />
     <Compile Include="Interop.cs" />
     <Compile Include="Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -99,9 +99,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\BuildDetailViewModel.cs" />
-    <Compile Include="ViewModels\BuildServerQueryMessageViewModel.cs" />
+    <Compile Include="ViewModels\BuildServerServiceMessageViewModel.cs" />
     <Compile Include="ViewModels\ConfigurationSummaryHandler.cs" />
     <Compile Include="ViewModels\IMessageViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ScreenSaverSettingsViewModel.cs" />
     <Compile Include="Views\AttachedProperties.cs" />
     <Compile Include="Views\BuildPanel.xaml.cs">
