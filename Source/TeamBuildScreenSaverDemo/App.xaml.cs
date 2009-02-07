@@ -16,6 +16,7 @@ namespace TeamBuildScreenSaverDemo
     using TeamBuildScreenSaver.Models;
     using TeamBuildScreenSaver.Views;
     using TeamBuildScreenSaver.ViewModels;
+    using TeamBuildScreenSaverTests.Models;
 
     #endregion
 
@@ -27,7 +28,7 @@ namespace TeamBuildScreenSaverDemo
         #region Fields
 
         private Main main;
-        private IBuildServerService serverQuery;
+        private IBuildServerService service;
 
         #endregion
 
@@ -45,18 +46,18 @@ namespace TeamBuildScreenSaverDemo
             builds.Add("TeamProject;MySecondBuild;Release;Any CPU");
             builds.Add("TeamProject;MyThirdBuild;Release;Any CPU");
 
-            this.serverQuery = new MockBuildServerService();
+            this.service = new MockBuildServerService();
 
             tfsServer.Dispose();
 
-            MainViewModel viewModel = new MainViewModel(this.serverQuery, builds, MockConfigurationSummaryHandler);
+            MainViewModel viewModel = new MainViewModel(this.service, builds, MockConfigurationSummaryHandler);
             viewModel.Columns = columns;
 
             this.main = new Main();
             this.main.DataContext = viewModel;
             this.main.Closed += new EventHandler(main_Closed);
             this.main.Show();
-            this.serverQuery.Start();
+            this.service.Start();
         }
 
         private void main_Closed(object sender, EventArgs e)
@@ -66,9 +67,9 @@ namespace TeamBuildScreenSaverDemo
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            if (this.serverQuery != null)
+            if (this.service != null)
             {
-                this.serverQuery.Dispose();
+                this.service.Dispose();
             }
         }
 
@@ -80,7 +81,13 @@ namespace TeamBuildScreenSaverDemo
 
             if (build.BuildFinished && tests)
             {
-                return new MockConfigurationSummary();
+                MockConfigurationSummary mockConfigurationSummary = new MockConfigurationSummary();
+
+                ITestSummary testSummary = new MockTestSummary(100, 3);
+
+                mockConfigurationSummary.AddTestSummary(testSummary);
+
+                return mockConfigurationSummary;
             }
             else
             {

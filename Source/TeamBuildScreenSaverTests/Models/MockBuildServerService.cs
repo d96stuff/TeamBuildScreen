@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace TeamBuildScreenSaverDemo
+namespace TeamBuildScreenSaverTests.Models
 {
     #region Usings
 
@@ -114,6 +114,21 @@ namespace TeamBuildScreenSaverDemo
             {
                 this.Error(this, EventArgs.Empty);
             }
+        }
+
+        public void RaiseError()
+        {
+            this.OnError();
+        }
+
+        public void RaiseQueryCompleted()
+        {
+            this.OnQueryCompleted();
+        }
+
+        public void SetBuildDetail(string key, IBuildDetail detail)
+        {
+            this.builds[key] = detail;
         }
 
         #endregion

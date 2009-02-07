@@ -5,5 +5,6 @@
 using System.Resources;
 
 [assembly: NeutralResourcesLanguageAttribute("en-US" , UltimateResourceFallbackLocation.MainAssembly)]
-[assembly: AssemblyTitleAttribute("Team Build Screen Saver")]
+[assembly: AssemblyTitleAttribute("TeamBuildScreenSaver")]
 [assembly: AssemblyCopyrightAttribute("Copyright © Jim Liddell")]
+[assembly: AssemblyProductAttribute("Team Build Screen Saver")]

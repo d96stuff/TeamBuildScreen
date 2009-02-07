@@ -72,12 +72,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MockBuildDefinition.cs" />
-    <Compile Include="MockBuildDetail.cs" />
-    <Compile Include="MockBuildInformation.cs" />
-    <Compile Include="MockBuildServerQuery.cs" />
-    <Compile Include="MockConfigurationSummary.cs" />
-    <Compile Include="MockTestSummary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -102,6 +96,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TeamBuildScreenSaverTests\TeamBuildScreenSaverTests.csproj">
+      <Project>{FE074487-B29B-4E89-B675-BE9FBE517B89}</Project>
+      <Name>TeamBuildScreenSaverTests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TeamBuildScreensaver\TeamBuildScreenSaver.csproj">
       <Project>{40B36C3C-325C-4E09-8D1C-3346C213C7B8}</Project>
       <Name>TeamBuildScreenSaver</Name>

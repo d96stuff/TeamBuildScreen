@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace TeamBuildScreenSaverDemo
+namespace TeamBuildScreenSaverTests.Models
 {
     #region Usings
 
@@ -16,6 +16,21 @@ namespace TeamBuildScreenSaverDemo
 
     public class MockConfigurationSummary : IConfigurationSummary
     {
+        #region Fields
+
+        private List<ITestSummary> summaries;
+
+        #endregion
+
+        #region Constructors
+
+        public MockConfigurationSummary()
+        {
+            this.summaries = new List<ITestSummary>();
+        }
+
+        #endregion
+
         #region IConfigurationSummary Members
 
         public ICodeCoverageSummary AddCodeCoverageSummary()
@@ -31,6 +46,11 @@ namespace TeamBuildScreenSaverDemo
         public ITestSummary AddTestSummary()
         {
             throw new NotImplementedException();
+        }
+
+        public void AddTestSummary(ITestSummary summary)
+        {
+            this.summaries.Add(summary);
         }
 
         public List<ICodeCoverageSummary> CodeCoverageSummaries
@@ -98,9 +118,6 @@ namespace TeamBuildScreenSaverDemo
         {
             get
             {
-                List<ITestSummary> summaries = new List<ITestSummary>();
-                summaries.Add(new MockTestSummary(100, 3));
-
                 return summaries;
             }
         }

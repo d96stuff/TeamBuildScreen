@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace TeamBuildScreenSaverDemo
+namespace TeamBuildScreenSaverTests.Models
 {
     #region Usings
 

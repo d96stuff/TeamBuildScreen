@@ -7,9 +7,17 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TeamBuildScreenSaverSetup.v
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamBuildScreenSaverDemo", "Source\TeamBuildScreenSaverDemo\TeamBuildScreenSaverDemo.csproj", "{80AEAB5C-1EA5-4195-8E48-FAD7A5AEB36F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamBuildScreenSaverTests", "Source\TeamBuildScreenSaverTests\TeamBuildScreenSaverTests.csproj", "{FE074487-B29B-4E89-B675-BE9FBE517B89}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6B4C1B76-B994-4FD3-BB5A-7C50E14DBB9A}"
+	ProjectSection(SolutionItems) = preProject
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+		TeamBuildScreenSaver.vsmdi = TeamBuildScreenSaver.vsmdi
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
+		SccNumberOfProjects = 5
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs03.codeplex.com/
 		SccLocalPath0 = .
@@ -22,6 +30,12 @@ Global
 		SccProjectUniqueName3 = Source\\TeamBuildScreenSaverDemo\\TeamBuildScreenSaverDemo.csproj
 		SccProjectName3 = Source/TeamBuildScreenSaverDemo
 		SccLocalPath3 = Source\\TeamBuildScreenSaverDemo
+		SccProjectUniqueName4 = Source\\TeamBuildScreenSaverTests\\TeamBuildScreenSaverTests.csproj
+		SccProjectName4 = Source/TeamBuildScreenSaverTests
+		SccLocalPath4 = Source\\TeamBuildScreenSaverTests
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = TeamBuildScreenSaver.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +52,10 @@ Global
 		{80AEAB5C-1EA5-4195-8E48-FAD7A5AEB36F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80AEAB5C-1EA5-4195-8E48-FAD7A5AEB36F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80AEAB5C-1EA5-4195-8E48-FAD7A5AEB36F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE074487-B29B-4E89-B675-BE9FBE517B89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE074487-B29B-4E89-B675-BE9FBE517B89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE074487-B29B-4E89-B675-BE9FBE517B89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE074487-B29B-4E89-B675-BE9FBE517B89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
