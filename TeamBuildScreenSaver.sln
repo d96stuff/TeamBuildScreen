@@ -7,13 +7,13 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TeamBuildScreenSaverSetup.v
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamBuildScreenSaverDemo", "Source\TeamBuildScreenSaverDemo\TeamBuildScreenSaverDemo.csproj", "{80AEAB5C-1EA5-4195-8E48-FAD7A5AEB36F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamBuildScreenSaverTests", "Source\TeamBuildScreenSaverTests\TeamBuildScreenSaverTests.csproj", "{FE074487-B29B-4E89-B675-BE9FBE517B89}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6B4C1B76-B994-4FD3-BB5A-7C50E14DBB9A}"
 	ProjectSection(SolutionItems) = preProject
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
 		TeamBuildScreenSaver.vsmdi = TeamBuildScreenSaver.vsmdi
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamBuildScreenSaver.UnitTests", "Tests\TeamBuildScreenSaver\UnitTests\TeamBuildScreenSaver.UnitTests.csproj", "{FE074487-B29B-4E89-B675-BE9FBE517B89}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -30,9 +30,9 @@ Global
 		SccProjectUniqueName3 = Source\\TeamBuildScreenSaverDemo\\TeamBuildScreenSaverDemo.csproj
 		SccProjectName3 = Source/TeamBuildScreenSaverDemo
 		SccLocalPath3 = Source\\TeamBuildScreenSaverDemo
-		SccProjectUniqueName4 = Source\\TeamBuildScreenSaverTests\\TeamBuildScreenSaverTests.csproj
-		SccProjectName4 = Source/TeamBuildScreenSaverTests
-		SccLocalPath4 = Source\\TeamBuildScreenSaverTests
+		SccProjectUniqueName4 = Tests\\TeamBuildScreenSaver\\UnitTests\\TeamBuildScreenSaver.UnitTests.csproj
+		SccProjectName4 = Tests/TeamBuildScreenSaver/UnitTests
+		SccLocalPath4 = Tests\\TeamBuildScreenSaver\\UnitTests
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = TeamBuildScreenSaver.vsmdi

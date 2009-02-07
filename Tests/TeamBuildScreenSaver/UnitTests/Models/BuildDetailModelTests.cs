@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace TeamBuildScreenSaverTests
+namespace TeamBuildScreenSaver.UnitTests
 {
     #region Usings
 
@@ -13,7 +13,7 @@ namespace TeamBuildScreenSaverTests
     using Microsoft.TeamFoundation.Build.Client;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TeamBuildScreenSaver.Models;
-    using TeamBuildScreenSaverTests.Models;
+    using TeamBuildScreenSaver.UnitTests.Models;
 
     #endregion
 

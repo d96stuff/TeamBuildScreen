@@ -12,7 +12,7 @@
         </RadialGradientBrush>
     </Window.Background>
   <Grid x:Name="LayoutRoot">
-    <ItemsControl ItemsSource="{Binding Builds}">
+    <ItemsControl d:UseSampleData="True" ItemsSource="{Binding Builds}">
       <ItemsControl.ItemTemplate>
         <DataTemplate>
           <Viewbox Margin="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.InnerMargin}">

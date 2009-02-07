@@ -16,7 +16,7 @@ namespace TeamBuildScreenSaverDemo
     using TeamBuildScreenSaver.Models;
     using TeamBuildScreenSaver.Views;
     using TeamBuildScreenSaver.ViewModels;
-    using TeamBuildScreenSaverTests.Models;
+    using TeamBuildScreenSaver.UnitTests.Models;
 
     #endregion
 

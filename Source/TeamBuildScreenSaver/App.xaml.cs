@@ -70,22 +70,23 @@ namespace TeamBuildScreenSaver
         private void ShowPreview(int previewHandle)
         {
             ((MainViewModel)this.main.DataContext).InnerMargin = 1;
+
             // set this property so that the preview window does not close when clicked on
             this.main.IsInteractive = false;
 
             IntPtr pPreviewHnd = new IntPtr(previewHandle);
 
-            RECT lpRect = new RECT();
-            bool bGetRect = Win32API.GetClientRect(pPreviewHnd, ref lpRect);
+            Interop.Rectange clientRectange = new Interop.Rectange();
+            bool result = Interop.Win32Api.GetClientRect(pPreviewHnd, ref clientRectange);
 
             HwndSourceParameters sourceParams = new HwndSourceParameters("sourceParams");
 
             sourceParams.PositionX = 0;
             sourceParams.PositionY = 0;
-            sourceParams.Height = lpRect.Bottom - lpRect.Top;
-            sourceParams.Width = lpRect.Right - lpRect.Left;
+            sourceParams.Height = clientRectange.Bottom - clientRectange.Top;
+            sourceParams.Width = clientRectange.Right - clientRectange.Left;
             sourceParams.ParentWindow = pPreviewHnd;
-            sourceParams.WindowStyle = (int)(WindowStyles.WS_VISIBLE | WindowStyles.WS_CHILD | WindowStyles.WS_CLIPCHILDREN);
+            sourceParams.WindowStyle = (int)(Interop.WindowStyles.WS_VISIBLE | Interop.WindowStyles.WS_CHILD | Interop.WindowStyles.WS_CLIPCHILDREN);
 
             this.winWPFContent = new HwndSource(sourceParams);
             this.winWPFContent.Disposed += new EventHandler(winWPFContent_Disposed);

@@ -7,8 +7,8 @@
     <ProjectGuid>{FE074487-B29B-4E89-B675-BE9FBE517B89}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TeamBuildScreenSaverTests</RootNamespace>
-    <AssemblyName>TeamBuildScreenSaverTests</AssemblyName>
+    <RootNamespace>TeamBuildScreenSaver.UnitTests</RootNamespace>
+    <AssemblyName>TeamBuildScreenSaver.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -65,7 +65,7 @@
     <Compile Include="ViewModels\BuildServerServiceMessageViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TeamBuildScreensaver\TeamBuildScreenSaver.csproj">
+    <ProjectReference Include="..\..\..\Source\TeamBuildScreensaver\TeamBuildScreenSaver.csproj">
       <Project>{40B36C3C-325C-4E09-8D1C-3346C213C7B8}</Project>
       <Name>TeamBuildScreenSaver</Name>
     </ProjectReference>

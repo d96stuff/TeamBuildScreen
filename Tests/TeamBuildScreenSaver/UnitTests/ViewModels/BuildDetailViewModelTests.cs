@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace TeamBuildScreenSaverTests
+namespace TeamBuildScreenSaver.UnitTests
 {
     #region Usings
 
@@ -16,7 +16,7 @@ namespace TeamBuildScreenSaverTests
     using TeamBuildScreenSaver.Models;
     using TeamBuildScreenSaver.ViewModels;
     using TeamBuildScreenSaver.Views;
-    using TeamBuildScreenSaverTests.Models;
+    using TeamBuildScreenSaver.UnitTests.Models;
 
     #endregion
 
@@ -80,18 +80,22 @@ namespace TeamBuildScreenSaverTests
         {
             this.testsPassed = 100;
             this.testsFailed = 50;
-            
-            StringBuilder summary = new StringBuilder();
 
-            summary.AppendLine(string.Format(
-                "{0}.{1}",
-                this.mockBuildDetail.BuildDefinition.TeamProject,
-                this.mockBuildDetail.BuildDefinition.Name));
-            summary.AppendLine(new BuildStatusStringConverter().Convert(this.mockBuildDetail.Status, typeof(string), null, null).ToString());
-            summary.AppendLine("Requested by " + this.mockBuildDetail.RequestedFor);
-            summary.AppendLine("Started on " + this.mockBuildDetail.StartTime);
-            summary.AppendLine("Completed on " + this.mockBuildDetail.FinishTime);
+            StringBuilder summary = this.GetSummaryPrefix();
             summary.AppendLine(string.Format("Test results: {0} passed, {1} failed, {2} total.", this.testsPassed, this.testsFailed, this.testsPassed + this.testsFailed));
+
+            this.mockService.SetBuildDetail(this.key, this.mockBuildDetail);
+
+            this.mockService.RaiseQueryCompleted();
+
+            Assert.AreEqual<string>(summary.ToString(), this.viewModel.Summary);
+        }
+
+        [TestMethod]
+        public void SummaryWithoutTestResultsCorrectlyPopulated()
+        {
+            StringBuilder summary = this.GetSummaryPrefix();
+            summary.AppendLine("No test result.");
 
             this.mockService.SetBuildDetail(this.key, this.mockBuildDetail);
 
@@ -116,6 +120,22 @@ namespace TeamBuildScreenSaverTests
         public void SummaryPropertyChangedWhenServiceQueryCompleted()
         {
             this.AssertPropertyChangedWhenServiceQueryCompleted("Summary");
+        }
+
+        private StringBuilder GetSummaryPrefix()
+        {
+            StringBuilder summary = new StringBuilder();
+
+            summary.AppendLine(string.Format(
+                "{0}.{1}",
+                this.mockBuildDetail.BuildDefinition.TeamProject,
+                this.mockBuildDetail.BuildDefinition.Name));
+            summary.AppendLine(new BuildStatusStringConverter().Convert(this.mockBuildDetail.Status, typeof(string), null, null).ToString());
+            summary.AppendLine("Requested by " + this.mockBuildDetail.RequestedFor);
+            summary.AppendLine("Started on " + this.mockBuildDetail.StartTime);
+            summary.AppendLine("Completed on " + this.mockBuildDetail.FinishTime);
+
+            return summary;
         }
 
         private void AssertPropertyChangedWhenServiceQueryCompleted(string propertyName)

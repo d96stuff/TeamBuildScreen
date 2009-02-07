@@ -7,149 +7,161 @@
 	x:Class="TeamBuildScreenSaver.Views.BuildStatusIcon"
     xmlns:BuildStatus="clr-namespace:TeamBuildScreenSaver.Views"
 	x:Name="UserControl" Width="256" Height="256">
-  <UserControl.Resources>
-    <ResourceDictionary>
-      <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Dictionary.xaml"/>
-      </ResourceDictionary.MergedDictionaries>
-      <Storyboard x:Key="FadeToSuccessIcon">
-        <ParallelTimeline>
-          <DoubleAnimation To="1" Storyboard.TargetName="SuccessIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="FailedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="InProgressIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="PartiallySucceededIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="StoppedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="NotStartedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-        </ParallelTimeline>
-      </Storyboard>
-      <Storyboard x:Key="FadeToFailedIcon">
-        <ParallelTimeline>
-          <DoubleAnimation To="0" Storyboard.TargetName="SuccessIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="1" Storyboard.TargetName="FailedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="InProgressIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="PartiallySucceededIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="StoppedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="NotStartedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-        </ParallelTimeline>
-      </Storyboard>
-      <Storyboard x:Key="FadeToInProgressIcon">
-        <ParallelTimeline>
-          <DoubleAnimation To="0" Storyboard.TargetName="SuccessIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="FailedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="1" Storyboard.TargetName="InProgressIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="PartiallySucceededIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="StoppedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="NotStartedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-        </ParallelTimeline>
-        <DoubleAnimationUsingKeyFrames BeginTime="00:00:01" Storyboard.TargetName="InProgressIcon" Storyboard.TargetProperty="(UIElement.Opacity)" RepeatBehavior="Forever" AutoReverse="True">
-          <SplineDoubleKeyFrame KeyTime="00:00:00.000000" Value="1"/>
-          <SplineDoubleKeyFrame KeyTime="00:00:00.500000" Value="0.25"/>
-        </DoubleAnimationUsingKeyFrames>
-      </Storyboard>
-      <Storyboard x:Key="FadeToPartiallySucceededIcon">
-        <ParallelTimeline>
-          <DoubleAnimation To="0" Storyboard.TargetName="SuccessIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="FailedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="InProgressIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="1" Storyboard.TargetName="PartiallySucceededIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="StoppedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="NotStartedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-        </ParallelTimeline>
-      </Storyboard>
-      <Storyboard x:Key="FadeToStoppedIcon">
-        <ParallelTimeline>
-          <DoubleAnimation To="0" Storyboard.TargetName="SuccessIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="FailedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="InProgressIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="PartiallySucceededIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="1" Storyboard.TargetName="StoppedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="NotStartedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-        </ParallelTimeline>
-      </Storyboard>
-      <Storyboard x:Key="FadeToNotStartedIcon">
-        <ParallelTimeline>
-          <DoubleAnimation To="0" Storyboard.TargetName="SuccessIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="FailedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="InProgressIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="PartiallySucceededIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="0" Storyboard.TargetName="StoppedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-          <DoubleAnimation To="1" Storyboard.TargetName="NotStartedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
-        </ParallelTimeline>
-      </Storyboard>
-      <ControlTemplate x:Key="BuildStatusTemplate">
-        <Grid>
-          <Viewbox Stretch="Fill" x:Name="SuccessIcon" Opacity="0" HorizontalAlignment="Left" VerticalAlignment="Top" d:LayoutOverrides="GridBox" Height="256" Width="256" Child="{StaticResource SuccessIcon}" />
-          <Viewbox Stretch="Fill" x:Name="FailedIcon" Opacity="0" HorizontalAlignment="Left" VerticalAlignment="Top" d:LayoutOverrides="GridBox" Height="256" Width="256" Child="{StaticResource FailedIcon}" />
-          <Viewbox Stretch="Fill" x:Name="InProgressIcon" Opacity="0" HorizontalAlignment="Left" VerticalAlignment="Top" d:LayoutOverrides="GridBox" Height="256" Width="256" Child="{StaticResource InProgressIcon}" />
-          <Viewbox Stretch="Fill" x:Name="PartiallySucceededIcon" Opacity="0" HorizontalAlignment="Left" VerticalAlignment="Top" d:LayoutOverrides="GridBox" Height="256" Width="256" Child="{StaticResource PartiallySucceededIcon}" />
-          <Viewbox Stretch="Fill" x:Name="StoppedIcon" Opacity="0" HorizontalAlignment="Left" VerticalAlignment="Top" d:LayoutOverrides="GridBox" Height="256" Width="256" Child="{StaticResource StoppedIcon}" />
-          <Viewbox Stretch="Fill" x:Name="NotStartedIcon" Opacity="0" HorizontalAlignment="Left" VerticalAlignment="Top" d:LayoutOverrides="GridBox" Height="256" Width="256" Child="{StaticResource NotStartedIcon}" />
-        </Grid>
-        <ControlTemplate.Triggers>
-          <DataTrigger Binding="{Binding Status}" Value="Succeeded">
-            <DataTrigger.EnterActions>
-              <StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
-              <BeginStoryboard Storyboard="{StaticResource FadeToSuccessIcon}" Name="BeginSucceededStoryboard"/>
-            </DataTrigger.EnterActions>
-          </DataTrigger>
-          <DataTrigger Binding="{Binding Status}" Value="Failed">
-            <DataTrigger.EnterActions>
-              <StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
-              <BeginStoryboard Storyboard="{StaticResource FadeToFailedIcon}" Name="BeginFailedStoryboard"/>
-            </DataTrigger.EnterActions>
-          </DataTrigger>
-          <DataTrigger Binding="{Binding Status}" Value="InProgress">
-            <DataTrigger.EnterActions>
-              <StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
-              <BeginStoryboard Storyboard="{StaticResource FadeToInProgressIcon}" Name="BeginInProgressStoryboard"/>
-            </DataTrigger.EnterActions>
-          </DataTrigger>
-          <DataTrigger Binding="{Binding Status}" Value="PartiallySucceeded">
-            <DataTrigger.EnterActions>
-              <StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
-              <BeginStoryboard Storyboard="{StaticResource FadeToPartiallySucceededIcon}" Name="BeginPartiallySucceededStoryboard"/>
-            </DataTrigger.EnterActions>
-          </DataTrigger>
-          <DataTrigger Binding="{Binding Status}" Value="Stopped">
-            <DataTrigger.EnterActions>
-              <StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
-              <BeginStoryboard Storyboard="{StaticResource FadeToStoppedIcon}" Name="BeginStoppedStoryboard"/>
-            </DataTrigger.EnterActions>
-          </DataTrigger>
-          <DataTrigger Binding="{Binding Status}" Value="NotStarted">
-            <DataTrigger.EnterActions>
-              <StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
-              <StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
-              <BeginStoryboard Storyboard="{StaticResource FadeToNotStartedIcon}" Name="BeginNotStartedStoryboard"/>
-            </DataTrigger.EnterActions>
-          </DataTrigger>
-        </ControlTemplate.Triggers>
-      </ControlTemplate>
-    </ResourceDictionary>
-  </UserControl.Resources>
-  <Viewbox Stretch="Fill">
-    <ContentControl Template="{StaticResource BuildStatusTemplate}" />
-  </Viewbox>
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="Dictionary.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+			<Storyboard x:Key="FadeToSuccessIcon">
+				<ParallelTimeline>
+					<DoubleAnimation To="1" Storyboard.TargetName="SuccessIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="FailedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="InProgressIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="PartiallySucceededIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="StoppedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="NotStartedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+				</ParallelTimeline>
+			</Storyboard>
+			<Storyboard x:Key="FadeToFailedIcon">
+				<ParallelTimeline>
+					<DoubleAnimation To="0" Storyboard.TargetName="SuccessIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="1" Storyboard.TargetName="FailedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="InProgressIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="PartiallySucceededIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="StoppedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="NotStartedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+				</ParallelTimeline>
+			</Storyboard>
+			<Storyboard x:Key="FadeToInProgressIcon">
+				<ParallelTimeline>
+					<DoubleAnimation To="0" Storyboard.TargetName="SuccessIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="FailedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="1" Storyboard.TargetName="InProgressIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="PartiallySucceededIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="StoppedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="NotStartedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+				</ParallelTimeline>
+				<DoubleAnimationUsingKeyFrames BeginTime="00:00:01" Storyboard.TargetName="InProgressIcon" Storyboard.TargetProperty="(UIElement.Opacity)" RepeatBehavior="Forever" AutoReverse="True">
+					<SplineDoubleKeyFrame KeyTime="00:00:00.000000" Value="1"/>
+					<SplineDoubleKeyFrame KeyTime="00:00:00.500000" Value="0.25"/>
+				</DoubleAnimationUsingKeyFrames>
+			</Storyboard>
+			<Storyboard x:Key="FadeToPartiallySucceededIcon">
+				<ParallelTimeline>
+					<DoubleAnimation To="0" Storyboard.TargetName="SuccessIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="FailedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="InProgressIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="1" Storyboard.TargetName="PartiallySucceededIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="StoppedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="NotStartedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+				</ParallelTimeline>
+			</Storyboard>
+			<Storyboard x:Key="FadeToStoppedIcon">
+				<ParallelTimeline>
+					<DoubleAnimation To="0" Storyboard.TargetName="SuccessIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="FailedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="InProgressIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="PartiallySucceededIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="1" Storyboard.TargetName="StoppedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="NotStartedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+				</ParallelTimeline>
+			</Storyboard>
+			<Storyboard x:Key="FadeToNotStartedIcon">
+				<ParallelTimeline>
+					<DoubleAnimation To="0" Storyboard.TargetName="SuccessIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="FailedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="InProgressIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="PartiallySucceededIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="StoppedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="1" Storyboard.TargetName="NotStartedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+				</ParallelTimeline>
+			</Storyboard>
+			<ControlTemplate x:Key="BuildStatusTemplate">
+				<Grid>
+					<Viewbox Stretch="Fill" x:Name="SuccessIcon" Opacity="0" HorizontalAlignment="Left" VerticalAlignment="Top" d:LayoutOverrides="GridBox" Height="256" Width="256">
+						<ContentControl Template="{StaticResource SuccessIcon}" />
+					</Viewbox>
+					<Viewbox Stretch="Fill" x:Name="FailedIcon" Opacity="0" HorizontalAlignment="Left" VerticalAlignment="Top" d:LayoutOverrides="GridBox" Height="256" Width="256">
+						<ContentControl Template="{StaticResource FailedIcon}" />
+					</Viewbox>
+					<Viewbox Stretch="Fill" x:Name="InProgressIcon" Opacity="0" HorizontalAlignment="Left" VerticalAlignment="Top" d:LayoutOverrides="GridBox" Height="256" Width="256">
+						<ContentControl Template="{StaticResource InProgressIcon}" />
+					</Viewbox>
+					<Viewbox Stretch="Fill" x:Name="PartiallySucceededIcon" Opacity="0" HorizontalAlignment="Left" VerticalAlignment="Top" d:LayoutOverrides="GridBox" Height="256" Width="256">
+						<ContentControl Template="{StaticResource PartiallySucceededIcon}" />
+					</Viewbox>
+					<Viewbox Stretch="Fill" x:Name="StoppedIcon" Opacity="0" HorizontalAlignment="Left" VerticalAlignment="Top" d:LayoutOverrides="GridBox" Height="256" Width="256">
+						<ContentControl Template="{StaticResource StoppedIcon}" />
+					</Viewbox>
+					<Viewbox Stretch="Fill" x:Name="NotStartedIcon" Opacity="0" HorizontalAlignment="Left" VerticalAlignment="Top" d:LayoutOverrides="GridBox" Height="256" Width="256">
+						<ContentControl Template="{StaticResource NotStartedIcon}" />
+					</Viewbox>
+				</Grid>
+				<ControlTemplate.Triggers>
+					<DataTrigger Binding="{Binding Status}" Value="Succeeded">
+						<DataTrigger.EnterActions>
+							<StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
+							<BeginStoryboard Storyboard="{StaticResource FadeToSuccessIcon}" Name="BeginSucceededStoryboard"/>
+						</DataTrigger.EnterActions>
+					</DataTrigger>
+					<DataTrigger Binding="{Binding Status}" Value="Failed">
+						<DataTrigger.EnterActions>
+							<StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
+							<BeginStoryboard Storyboard="{StaticResource FadeToFailedIcon}" Name="BeginFailedStoryboard"/>
+						</DataTrigger.EnterActions>
+					</DataTrigger>
+					<DataTrigger Binding="{Binding Status}" Value="InProgress">
+						<DataTrigger.EnterActions>
+							<StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
+							<BeginStoryboard Storyboard="{StaticResource FadeToInProgressIcon}" Name="BeginInProgressStoryboard"/>
+						</DataTrigger.EnterActions>
+					</DataTrigger>
+					<DataTrigger Binding="{Binding Status}" Value="PartiallySucceeded">
+						<DataTrigger.EnterActions>
+							<StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
+							<BeginStoryboard Storyboard="{StaticResource FadeToPartiallySucceededIcon}" Name="BeginPartiallySucceededStoryboard"/>
+						</DataTrigger.EnterActions>
+					</DataTrigger>
+					<DataTrigger Binding="{Binding Status}" Value="Stopped">
+						<DataTrigger.EnterActions>
+							<StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
+							<BeginStoryboard Storyboard="{StaticResource FadeToStoppedIcon}" Name="BeginStoppedStoryboard"/>
+						</DataTrigger.EnterActions>
+					</DataTrigger>
+					<DataTrigger Binding="{Binding Status}" Value="NotStarted">
+						<DataTrigger.EnterActions>
+							<StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
+							<StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
+							<BeginStoryboard Storyboard="{StaticResource FadeToNotStartedIcon}" Name="BeginNotStartedStoryboard"/>
+						</DataTrigger.EnterActions>
+					</DataTrigger>
+				</ControlTemplate.Triggers>
+			</ControlTemplate>
+		</ResourceDictionary>
+	</UserControl.Resources>
+	<Viewbox Stretch="Fill">
+		<ContentControl Template="{StaticResource BuildStatusTemplate}" />
+	</Viewbox>
 </UserControl>

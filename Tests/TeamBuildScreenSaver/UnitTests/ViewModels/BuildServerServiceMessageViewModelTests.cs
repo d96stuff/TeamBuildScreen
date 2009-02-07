@@ -4,13 +4,13 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace TeamBuildScreenSaverTests
+namespace TeamBuildScreenSaver.UnitTests
 {
     #region Usings
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TeamBuildScreenSaver.ViewModels;
-    using TeamBuildScreenSaverTests.Models;
+    using TeamBuildScreenSaver.UnitTests.Models;
 
     #endregion
 

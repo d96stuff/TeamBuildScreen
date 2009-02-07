@@ -86,13 +86,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Interop\Rectangle.cs" />
+    <Compile Include="Interop\Win32Api.cs" />
+    <Compile Include="Interop\WindowStyles.cs" />
     <Compile Include="Models\BuildDetailModel.cs" />
     <Compile Include="Models\BuildServerService.cs" />
     <Compile Include="Models\BuildSetting.cs" />
     <Compile Include="Models\IBuildServerService.cs" />
     <Compile Include="Models\ScreenSaverSettingsModel.cs" />
-    <Compile Include="Interop.cs" />
     <Compile Include="Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

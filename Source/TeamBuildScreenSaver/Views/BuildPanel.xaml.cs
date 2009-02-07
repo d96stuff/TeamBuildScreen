@@ -10,6 +10,8 @@ namespace TeamBuildScreenSaver.Views
 
     using TeamBuildScreenSaver.Models;
     using TeamBuildScreenSaver.ViewModels;
+    using System.ComponentModel;
+    using System.Windows;
 
     #endregion
 
@@ -20,6 +22,13 @@ namespace TeamBuildScreenSaver.Views
         public BuildPanel()
 		{
 			this.InitializeComponent();
+
+            bool isDesignTime = (bool)DesignerProperties.IsInDesignModeProperty.GetMetadata(typeof(DependencyObject)).DefaultValue;
+
+            if (isDesignTime)
+            {
+                // TODO: Set DataContext to mock object at design time
+            }
         }
 
         #endregion

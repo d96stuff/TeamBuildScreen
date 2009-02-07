@@ -11,6 +11,7 @@ namespace TeamBuildScreenSaver.Views
     using System.Windows;
     using System.Windows.Controls;
     using Microsoft.TeamFoundation.Build.Client;
+using System.ComponentModel;
 
     #endregion
 
@@ -36,8 +37,8 @@ namespace TeamBuildScreenSaver.Views
         #region Constructors
 
         public BuildStatusIcon()
-		{
-			this.InitializeComponent();
+        {
+            this.InitializeComponent();
         }
 
         #endregion
