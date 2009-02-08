@@ -20,17 +20,13 @@
 					<Label x:Name="Message" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Transparent" Foreground="White" FontSize="36" Opacity="0" Content="{Binding Message}"/>
 				</UniformGrid>
 				<ControlTemplate.Triggers>
-					<DataTrigger Binding="{Binding IsVisible}" Value="True">
-						<DataTrigger.EnterActions>
-							<StopStoryboard BeginStoryboardName="BeginHideMessageStoryboard"/>
-							<BeginStoryboard Storyboard="{StaticResource ShowMessage}" Name="BeginShowMessageStoryboard"/>
-						</DataTrigger.EnterActions>
-					</DataTrigger>
 					<DataTrigger Binding="{Binding IsVisible}" Value="False">
 						<DataTrigger.EnterActions>
-							<StopStoryboard BeginStoryboardName="BeginShowMessageStoryboard"/>
-							<BeginStoryboard Storyboard="{StaticResource HideMessage}" Name="BeginHideMessageStoryboard"/>
+							<BeginStoryboard Storyboard="{StaticResource HideMessage}" />
 						</DataTrigger.EnterActions>
+						<DataTrigger.ExitActions>
+							<BeginStoryboard Storyboard="{StaticResource ShowMessage}" />
+						</DataTrigger.ExitActions>
 					</DataTrigger>
 				</ControlTemplate.Triggers>
 			</ControlTemplate>

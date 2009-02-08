@@ -100,62 +100,51 @@
 				<ControlTemplate.Triggers>
 					<DataTrigger Binding="{Binding Status}" Value="Succeeded">
 						<DataTrigger.EnterActions>
-							<StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
-							<BeginStoryboard Storyboard="{StaticResource FadeToSuccessIcon}" Name="BeginSucceededStoryboard"/>
+							<BeginStoryboard Storyboard="{StaticResource FadeToSuccessIcon}" Name="SucceededStoryboard"/>
 						</DataTrigger.EnterActions>
+						<DataTrigger.ExitActions>
+							<StopStoryboard BeginStoryboardName="SucceededStoryboard"/>
+						</DataTrigger.ExitActions>
 					</DataTrigger>
 					<DataTrigger Binding="{Binding Status}" Value="Failed">
 						<DataTrigger.EnterActions>
-							<StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
-							<BeginStoryboard Storyboard="{StaticResource FadeToFailedIcon}" Name="BeginFailedStoryboard"/>
+							<BeginStoryboard Storyboard="{StaticResource FadeToFailedIcon}" Name="FailedStoryboard"/>
 						</DataTrigger.EnterActions>
+						<DataTrigger.ExitActions>
+							<StopStoryboard BeginStoryboardName="FailedStoryboard"/>
+						</DataTrigger.ExitActions>
 					</DataTrigger>
 					<DataTrigger Binding="{Binding Status}" Value="InProgress">
 						<DataTrigger.EnterActions>
-							<StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
-							<BeginStoryboard Storyboard="{StaticResource FadeToInProgressIcon}" Name="BeginInProgressStoryboard"/>
+							<BeginStoryboard Storyboard="{StaticResource FadeToInProgressIcon}" Name="InProgressStoryboard"/>
 						</DataTrigger.EnterActions>
+						<DataTrigger.ExitActions>
+							<StopStoryboard BeginStoryboardName="InProgressStoryboard"/>
+						</DataTrigger.ExitActions>
 					</DataTrigger>
 					<DataTrigger Binding="{Binding Status}" Value="PartiallySucceeded">
 						<DataTrigger.EnterActions>
-							<StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginStoppedStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
-							<BeginStoryboard Storyboard="{StaticResource FadeToPartiallySucceededIcon}" Name="BeginPartiallySucceededStoryboard"/>
+							<BeginStoryboard Storyboard="{StaticResource FadeToPartiallySucceededIcon}" Name="PartiallySucceededStoryboard"/>
 						</DataTrigger.EnterActions>
+						<DataTrigger.ExitActions>
+							<StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
+						</DataTrigger.ExitActions>
 					</DataTrigger>
 					<DataTrigger Binding="{Binding Status}" Value="Stopped">
 						<DataTrigger.EnterActions>
-							<StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginNotStartedStoryboard"/>
-							<BeginStoryboard Storyboard="{StaticResource FadeToStoppedIcon}" Name="BeginStoppedStoryboard"/>
+							<BeginStoryboard Storyboard="{StaticResource FadeToStoppedIcon}" Name="StoppedStoryboard"/>
 						</DataTrigger.EnterActions>
+						<DataTrigger.ExitActions>
+							<StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
+						</DataTrigger.ExitActions>
 					</DataTrigger>
 					<DataTrigger Binding="{Binding Status}" Value="NotStarted">
 						<DataTrigger.EnterActions>
-							<StopStoryboard BeginStoryboardName="BeginSucceededStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginFailedStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginInProgressStoryboard"/>
-							<StopStoryboard BeginStoryboardName="BeginPartiallySucceededStoryboard"/>
-							<BeginStoryboard Storyboard="{StaticResource FadeToNotStartedIcon}" Name="BeginNotStartedStoryboard"/>
+							<BeginStoryboard Storyboard="{StaticResource FadeToNotStartedIcon}" Name="NotStartedStoryboard"/>
 						</DataTrigger.EnterActions>
+						<DataTrigger.ExitActions>
+							<StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
+						</DataTrigger.ExitActions>
 					</DataTrigger>
 				</ControlTemplate.Triggers>
 			</ControlTemplate>
