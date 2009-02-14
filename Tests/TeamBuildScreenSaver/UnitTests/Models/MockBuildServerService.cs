@@ -58,8 +58,8 @@ namespace TeamBuildScreenSaver.UnitTests.Models
                     string teamProject = build[0];
                     string definitionName = build[1];
 
-                    int rand = random.Next(7);
-                    BuildStatus status = BuildStatus.NotStarted;
+                    int rand = random.Next(8);
+                    BuildStatus? status = BuildStatus.NotStarted;
 
                     switch (rand)
                     {
@@ -82,11 +82,19 @@ namespace TeamBuildScreenSaver.UnitTests.Models
                             status = BuildStatus.NotStarted;
                             break;
                         case 6:
+                            status = null;
+                            break;
+                        case 7:
                             this.OnError();
                             return;
                     }
 
-                    IBuildDetail latestBuild = new MockBuildDetail(status, "DOMAIN\\Joe Blogs", DateTime.Now, true, DateTime.Now, new MockBuildDefinition(teamProject, definitionName));
+                    IBuildDetail latestBuild = null;
+
+                    if (status.HasValue)
+                    {
+                        latestBuild = new MockBuildDetail(status.Value, "DOMAIN\\Joe Blogs", DateTime.Now, true, DateTime.Now, new MockBuildDefinition(teamProject, definitionName));
+                    }
 
                     latestBuilds.Add(key, latestBuild);
                 }

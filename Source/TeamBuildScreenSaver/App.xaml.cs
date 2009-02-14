@@ -15,8 +15,8 @@ namespace TeamBuildScreenSaver
     using System.Windows.Threading;
     using Microsoft.TeamFoundation.Client;
     using TeamBuildScreenSaver.Models;
-    using TeamBuildScreenSaver.Views;
-    using TeamBuildScreenSaver.ViewModels; 
+    using TeamBuildScreenSaver.ViewModels;
+    using TeamBuildScreenSaver.Views; 
 
     #endregion
 
@@ -76,7 +76,7 @@ namespace TeamBuildScreenSaver
 
             IntPtr pPreviewHnd = new IntPtr(previewHandle);
 
-            Interop.Rectange clientRectange = new Interop.Rectange();
+            Interop.Rectangle clientRectange = new Interop.Rectangle();
             bool result = Interop.Win32Api.GetClientRect(pPreviewHnd, ref clientRectange);
 
             HwndSourceParameters sourceParams = new HwndSourceParameters("sourceParams");
@@ -86,7 +86,7 @@ namespace TeamBuildScreenSaver
             sourceParams.Height = clientRectange.Bottom - clientRectange.Top;
             sourceParams.Width = clientRectange.Right - clientRectange.Left;
             sourceParams.ParentWindow = pPreviewHnd;
-            sourceParams.WindowStyle = (int)(Interop.WindowStyles.WS_VISIBLE | Interop.WindowStyles.WS_CHILD | Interop.WindowStyles.WS_CLIPCHILDREN);
+            sourceParams.WindowStyle = (int)(Interop.WindowStyles.WindowStyleVisible | Interop.WindowStyles.WindowStyleChild | Interop.WindowStyles.WindowStyleClipChildren);
 
             this.winWPFContent = new HwndSource(sourceParams);
             this.winWPFContent.Disposed += new EventHandler(winWPFContent_Disposed);

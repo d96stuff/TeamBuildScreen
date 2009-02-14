@@ -14,9 +14,9 @@ namespace TeamBuildScreenSaver.UnitTests
     using Microsoft.TeamFoundation.Build.Client;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TeamBuildScreenSaver.Models;
+    using TeamBuildScreenSaver.UnitTests.Models;
     using TeamBuildScreenSaver.ViewModels;
     using TeamBuildScreenSaver.Views;
-    using TeamBuildScreenSaver.UnitTests.Models;
 
     #endregion
 

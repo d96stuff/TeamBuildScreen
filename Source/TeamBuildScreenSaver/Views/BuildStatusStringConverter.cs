@@ -23,11 +23,7 @@ namespace TeamBuildScreenSaver.Views
         /// <summary>
         /// Returns a <see cref="System.String"/> that represents the specified <see cref="BuildStatus"/>.
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="targetType"></param>
-        /// <param name="parameter"></param>
-        /// <param name="culture"></param>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             BuildStatus status = (BuildStatus)value;

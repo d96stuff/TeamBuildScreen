@@ -9,17 +9,17 @@ namespace TeamBuildScreenSaver.Interop
     #region Usings
 
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Runtime.InteropServices;
 
     #endregion
 
+    /// <summary>
+    /// Provides access to Win32 APIs.
+    /// </summary>
     internal class Win32Api
     {
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetClientRect(IntPtr hWnd, ref Rectange lpRect);
+        public static extern bool GetClientRect(IntPtr hWnd, ref Rectangle lpRect);
     }
 }

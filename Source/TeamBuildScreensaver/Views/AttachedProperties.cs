@@ -21,7 +21,9 @@ namespace TeamBuildScreenSaver.Views
         #region Fields
 
         public static DependencyProperty RegisterCommandBindingsProperty =
-            DependencyProperty.RegisterAttached("RegisterCommandBindings", typeof(CommandBindingCollection), typeof(AttachedProperties),
+            DependencyProperty.RegisterAttached("RegisterCommandBindings",
+            typeof(CommandBindingCollection),
+            typeof(AttachedProperties),
             new PropertyMetadata(null, OnRegisterCommandBindingChanged));
 
         #endregion
@@ -38,7 +40,7 @@ namespace TeamBuildScreenSaver.Views
 
         public static CommandBindingCollection GetRegisterCommandBindings(UIElement element)
         {
-            return (element != null ? (CommandBindingCollection)element.GetValue(RegisterCommandBindingsProperty) : null);
+            return element != null ? (CommandBindingCollection)element.GetValue(RegisterCommandBindingsProperty) : null;
         }
 
         private static void OnRegisterCommandBindingChanged (DependencyObject sender, DependencyPropertyChangedEventArgs e)

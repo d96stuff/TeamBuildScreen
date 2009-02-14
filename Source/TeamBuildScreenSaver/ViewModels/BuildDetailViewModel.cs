@@ -28,7 +28,7 @@ namespace TeamBuildScreenSaver.ViewModels
         /// <summary>
         /// The summary for the <see cref="BuildDetailViewModel"/>.
         /// </summary>
-        private string summary = "Loading...";
+        private string summary;
 
         /// <summary>
         /// The status for the <see cref="BuildDetailViewModel"/>.
@@ -131,6 +131,15 @@ namespace TeamBuildScreenSaver.ViewModels
             {
                 this.UpdateFromModel();
             };
+
+            StringBuilder text = new StringBuilder();
+            text.AppendLine(string.Format(
+                "{0}.{1}",
+                this.dataModel.TeamProject,
+                this.dataModel.DefinitionName));
+            text.AppendLine("Loading...");
+
+            this.summary = text.ToString();
         }
 
         /// <summary>
@@ -176,7 +185,7 @@ namespace TeamBuildScreenSaver.ViewModels
             {
                 this.status = null;
 
-                text.AppendLine("No builds found.");
+                text.AppendLine("No build(s) found.");
             }
 
             this.summary = text.ToString();

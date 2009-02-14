@@ -21,9 +21,36 @@ namespace TeamBuildScreenSaver.ViewModels
     {
         #region Fields
 
-        private ScreenSaverSettingsModel dataModel;
         private readonly CommandBindingCollection commandBindings;
+        private ScreenSaverSettingsModel dataModel;
         private ICommand selectTfsCommand;
+
+        #endregion
+
+        #region Constructors
+
+        public ScreenSaverSettingsViewModel(ScreenSaverSettingsModel dataModel)
+        {
+            this.dataModel = dataModel;
+
+            this.dataModel.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e)
+            {
+                this.OnPropertyChanged(e.PropertyName);
+            };
+
+            this.commandBindings = new CommandBindingCollection();
+
+            this.RegisterCommands();
+        }
+
+        #endregion
+
+        #region INotifyPropertyChanged Members
+
+        /// <summary>
+        /// Occurs when a property value changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -43,6 +70,7 @@ namespace TeamBuildScreenSaver.ViewModels
             {
                 return this.dataModel.TfsUri;
             }
+
             set
             {
                 this.dataModel.TfsUri = value;
@@ -55,6 +83,7 @@ namespace TeamBuildScreenSaver.ViewModels
             {
                 return this.dataModel.Columns;
             }
+
             set
             {
                 this.dataModel.Columns = value;
@@ -67,6 +96,7 @@ namespace TeamBuildScreenSaver.ViewModels
             {
                 return this.dataModel.UpdateInterval;
             }
+
             set
             {
                 this.dataModel.UpdateInterval = value;
@@ -91,32 +121,14 @@ namespace TeamBuildScreenSaver.ViewModels
 
         #endregion
 
-        #region Constructors
-
-        public ScreenSaverSettingsViewModel(ScreenSaverSettingsModel dataModel)
-        {
-            this.dataModel = dataModel;
-
-            this.dataModel.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e)
-            {
-                this.OnPropertyChanged(e.PropertyName);
-            };
-
-            this.commandBindings = new CommandBindingCollection();
-
-            this.RegisterCommands();
-        }
-
-        #endregion
-
         #region Methods
 
         private void RegisterCommands()
         {
             this.selectTfsCommand = new RoutedCommand("SelectTfsServer", typeof(ScreenSaverSettingsViewModel));
 
-            CommandBinding selectTfsServerBinding = new CommandBinding(this.selectTfsCommand, SelectTfsServerExecuted, CommandCanExecute);
-            CommandBinding saveBinding = new CommandBinding(ApplicationCommands.Save, SaveExecuted, CommandCanExecute);
+            CommandBinding selectTfsServerBinding = new CommandBinding(this.selectTfsCommand, this.SelectTfsServerExecuted, this.CommandCanExecute);
+            CommandBinding saveBinding = new CommandBinding(ApplicationCommands.Save, this.SaveExecuted, this.CommandCanExecute);
 
             CommandManager.RegisterClassCommandBinding(typeof(ScreenSaverSettingsViewModel), selectTfsServerBinding);
             CommandManager.RegisterClassCommandBinding(typeof(ScreenSaverSettingsViewModel), saveBinding);
@@ -163,15 +175,6 @@ namespace TeamBuildScreenSaver.ViewModels
 
             Application.Current.Shutdown();
         }
-
-        #endregion
-
-        #region INotifyPropertyChanged Members
-
-        /// <summary>
-        /// Occurs when a property value changes.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
     }

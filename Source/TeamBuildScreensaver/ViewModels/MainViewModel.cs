@@ -8,14 +8,10 @@ namespace TeamBuildScreenSaver.ViewModels
 {
     #region Usings
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using TeamBuildScreenSaver.Models;
-    using System.ComponentModel;
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
+    using System.ComponentModel;
+    using TeamBuildScreenSaver.Models;
 
     #endregion
 
@@ -48,6 +44,7 @@ namespace TeamBuildScreenSaver.ViewModels
             {
                 return this.innerMargin;
             }
+
             set
             {
                 this.innerMargin = value;
@@ -62,6 +59,7 @@ namespace TeamBuildScreenSaver.ViewModels
             {
                 return this.columns;
             }
+
             set
             {
                 this.columns = value;

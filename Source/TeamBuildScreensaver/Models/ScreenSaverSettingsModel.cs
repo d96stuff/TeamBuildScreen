@@ -17,14 +17,36 @@ namespace TeamBuildScreenSaver.Models
 
     #endregion
 
+    /// <summary>
+    /// Provides ability to read and modify application settings.
+    /// </summary>
     public class ScreenSaverSettingsModel : INotifyPropertyChanged
     {
         #region Fields
 
+        /// <summary>
+        /// Application settings collection.
+        /// </summary>
         private Settings settings;
+
+        /// <summary>
+        /// Collection of <see cref="BuildSetting"/> objects that represent the builds currently configured.
+        /// </summary>
         private ObservableCollection<BuildSetting> builds;
+
+        /// <summary>
+        /// The URL of the Team Foundation Server.
+        /// </summary>
         private string tfsUri;
+
+        /// <summary>
+        /// The number of columns to display.
+        /// </summary>
         private int columns;
+
+        /// <summary>
+        /// The interval at which the build server will be queried.
+        /// </summary>
         private int updateInterval;
 
         #endregion
@@ -37,6 +59,7 @@ namespace TeamBuildScreenSaver.Models
             {
                 return this.tfsUri;
             }
+
             set
             {
                 if (value != this.tfsUri)
@@ -54,6 +77,7 @@ namespace TeamBuildScreenSaver.Models
             {
                 return this.columns;
             }
+
             set
             {
                 if (value != this.columns)
@@ -71,6 +95,7 @@ namespace TeamBuildScreenSaver.Models
             {
                 return this.updateInterval;
             }
+
             set
             {
                 if (value != this.updateInterval)

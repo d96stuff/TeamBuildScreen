@@ -18,6 +18,20 @@ namespace TeamBuildScreenSaver.Models
     /// </summary>
     public interface IBuildServerService : IDisposable
     {
+        #region Events
+
+        /// <summary>
+        /// Occurs when a query is completed.
+        /// </summary>
+        event EventHandler QueryCompleted;
+
+        /// <summary>
+        /// Occurs when an error occurs.
+        /// </summary>
+        event EventHandler Error;
+
+        #endregion
+
         #region Methods
 
         /// <summary>
@@ -44,20 +58,6 @@ namespace TeamBuildScreenSaver.Models
         /// Starts querying the server.
         /// </summary>
         void Start();
-
-        #endregion
-
-        #region Events
-
-        /// <summary>
-        /// Occurs when a query is completed.
-        /// </summary>
-        event EventHandler QueryCompleted;
-
-        /// <summary>
-        /// Occurs when an error occurs.
-        /// </summary>
-        event EventHandler Error;
 
         #endregion
     }

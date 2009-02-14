@@ -51,6 +51,7 @@ namespace TeamBuildScreenSaver.UnitTests.Models
             {
                 throw new NotImplementedException();
             }
+
             set
             {
                 throw new NotImplementedException();
@@ -63,6 +64,7 @@ namespace TeamBuildScreenSaver.UnitTests.Models
             {
                 throw new NotImplementedException();
             }
+
             set
             {
                 throw new NotImplementedException();
@@ -75,6 +77,7 @@ namespace TeamBuildScreenSaver.UnitTests.Models
             {
                 throw new NotImplementedException();
             }
+
             set
             {
                 throw new NotImplementedException();
@@ -117,6 +120,7 @@ namespace TeamBuildScreenSaver.UnitTests.Models
             {
                 throw new NotImplementedException();
             }
+
             set
             {
                 throw new NotImplementedException();
@@ -134,6 +138,7 @@ namespace TeamBuildScreenSaver.UnitTests.Models
             {
                 throw new NotImplementedException();
             }
+
             set
             {
                 throw new NotImplementedException();
@@ -151,6 +156,7 @@ namespace TeamBuildScreenSaver.UnitTests.Models
             {
                 throw new NotImplementedException();
             }
+
             set
             {
                 throw new NotImplementedException();
@@ -163,6 +169,7 @@ namespace TeamBuildScreenSaver.UnitTests.Models
             {
                 throw new NotImplementedException();
             }
+
             set
             {
                 throw new NotImplementedException();
@@ -224,6 +231,7 @@ namespace TeamBuildScreenSaver.UnitTests.Models
             {
                 return this.name;
             }
+
             set
             {
                 this.name = value;

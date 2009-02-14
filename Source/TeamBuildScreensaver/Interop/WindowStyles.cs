@@ -6,13 +6,16 @@
 
 namespace TeamBuildScreenSaver.Interop
 {
+    /// <summary>
+    /// Provides windows style constants required by some Win32 API calls.
+    /// </summary>
     internal static class WindowStyles
     {
         #region Constants
 
-        public const uint WS_CHILD = 0x40000000;
-        public const uint WS_VISIBLE = 0x10000000;
-        public const uint WS_CLIPCHILDREN = 0x02000000;
+        public const uint WindowStyleChild = 0x40000000;
+        public const uint WindowStyleVisible = 0x10000000;
+        public const uint WindowStyleClipChildren = 0x02000000;
 
         #endregion
     }

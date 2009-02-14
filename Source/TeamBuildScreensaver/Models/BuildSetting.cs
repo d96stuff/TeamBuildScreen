@@ -32,6 +32,7 @@ namespace TeamBuildScreenSaver.Models
             {
                 return this.platform;
             }
+
             set
             {
                 this.platform = value;
@@ -46,6 +47,7 @@ namespace TeamBuildScreenSaver.Models
             {
                 return this.configuration;
             }
+
             set
             {
                 this.configuration = value;
@@ -60,6 +62,7 @@ namespace TeamBuildScreenSaver.Models
             {
                 return this.teamProject;
             }
+
             set
             {
                 this.teamProject = value;
@@ -74,6 +77,7 @@ namespace TeamBuildScreenSaver.Models
             {
                 return this.definitionName;
             }
+
             set
             {
                 this.definitionName = value;
@@ -88,6 +92,7 @@ namespace TeamBuildScreenSaver.Models
             {
                 return this.isEnabled;
             }
+
             set
             {
                 this.isEnabled = value;

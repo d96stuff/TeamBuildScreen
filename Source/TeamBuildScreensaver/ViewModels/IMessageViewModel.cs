@@ -6,12 +6,6 @@
 
 namespace TeamBuildScreenSaver.ViewModels
 {
-    #region Usings
-
-
-
-    #endregion
-
     public interface IMessageViewModel
     {
         #region Properties

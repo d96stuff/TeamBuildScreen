@@ -14,8 +14,6 @@ namespace TeamBuildScreenSaver.Models
     using System.Threading;
     using Microsoft.TeamFoundation.Build.Client;
     using Microsoft.TeamFoundation.Client;
-    using System.Collections;
-    using System.Windows.Documents;
 
     #endregion
 
@@ -194,24 +192,19 @@ namespace TeamBuildScreenSaver.Models
                 }
 
                 // update the IBuildDetail associated with each IBuildDetailSpec
-                foreach (IBuildQueryResult result in results)
+                foreach (KeyValuePair<IBuildDetailSpec, IBuildDetail> build in this.builds)
                 {
-                    if (result.Builds.Count() == 0)
-                    {
-                        continue;
-                    }
+                    string teamProject = build.Key.DefinitionSpec.TeamProject;
+                    string definitionName = build.Key.DefinitionSpec.Name;
 
-                    IBuildDetail detail = result.Builds[0];
+                    // select the first build that corresponds to this build detail spec, or null
+                    IBuildDetail detail =
+                        results.FirstOrDefault(
+                        x => x.Builds.Any(
+                            b => b.BuildDefinition.TeamProject == teamProject &&
+                            b.BuildDefinition.Name == definitionName)).Builds[0];
 
-                    string teamProject = detail.BuildDefinition.TeamProject;
-                    string definitionName = detail.BuildDefinition.Name;
-
-                    IBuildDetailSpec spec =
-                        this.builds.Keys.Single(x =>
-                            x.DefinitionSpec.Name == definitionName &&
-                            x.DefinitionSpec.TeamProject == teamProject);
-
-                    this.builds[spec] = detail;
+                    this.builds[build.Key] = detail;
                 }
             }
 

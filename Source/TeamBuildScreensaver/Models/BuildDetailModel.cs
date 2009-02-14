@@ -47,6 +47,9 @@ namespace TeamBuildScreenSaver.Models
         /// </summary>
         private string platform;
 
+        /// <summary>
+        /// A value indicating whether the build server has further builds queueud for this definition.
+        /// </summary>
         private bool isQueued = false;
 
         #endregion
@@ -94,6 +97,7 @@ namespace TeamBuildScreenSaver.Models
             {
                 return this.model;
             }
+
             private set
             {
                 this.model = value;
@@ -125,7 +129,7 @@ namespace TeamBuildScreenSaver.Models
         }
 
         /// <summary>
-        /// Gets a value that indicates whether the build has any builds queued.
+        /// Gets a value indicating whether the build has any builds queued.
         /// </summary>
         public bool IsQueued
         {
@@ -133,6 +137,7 @@ namespace TeamBuildScreenSaver.Models
             {
                 return this.isQueued;
             }
+
             private set
             {
                 this.isQueued = value;
