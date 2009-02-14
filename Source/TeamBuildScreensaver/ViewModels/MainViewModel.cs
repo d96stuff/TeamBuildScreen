@@ -102,7 +102,8 @@ namespace TeamBuildScreenSaver.ViewModels
                 string platform = buildParts[3];
 
                 BuildDetailModel dataModel = new BuildDetailModel(teamProject, definitionName, configuration, platform, service);
-                BuildDetailViewModel viewModel = new BuildDetailViewModel(dataModel, configurationSummaryHandler);
+                BuildDetailViewModel viewModel =
+                    configurationSummaryHandler == null? new BuildDetailViewModel(dataModel) : new BuildDetailViewModel(dataModel, configurationSummaryHandler);
 
                 this.Builds.Add(viewModel);
             }

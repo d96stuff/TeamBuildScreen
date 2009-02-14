@@ -72,7 +72,7 @@ namespace TeamBuildScreenSaver.UnitTests
 
             this.mockService.RaiseQueryCompleted();
 
-            Assert.AreEqual<BuildStatus>(this.mockBuildDetail.Status, this.viewModel.Status);
+            Assert.AreEqual<BuildStatus?>(this.mockBuildDetail.Status, this.viewModel.Status);
         }
 
         [TestMethod]

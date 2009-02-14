@@ -196,6 +196,11 @@ namespace TeamBuildScreenSaver.Models
                 // update the IBuildDetail associated with each IBuildDetailSpec
                 foreach (IBuildQueryResult result in results)
                 {
+                    if (result.Builds.Count() == 0)
+                    {
+                        continue;
+                    }
+
                     IBuildDetail detail = result.Builds[0];
 
                     string teamProject = detail.BuildDefinition.TeamProject;

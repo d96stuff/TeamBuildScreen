@@ -141,6 +141,28 @@ namespace TeamBuildScreenSaver.Models
             }
         }
 
+        /// <summary>
+        /// Gets the team project for the build.
+        /// </summary>
+        public string TeamProject
+        {
+            get
+            {
+                return this.key.Split(';')[0];
+            }
+        }
+
+        /// <summary>
+        /// Gets the definition name for the build.
+        /// </summary>
+        public string DefinitionName
+        {
+            get
+            {
+                return this.key.Split(';')[1];
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -156,13 +178,7 @@ namespace TeamBuildScreenSaver.Models
                 DispatcherPriority.DataBind,
                 new Action(delegate
                     {
-                        IBuildDetail model = this.service.GetBuildDetail(this.key);
-
-                        if (model != null)
-                        {
-                            this.Model = model;
-                        }
-
+                        this.Model = this.service.GetBuildDetail(this.key);
                         this.IsQueued = this.service.IsQueued(this.key);
                     }));
         }

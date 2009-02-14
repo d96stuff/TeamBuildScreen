@@ -2,9 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TeamBuildScreenSaver" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="TfsUri" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="Columns" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">3</Value>
     </Setting>
@@ -14,6 +11,9 @@
     </Setting>
     <Setting Name="UpdateInterval" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">30000</Value>
+    </Setting>
+    <Setting Name="TfsUri" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

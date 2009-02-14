@@ -28,12 +28,12 @@ namespace TeamBuildScreenSaver.ViewModels
         /// <summary>
         /// The summary for the <see cref="BuildDetailViewModel"/>.
         /// </summary>
-        private string summary;
+        private string summary = "Loading...";
 
         /// <summary>
         /// The status for the <see cref="BuildDetailViewModel"/>.
         /// </summary>
-        private BuildStatus status;
+        private BuildStatus? status = null;
 
         private ConfigurationSummaryHandler configurationSummaryHandler;
 
@@ -51,7 +51,7 @@ namespace TeamBuildScreenSaver.ViewModels
         /// <summary>
         /// Gets the status for the <see cref="BuildDetailViewModel"/>.
         /// </summary>
-        public BuildStatus Status
+        public BuildStatus? Status
         {
             get
             {
@@ -138,35 +138,45 @@ namespace TeamBuildScreenSaver.ViewModels
         /// </summary>
         private void UpdateFromModel()
         {
-            this.status = this.dataModel.Model.Status;
-            this.isQueued = this.dataModel.IsQueued;
-
             StringBuilder text = new StringBuilder();
+            this.isQueued = this.dataModel.IsQueued;
 
             text.AppendLine(string.Format(
                 "{0}.{1}",
-                this.dataModel.Model.BuildDefinition.TeamProject,
-                this.dataModel.Model.BuildDefinition.Name));
-            text.AppendLine(new BuildStatusStringConverter().Convert(this.dataModel.Model.Status, typeof(string), null, null).ToString());
-            text.AppendLine("Requested by " + this.dataModel.Model.RequestedFor);
-            text.AppendLine("Started on " + this.dataModel.Model.StartTime);
+                this.dataModel.TeamProject,
+                this.dataModel.DefinitionName));
 
-            if (this.dataModel.Model.BuildFinished)
+            if (this.dataModel.Model != null)
             {
-                text.AppendLine("Completed on " + this.dataModel.Model.FinishTime);
+                this.status = this.dataModel.Model.Status;
 
-                IConfigurationSummary configurationSummary = this.configurationSummaryHandler(this.dataModel.Model, this.dataModel.Configuration, this.dataModel.Platform);
+                text.AppendLine(new BuildStatusStringConverter().Convert(this.dataModel.Model.Status, typeof(string), null, null).ToString());
+                text.AppendLine("Requested by " + this.dataModel.Model.RequestedFor);
+                text.AppendLine("Started on " + this.dataModel.Model.StartTime);
 
-                if (configurationSummary != null &&
-                    configurationSummary.TestSummaries.Count > 0)
+                if (this.dataModel.Model.BuildFinished)
                 {
-                    ITestSummary summary = configurationSummary.TestSummaries[0];
-                    text.AppendLine(string.Format("Test results: {0} passed, {1} failed, {2} total.", summary.TestsPassed, summary.TestsFailed, summary.TestsTotal));
+                    text.AppendLine("Completed on " + this.dataModel.Model.FinishTime);
+
+                    IConfigurationSummary configurationSummary = this.configurationSummaryHandler(this.dataModel.Model, this.dataModel.Configuration, this.dataModel.Platform);
+
+                    if (configurationSummary != null &&
+                        configurationSummary.TestSummaries.Count > 0)
+                    {
+                        ITestSummary summary = configurationSummary.TestSummaries[0];
+                        text.AppendLine(string.Format("Test results: {0} passed, {1} failed, {2} total.", summary.TestsPassed, summary.TestsFailed, summary.TestsTotal));
+                    }
+                    else
+                    {
+                        text.AppendLine("No test result.");
+                    }
                 }
-                else
-                {
-                    text.AppendLine("No test result.");
-                }
+            }
+            else
+            {
+                this.status = null;
+
+                text.AppendLine("No builds found.");
             }
 
             this.summary = text.ToString();

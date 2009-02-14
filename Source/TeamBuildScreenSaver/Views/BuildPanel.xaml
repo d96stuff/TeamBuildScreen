@@ -60,7 +60,7 @@
 							</Rectangle.RenderTransform>
 							<Rectangle.Fill>
 								<LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-									<GradientStop Color="#FFFFFFFF" Offset="1"/>
+									<GradientStop Color="#80717171" Offset="1"/>
 									<GradientStop Color="#FFFFFFFF" Offset="0"/>
 								</LinearGradientBrush>
 							</Rectangle.Fill>
@@ -75,7 +75,7 @@
 					</Viewbox>
 				</Grid>
 				<ControlTemplate.Triggers>
-					<DataTrigger Binding="{Binding Status}" Value="Succeeded">
+					<DataTrigger Binding="{Binding Status}" Value="{x:Null}">
 						<DataTrigger.EnterActions>
 							<!--
 							Frustratingly, using a StopStoryboard element within DataTrigger.ExitActions 
@@ -88,9 +88,21 @@
 							<StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
 							<StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
 							<StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
-							<BeginStoryboard Storyboard="{StaticResource FadeToGreen}" Name="SucceededStoryboard"/>
+              <StopStoryboard BeginStoryboardName="SucceededStoryboard"/>
+							<BeginStoryboard Storyboard="{StaticResource FadeToGrey}" Name="UnknownStoryboard"/>
 						</DataTrigger.EnterActions>
 					</DataTrigger>
+          <DataTrigger Binding="{Binding Status}" Value="Succeeded">
+            <DataTrigger.EnterActions>
+              <StopStoryboard BeginStoryboardName="FailedStoryboard"/>
+              <StopStoryboard BeginStoryboardName="InProgressStoryboard"/>
+              <StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
+              <StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
+              <StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
+              <StopStoryboard BeginStoryboardName="UnknownStoryboard"/>
+              <BeginStoryboard Storyboard="{StaticResource FadeToGreen}" Name="SucceededStoryboard"/>
+            </DataTrigger.EnterActions>
+          </DataTrigger>
 					<DataTrigger Binding="{Binding Status}" Value="Failed">
 						<DataTrigger.EnterActions>
 							<StopStoryboard BeginStoryboardName="SucceededStoryboard"/>
@@ -98,6 +110,7 @@
 							<StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
 							<StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
 							<StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
+              <StopStoryboard BeginStoryboardName="UnknownStoryboard"/>
 							<BeginStoryboard Storyboard="{StaticResource FadeToRed}" Name="FailedStoryboard"/>
 						</DataTrigger.EnterActions>
 					</DataTrigger>
@@ -108,6 +121,7 @@
 							<StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
 							<StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
 							<StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
+              <StopStoryboard BeginStoryboardName="UnknownStoryboard"/>
 							<BeginStoryboard Storyboard="{StaticResource FadeToGrey}" Name="InProgressStoryboard"/>
 						</DataTrigger.EnterActions>
 					</DataTrigger>
@@ -118,6 +132,7 @@
 							<StopStoryboard BeginStoryboardName="InProgressStoryboard"/>
 							<StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
 							<StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
+              <StopStoryboard BeginStoryboardName="UnknownStoryboard"/>
 							<BeginStoryboard Storyboard="{StaticResource FadeToRed}" Name="PartiallySucceededStoryboard"/>
 						</DataTrigger.EnterActions>
 					</DataTrigger>
@@ -128,6 +143,7 @@
 							<StopStoryboard BeginStoryboardName="InProgressStoryboard"/>
 							<StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
 							<StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
+              <StopStoryboard BeginStoryboardName="UnknownStoryboard"/>
 							<BeginStoryboard Storyboard="{StaticResource FadeToRed}" Name="StoppedStoryboard"/>
 						</DataTrigger.EnterActions>
 					</DataTrigger>
@@ -138,6 +154,7 @@
 							<StopStoryboard BeginStoryboardName="InProgressStoryboard"/>
 							<StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
 							<StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
+              <StopStoryboard BeginStoryboardName="UnknownStoryboard"/>
 							<BeginStoryboard Storyboard="{StaticResource FadeToGrey}" Name="NotStartedStoryboard"/>
 						</DataTrigger.EnterActions>
 					</DataTrigger>
