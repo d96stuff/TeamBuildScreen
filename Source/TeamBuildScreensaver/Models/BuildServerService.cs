@@ -192,19 +192,21 @@ namespace TeamBuildScreenSaver.Models
                 }
 
                 // update the IBuildDetail associated with each IBuildDetailSpec
-                foreach (KeyValuePair<IBuildDetailSpec, IBuildDetail> build in this.builds)
+                for (int i = 0; i < this.builds.Count; i++)
                 {
+                    KeyValuePair<IBuildDetailSpec, IBuildDetail> build = this.builds.ElementAt(i);
+
                     string teamProject = build.Key.DefinitionSpec.TeamProject;
                     string definitionName = build.Key.DefinitionSpec.Name;
 
                     // select the first build that corresponds to this build detail spec, or null
-                    IBuildDetail detail =
+                    IBuildQueryResult result =
                         results.FirstOrDefault(
                         x => x.Builds.Any(
                             b => b.BuildDefinition.TeamProject == teamProject &&
-                            b.BuildDefinition.Name == definitionName)).Builds[0];
+                            b.BuildDefinition.Name == definitionName));
 
-                    this.builds[build.Key] = detail;
+                    this.builds[build.Key] = result != null ? result.Builds[0] : null;
                 }
             }
 

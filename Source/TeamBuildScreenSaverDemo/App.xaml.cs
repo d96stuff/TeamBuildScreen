@@ -17,6 +17,7 @@ namespace TeamBuildScreenSaverDemo
     using TeamBuildScreenSaver.Views;
     using TeamBuildScreenSaver.ViewModels;
     using TeamBuildScreenSaver.UnitTests.Models;
+    using TeamBuildScreenSaver;
 
     #endregion
 
@@ -29,12 +30,24 @@ namespace TeamBuildScreenSaverDemo
 
         private Main main;
         private IBuildServerService service;
+        private ScreenSaver<Main, MainViewModel> screenSaver;
 
         #endregion
 
         #region Methods
 
-        private void Application_Startup(object sender, StartupEventArgs e)
+        private void OnStartup(object sender, StartupEventArgs e)
+        {
+            this.InitializeScreenSaver(true);
+            this.screenSaver.Show();
+            this.service.Start();
+        }
+
+        /// <summary>
+        /// Initializes the screen saver.
+        /// </summary>
+        /// <param name="closeOnClicked">A value that indicates whether the screen saver should close when clicked on.</param>
+        private void InitializeScreenSaver(bool closeOnClicked)
         {
             string tfsUri = "tfs";
             StringCollection builds = new StringCollection();
@@ -48,25 +61,22 @@ namespace TeamBuildScreenSaverDemo
 
             this.service = new MockBuildServerService();
 
+            MainViewModel viewModel = new MainViewModel(this.service, builds, this.MockConfigurationSummaryHandler);
+            viewModel.Columns = columns;
+            viewModel.CloseOnClicked = closeOnClicked;
+
             tfsServer.Dispose();
 
-            MainViewModel viewModel = new MainViewModel(this.service, builds, MockConfigurationSummaryHandler);
-            viewModel.Columns = columns;
-
-            this.main = new Main();
-            this.main.DataContext = viewModel;
-            this.main.Closed += new EventHandler(main_Closed);
-            this.main.Show();
-            this.service.Start();
+            this.screenSaver = new ScreenSaver<Main, MainViewModel>(viewModel);
         }
 
-        private void main_Closed(object sender, EventArgs e)
+        private void OnExit(object sender, ExitEventArgs e)
         {
-            Application.Current.Shutdown();
-        }
+            if (this.screenSaver != null)
+            {
+                this.screenSaver.Dispose();
+            }
 
-        private void Application_Exit(object sender, ExitEventArgs e)
-        {
             if (this.service != null)
             {
                 this.service.Dispose();

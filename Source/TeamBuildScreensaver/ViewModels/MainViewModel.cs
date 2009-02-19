@@ -12,6 +12,8 @@ namespace TeamBuildScreenSaver.ViewModels
     using System.Collections.Specialized;
     using System.ComponentModel;
     using TeamBuildScreenSaver.Models;
+    using System.Windows.Input;
+    using System.Windows;
 
     #endregion
 
@@ -19,12 +21,23 @@ namespace TeamBuildScreenSaver.ViewModels
     {
         #region Fields
 
+        private readonly CommandBindingCollection commandBindings;
         private double innerMargin = 8;
         private int columns = 6;
+        private ICommand clickedCommand;
+        private bool closeOnClicked = true;
 
         #endregion
 
         #region Properties
+
+        public CommandBindingCollection CommandBindings
+        {
+            get
+            {
+                return this.commandBindings;
+            }
+        }
 
         public ObservableCollection<BuildDetailViewModel> Builds
         {
@@ -53,6 +66,18 @@ namespace TeamBuildScreenSaver.ViewModels
             }
         }
 
+        public bool CloseOnClicked
+        {
+            get
+            {
+                return this.closeOnClicked;
+            }
+            set
+            {
+                this.closeOnClicked = value;
+            }
+        }
+
         public int Columns
         {
             get
@@ -68,6 +93,14 @@ namespace TeamBuildScreenSaver.ViewModels
             }
         }
 
+        public ICommand Clicked
+        {
+            get
+            {
+                return this.clickedCommand;
+            }
+        }
+
         #endregion
 
         #region Constructors
@@ -75,11 +108,15 @@ namespace TeamBuildScreenSaver.ViewModels
         public MainViewModel(IBuildServerService service, StringCollection builds)
         {
             this.InitializeBuildPanels(service, builds, null);
+            this.commandBindings = new CommandBindingCollection();
+            this.RegisterCommands();
         }
 
         public MainViewModel(IBuildServerService service, StringCollection builds, ConfigurationSummaryHandler configurationSummaryHandler)
         {
             this.InitializeBuildPanels(service, builds, configurationSummaryHandler);
+            this.commandBindings = new CommandBindingCollection();
+            this.RegisterCommands();
         }
 
         #endregion
@@ -105,6 +142,28 @@ namespace TeamBuildScreenSaver.ViewModels
 
                 this.Builds.Add(viewModel);
             }
+        }
+
+        private void RegisterCommands()
+        {
+            this.clickedCommand = new RoutedCommand("Clicked", typeof(MainViewModel));
+
+            CommandBinding clickedBinding = new CommandBinding(this.clickedCommand, this.ClickedExecuted, this.ClickedCanExecute);
+
+            CommandManager.RegisterClassCommandBinding(typeof(MainViewModel), clickedBinding);
+
+            this.commandBindings.Add(clickedBinding);
+        }
+
+        private void ClickedCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = this.closeOnClicked;
+            e.Handled = true;
+        }
+
+        private void ClickedExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
 
         /// <summary>

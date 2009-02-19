@@ -134,7 +134,7 @@ namespace TeamBuildScreenSaver.ViewModels
 
             StringBuilder text = new StringBuilder();
             text.AppendLine(string.Format(
-                "{0}.{1}",
+                "{0}: {1}",
                 this.dataModel.TeamProject,
                 this.dataModel.DefinitionName));
             text.AppendLine("Loading...");
@@ -151,7 +151,7 @@ namespace TeamBuildScreenSaver.ViewModels
             this.isQueued = this.dataModel.IsQueued;
 
             text.AppendLine(string.Format(
-                "{0}.{1}",
+                "{0}: {1}",
                 this.dataModel.TeamProject,
                 this.dataModel.DefinitionName));
 

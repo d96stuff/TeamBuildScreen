@@ -127,7 +127,7 @@ namespace TeamBuildScreenSaver.UnitTests
             StringBuilder summary = new StringBuilder();
 
             summary.AppendLine(string.Format(
-                "{0}.{1}",
+                "{0}: {1}",
                 this.mockBuildDetail.BuildDefinition.TeamProject,
                 this.mockBuildDetail.BuildDefinition.Name));
             summary.AppendLine(new BuildStatusStringConverter().Convert(this.mockBuildDetail.Status, typeof(string), null, null).ToString());

@@ -97,6 +97,7 @@
     <Compile Include="Models\BuildSetting.cs" />
     <Compile Include="Models\IBuildServerService.cs" />
     <Compile Include="Models\ScreenSaverSettingsModel.cs" />
+    <Compile Include="ScreenSaver.cs" />
     <Compile Include="Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

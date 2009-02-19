@@ -10,13 +10,13 @@ namespace TeamBuildScreenSaver
 
     using System;
     using System.Collections.Specialized;
+    using System.Globalization;
     using System.Windows;
-    using System.Windows.Interop;
     using System.Windows.Threading;
     using Microsoft.TeamFoundation.Client;
     using TeamBuildScreenSaver.Models;
     using TeamBuildScreenSaver.ViewModels;
-    using TeamBuildScreenSaver.Views; 
+    using TeamBuildScreenSaver.Views;
 
     #endregion
 
@@ -24,121 +24,101 @@ namespace TeamBuildScreenSaver
     {
         #region Fields
 
-        private HwndSource winWPFContent;
-        private Main main;
+        /// <summary>
+        /// The service used to contact the build server.
+        /// </summary>
         private IBuildServerService service;
+        private ScreenSaver<Main, MainViewModel> screenSaver;
 
         #endregion
 
         #region Methods
 
-        private void Application_Startup(object sender, StartupEventArgs e)   
+        private void OnStartup(Object sender, StartupEventArgs e)
         {
-            if (e.Args.Length >= 2 && e.Args[0].ToLower().StartsWith("/p"))       
-            {
-                this.LoadMain();
+            string[] args = e.Args;
 
-                if (this.main != null)
-                {
-                    this.ShowPreview(Convert.ToInt32(e.Args[1]));
-                }
-            }
-            else if (e.Args.Length == 1 && e.Args[0].ToLower().StartsWith("/s"))
+            if (args.Length > 0)
             {
-                this.LoadMain();
+                string arg = args[0].ToLower(CultureInfo.InvariantCulture).Trim().Substring(0, 2);
 
-                if (this.main != null)
+                switch (arg)
                 {
-                    // normal mode
-                    this.main.Show();
-                    this.service.Start();
+                    case "/c": // configuration mode
+                        ScreenSaverSettings settings = new ScreenSaverSettings(new ScreenSaverSettingsModel());
+                        settings.ShowDialog();
+                        break;
+                    case "/p": // preview mode
+                        this.InitializeScreenSaver(false, 1);
+                        this.screenSaver.ShowPreview(Convert.ToInt32(args[1]));
+                        this.service.Start();
+                        break;
+                    case "/s": // normal mode
+                        this.InitializeScreenSaver(true);
+                        this.screenSaver.Show();
+                        this.service.Start();
+                        break;
+                    default: // unknown argument
+                        Application.Current.Shutdown();
+                        break;
                 }
-            }
-            else if (e.Args.Length == 1 && e.Args[0].ToLower().StartsWith("/c"))        
-            {
-                // configuration mode
-                ScreenSaverSettings settings = new ScreenSaverSettings(new ScreenSaverSettingsModel());
-                settings.ShowDialog();
             }
             else
             {
-                // unknown mode
-                Application.Current.Shutdown();   
+                // no arguments passed in
+                this.InitializeScreenSaver(true);
+                this.screenSaver.Show();
+                this.service.Start();
             }
         }
 
-        private void ShowPreview(int previewHandle)
+        /// <summary>
+        /// Initializes the screen saver. Sets the <see cref="MainViewModel.InnerMargin"/> to 8.
+        /// </summary>
+        /// <param name="closeOnClicked">A value that indicates whether the screen saver should close when clicked on.</param>
+        private void InitializeScreenSaver(bool closeOnClicked)
         {
-            ((MainViewModel)this.main.DataContext).InnerMargin = 1;
-
-            // set this property so that the preview window does not close when clicked on
-            this.main.IsInteractive = false;
-
-            IntPtr pPreviewHnd = new IntPtr(previewHandle);
-
-            Interop.Rectangle clientRectange = new Interop.Rectangle();
-            bool result = Interop.Win32Api.GetClientRect(pPreviewHnd, ref clientRectange);
-
-            HwndSourceParameters sourceParams = new HwndSourceParameters("sourceParams");
-
-            sourceParams.PositionX = 0;
-            sourceParams.PositionY = 0;
-            sourceParams.Height = clientRectange.Bottom - clientRectange.Top;
-            sourceParams.Width = clientRectange.Right - clientRectange.Left;
-            sourceParams.ParentWindow = pPreviewHnd;
-            sourceParams.WindowStyle = (int)(Interop.WindowStyles.WindowStyleVisible | Interop.WindowStyles.WindowStyleChild | Interop.WindowStyles.WindowStyleClipChildren);
-
-            this.winWPFContent = new HwndSource(sourceParams);
-            this.winWPFContent.Disposed += new EventHandler(winWPFContent_Disposed);
-            this.winWPFContent.RootVisual = this.main.LayoutRoot;
-
-            this.service.Start();
+            this.InitializeScreenSaver(closeOnClicked, 8);
         }
 
-        private void LoadMain()
+        /// <summary>
+        /// Initializes the screen saver.
+        /// </summary>
+        /// <param name="closeOnClicked">A value that indicates whether the screen saver should close when clicked on.</param>
+        /// <param name="innerMargin">
+        /// The margin to set between each <see cref="BuildPanel"/>. This usually only needs to be set under special 
+        /// circumnstances, for example - if the view is to be displayed in a small preview window.
+        /// </param>
+        private void InitializeScreenSaver(bool closeOnClicked, int innerMargin)
         {
             string tfsUri = Settings.Default.TfsUri;
-            StringCollection builds = Settings.Default.Builds;
 
             if (string.IsNullOrEmpty(tfsUri))
             {
-                // error condition
                 Application.Current.Shutdown();
-
-                return;
             }
 
             TeamFoundationServer tfsServer = new TeamFoundationServer(tfsUri);
 
             this.service = new BuildServerService(tfsServer.Uri.AbsoluteUri);
 
-            tfsServer.Dispose();
+            StringCollection builds = Settings.Default.Builds;
 
             MainViewModel viewModel = new MainViewModel(this.service, builds);
             viewModel.Columns = Settings.Default.Columns;
+            viewModel.CloseOnClicked = closeOnClicked;
+            viewModel.InnerMargin = innerMargin;
 
-            this.main = new Main();
-            this.main.DataContext = viewModel;
-            this.main.Closed += new EventHandler(this.main_Closed);
+            tfsServer.Dispose();
+
+            this.screenSaver = new ScreenSaver<Main, MainViewModel>(viewModel);
         }
 
-        private void main_Closed(object sender, EventArgs e)
+        private void OnExit(object sender, ExitEventArgs e)
         {
-            Application.Current.Shutdown();
-        } 
-
-        private void winWPFContent_Disposed(object sender, EventArgs e)
-        {
-            this.main.Close();
-
-            Application.Current.Shutdown();
-        }
-
-        private void Application_Exit(object sender, ExitEventArgs e)
-        {
-            if (this.winWPFContent != null)
+            if (this.screenSaver != null)
             {
-                this.winWPFContent.Dispose();
+                this.screenSaver.Dispose();
             }
 
             if (this.service != null)
@@ -147,7 +127,7 @@ namespace TeamBuildScreenSaver
             }
         }
 
-        private void Application_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             // TODO: Log details
             MessageBox.Show(

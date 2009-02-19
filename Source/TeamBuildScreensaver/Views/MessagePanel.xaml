@@ -16,9 +16,11 @@
 				</ParallelTimeline>
 			</Storyboard>
 			<ControlTemplate x:Key="MessageTemplate">
-				<UniformGrid x:Name="Background" Background="Black" Opacity="0">
-					<Label x:Name="Message" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Transparent" Foreground="White" FontSize="36" Opacity="0" Content="{Binding Message}"/>
-				</UniformGrid>
+				<Grid x:Name="Background" Background="Black" Opacity="0">
+          <Viewbox Margin="128">
+            <Label x:Name="Message" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Transparent" Foreground="White" FontSize="36" Opacity="0" Content="{Binding Message}"/>
+          </Viewbox>
+				</Grid>
 				<ControlTemplate.Triggers>
 					<DataTrigger Binding="{Binding IsVisible}" Value="False">
 						<DataTrigger.EnterActions>
