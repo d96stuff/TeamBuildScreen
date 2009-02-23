@@ -9,3 +9,4 @@ using System.Resources;
 [assembly: AssemblyTitleAttribute("TeamBuildScreenSaver")]
 [assembly: AssemblyCopyrightAttribute("Copyright © Jim Liddell")]
 [assembly: AssemblyProductAttribute("Team Build Screen Saver")]
+[assembly: AssemblyDescriptionAttribute("Team Build Screen Saver")]

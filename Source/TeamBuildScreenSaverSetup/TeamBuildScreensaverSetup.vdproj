@@ -28,7 +28,7 @@
         "Entry"
         {
         "MsmKey" = "8:_08A73C803AAC80F783EEA5110AB2ACE9"
-        "OwnerKey" = "8:_46E367550E774610A8CB2A6E79C81796"
+        "OwnerKey" = "8:_A5D139CEB632469EB648F651C85B7A44"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -88,7 +88,7 @@
         "Entry"
         {
         "MsmKey" = "8:_2AF059A3F9473B03936A4D212E9743C2"
-        "OwnerKey" = "8:_46E367550E774610A8CB2A6E79C81796"
+        "OwnerKey" = "8:_A5D139CEB632469EB648F651C85B7A44"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -124,19 +124,13 @@
         "Entry"
         {
         "MsmKey" = "8:_46BE83A932447880703CCFB35C35689C"
-        "OwnerKey" = "8:_46E367550E774610A8CB2A6E79C81796"
+        "OwnerKey" = "8:_A5D139CEB632469EB648F651C85B7A44"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_46BE83A932447880703CCFB35C35689C"
         "OwnerKey" = "8:_2AF059A3F9473B03936A4D212E9743C2"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_46E367550E774610A8CB2A6E79C81796"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -201,6 +195,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_A5D139CEB632469EB648F651C85B7A44"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_BE4BD147B28886E819C9C99B9F8C5B70"
         "OwnerKey" = "8:_2AF059A3F9473B03936A4D212E9743C2"
         "MsmSig" = "8:_UNDEFINED"
@@ -214,7 +214,7 @@
         "Entry"
         {
         "MsmKey" = "8:_F09397FA2A7009AB0FB3A73A1FB5A19F"
-        "OwnerKey" = "8:_46E367550E774610A8CB2A6E79C81796"
+        "OwnerKey" = "8:_A5D139CEB632469EB648F651C85B7A44"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -256,73 +256,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F09397FA2A7009AB0FB3A73A1FB5A19F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BE4BD147B28886E819C9C99B9F8C5B70"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A0F33E9E29EF4F1600D543ED05A38B6E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9FA14FDC473763503478FD58EE754544"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_846BFE0D6DD67C2075CF5A45704FC38A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_56AD4698F12094478A7B242C86814FB3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4B2C0ED921FB86D0FB4F868AE19FCB7C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_46E367550E774610A8CB2A6E79C81796"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_46BE83A932447880703CCFB35C35689C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3F278F50F112B4AC920F8419433707E3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2C918EA26D5F62860A783C410D7E0520"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2B1DEF3DC91164F38D039F6747E5BAD5"
+        "OwnerKey" = "8:_A5D139CEB632469EB648F651C85B7A44"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -334,7 +268,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2789B635892F6550DDDBE4B04714984B"
+        "OwnerKey" = "8:_BE4BD147B28886E819C9C99B9F8C5B70"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_08A73C803AAC80F783EEA5110AB2ACE9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -346,7 +286,67 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_08A73C803AAC80F783EEA5110AB2ACE9"
+        "OwnerKey" = "8:_F09397FA2A7009AB0FB3A73A1FB5A19F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_46BE83A932447880703CCFB35C35689C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2B1DEF3DC91164F38D039F6747E5BAD5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_846BFE0D6DD67C2075CF5A45704FC38A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3F278F50F112B4AC920F8419433707E3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9FA14FDC473763503478FD58EE754544"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_4B2C0ED921FB86D0FB4F868AE19FCB7C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2789B635892F6550DDDBE4B04714984B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_A0F33E9E29EF4F1600D543ED05A38B6E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2C918EA26D5F62860A783C410D7E0520"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_56AD4698F12094478A7B242C86814FB3"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -753,37 +753,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_46E367550E774610A8CB2A6E79C81796"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TeamBuildScreenSaver, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_46E367550E774610A8CB2A6E79C81796"
-                    {
-                    "Name" = "8:Team Build.scr"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\TeamBuildScreensaver\\bin\\Team Build.scr"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_93723E4D48C947D9BCA090AB2E292826"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4B2C0ED921FB86D0FB4F868AE19FCB7C"
             {
             "AssemblyRegister" = "3:1"
@@ -937,6 +906,37 @@
             "Register" = "3:1"
             "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A5D139CEB632469EB648F651C85B7A44"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:TeamBuildScreenSaver, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_A5D139CEB632469EB648F651C85B7A44"
+                    {
+                    "Name" = "8:tbss.scr"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\TeamBuildScreenSaver\\bin\\tbss.scr"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_93723E4D48C947D9BCA090AB2E292826"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BE4BD147B28886E819C9C99B9F8C5B70"
@@ -1102,7 +1102,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Team Build Screen Saver"
         "ProductCode" = "8:{6B37E8E6-0C34-44B5-998C-0C003D3AD799}"
-        "PackageCode" = "8:{A978EBA9-B095-4F30-8195-79AB8EAB39E4}"
+        "PackageCode" = "8:{9547BDA1-A1EF-4109-BBB5-AA88F1F3A902}"
         "UpgradeCode" = "8:{A0558686-D411-41E9-8371-ACE2ECDBB2DC}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"

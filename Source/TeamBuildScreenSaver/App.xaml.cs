@@ -50,13 +50,21 @@ namespace TeamBuildScreenSaver
                         break;
                     case "/p": // preview mode
                         this.InitializeScreenSaver(false, 1);
-                        this.screenSaver.ShowPreview(Convert.ToInt32(args[1]));
-                        this.service.Start();
+
+                        if (this.screenSaver != null)
+                        {
+                            this.screenSaver.ShowPreview(Convert.ToInt32(args[1]));
+                            this.service.Start();
+                        }
                         break;
                     case "/s": // normal mode
                         this.InitializeScreenSaver(true);
-                        this.screenSaver.Show();
-                        this.service.Start();
+
+                        if (this.screenSaver != null)
+                        {
+                            this.screenSaver.Show();
+                            this.service.Start();
+                        }
                         break;
                     default: // unknown argument
                         Application.Current.Shutdown();
@@ -65,10 +73,13 @@ namespace TeamBuildScreenSaver
             }
             else
             {
-                // no arguments passed in
                 this.InitializeScreenSaver(true);
-                this.screenSaver.Show();
-                this.service.Start();
+
+                if (this.screenSaver != null)
+                {
+                    this.screenSaver.Show();
+                    this.service.Start();
+                }
             }
         }
 
@@ -97,21 +108,23 @@ namespace TeamBuildScreenSaver
             {
                 Application.Current.Shutdown();
             }
+            else
+            {
+                TeamFoundationServer tfsServer = new TeamFoundationServer(tfsUri);
 
-            TeamFoundationServer tfsServer = new TeamFoundationServer(tfsUri);
+                this.service = new BuildServerService(tfsServer.Uri.AbsoluteUri);
 
-            this.service = new BuildServerService(tfsServer.Uri.AbsoluteUri);
+                StringCollection builds = Settings.Default.Builds;
 
-            StringCollection builds = Settings.Default.Builds;
+                MainViewModel viewModel = new MainViewModel(this.service, builds);
+                viewModel.Columns = Settings.Default.Columns;
+                viewModel.CloseOnClicked = closeOnClicked;
+                viewModel.InnerMargin = innerMargin;
 
-            MainViewModel viewModel = new MainViewModel(this.service, builds);
-            viewModel.Columns = Settings.Default.Columns;
-            viewModel.CloseOnClicked = closeOnClicked;
-            viewModel.InnerMargin = innerMargin;
+                tfsServer.Dispose();
 
-            tfsServer.Dispose();
-
-            this.screenSaver = new ScreenSaver<Main, MainViewModel>(viewModel);
+                this.screenSaver = new ScreenSaver<Main, MainViewModel>(viewModel);
+            }
         }
 
         private void OnExit(object sender, ExitEventArgs e)
