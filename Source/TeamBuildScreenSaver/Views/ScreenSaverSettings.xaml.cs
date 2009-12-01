@@ -29,19 +29,6 @@ namespace TeamBuildScreenSaver.Views
             this.DataContext = new ScreenSaverSettingsViewModel(dataModel);
         }
 
-        private void CloseCanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-            e.Handled = true;
-        }
-
-        private void CloseExecuted(object sender, ExecutedRoutedEventArgs e)
-        {
-            this.Close();
-
-            e.Handled = true;
-        }
-
         #endregion
     }
 }

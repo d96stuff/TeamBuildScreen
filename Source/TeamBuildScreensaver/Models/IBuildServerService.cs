@@ -32,6 +32,15 @@ namespace TeamBuildScreenSaver.Models
 
         #endregion
 
+        #region Properties
+
+        int StaleThreshold
+        {
+            get;
+        }
+
+        #endregion
+
         #region Methods
 
         /// <summary>

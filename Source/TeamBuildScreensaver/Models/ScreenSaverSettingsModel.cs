@@ -49,6 +49,11 @@ namespace TeamBuildScreenSaver.Models
         /// </summary>
         private int updateInterval;
 
+        /// <summary>
+        /// The interval at which the build server will be queried.
+        /// </summary>
+        private int staleThreshold;
+
         #endregion
 
         #region Properties
@@ -107,6 +112,24 @@ namespace TeamBuildScreenSaver.Models
             }
         }
 
+        public int StaleThreshold
+        {
+            get
+            {
+                return this.staleThreshold;
+            }
+
+            set
+            {
+                if (value != this.staleThreshold)
+                {
+                    this.staleThreshold = value;
+
+                    this.OnPropertyChanged("StaleThreshold");
+                }
+            }
+        }
+
         public ObservableCollection<BuildSetting> Builds
         {
             get
@@ -144,6 +167,7 @@ namespace TeamBuildScreenSaver.Models
             this.settings.TfsUri = this.tfsUri;
             this.settings.Columns = this.columns;
             this.settings.UpdateInterval = this.updateInterval;
+            this.settings.StaleThreshold = this.staleThreshold;
 
             this.SaveBuilds();
 
@@ -155,6 +179,7 @@ namespace TeamBuildScreenSaver.Models
             this.tfsUri = this.settings.TfsUri;
             this.columns = this.settings.Columns;
             this.updateInterval = this.settings.UpdateInterval;
+            this.staleThreshold = this.settings.StaleThreshold;
 
             this.LoadBuilds(this.builds, this.TfsUri);
         }

@@ -13,6 +13,7 @@ namespace TeamBuildScreenSaver.UnitTests.Models
     using System.Threading;
     using Microsoft.TeamFoundation.Build.Client;
     using TeamBuildScreenSaver.Models;
+    using System.Runtime.CompilerServices;
 
     #endregion
 
@@ -26,11 +27,22 @@ namespace TeamBuildScreenSaver.UnitTests.Models
 
         #endregion
 
+        #region Properties
+
+        public int StaleThreshold
+        {
+            get;
+            private set;
+        }
+
+        #endregion
+
         #region Constructors
 
         public MockBuildServerService()
         {
             this.builds = new Hashtable();
+            this.StaleThreshold = 7;
         }
 
         #endregion
@@ -93,7 +105,7 @@ namespace TeamBuildScreenSaver.UnitTests.Models
 
                     if (status.HasValue)
                     {
-                        latestBuild = new MockBuildDetail(status.Value, "DOMAIN\\Joe Blogs", DateTime.Now, true, DateTime.Now, new MockBuildDefinition(teamProject, definitionName));
+                        latestBuild = new MockBuildDetail(status.Value, "DOMAIN\\Joe Blogs", GetRandomDateTime(), true, GetRandomDateTime(), new MockBuildDefinition(teamProject, definitionName));
                     }
 
                     latestBuilds.Add(key, latestBuild);
@@ -106,6 +118,17 @@ namespace TeamBuildScreenSaver.UnitTests.Models
             }
 
             this.OnQueryCompleted();
+        }
+
+        private static DateTime GetRandomDateTime()
+        {
+            DateTime start = DateTime.UtcNow.AddDays(-14);
+            DateTime end = DateTime.UtcNow;
+            Random random = new Random(Environment.TickCount);
+
+            int range = ((TimeSpan)(end - start)).Days;
+
+            return start.AddDays(random.Next(range));
         }
 
         private void OnQueryCompleted()

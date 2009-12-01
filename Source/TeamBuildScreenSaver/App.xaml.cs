@@ -112,7 +112,7 @@ namespace TeamBuildScreenSaver
             {
                 TeamFoundationServer tfsServer = new TeamFoundationServer(tfsUri);
 
-                this.service = new BuildServerService(tfsServer.Uri.AbsoluteUri);
+                this.service = new BuildServerService(tfsServer.Uri.AbsoluteUri, Settings.Default.UpdateInterval, Settings.Default.StaleThreshold);
 
                 StringCollection builds = Settings.Default.Builds;
 

@@ -4,8 +4,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
-	x:Class="TeamBuildScreenSaver.Views.BuildPanel"
-	x:Name="UserControl" xmlns:BuildStatus="clr-namespace:TeamBuildScreenSaver.Views" Height="144" Width="650" Background="{x:Null}">
+	x:Class="TeamBuildScreenSaver.Views.BuildPanel" xmlns:BuildStatus="clr-namespace:TeamBuildScreenSaver.Views" Height="144" Width="650" Background="{x:Null}">
 	<UserControl.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
@@ -25,6 +24,12 @@
 			</Storyboard>
 			<Storyboard x:Key="HideQueuedIcon">
 				<DoubleAnimation To="0" Storyboard.TargetName="QueuedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01" />
+			</Storyboard>
+			<Storyboard x:Key="BrightenBuildPanel">
+				<DoubleAnimation To="1" Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01" />
+			</Storyboard>
+			<Storyboard x:Key="DimBuildPanel">
+				<DoubleAnimation To="0.5" Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01" />
 			</Storyboard>
 			<ControlTemplate x:Key="BuildPanelTemplate">
 				<Grid x:Name="LayoutRoot">
@@ -88,21 +93,21 @@
 							<StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
 							<StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
 							<StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
-              <StopStoryboard BeginStoryboardName="SucceededStoryboard"/>
+							<StopStoryboard BeginStoryboardName="SucceededStoryboard"/>
 							<BeginStoryboard Storyboard="{StaticResource FadeToGrey}" Name="UnknownStoryboard"/>
 						</DataTrigger.EnterActions>
 					</DataTrigger>
-          <DataTrigger Binding="{Binding Status}" Value="Succeeded">
-            <DataTrigger.EnterActions>
-              <StopStoryboard BeginStoryboardName="FailedStoryboard"/>
-              <StopStoryboard BeginStoryboardName="InProgressStoryboard"/>
-              <StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
-              <StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
-              <StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
-              <StopStoryboard BeginStoryboardName="UnknownStoryboard"/>
-              <BeginStoryboard Storyboard="{StaticResource FadeToGreen}" Name="SucceededStoryboard"/>
-            </DataTrigger.EnterActions>
-          </DataTrigger>
+					<DataTrigger Binding="{Binding Status}" Value="Succeeded">
+						<DataTrigger.EnterActions>
+							<StopStoryboard BeginStoryboardName="FailedStoryboard"/>
+							<StopStoryboard BeginStoryboardName="InProgressStoryboard"/>
+							<StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
+							<StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
+							<StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
+							<StopStoryboard BeginStoryboardName="UnknownStoryboard"/>
+							<BeginStoryboard Storyboard="{StaticResource FadeToGreen}" Name="SucceededStoryboard"/>
+						</DataTrigger.EnterActions>
+					</DataTrigger>
 					<DataTrigger Binding="{Binding Status}" Value="Failed">
 						<DataTrigger.EnterActions>
 							<StopStoryboard BeginStoryboardName="SucceededStoryboard"/>
@@ -110,7 +115,7 @@
 							<StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
 							<StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
 							<StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
-              <StopStoryboard BeginStoryboardName="UnknownStoryboard"/>
+							<StopStoryboard BeginStoryboardName="UnknownStoryboard"/>
 							<BeginStoryboard Storyboard="{StaticResource FadeToRed}" Name="FailedStoryboard"/>
 						</DataTrigger.EnterActions>
 					</DataTrigger>
@@ -121,7 +126,7 @@
 							<StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
 							<StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
 							<StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
-              <StopStoryboard BeginStoryboardName="UnknownStoryboard"/>
+							<StopStoryboard BeginStoryboardName="UnknownStoryboard"/>
 							<BeginStoryboard Storyboard="{StaticResource FadeToGrey}" Name="InProgressStoryboard"/>
 						</DataTrigger.EnterActions>
 					</DataTrigger>
@@ -132,7 +137,7 @@
 							<StopStoryboard BeginStoryboardName="InProgressStoryboard"/>
 							<StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
 							<StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
-              <StopStoryboard BeginStoryboardName="UnknownStoryboard"/>
+							<StopStoryboard BeginStoryboardName="UnknownStoryboard"/>
 							<BeginStoryboard Storyboard="{StaticResource FadeToRed}" Name="PartiallySucceededStoryboard"/>
 						</DataTrigger.EnterActions>
 					</DataTrigger>
@@ -143,7 +148,7 @@
 							<StopStoryboard BeginStoryboardName="InProgressStoryboard"/>
 							<StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
 							<StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
-              <StopStoryboard BeginStoryboardName="UnknownStoryboard"/>
+							<StopStoryboard BeginStoryboardName="UnknownStoryboard"/>
 							<BeginStoryboard Storyboard="{StaticResource FadeToRed}" Name="StoppedStoryboard"/>
 						</DataTrigger.EnterActions>
 					</DataTrigger>
@@ -154,7 +159,7 @@
 							<StopStoryboard BeginStoryboardName="InProgressStoryboard"/>
 							<StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
 							<StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
-              <StopStoryboard BeginStoryboardName="UnknownStoryboard"/>
+							<StopStoryboard BeginStoryboardName="UnknownStoryboard"/>
 							<BeginStoryboard Storyboard="{StaticResource FadeToGrey}" Name="NotStartedStoryboard"/>
 						</DataTrigger.EnterActions>
 					</DataTrigger>
@@ -168,6 +173,18 @@
 						<DataTrigger.EnterActions>
 							<StopStoryboard BeginStoryboardName="ShowQueuedIconStoryboard"/>
 							<BeginStoryboard Storyboard="{StaticResource HideQueuedIcon}" Name="HideQueuedIconStoryboard"/>
+						</DataTrigger.EnterActions>
+					</DataTrigger>
+					<DataTrigger Binding="{Binding IsStale}" Value="False">
+						<DataTrigger.EnterActions>
+							<StopStoryboard BeginStoryboardName="IsStaleStoryboard"/>
+							<BeginStoryboard Storyboard="{StaticResource BrightenBuildPanel}" Name="IsNotStaleStoryboard"/>
+						</DataTrigger.EnterActions>
+					</DataTrigger>
+					<DataTrigger Binding="{Binding IsStale}" Value="True">
+						<DataTrigger.EnterActions>
+							<StopStoryboard BeginStoryboardName="IsNotStaleStoryboard"/>
+							<BeginStoryboard Storyboard="{StaticResource DimBuildPanel}" Name="IsStaleStoryboard"/>
 						</DataTrigger.EnterActions>
 					</DataTrigger>
 				</ControlTemplate.Triggers>

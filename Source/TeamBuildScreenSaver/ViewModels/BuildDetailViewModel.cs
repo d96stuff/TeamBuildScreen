@@ -13,6 +13,7 @@ namespace TeamBuildScreenSaver.ViewModels
     using Microsoft.TeamFoundation.Build.Client;
     using TeamBuildScreenSaver.Models;
     using TeamBuildScreenSaver.Views;
+using System;
 
     #endregion
 
@@ -36,8 +37,6 @@ namespace TeamBuildScreenSaver.ViewModels
         private BuildStatus? status = null;
 
         private ConfigurationSummaryHandler configurationSummaryHandler;
-
-        private bool isQueued = false;
 
         /// <summary>
         /// A static synchronisation lock used to synchronise access across all instances.
@@ -77,7 +76,18 @@ namespace TeamBuildScreenSaver.ViewModels
         {
             get
             {
-                return this.isQueued;
+                return this.dataModel.IsQueued;
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether the current build was completed more than a week ago.
+        /// </summary>
+        public bool IsStale
+        {
+            get
+            {
+                return this.dataModel.IsStale;
             }
         }
 
@@ -148,7 +158,7 @@ namespace TeamBuildScreenSaver.ViewModels
         private void UpdateFromModel()
         {
             StringBuilder text = new StringBuilder();
-            this.isQueued = this.dataModel.IsQueued;
+
 
             text.AppendLine(string.Format(
                 "{0}: {1}",
@@ -191,6 +201,7 @@ namespace TeamBuildScreenSaver.ViewModels
             this.summary = text.ToString();
 
             this.OnPropertyChanged("IsQueued");
+            this.OnPropertyChanged("IsStale");
             this.OnPropertyChanged("Status");
             this.OnPropertyChanged("Summary");
         }

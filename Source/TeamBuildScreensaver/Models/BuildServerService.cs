@@ -51,6 +51,16 @@ namespace TeamBuildScreenSaver.Models
 
         #endregion
 
+        #region Properties
+
+        public int StaleThreshold
+        {
+            get;
+            private set;
+        }
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
@@ -63,6 +73,7 @@ namespace TeamBuildScreenSaver.Models
             this.buildServer = (IBuildServer)tfs.GetService(typeof(IBuildServer));
             this.builds = new Dictionary<IBuildDetailSpec, IBuildDetail>();
             this.buildQueues = new List<IQueuedBuildsView>();
+            this.StaleThreshold = 7;
         }
 
         /// <summary>
@@ -70,9 +81,11 @@ namespace TeamBuildScreenSaver.Models
         /// </summary>
         /// <param name="tfsUrl">The URL of the Team Foundation Server to query.</param>
         /// <param name="period">The interval between queries (in milliseconds).</param>
-        public BuildServerService(string tfsUrl, int period) : this(tfsUrl)
+        /// <param name="staleThresold">The number of days elapsed before a build is considered 'stale'.</param>
+        public BuildServerService(string tfsUrl, int period, int staleThresold) : this(tfsUrl)
         {
             this.period = period;
+            this.StaleThreshold = staleThresold;
         }
 
         #endregion

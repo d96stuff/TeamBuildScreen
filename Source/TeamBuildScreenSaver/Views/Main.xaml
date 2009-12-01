@@ -4,7 +4,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
   xmlns:local="clr-namespace:TeamBuildScreenSaver.Views"
 	x:Class="TeamBuildScreenSaver.Views.Main"
-	x:Name="Window" local:AttachedProperties.RegisterCommandBindings="{Binding Path=CommandBindings}"
+	x:Name="Window"
 	Title="Main" xmlns:b="clr-namespace:TeamBuildScreenSaver.Views" WindowStyle="None">
   <Window.Background>
     <RadialGradientBrush>

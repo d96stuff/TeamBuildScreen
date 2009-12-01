@@ -52,6 +52,11 @@ namespace TeamBuildScreenSaver.Models
         /// </summary>
         private bool isQueued = false;
 
+        /// <summary>
+        /// A value indicating whether the current build was completed more than a week ago.
+        /// </summary>
+        private bool isStale = false;
+
         #endregion
 
         #region Constructors
@@ -147,6 +152,24 @@ namespace TeamBuildScreenSaver.Models
         }
 
         /// <summary>
+        /// Gets a value indicating whether the current build was completed more than a week ago.
+        /// </summary>
+        public bool IsStale
+        {
+            get
+            {
+                return this.isStale;
+            }
+
+            private set
+            {
+                this.isStale = value;
+
+                this.OnPropertyChanged("IsStale");
+            }
+        }
+
+        /// <summary>
         /// Gets the team project for the build.
         /// </summary>
         public string TeamProject
@@ -185,7 +208,20 @@ namespace TeamBuildScreenSaver.Models
                     {
                         this.Model = this.service.GetBuildDetail(this.key);
                         this.IsQueued = this.service.IsQueued(this.key);
+                        this.IsStale = this.GetIsStale();
                     }));
+        }
+
+        private bool GetIsStale()
+        {
+            if (this.Model != null && this.Model.BuildFinished)
+            {
+                bool isStale = this.Model.FinishTime.CompareTo(DateTime.UtcNow.AddDays(-this.service.StaleThreshold)) < 0;
+
+                return isStale;
+            }
+
+            return false;
         }
 
         /// <summary>

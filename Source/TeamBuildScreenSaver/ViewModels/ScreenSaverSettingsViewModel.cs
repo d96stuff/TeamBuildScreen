@@ -14,6 +14,7 @@ namespace TeamBuildScreenSaver.ViewModels
     using System.Windows.Input;
     using Microsoft.TeamFoundation.Proxy;
     using TeamBuildScreenSaver.Models;
+    using TeamBuildScreenSaver.Views;
 
     #endregion
 
@@ -21,9 +22,7 @@ namespace TeamBuildScreenSaver.ViewModels
     {
         #region Fields
 
-        private readonly CommandBindingCollection commandBindings;
         private ScreenSaverSettingsModel dataModel;
-        private ICommand selectTfsCommand;
 
         #endregion
 
@@ -37,8 +36,6 @@ namespace TeamBuildScreenSaver.ViewModels
             {
                 this.OnPropertyChanged(e.PropertyName);
             };
-
-            this.commandBindings = new CommandBindingCollection();
 
             this.RegisterCommands();
         }
@@ -55,14 +52,6 @@ namespace TeamBuildScreenSaver.ViewModels
         #endregion
 
         #region Properties
-
-        public CommandBindingCollection CommandBindings
-        {
-            get
-            {
-                return this.commandBindings;
-            }
-        }
 
         public string TfsUri
         {
@@ -103,19 +92,24 @@ namespace TeamBuildScreenSaver.ViewModels
             }
         }
 
+        public int StaleThreshold
+        {
+            get
+            {
+                return this.dataModel.StaleThreshold;
+            }
+
+            set
+            {
+                this.dataModel.StaleThreshold = value;
+            }
+        }
+
         public ObservableCollection<BuildSetting> Builds
         {
             get
             {
                 return this.dataModel.Builds;
-            }
-        }
-
-        public ICommand SelectTfsServer
-        {
-            get
-            {
-                return this.selectTfsCommand;
             }
         }
 
@@ -125,16 +119,25 @@ namespace TeamBuildScreenSaver.ViewModels
 
         private void RegisterCommands()
         {
-            this.selectTfsCommand = new RoutedCommand("SelectTfsServer", typeof(ScreenSaverSettingsViewModel));
+            CommandBinding selectServerBinding =
+                new CommandBinding(
+                    TfsCommands.SelectServer,
+                    this.SelectServerExecuted,
+                    this.CommandCanExecute);
+            CommandBinding saveBinding =
+                new CommandBinding(
+                    ApplicationCommands.Save,
+                    this.SaveExecuted,
+                    this.CommandCanExecute);
+            CommandBinding closeBinding =
+                new CommandBinding(
+                    ApplicationCommands.Close,
+                    this.CloseExecuted,
+                    this.CommandCanExecute);
 
-            CommandBinding selectTfsServerBinding = new CommandBinding(this.selectTfsCommand, this.SelectTfsServerExecuted, this.CommandCanExecute);
-            CommandBinding saveBinding = new CommandBinding(ApplicationCommands.Save, this.SaveExecuted, this.CommandCanExecute);
-
-            CommandManager.RegisterClassCommandBinding(typeof(ScreenSaverSettingsViewModel), selectTfsServerBinding);
-            CommandManager.RegisterClassCommandBinding(typeof(ScreenSaverSettingsViewModel), saveBinding);
-
-            this.commandBindings.Add(selectTfsServerBinding);
-            this.commandBindings.Add(saveBinding);
+            CommandManager.RegisterClassCommandBinding(typeof(ScreenSaverSettings), selectServerBinding);
+            CommandManager.RegisterClassCommandBinding(typeof(ScreenSaverSettings), saveBinding);
+            CommandManager.RegisterClassCommandBinding(typeof(ScreenSaverSettings), closeBinding);
         }
 
         /// <summary>
@@ -155,7 +158,7 @@ namespace TeamBuildScreenSaver.ViewModels
             e.Handled = true;
         }
 
-        private void SelectTfsServerExecuted(object sender, ExecutedRoutedEventArgs e)
+        private void SelectServerExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             DomainProjectPicker dpp = new DomainProjectPicker(DomainProjectPickerMode.None);
 
@@ -174,6 +177,15 @@ namespace TeamBuildScreenSaver.ViewModels
             this.dataModel.Save();
 
             Application.Current.Shutdown();
+
+            e.Handled = true;
+        }
+
+        private void CloseExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+
+            e.Handled = true;
         }
 
         #endregion
