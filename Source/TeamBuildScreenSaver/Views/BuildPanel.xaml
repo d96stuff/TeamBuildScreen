@@ -29,7 +29,7 @@
 				<DoubleAnimation To="1" Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01" />
 			</Storyboard>
 			<Storyboard x:Key="DimBuildPanel">
-				<DoubleAnimation To="0.5" Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01" />
+				<DoubleAnimation To="0.75" Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01" />
 			</Storyboard>
 			<ControlTemplate x:Key="BuildPanelTemplate">
 				<Grid x:Name="LayoutRoot">
@@ -39,7 +39,7 @@
 						<ColumnDefinition Width="80"/>
 					</Grid.ColumnDefinitions>
 					<Grid Grid.ColumnSpan="3">
-						<Rectangle x:Name="BackgroundThing" Stroke="#FF000000" StrokeThickness="1" RenderTransformOrigin="0.5,0.5" RadiusX="16" RadiusY="16" Fill="#FFFFFFFF" HorizontalAlignment="Stretch">
+						<Rectangle Stroke="#FF000000" StrokeThickness="1" RenderTransformOrigin="0.5,0.5" RadiusX="16" RadiusY="16" Fill="#FFFFFFFF" HorizontalAlignment="Stretch">
 							<Rectangle.RenderTransform>
 								<TransformGroup>
 									<ScaleTransform ScaleX="1" ScaleY="1"/>
