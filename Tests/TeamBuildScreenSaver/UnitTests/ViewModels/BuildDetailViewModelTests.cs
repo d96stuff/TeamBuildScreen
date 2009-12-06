@@ -88,7 +88,7 @@ namespace TeamBuildScreenSaver.UnitTests
 
             this.mockService.RaiseQueryCompleted();
 
-            Assert.AreEqual<string>(summary.ToString(), this.viewModel.Summary);
+            Assert.AreEqual<string>(summary.ToString().Trim(), this.viewModel.Summary.Trim());
         }
 
         [TestMethod]
@@ -101,7 +101,7 @@ namespace TeamBuildScreenSaver.UnitTests
 
             this.mockService.RaiseQueryCompleted();
 
-            Assert.AreEqual<string>(summary.ToString(), this.viewModel.Summary);
+            Assert.AreEqual<string>(summary.ToString().Trim(), this.viewModel.Summary.Trim());
         }
 
         [TestMethod]

@@ -147,9 +147,23 @@ using System;
                 "{0}: {1}",
                 this.dataModel.TeamProject,
                 this.dataModel.DefinitionName));
-            text.AppendLine("Loading...");
+            text.Append("Loading...");
 
             this.summary = text.ToString();
+
+            this.EnsureSummaryIsCorrectNumberOfLines();
+        }
+
+        private void EnsureSummaryIsCorrectNumberOfLines()
+        {
+            string[] lines = this.summary.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+
+            int difference = 6 - lines.Length;
+
+            for (int i = 0; i < difference; i++)
+            {
+                this.summary = this.summary + Environment.NewLine;
+            }
         }
 
         /// <summary>
@@ -158,7 +172,6 @@ using System;
         private void UpdateFromModel()
         {
             StringBuilder text = new StringBuilder();
-
 
             text.AppendLine(string.Format(
                 "{0}: {1}",
@@ -171,10 +184,11 @@ using System;
 
                 text.AppendLine(new BuildStatusStringConverter().Convert(this.dataModel.Model.Status, typeof(string), null, null).ToString());
                 text.AppendLine("Requested by " + this.dataModel.Model.RequestedFor);
-                text.AppendLine("Started on " + this.dataModel.Model.StartTime);
+                text.Append("Started on " + this.dataModel.Model.StartTime);
 
                 if (this.dataModel.Model.BuildFinished)
                 {
+                    text.AppendLine();
                     text.AppendLine("Completed on " + this.dataModel.Model.FinishTime);
 
                     IConfigurationSummary configurationSummary = this.configurationSummaryHandler(this.dataModel.Model, this.dataModel.Configuration, this.dataModel.Platform);
@@ -183,11 +197,11 @@ using System;
                         configurationSummary.TestSummaries.Count > 0)
                     {
                         ITestSummary summary = configurationSummary.TestSummaries[0];
-                        text.AppendLine(string.Format("Test results: {0} passed, {1} failed, {2} total.", summary.TestsPassed, summary.TestsFailed, summary.TestsTotal));
+                        text.Append(string.Format("Test results: {0} passed, {1} failed, {2} total.", summary.TestsPassed, summary.TestsFailed, summary.TestsTotal));
                     }
                     else
                     {
-                        text.AppendLine("No test result.");
+                        text.Append("No test result.");
                     }
                 }
             }
@@ -195,10 +209,12 @@ using System;
             {
                 this.status = null;
 
-                text.AppendLine("No build(s) found.");
+                text.Append("No build(s) found.");
             }
 
             this.summary = text.ToString();
+
+            this.EnsureSummaryIsCorrectNumberOfLines();
 
             this.OnPropertyChanged("IsQueued");
             this.OnPropertyChanged("IsStale");
