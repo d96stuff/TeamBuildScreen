@@ -3,20 +3,20 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	x:Class="TeamBuildScreenSaver.Views.BuildPanel" xmlns:BuildStatus="clr-namespace:TeamBuildScreenSaver.Views" Background="{x:Null}">
+	x:Class="TeamBuildScreenSaver.Views.BuildPanel" xmlns:local="clr-namespace:TeamBuildScreenSaver.Views" Background="{x:Null}">
 	<UserControl.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="Dictionary.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
 			<Storyboard x:Key="FadeToGreen">
-				<ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#802B7720" Duration="0:0:0.5" />
+				<ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FF2B7720" Duration="0:0:0.5" />
 			</Storyboard>
 			<Storyboard x:Key="FadeToRed">
-				<ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#80CF2C00" Duration="0:0:0.5" />
+				<ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FFCF2C00" Duration="0:0:0.5" />
 			</Storyboard>
 			<Storyboard x:Key="FadeToGrey">
-				<ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#80717171" Duration="0:0:0.5" />
+				<ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FF717171" Duration="0:0:0.5" />
 			</Storyboard>
 			<Storyboard x:Key="ShowQueuedIcon">
 				<DoubleAnimation To="1" Storyboard.TargetName="QueuedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01" />
@@ -34,55 +34,67 @@
 				<Grid x:Name="LayoutRoot">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto" />
+						<ColumnDefinition Width="Auto" />
 						<ColumnDefinition Width="*" />
 						<ColumnDefinition Width="Auto" />
 					</Grid.ColumnDefinitions>
-					<Rectangle Grid.ColumnSpan="3" Stroke="#FF000000" RenderTransformOrigin="0.5,0.5" StrokeThickness="1" RadiusX="16" RadiusY="16" Fill="#FFFFFFFF" HorizontalAlignment="Stretch">
-						<Rectangle.RenderTransform>
-							<TransformGroup>
-								<ScaleTransform ScaleX="1" ScaleY="1"/>
-								<SkewTransform AngleX="0" AngleY="0"/>
-								<RotateTransform Angle="-180"/>
-								<TranslateTransform X="0" Y="0"/>
-							</TransformGroup>
-						</Rectangle.RenderTransform>
-						<Rectangle.BitmapEffect>
-							<BitmapEffectGroup>
-								<DropShadowBitmapEffect Softness="0.377953" ShadowDepth="8" Opacity="0.6" Color="#FF000000" Direction="135" Noise="0"/>
-							</BitmapEffectGroup>
-						</Rectangle.BitmapEffect>
-					</Rectangle>
-					<Rectangle Grid.ColumnSpan="3"  x:Name="FadedBackground" RenderTransformOrigin="0.5,0.5" Stroke="{x:Null}" StrokeThickness="1" RadiusX="15" RadiusY="15" Margin="2,2,2,2">
-						<Rectangle.RenderTransform>
-							<TransformGroup>
-								<ScaleTransform ScaleX="1" ScaleY="1"/>
-								<SkewTransform AngleX="0" AngleY="0"/>
-								<RotateTransform Angle="-180"/>
-								<TranslateTransform X="0" Y="0"/>
-							</TransformGroup>
-						</Rectangle.RenderTransform>
+					<Grid.RowDefinitions>
+						<RowDefinition />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					<Grid.Effect>
+						<DropShadowEffect ShadowDepth="8" Opacity="0.6" Color="#FF000000" Direction="-45" />
+					</Grid.Effect>
+					<Ellipse x:Name="Circle" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Width="{Binding ElementName=Circle, Path=ActualHeight}" Grid.ColumnSpan="2">
+						<Ellipse.Fill>
+							<SolidColorBrush Color="{Binding ElementName=FirstGradientStop, Path=Color}" />
+						</Ellipse.Fill>
+					</Ellipse>
+					<Rectangle x:Name="FadedBackground" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" SnapsToDevicePixels="True">
 						<Rectangle.Fill>
-							<LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-								<GradientStop Color="#80717171" Offset="1"/>
-								<GradientStop Color="#FFFFFFFF" Offset="0"/>
+							<LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+								<GradientStop x:Name="FirstGradientStop" Color="#FF717171" Offset="0" />
+								<GradientStop x:Name="SecondGradientStop" Color="#FFFFFFFF" Offset="1" />
 							</LinearGradientBrush>
 						</Rectangle.Fill>
 					</Rectangle>
-					<Viewbox Margin="8">
-						<BuildStatus:BuildStatusIcon  Status="{Binding Status}" />
+					<Viewbox Grid.Row="0" Grid.Column="3">
+						<Path SnapsToDevicePixels="True">
+							<Path.Fill>
+								<SolidColorBrush Color="{Binding ElementName=SecondGradientStop, Path=Color}" />
+							</Path.Fill>
+							<Path.Data>
+								<PathGeometry>
+									<PathGeometry.Figures>
+										<PathFigure StartPoint="0,100">
+											<PathFigure.Segments>
+												<LineSegment Point="0,0" />
+												<LineSegment Point="50,0" />
+												<ArcSegment Size="50,50" IsLargeArc="False" RotationAngle="90" SweepDirection="Clockwise" Point="100,50" />
+												<LineSegment Point="100,100" />
+											</PathFigure.Segments>
+										</PathFigure >
+									</PathGeometry.Figures>
+								</PathGeometry>
+							</Path.Data>
+						</Path>
 					</Viewbox>
-					<Viewbox Grid.Column="1" Margin="8" HorizontalAlignment="Left" >
+					<Rectangle Grid.Row="1" Grid.Column="3" SnapsToDevicePixels="True">
+						<Rectangle.Fill>
+							<SolidColorBrush Color="{Binding ElementName=SecondGradientStop, Path=Color}" />
+						</Rectangle.Fill>
+					</Rectangle>					
+					<Viewbox Grid.RowSpan="2" Grid.ColumnSpan="2">
+						<local:BuildStatusIcon x:Name="StatusIcon" Status="{Binding Status}" Margin="8" />
+					</Viewbox>
+					<Viewbox Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Top">
 						<TextBlock FontSize="16" TextWrapping="Wrap" Text="{Binding Summary}" />
 					</Viewbox>
-					<Grid Grid.Column="2" Margin="8">
-						<Grid.RowDefinitions>
-							<RowDefinition Height="1*" />
-							<RowDefinition Height="1*" />
-						</Grid.RowDefinitions>
-						<Viewbox  x:Name="QueuedIcon" Opacity="0">
-							<ContentControl Template="{StaticResource NotStartedIcon}" />
+					<Viewbox Grid.Row="0" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+						<Viewbox Margin="0,16,16,0">
+							<ContentControl x:Name="QueuedIcon" Template="{StaticResource NotStartedIcon}" />
 						</Viewbox>
-					</Grid>
+					</Viewbox>
 				</Grid>
 				<ControlTemplate.Triggers>
 					<DataTrigger Binding="{Binding Status}" Value="{x:Null}">

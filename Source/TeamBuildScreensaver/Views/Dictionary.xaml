@@ -205,10 +205,10 @@
 	</ControlTemplate>
 	<ControlTemplate x:Key="PartiallySucceededIcon">
 		<Grid Width="256" Height="256" PresentationOptions:Freeze="True">
-			<Viewbox Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="171" Width="171" Margin="85,85,0,0">
+			<Viewbox Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="150" Width="150" Margin="72,72,0,0">
 				<ContentControl Template="{StaticResource FailedIcon}" />
 			</Viewbox>
-			<Viewbox Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="171" Width="171" Margin="0,0,85,85">
+			<Viewbox Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="150" Width="150" Margin="0,0,72,72">
 				<ContentControl Template="{StaticResource SuccessIcon}" />
 			</Viewbox>
 		</Grid>

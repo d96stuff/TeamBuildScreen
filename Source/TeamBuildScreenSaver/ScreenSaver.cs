@@ -105,7 +105,6 @@ namespace TeamBuildScreenSaver
             window.Height = display.Bounds.Height;
             window.ResizeMode = ResizeMode.NoResize;
             window.WindowStyle = WindowStyle.None;
-            window.WindowState = WindowState.Maximized;
 
             if (!showCursor)
             {
