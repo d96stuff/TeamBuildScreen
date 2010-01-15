@@ -117,6 +117,9 @@
     <Compile Include="ViewModels\IMessageViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ScreenSaverSettingsViewModel.cs" />
+    <Compile Include="Views\BuildGrid.xaml.cs">
+      <DependentUpon>BuildGrid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BuildPanel.xaml.cs">
       <DependentUpon>BuildPanel.xaml</DependentUpon>
     </Compile>
@@ -143,6 +146,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\BuildGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\BuildPanel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

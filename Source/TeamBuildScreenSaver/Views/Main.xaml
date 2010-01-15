@@ -5,26 +5,6 @@
 	x:Class="TeamBuildScreenSaver.Views.Main"
 	x:Name="Window"
 	Title="Main" xmlns:b="clr-namespace:TeamBuildScreenSaver.Views" ResizeMode="CanResizeWithGrip">
-  <Window.Background>
-    <RadialGradientBrush>
-      <GradientStop Color="#FF000000" Offset="0.0" />
-      <GradientStop Color="#FF333333" Offset="1.0" />
-    </RadialGradientBrush>
-  </Window.Background>
-  <Grid x:Name="LayoutRoot">
-    <ItemsControl d:UseSampleData="True" ItemsSource="{Binding Builds}">
-      <ItemsControl.ItemTemplate>
-        <DataTemplate>
-          <b:BuildPanel Margin="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.InnerMargin}" DataContext="{Binding}"></b:BuildPanel>
-        </DataTemplate>
-      </ItemsControl.ItemTemplate>
-      <ItemsControl.ItemsPanel>
-        <ItemsPanelTemplate>
-          <UniformGrid Columns="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.Columns}" VerticalAlignment="Stretch"/>
-        </ItemsPanelTemplate>
-      </ItemsControl.ItemsPanel>
-    </ItemsControl>
-    <b:MessagePanel DataContext="{Binding ErrorMessageViewModel}"></b:MessagePanel>
-    <Button Command="ApplicationCommands.Close" Opacity="0"/>
-  </Grid>
+
+	<b:BuildGrid />
 </Window>
