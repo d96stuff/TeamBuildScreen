@@ -10,13 +10,16 @@
 				<ResourceDictionary Source="Dictionary.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
 			<Storyboard x:Key="FadeToGreen">
-				<ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FF2B7720" Duration="0:0:0.5" />
+				<ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FF4B8C41" Duration="0:0:0.5" />
+				<ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#FFAFCCAB" Duration="0:0:0.5" />
 			</Storyboard>
 			<Storyboard x:Key="FadeToRed">
-				<ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FFCF2C00" Duration="0:0:0.5" />
+				<ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FFD74C27" Duration="0:0:0.5" />
+				<ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#FFEDB09F" Duration="0:0:0.5" />
 			</Storyboard>
 			<Storyboard x:Key="FadeToGrey">
-				<ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FF717171" Duration="0:0:0.5" />
+				<ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FF878787" Duration="0:0:0.5" />
+				<ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#FFCACACA" Duration="0:0:0.5" />
 			</Storyboard>
 			<Storyboard x:Key="ShowQueuedIcon">
 				<DoubleAnimation To="1" Storyboard.TargetName="QueuedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01" />
@@ -53,8 +56,8 @@
 					<Rectangle x:Name="FadedBackground" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" SnapsToDevicePixels="True">
 						<Rectangle.Fill>
 							<LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-								<GradientStop x:Name="FirstGradientStop" Color="#FF717171" Offset="0" />
-								<GradientStop x:Name="SecondGradientStop" Color="#FFFFFFFF" Offset="1" />
+								<GradientStop x:Name="FirstGradientStop" Color="#FF878787" Offset="0" />
+								<GradientStop x:Name="SecondGradientStop" Color="#FFCACACA" Offset="1" />
 							</LinearGradientBrush>
 						</Rectangle.Fill>
 					</Rectangle>

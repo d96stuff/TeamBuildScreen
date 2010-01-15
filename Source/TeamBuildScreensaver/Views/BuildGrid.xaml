@@ -5,7 +5,7 @@
 	<Grid x:Name="LayoutRoot">
 		<Grid.Background>
 			<RadialGradientBrush>
-				<GradientStop Color="#FFFFFFFF" Offset="0.0" />
+				<GradientStop Color="#FF999999" Offset="0.2" />
 				<GradientStop Color="#FF333333" Offset="1.0" />
 			</RadialGradientBrush>
 		</Grid.Background>
