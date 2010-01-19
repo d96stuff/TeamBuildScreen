@@ -60,7 +60,10 @@ namespace TeamBuildScreenSaver.UnitTests.Models
 
         public List<ICompilationSummary> CompilationSummaries
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                return new List<ICompilationSummary>();
+            }
         }
 
         public string Flavor

@@ -91,6 +91,14 @@ using System;
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the build completed with warnings.
+        /// </summary>
+        public bool HasWarnings
+        {
+            get; set;
+        }
+
         #endregion
 
         #region Constructors
@@ -152,6 +160,8 @@ using System;
             this.summary = text.ToString();
 
             this.EnsureSummaryIsCorrectNumberOfLines();
+
+            this.HasWarnings = false;
         }
 
         private void EnsureSummaryIsCorrectNumberOfLines()
@@ -172,6 +182,7 @@ using System;
         private void UpdateFromModel()
         {
             StringBuilder text = new StringBuilder();
+            bool hasWarnings = false;
 
             text.AppendLine(string.Format(
                 "{0}: {1}",
@@ -203,6 +214,14 @@ using System;
                     {
                         text.Append("No test result.");
                     }
+
+                    if (configurationSummary != null &&
+                        configurationSummary.CompilationSummaries.Count > 0)
+                    {
+                        ICompilationSummary summary = configurationSummary.CompilationSummaries[0];
+
+                        hasWarnings = summary.CompilationWarnings > 0;
+                    }
                 }
             }
             else
@@ -213,6 +232,7 @@ using System;
             }
 
             this.summary = text.ToString();
+            this.HasWarnings = hasWarnings;
 
             this.EnsureSummaryIsCorrectNumberOfLines();
 
@@ -220,6 +240,7 @@ using System;
             this.OnPropertyChanged("IsStale");
             this.OnPropertyChanged("Status");
             this.OnPropertyChanged("Summary");
+            this.OnPropertyChanged("HasWarnings");
         }
 
         /// <summary>

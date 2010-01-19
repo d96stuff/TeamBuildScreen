@@ -6,5 +6,5 @@
 	x:Name="Window"
 	Title="Main" xmlns:b="clr-namespace:TeamBuildScreenSaver.Views" ResizeMode="CanResizeWithGrip">
 
-	<b:BuildGrid />
+	<b:BuildGrid x:Name="LayoutRoot" />
 </Window>

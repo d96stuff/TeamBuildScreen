@@ -97,7 +97,7 @@ namespace TeamBuildScreenSaver
         {
             V window = new V();
             window.WindowStartupLocation = WindowStartupLocation.Manual;
-            window.DataContext = dataContext;
+            window.DataContext = this.dataContext;
             window.Closed += this.OnWindowClosed;
             window.Left = display.Bounds.X;
             window.Top = display.Bounds.Y;
