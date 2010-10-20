@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="TeamBuildScreen.Core.Views.MessagePanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<Storyboard x:Key="ShowMessage">
+				<ParallelTimeline>
+					<DoubleAnimation To="0.85" Storyboard.TargetName="Background" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0.85" Storyboard.TargetName="Message" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+				</ParallelTimeline>
+			</Storyboard>
+			<Storyboard x:Key="HideMessage">
+				<ParallelTimeline>
+					<DoubleAnimation To="0" Storyboard.TargetName="Background" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+					<DoubleAnimation To="0" Storyboard.TargetName="Message" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01"/>
+				</ParallelTimeline>
+			</Storyboard>
+			<ControlTemplate x:Key="MessageTemplate">
+				<Grid x:Name="Background" Background="Black" Opacity="0">
+          <Viewbox Margin="128">
+            <Label x:Name="Message" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Transparent" Foreground="White" FontSize="36" Opacity="0" Content="{Binding Message}"/>
+          </Viewbox>
+				</Grid>
+				<ControlTemplate.Triggers>
+					<DataTrigger Binding="{Binding IsVisible}" Value="False">
+						<DataTrigger.EnterActions>
+							<BeginStoryboard Storyboard="{StaticResource HideMessage}" />
+						</DataTrigger.EnterActions>
+						<DataTrigger.ExitActions>
+							<BeginStoryboard Storyboard="{StaticResource ShowMessage}" />
+						</DataTrigger.ExitActions>
+					</DataTrigger>
+				</ControlTemplate.Triggers>
+			</ControlTemplate>
+		</ResourceDictionary>
+	</UserControl.Resources>
+	<ContentControl Template="{StaticResource MessageTemplate}" />
+</UserControl>

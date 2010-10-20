@@ -1,0 +1,40 @@
+﻿<Window x:Class="TeamBuildScreensaver.Views.EditSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Team Build Screensaver Settings" Height="505" Width="466" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Button Height="23" HorizontalAlignment="Right" Margin="0,0,12,12" Name="cancelButton" VerticalAlignment="Bottom" Width="75" Click="cancelButton_Click">Cancel</Button>
+        <Button Height="23" Margin="0,0,93,12" Name="okButton" VerticalAlignment="Bottom" Click="okButton_Click" HorizontalAlignment="Right" Width="75">OK</Button>
+        <TabControl Margin="1,0,0,41" Name="tabControl" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <TabItem Header="TFS">
+                <Grid>
+                    <Label Margin="6,6,0,0" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Width="51" VerticalAlignment="Top" Height="23">Server:</Label>
+                    <TextBox Height="23" Margin="63,8,87,0" Name="serverUriTextBox" VerticalAlignment="Top" />
+                    <Button Height="23" HorizontalAlignment="Right" Margin="0,6,6,0" Name="selectServerButton" VerticalAlignment="Top" Width="75" Click="selectServerButton_Click">Select...</Button>
+                    <Label Height="28" Name="buildDefinitionsLabel" VerticalAlignment="Top" Margin="6,35,6,0">Build Definitions:</Label>
+                    <TreeView Margin="6,69,6,6" Name="buildDefinitionsTreeView" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Display">
+                <Grid>
+                    <Label Height="28" Width="87" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right">Columns:</Label>
+                    <ComboBox Height="28" HorizontalAlignment="Left" Margin="99,6,0,0" Name="columnsComboBox" VerticalAlignment="Top" Width="32">
+                        <ComboBoxItem>1</ComboBoxItem>
+                        <ComboBoxItem>2</ComboBoxItem>
+                        <ComboBoxItem>3</ComboBoxItem>
+                        <ComboBoxItem>4</ComboBoxItem>
+                        <ComboBoxItem>5</ComboBoxItem>
+                    </ComboBox>
+                    <Label Height="28" HorizontalAlignment="Left" Margin="6,40,0,0" VerticalAlignment="Top" Width="87" HorizontalContentAlignment="Right">Refresh every:</Label>
+                    <ComboBox Height="28" HorizontalAlignment="Left" Margin="99,40,0,0" Name="refreshComboBox" VerticalAlignment="Top" Width="55">
+                        <ComboBoxItem>15</ComboBoxItem>
+                        <ComboBoxItem>30</ComboBoxItem>
+                        <ComboBoxItem>45</ComboBoxItem>
+                        <ComboBoxItem>60</ComboBoxItem>
+                    </ComboBox>
+                    <Label Height="28" HorizontalContentAlignment="Left" Margin="0,40,7,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="266">seconds.</Label>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
