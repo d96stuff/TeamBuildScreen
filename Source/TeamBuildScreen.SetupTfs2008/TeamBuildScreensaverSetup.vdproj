@@ -471,7 +471,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\TeamBuildScreenSaverSetup.msi"
+        "OutputFilename" = "8:Debug\\TeamBuildScreen.SetupTfs2008.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -508,7 +508,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\TeamBuildScreenSaverSetup.msi"
+        "OutputFilename" = "8:Release\\TeamBuildScreen.SetupTfs2008.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -560,7 +560,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:3.5.30729 "
+                "FrameworkVersion" = "8:3.5.30729  "
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=76617"
                 }
@@ -1247,7 +1247,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Team Build Screen 2008"
         "ProductCode" = "8:{4502BC63-3D4B-4C27-88D9-F39BAD18EF60}"
-        "PackageCode" = "8:{F3EB52F9-F0C5-4CBE-B3BC-87A0ACF7D022}"
+        "PackageCode" = "8:{3F1A886E-C243-45D5-86B0-789506D9194E}"
         "UpgradeCode" = "8:{A0558686-D411-41E9-8371-ACE2ECDBB2DC}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1874,7 +1874,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_88074E91EDD94DE5BD1B88A51F3A72C6"
             {
-            "SourcePath" = "8:..\\TeamBuildScreen.Tfs2008\\obj\\x86\\Debug\\TeamBuildScreen.Tfs2008.dll"
+            "SourcePath" = "8:..\\TeamBuildScreen.Tfs2008\\obj\\x86\\Release\\TeamBuildScreen.Tfs2008.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_93723E4D48C947D9BCA090AB2E292826"
@@ -1902,7 +1902,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B9BB1D62AE91415FB9444D4D058C0296"
             {
-            "SourcePath" = "8:..\\TeamBuildScreen.Core\\obj\\x86\\Debug\\TeamBuildScreen.Core.dll"
+            "SourcePath" = "8:..\\TeamBuildScreen.Core\\obj\\x86\\Release\\TeamBuildScreen.Core.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_93723E4D48C947D9BCA090AB2E292826"

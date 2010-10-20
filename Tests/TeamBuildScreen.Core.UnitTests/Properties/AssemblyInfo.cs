@@ -6,4 +6,4 @@
 
 using System.Reflection;
 
-[assembly: AssemblyTitleAttribute("TeamBuildScreen.Core")]
+[assembly: AssemblyTitle("TeamBuildScreen.Core.UnitTests")]
