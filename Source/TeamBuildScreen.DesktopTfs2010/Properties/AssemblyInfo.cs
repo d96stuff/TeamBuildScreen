@@ -6,4 +6,4 @@
 
 using System.Reflection;
 
-[assembly: AssemblyTitle("TeamBuildScreen.DesktopTfs2008")]
+[assembly: AssemblyTitle("TeamBuildScreen.DesktopTfs2010")]

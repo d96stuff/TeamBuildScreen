@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7D53E59D-8F78-4A15-8F38-32B0C598F9E2}</ProjectGuid>
+    <ProjectGuid>{29A8EEA0-844E-438A-B814-BA0CBD9E142A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TeamBuildScreen.DesktopTfs2008</RootNamespace>
-    <AssemblyName>TeamBuildScreen.DesktopTfs2008</AssemblyName>
+    <RootNamespace>TeamBuildScreen.DesktopTfs2010</RootNamespace>
+    <AssemblyName>TeamBuildScreen.DesktopTfs2010</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -39,7 +39,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>TeamBuildScreen.DesktopTfs2008.App</StartupObject>
+    <StartupObject>TeamBuildScreen.DesktopTfs2010.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -76,9 +76,9 @@
       <Project>{40B36C3C-325C-4E09-8D1C-3346C213C7B8}</Project>
       <Name>TeamBuildScreen.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TeamBuildScreen.Tfs2008\TeamBuildScreen.Tfs2008.csproj">
-      <Project>{92C37E36-F73F-4C0B-9AB7-FB21076862F6}</Project>
-      <Name>TeamBuildScreen.Tfs2008</Name>
+    <ProjectReference Include="..\TeamBuildScreen.Tfs2010\TeamBuildScreen.Tfs2010.csproj">
+      <Project>{08AFCDC9-3CA6-4859-A977-AEABB4E6B506}</Project>
+      <Name>TeamBuildScreen.Tfs2010</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
