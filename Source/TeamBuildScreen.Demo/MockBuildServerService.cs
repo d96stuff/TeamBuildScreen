@@ -199,6 +199,8 @@ namespace TeamBuildScreen.Demo
 
         public event EventHandler Error;
 
+        public event EventHandler NotConfigured;
+
         public IBuildInfo GetBuildInfo(string key, string configuration, string platform)
         {
             return this.builds[key] as IBuildInfo;

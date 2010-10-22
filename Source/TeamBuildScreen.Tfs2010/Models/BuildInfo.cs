@@ -5,7 +5,7 @@ using System.Text;
 using TeamBuildScreen.Core.Models;
 using Microsoft.TeamFoundation.Build.Client;
 
-namespace TeamBuildScreen.Tfs2008.Models
+namespace TeamBuildScreen.Tfs2010.Models
 {
     public class BuildInfo : IBuildInfo
     {

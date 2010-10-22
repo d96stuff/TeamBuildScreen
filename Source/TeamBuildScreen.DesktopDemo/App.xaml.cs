@@ -29,18 +29,10 @@ namespace TeamBuildScreen.DesktopDemo
         private void OnStartup(object sender, StartupEventArgs e)
         {
             MockBuildServerService service = new MockBuildServerService();
-            StringCollection builds = new StringCollection();
-            builds.Add("TeamProject;MyFirstBuild;Release;Any CPU");
-            builds.Add("TeamProject;MySecondBuild;Release;Any CPU");
+            IDomainProjectPicker projectPicker = new MockDomainProjectPicker();
 
-            MainViewModel viewModel = new MainViewModel(service, builds);
-            viewModel.Columns =1;
-            viewModel.CloseOnClicked = true;
-
-            Main main = new Main();
-            main.DataContext = viewModel;
-            main.Show();
-            service.Start();
+            TeamBuildDesktop teamBuildDesktop = new TeamBuildDesktop(service, projectPicker, "Team Build Screen Demo");
+            teamBuildDesktop.Startup(e.Args);
         }
 
         #endregion

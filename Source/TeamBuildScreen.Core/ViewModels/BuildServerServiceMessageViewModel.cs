@@ -20,9 +20,9 @@ namespace TeamBuildScreen.Core.ViewModels
 
         public BuildServerServiceMessageViewModel(IBuildServerService service)
         {
-            this.Message = "Unable to contact Team Foundation Server.";
             service.QueryCompleted += OnQueryCompleted;
             service.Error += OnError;
+            service.NotConfigured += OnNotConfigured;
         }
 
         #endregion
@@ -37,7 +37,17 @@ namespace TeamBuildScreen.Core.ViewModels
 
         private void OnError(object sender, EventArgs e)
         {
+            this.Message = "Unable to contact Team Foundation Server.";
             this.IsVisible = true;
+            this.OnPropertyChanged("Message");
+            this.OnPropertyChanged("IsVisible");
+        }
+
+        private void OnNotConfigured(object sender, EventArgs e)
+        {
+            this.Message = "No builds have been configured.";
+            this.IsVisible = true;
+            this.OnPropertyChanged("Message");
             this.OnPropertyChanged("IsVisible");
         }
 

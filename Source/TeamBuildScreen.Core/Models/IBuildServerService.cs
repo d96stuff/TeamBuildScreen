@@ -30,6 +30,11 @@ namespace TeamBuildScreen.Core.Models
         /// </summary>
         event EventHandler Error;
 
+        /// <summary>
+        /// Occurs when the service has not been configured.
+        /// </summary>
+        event EventHandler NotConfigured;
+
         #endregion
 
         #region Properties

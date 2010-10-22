@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace TeamBuildScreen.SaverTfs2008
+namespace TeamBuildScreen.SaverTfs2010
 {
     #region Usings
 
@@ -16,7 +16,7 @@ namespace TeamBuildScreen.SaverTfs2008
     using TeamBuildScreen.Core.Models;
     using TeamBuildScreen.Core.ViewModels;
     using TeamBuildScreen.Core.Views;
-    using TeamBuildScreen.Tfs2008.Models;
+    using TeamBuildScreen.Tfs2010.Models;
     using TeamBuildScreen.Core;
 
     #endregion

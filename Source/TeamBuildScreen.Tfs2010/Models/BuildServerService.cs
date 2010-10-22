@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace TeamBuildScreen.Tfs2008.Models
+namespace TeamBuildScreen.Tfs2010.Models
 {
     #region Usings
 
@@ -60,12 +60,9 @@ namespace TeamBuildScreen.Tfs2008.Models
         {
             set
             {
-                if (!string.IsNullOrEmpty(value))
-                {
-                    TeamFoundationServer tfs = TeamFoundationServerFactory.GetServer(value);
-                    this.buildServer = (IBuildServer)tfs.GetService(typeof(IBuildServer));
-                    this.versionControlServer = (VersionControlServer)tfs.GetService(typeof(VersionControlServer));
-                }
+                TeamFoundationServer tfs = TeamFoundationServerFactory.GetServer(value);
+                this.buildServer = (IBuildServer)tfs.GetService(typeof(IBuildServer));
+                this.versionControlServer = (VersionControlServer)tfs.GetService(typeof(VersionControlServer));
             }
         }
 
@@ -76,8 +73,7 @@ namespace TeamBuildScreen.Tfs2008.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildServerService"/> class. The server will be queried every 30 seconds.
         /// </summary>
-        public BuildServerService()
-            : base(30000)
+        public BuildServerService() : base(30000)
         {
             this.Init(7);
         }

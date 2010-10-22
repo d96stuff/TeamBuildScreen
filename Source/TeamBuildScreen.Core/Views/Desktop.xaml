@@ -1,0 +1,8 @@
+﻿<Window x:Class="TeamBuildScreen.Core.Views.Desktop"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Team Build Screen" Height="600" Width="800"
+        xmlns:b="clr-namespace:TeamBuildScreen.Core.Views" ResizeMode="CanResizeWithGrip" Icon="/TeamBuildScreen.Core;component/tbs.ico" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen">
+
+    <b:BuildGrid x:Name="LayoutRoot" />
+</Window>
