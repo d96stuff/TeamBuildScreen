@@ -18,9 +18,49 @@ namespace TeamBuildScreen.Core.Views
     /// </summary>
     public partial class Desktop : Window
     {
+        private bool fullScreening = false;
+
         public Desktop()
         {
             InitializeComponent();
+
+            this.StateChanged += new EventHandler(this.OnStateChanged);
+        }
+
+        private void OnStateChanged(object sender, EventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized && !this.fullScreening)
+            {
+                this.fullScreening = true;
+
+                // flick the WindowState to Normal and back to Maximised to make sure it 
+                // appears over the TaskBar.
+                this.WindowState = WindowState.Normal;
+                this.WindowStyle = WindowStyle.None;
+                this.Topmost = true;
+                this.WindowState = WindowState.Maximized;
+                this.ResizeMode = ResizeMode.NoResize;
+
+                this.fullScreening = false;
+            }
+        }
+
+        private void OnRestore(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = System.Windows.WindowState.Normal;
+            this.WindowStyle = WindowStyle.SingleBorderWindow;
+            this.ResizeMode = ResizeMode.CanResizeWithGrip;
+            this.Topmost = false;
+        }
+
+        private void OnMinimize(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = System.Windows.WindowState.Minimized;
+        }
+
+        private void OnClose(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
