@@ -191,4 +191,14 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Failed.ico" />
+    <Resource Include="InProgress.ico" />
+    <Resource Include="NotStarted.ico" />
+    <Resource Include="PartiallySucceeded.ico" />
+    <Resource Include="Paused.ico" />
+    <Resource Include="Stopped.ico" />
+    <Resource Include="Succeeded.ico" />
+    <Resource Include="Unknown.ico" />
+  </ItemGroup>
 </Project>

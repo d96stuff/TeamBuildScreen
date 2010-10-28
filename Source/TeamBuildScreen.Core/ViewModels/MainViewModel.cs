@@ -15,6 +15,12 @@ namespace TeamBuildScreen.Core.ViewModels
     using System.Windows.Input;
     using System.Windows;
     using TeamBuildScreen.Core.Views;
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
+    using System.IO;
+    using System.Drawing;
+    using System;
+    using System.Linq;
 
     #endregion
 
@@ -84,6 +90,54 @@ namespace TeamBuildScreen.Core.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets the icon for the <see cref="MainViewModel"/>.
+        /// </summary>
+        /// <remarks>The icon reflects the overall status of all the builds.</remarks>
+        public ImageSource SummaryIcon
+        {
+            get
+            {
+                string uriString;
+
+                if (this.Builds.Any(b => b.Status == BuildStatus.InProgress))
+                {
+                    uriString = @"pack://application:,,/TeamBuildScreen.Core;component/InProgress.ico";
+                }
+                else if (this.Builds.Any(b => b.Status == BuildStatus.NotStarted))
+                {
+                    uriString = @"pack://application:,,/TeamBuildScreen.Core;component/NotStarted.ico";
+                }
+                else if (this.Builds.Any(b => b.Status == BuildStatus.Stopped))
+                {
+                    uriString = @"pack://application:,,/TeamBuildScreen.Core;component/Stopped.ico";
+                }
+                else if (this.Builds.Any(b => b.Status == BuildStatus.Failed))
+                {
+                    uriString = @"pack://application:,,/TeamBuildScreen.Core;component/Failed.ico";
+                }
+                else if (this.Builds.Any(b => b.Status == BuildStatus.PartiallySucceeded))
+                {
+                    uriString = @"pack://application:,,/TeamBuildScreen.Core;component/PartiallySucceeded.ico";
+                }
+                else if (this.Builds.Any(b => b.Status == BuildStatus.Succeeded))
+                {
+                    uriString = @"pack://application:,,/TeamBuildScreen.Core;component/Succeeded.ico";
+                }
+                else
+                {
+                    uriString = @"pack://application:,,/TeamBuildScreen.Core;component/Unknown.ico";
+                }
+
+                IconBitmapDecoder decoder = new IconBitmapDecoder(
+                    new Uri(uriString, UriKind.RelativeOrAbsolute),
+                    BitmapCreateOptions.None,
+                    BitmapCacheOption.Default);
+
+                return decoder.Frames[0];
+            }
+        }
+
         #endregion
 
         #region Constructors
@@ -92,6 +146,12 @@ namespace TeamBuildScreen.Core.ViewModels
         {
             this.InitializeBuildPanels(service, builds);
             this.RegisterCommands();
+            service.QueryCompleted += new EventHandler(OnQueryCompleted);
+        }
+
+        private void OnQueryCompleted(object sender, EventArgs e)
+        {
+            this.OnPropertyChanged("SummaryIcon");
         }
 
         #endregion
