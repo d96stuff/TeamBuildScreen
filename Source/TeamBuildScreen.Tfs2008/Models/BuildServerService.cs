@@ -11,7 +11,6 @@ namespace TeamBuildScreen.Tfs2008.Models
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading;
     using Microsoft.TeamFoundation.Build.Client;
     using Microsoft.TeamFoundation.Client;
     using Microsoft.TeamFoundation.VersionControl.Client;
@@ -170,6 +169,14 @@ namespace TeamBuildScreen.Tfs2008.Models
                     this.buildQueues.Add(view);
                 }
             }
+        }
+
+        /// <summary>
+        /// Removes all builds from the query list.
+        /// </summary>
+        public void ClearBuilds()
+        {
+            this.builds.Clear();
         }
 
         /// <summary>

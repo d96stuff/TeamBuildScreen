@@ -10,7 +10,6 @@ namespace TeamBuildScreen.Core.Views
 
     using System.Windows;
     using System.Windows.Controls;
-    using System.ComponentModel;
     using TeamBuildScreen.Core.Models;
 
     #endregion

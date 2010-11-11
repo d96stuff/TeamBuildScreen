@@ -25,7 +25,7 @@ namespace TeamBuildScreen.DesktopTfs2010
             IDomainProjectPicker projectPicker = new DomainProjectPickerAdapter();
 
             TeamBuildDesktop teamBuildDesktop = new TeamBuildDesktop(service, projectPicker, "Team Build Screen 2010");
-            teamBuildDesktop.Startup(e.Args);
+            teamBuildDesktop.Startup();
         }
 
         #endregion

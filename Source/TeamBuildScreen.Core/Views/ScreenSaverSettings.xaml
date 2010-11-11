@@ -23,7 +23,7 @@
 			</Grid.RowDefinitions>
 			<Label Height="28" Grid.Column="0" HorizontalContentAlignment="Right" FontWeight="Bold" Content="Team Foundation Server:" />
 			<TextBox Grid.Column="2" Text="{Binding Path=TfsUri}" IsReadOnly="True" TextWrapping="NoWrap" />
-			<Button Command="m:TfsCommands.SelectServer" Grid.Column="4" Content="Select..."/>
+			<Button Command="{Binding RequestSelectServer}" Grid.Column="4" Content="Select..."/>
 		</Grid>
 		<StackPanel Margin="0,0,0,8">
 			<Label Height="28" FontWeight="Bold" Content="Build Definitions:"/>
@@ -110,8 +110,8 @@
 			</Grid>
 		</GroupBox>
 		<StackPanel Orientation="Horizontal" Height="28" HorizontalAlignment="Right">
-			<Button Width="90" Command="ApplicationCommands.Save" Content="Save"/>
-			<Button Margin="8,0,0,0" Width="90" Command="ApplicationCommands.Close" Content="Close"/>
+            <Button Width="90" Command="{Binding RequestSave}" Content="Save"/>
+            <Button Margin="8,0,0,0" Width="90" Command="{Binding RequestClose}" Content="Close"/>
 		</StackPanel>
 	</StackPanel>
 </Window>

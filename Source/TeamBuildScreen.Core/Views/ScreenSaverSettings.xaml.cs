@@ -9,9 +9,6 @@ namespace TeamBuildScreen.Core.Views
     #region Usings
 
     using System.Windows;
-    using System.Windows.Input;
-    using TeamBuildScreen.Core.Models;
-    using TeamBuildScreen.Core.ViewModels;
 
     #endregion
 
@@ -22,11 +19,11 @@ namespace TeamBuildScreen.Core.Views
     {
         #region Constructors
 
-        public ScreenSaverSettings(ScreenSaverSettingsModel dataModel)
+        public ScreenSaverSettings(object viewModel)
         {
             InitializeComponent();
 
-            this.DataContext = new ScreenSaverSettingsViewModel(dataModel);
+            this.DataContext = viewModel;
         }
 
         #endregion

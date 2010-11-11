@@ -22,6 +22,6 @@
 			</ItemsControl.ItemsPanel>
 		</ItemsControl>
 		<b:MessagePanel DataContext="{Binding ErrorMessageViewModel}"></b:MessagePanel>
-		<Button Command="ApplicationCommands.Close" Opacity="0"/>
+		<Button Command="{Binding RequestClose}" Opacity="0"/>
 	</Grid>
 </UserControl>

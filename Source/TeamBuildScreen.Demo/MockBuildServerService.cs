@@ -10,10 +10,9 @@ namespace TeamBuildScreen.Demo
 
     using System;
     using System.Collections;
+    using System.Collections.Generic;
     using System.Threading;
     using TeamBuildScreen.Core.Models;
-    using System.Runtime.CompilerServices;
-    using System.Collections.Generic;
 
     #endregion
 
@@ -193,6 +192,11 @@ namespace TeamBuildScreen.Demo
             {
                 this.builds.Add(key, null);
             }
+        }
+
+        public void ClearBuilds()
+        {
+            this.builds.Clear();
         }
 
         public event EventHandler QueryCompleted;

@@ -23,15 +23,14 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Storyboard x:Key="ShowButtons">
+        <Storyboard x:Key="FadeControls" AutoReverse="False">
             <ThicknessAnimation Storyboard.TargetName="BottomFade" Storyboard.TargetProperty="Margin" Duration="0:0:0.25" FillBehavior="HoldEnd" To="0,0,0,0" />
             <DoubleAnimation Storyboard.TargetName="ConfigButton" Storyboard.TargetProperty="Opacity" BeginTime="0:0:0.25" Duration="0:0:0.25" To="1" />
-            <DoubleAnimation Storyboard.TargetName="ConfigButton" Storyboard.TargetProperty="Opacity" BeginTime="0:0:3" Duration="0:0:0.25" To="0" />
-            <ThicknessAnimation Storyboard.TargetName="BottomFade" Storyboard.TargetProperty="Margin" BeginTime="0:0:3.5" Duration="0:0:0.25" FillBehavior="HoldEnd" To="0,0,0,-60" />
-            
             <ThicknessAnimation Storyboard.TargetName="TopFade" Storyboard.TargetProperty="Margin" Duration="0:0:0.25" FillBehavior="HoldEnd" To="0,0,0,0" />
             <DoubleAnimation Storyboard.TargetName="WindowButtons" Storyboard.TargetProperty="Opacity" BeginTime="0:0:0.25" Duration="0:0:0.25" To="1" />
-            <DoubleAnimation Storyboard.TargetName="WindowButtons" Storyboard.TargetProperty="Opacity" BeginTime="0:0:3" Duration="0:0:0.25" To="0" />
+            <DoubleAnimation Storyboard.TargetName="ConfigButton" Storyboard.TargetProperty="Opacity" BeginTime="0:0:3.0" Duration="0:0:0.25" To="0" />
+            <ThicknessAnimation Storyboard.TargetName="BottomFade" Storyboard.TargetProperty="Margin" BeginTime="0:0:3.5" Duration="0:0:0.25" FillBehavior="HoldEnd" To="0,0,0,-60" />
+            <DoubleAnimation Storyboard.TargetName="WindowButtons" Storyboard.TargetProperty="Opacity" BeginTime="0:0:3.0" Duration="0:0:0.25" To="0" />
             <ThicknessAnimation Storyboard.TargetName="TopFade" Storyboard.TargetProperty="Margin" BeginTime="0:0:3.5" Duration="0:0:0.25" FillBehavior="HoldEnd" To="0,-60,0,0" />
         </Storyboard>
         <ControlTemplate x:Key="DesktopTemplate">
@@ -92,7 +91,7 @@
                         </LinearGradientBrush>
                     </Border.Background>
                     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                        <Button x:Name="ConfigButton" Style="{StaticResource TransparentButton}" Opacity="0">
+                        <Button x:Name="ConfigButton" Style="{StaticResource TransparentButton}" Command="{Binding RequestConfig}" Opacity="0">
                             <Button.Content>
                                 <Canvas Width="33.0508" Height="33.0508">
                                     <Path Width="23.5192" Height="23.5192" Stretch="Fill" Fill="#FFFFFFFF" Data="M 96.6726,56.433L 98.0667,53.0672L 101.126,53.6122C 101.594,53.0149 102.127,52.4845 102.712,52.0275L 102.167,48.9669L 105.533,47.5727L 107.312,50.1223C 108.048,50.032 108.801,50.0296 109.553,50.1217L 111.331,47.5727L 114.697,48.9669L 114.152,52.0267C 114.75,52.4938 115.28,53.0275 115.737,53.6123L 118.798,53.0672L 120.192,56.433L 117.642,58.2117C 117.732,58.9484 117.735,59.7008 117.643,60.4534L 120.192,62.2316L 118.798,65.5975L 115.738,65.0525C 115.271,65.6497 114.737,66.1801 114.152,66.6372L 114.697,69.6977L 111.331,71.0919L 109.553,68.5423C 108.816,68.6326 108.064,68.635 107.311,68.543L 105.533,71.0919L 102.167,69.6977L 102.712,66.638C 102.115,66.1709 101.584,65.6371 101.127,65.0523L 98.0667,65.5975L 96.6726,62.2316L 99.2222,60.453C 99.1319,59.7162 99.1295,58.9638 99.2215,58.2112L 96.6726,56.433 Z M 103.71,57.3763C 102.63,59.9843 103.868,62.9743 106.476,64.0546C 109.084,65.1349 112.074,63.8964 113.154,61.2884C 114.235,58.6803 112.996,55.6903 110.388,54.61C 107.78,53.5297 104.79,54.7682 103.71,57.3763 Z "/>
@@ -110,8 +109,8 @@
                         <x:Static Member="WindowState.Maximized" />
                     </Trigger.Value>
                 </Trigger>
-                <EventTrigger RoutedEvent="Window.MouseMove">
-                    <BeginStoryboard Storyboard="{StaticResource ShowButtons}" />
+                <EventTrigger RoutedEvent="Mouse.MouseMove">
+                    <BeginStoryboard HandoffBehavior="Compose" Storyboard="{StaticResource FadeControls}" />
                 </EventTrigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>

@@ -169,6 +169,14 @@ namespace TeamBuildScreen.Tfs2010.Models
         }
 
         /// <summary>
+        /// Removes all builds from the query list.
+        /// </summary>
+        public void ClearBuilds()
+        {
+            this.builds.Clear();
+        }
+
+        /// <summary>
         /// Loads the available builds from the build server.
         /// </summary>
         /// <param name="builds">The collection to populate.</param>

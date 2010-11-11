@@ -8,12 +8,11 @@ namespace TeamBuildScreen.Core.ViewModels
 {
     #region Usings
 
+    using System;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
-    using System.Windows;
     using System.Windows.Input;
     using TeamBuildScreen.Core.Models;
-    using TeamBuildScreen.Core.Views;
 
     #endregion
 
@@ -31,10 +30,7 @@ namespace TeamBuildScreen.Core.ViewModels
         {
             this.dataModel = dataModel;
 
-            this.dataModel.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e)
-            {
-                this.OnPropertyChanged(e.PropertyName);
-            };
+            this.dataModel.PropertyChanged += this.OnPropertyChanged;
 
             this.RegisterCommands();
         }
@@ -51,6 +47,24 @@ namespace TeamBuildScreen.Core.ViewModels
         #endregion
 
         #region Properties
+
+        public ICommand RequestSave
+        {
+            get;
+            set;
+        }
+
+        public ICommand RequestClose
+        {
+            get;
+            set;
+        }
+
+        public ICommand RequestSelectServer
+        {
+            get;
+            set;
+        }
 
         public string TfsUri
         {
@@ -118,25 +132,9 @@ namespace TeamBuildScreen.Core.ViewModels
 
         private void RegisterCommands()
         {
-            CommandBinding selectServerBinding =
-                new CommandBinding(
-                    TfsCommands.SelectServer,
-                    this.SelectServerExecuted,
-                    this.CommandCanExecute);
-            CommandBinding saveBinding =
-                new CommandBinding(
-                    ApplicationCommands.Save,
-                    this.SaveExecuted,
-                    this.CommandCanExecute);
-            CommandBinding closeBinding =
-                new CommandBinding(
-                    ApplicationCommands.Close,
-                    this.CloseExecuted,
-                    this.CommandCanExecute);
-
-            CommandManager.RegisterClassCommandBinding(typeof(ScreenSaverSettings), selectServerBinding);
-            CommandManager.RegisterClassCommandBinding(typeof(ScreenSaverSettings), saveBinding);
-            CommandManager.RegisterClassCommandBinding(typeof(ScreenSaverSettings), closeBinding);
+            this.RequestSelectServer = new RelayCommand(x => this.RequestSelectServerExecuted(x), x => this.CommandCanExecute(x));
+            this.RequestSave = new RelayCommand(x => this.RequestSaveExecuted(x), x => this.CommandCanExecute(x));
+            this.RequestClose = new RelayCommand(x => this.RequestCloseExecuted(x), x => this.CommandCanExecute(x));
         }
 
         /// <summary>
@@ -151,13 +149,17 @@ namespace TeamBuildScreen.Core.ViewModels
             }
         }
 
-        private void CommandCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            e.CanExecute = true;
-            e.Handled = true;
+            this.OnPropertyChanged(e.PropertyName);
         }
 
-        private void SelectServerExecuted(object sender, ExecutedRoutedEventArgs e)
+        private bool CommandCanExecute(object sender)
+        {
+            return true;
+        }
+
+        private void RequestSelectServerExecuted(object sender)
         {
             IDomainProjectPicker dpp = this.dataModel.ProjectPicker;
 
@@ -167,26 +169,30 @@ namespace TeamBuildScreen.Core.ViewModels
 
                 this.OnPropertyChanged("Builds");
             }
-
-            e.Handled = true;
         }
 
-        private void SaveExecuted(object sender, ExecutedRoutedEventArgs e)
+        private void RequestSaveExecuted(object sender)
         {
             this.dataModel.Save();
 
-            Application.Current.Shutdown();
-
-            e.Handled = true;
+            if (this.SaveRequested != null)
+            {
+                this.SaveRequested(this, EventArgs.Empty);
+            }
         }
 
-        private void CloseExecuted(object sender, ExecutedRoutedEventArgs e)
+        private void RequestCloseExecuted(object sender)
         {
-            Application.Current.Shutdown();
-
-            e.Handled = true;
+            if (this.CloseRequested != null)
+            {
+                this.CloseRequested(this, EventArgs.Empty);
+            }
         }
 
         #endregion
+
+        public event EventHandler CloseRequested;
+
+        public event EventHandler SaveRequested;
     }
 }

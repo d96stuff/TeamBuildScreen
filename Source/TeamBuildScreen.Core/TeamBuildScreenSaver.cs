@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using TeamBuildScreen.Core.Models;
-using TeamBuildScreen.Core.ViewModels;
-using TeamBuildScreen.Core.Views;
-using System.Globalization;
-using System.Windows;
-using System.Collections.Specialized;
+﻿//-----------------------------------------------------------------------
+// <copyright file="TeamBuildDesktop.cs" company="Jim Liddell"> 
+//    Copyright © Jim Liddell. All rights reserved. 
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace TeamBuildScreen.Core
 {
+    using System;
+    using System.Collections.Specialized;
+    using System.Globalization;
+    using System.Windows;
+    using TeamBuildScreen.Core.Models;
+    using TeamBuildScreen.Core.ViewModels;
+    using TeamBuildScreen.Core.Views;
+
     public class TeamBuildScreenSaver
     {
         #region Fields
@@ -19,7 +22,7 @@ namespace TeamBuildScreen.Core
         /// The service used to contact the build server.
         /// </summary>
         private IBuildServerService service;
-        private ScreenSaver<Main, MainViewModel> screenSaver;
+        private ScreenSaver<Main, BuildGridViewModel> screenSaver;
         private IDomainProjectPicker projectPicker;
 
         #endregion
@@ -39,9 +42,16 @@ namespace TeamBuildScreen.Core
                 switch (arg)
                 {
                     case "/c": // configuration mode
-                        ScreenSaverSettingsModel settingsModel = new ScreenSaverSettingsModel(this.service, this.projectPicker);
+                        var settingsModel = new ScreenSaverSettingsModel(this.service, this.projectPicker);
                         settingsModel.Load();
-                        ScreenSaverSettings settings = new ScreenSaverSettings(settingsModel);
+                        var viewModel = new ScreenSaverSettingsViewModel(settingsModel);
+                        ScreenSaverSettings settings = new ScreenSaverSettings(viewModel);
+                        viewModel.CloseRequested += (object sender, EventArgs e) => {
+                            settings.Close();
+                        };
+                        viewModel.SaveRequested += (object sender, EventArgs e) => {
+                            settings.Close();
+                        };
                         settings.ShowDialog();
                         break;
                     case "/p": // preview mode
@@ -93,23 +103,23 @@ namespace TeamBuildScreen.Core
         }
 
         /// <summary>
-        /// Initializes the screen saver. Sets the <see cref="MainViewModel.InnerMargin"/> to 8.
+        /// Initializes the screen saver. Sets the <see cref="BuildGridViewModel.InnerMargin"/> to 8.
         /// </summary>
-        /// <param name="closeOnClicked">A value that indicates whether the screen saver should close when clicked on.</param>
-        private void InitializeScreenSaver(bool closeOnClicked)
+        /// <param name="allowClose">A value that indicates whether the screen saver should close when clicked on.</param>
+        private void InitializeScreenSaver(bool allowClose)
         {
-            this.InitializeScreenSaver(closeOnClicked, 8);
+            this.InitializeScreenSaver(allowClose, 8);
         }
 
         /// <summary>
         /// Initializes the screen saver.
         /// </summary>
-        /// <param name="closeOnClicked">A value that indicates whether the screen saver should close when clicked on.</param>
+        /// <param name="allowClose">A value that indicates whether the screen saver should close when clicked on.</param>
         /// <param name="innerMargin">
         /// The margin to set between each <see cref="BuildPanel"/>. This usually only needs to be set under special 
         /// circumnstances, for example - if the view is to be displayed in a small preview window.
         /// </param>
-        private void InitializeScreenSaver(bool closeOnClicked, int innerMargin)
+        private void InitializeScreenSaver(bool allowClose, int innerMargin)
         {
             string tfsUri = Settings.Default.TfsUri;
 
@@ -122,12 +132,15 @@ namespace TeamBuildScreen.Core
                 this.service.TfsUrl = tfsUri;
                 StringCollection builds = Settings.Default.Builds;
 
-                MainViewModel viewModel = new MainViewModel(this.service, builds);
+                BuildGridViewModel viewModel = new BuildGridViewModel(this.service, builds);
                 viewModel.Columns = Settings.Default.Columns;
-                viewModel.CloseOnClicked = closeOnClicked;
+                if (allowClose)
+                {
+                    viewModel.CloseRequested += (object sender, EventArgs e) => { Application.Current.Shutdown(); };
+                }
                 viewModel.InnerMargin = innerMargin;
 
-                this.screenSaver = new ScreenSaver<Main, MainViewModel>(viewModel);
+                this.screenSaver = new ScreenSaver<Main, BuildGridViewModel>(viewModel);
             }
         }
     }

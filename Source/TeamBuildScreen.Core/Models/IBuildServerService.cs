@@ -63,6 +63,11 @@ namespace TeamBuildScreen.Core.Models
         void AddBuild(string key);
 
         /// <summary>
+        /// Removes all builds from the query list.
+        /// </summary>
+        void ClearBuilds();
+
+        /// <summary>
         /// Gets the <see cref="Microsoft.TeamFoundation.Build.Client.IBuildDetail"/> for the build with the specified key.
         /// </summary>
         /// <param name="key">The key of the build definition.</param>

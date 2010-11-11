@@ -1,37 +1,39 @@
-﻿namespace TeamBuildScreen.Core.Views
+﻿//-----------------------------------------------------------------------
+// <copyright file="Desktop.cs" company="Jim Liddell">
+//    Copyright © Jim Liddell. All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------
+
+namespace TeamBuildScreen.Core.Views
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Data;
-    using System.Windows.Documents;
-    using System.Windows.Input;
-    using System.Windows.Media;
-    using System.Windows.Media.Imaging;
-    using System.Windows.Shapes;
 
     /// <summary>
     /// Interaction logic for Desktop.xaml
     /// </summary>
     public partial class Desktop : Window
     {
-        private bool fullScreening = false;
+        private bool maximizing = false;
 
-        public Desktop()
+        public Desktop(object viewModel)
         {
             InitializeComponent();
 
             this.StateChanged += new EventHandler(this.OnStateChanged);
+            this.DataContext = viewModel;
+        }
+
+        public void Restore()
+        {
+            this.OnRestore(this, new RoutedEventArgs());
         }
 
         private void OnStateChanged(object sender, EventArgs e)
         {
-            if (this.WindowState == WindowState.Maximized && !this.fullScreening)
+            if (this.WindowState == WindowState.Maximized && !this.maximizing)
             {
-                this.fullScreening = true;
+                this.maximizing = true;
 
                 // flick the WindowState to Normal and back to Maximised to make sure it 
                 // appears over the TaskBar.
@@ -41,7 +43,7 @@
                 this.WindowState = WindowState.Maximized;
                 this.ResizeMode = ResizeMode.NoResize;
 
-                this.fullScreening = false;
+                this.maximizing = false;
             }
         }
 

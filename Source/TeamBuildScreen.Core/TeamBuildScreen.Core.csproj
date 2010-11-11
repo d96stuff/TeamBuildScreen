@@ -40,6 +40,8 @@
   </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="Models\RelayCommand.cs" />
+    <Compile Include="ViewModels\DesktopViewModel.cs" />
     <Compile Include="Views\WindowStateVisibilityConverter.cs" />
     <Reference Include="PresentationCore">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -69,7 +71,6 @@
     <Compile Include="Models\BuildStatus.cs" />
     <Compile Include="Models\IBuildInfo.cs" />
     <Compile Include="Models\IDomainProjectPicker.cs" />
-    <Compile Include="Models\TfsCommands.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interop\Rectangle.cs" />
     <Compile Include="Interop\Win32Api.cs" />
@@ -89,7 +90,7 @@
     <Compile Include="ViewModels\BuildInfoViewModel.cs" />
     <Compile Include="ViewModels\BuildServerServiceMessageViewModel.cs" />
     <Compile Include="ViewModels\IMessageViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\BuildGridViewModel.cs" />
     <Compile Include="ViewModels\ScreenSaverSettingsViewModel.cs" />
     <Compile Include="Views\BuildGrid.xaml.cs">
       <DependentUpon>BuildGrid.xaml</DependentUpon>

@@ -4,18 +4,16 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using TeamBuildScreen.Core.Models;
-using System.Collections.Specialized;
-using TeamBuildScreen.Core.ViewModels;
-using TeamBuildScreen.Core.Views;
-using System.Globalization;
-
 namespace TeamBuildScreen.Core
 {
+    using System;
+    using System.Collections.Specialized;
+    using System.Globalization;
+    using System.Windows;
+    using TeamBuildScreen.Core.Models;
+    using TeamBuildScreen.Core.ViewModels;
+    using TeamBuildScreen.Core.Views;
+
     public class TeamBuildDesktop
     {
         private IBuildServerService service;
@@ -29,37 +27,69 @@ namespace TeamBuildScreen.Core
             this.title = title;
         }
 
-        public void Startup(string[] args)
+        public void Startup()
         {
-            if (args.Length > 0)
-            {
-                string arg = args[0].ToLower(CultureInfo.InvariantCulture).Trim().Substring(0, 2);
+            this.service.TfsUrl = Settings.Default.TfsUri;
+            var builds = Settings.Default.Builds;
+            var viewModel = new DesktopViewModel(this.service, builds);
+            var desktop = new Desktop(viewModel);
 
-                switch (arg)
+            // configure view model
+            viewModel.Columns = Settings.Default.Columns;
+            viewModel.ConfigRequested += (object sender, EventArgs e) =>
+            {
+                // restore the view
+                desktop.Restore();
+
+                // this is a blocking call
+                var saved = this.ShowSettingsDialog();
+
+                if (saved)
                 {
-                    case "/c": // configuration mode
-                        ScreenSaverSettingsModel settingsModel = new ScreenSaverSettingsModel(this.service, this.projectPicker);
-                        settingsModel.Load();
-                        ScreenSaverSettings settings = new ScreenSaverSettings(settingsModel);
-                        settings.ShowDialog();
-                        break;
+                    // re-init builds after settings dialog is closed
+                    viewModel.InitializeBuildPanels(Settings.Default.Builds);
                 }
-            }
-            else
+            };
+
+            // configure view
+            desktop.Title = this.title;
+            desktop.Closed += (object sender, EventArgs e) =>
             {
-                this.service.TfsUrl = Settings.Default.TfsUri;
-                StringCollection builds = Settings.Default.Builds;
+                Application.Current.Shutdown();
+            };
 
-                MainViewModel viewModel = new MainViewModel(this.service, builds);
-                viewModel.Columns = Settings.Default.Columns;
-                viewModel.CloseOnClicked = false;
+            // show view
+            desktop.Show();
 
-                Desktop desktop = new Desktop();
-                desktop.Title = this.title;
-                desktop.DataContext = viewModel;
-                desktop.Show();
-                this.service.Start();
-            }
+            // start monitoring the builds
+            this.service.Start();
+        }
+
+        private bool ShowSettingsDialog()
+        {
+            var saved = false;
+            var settingsModel = new ScreenSaverSettingsModel(this.service, this.projectPicker);
+            var viewModel = new ScreenSaverSettingsViewModel(settingsModel);
+            var settings = new ScreenSaverSettings(viewModel);
+
+            // load settings
+            settingsModel.Load();
+
+            // configure view model
+            viewModel.CloseRequested += (object sender, EventArgs e) =>
+            {
+                settings.Close();
+            };
+            viewModel.SaveRequested += (object sender, EventArgs e) =>
+            {
+                settings.Close();
+                saved = true;
+            };
+
+            // show view
+            settings.ShowDialog();
+
+            return saved;
         }
     }
 }

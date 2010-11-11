@@ -32,7 +32,7 @@ namespace TeamBuildScreen.DesktopDemo
             IDomainProjectPicker projectPicker = new MockDomainProjectPicker();
 
             TeamBuildDesktop teamBuildDesktop = new TeamBuildDesktop(service, projectPicker, "Team Build Screen Demo");
-            teamBuildDesktop.Startup(e.Args);
+            teamBuildDesktop.Startup();
         }
 
         #endregion
