@@ -14,9 +14,12 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect ShadowDepth="0" Color="White" BlurRadius="20" />
+                                    </Setter.Value>
+                                </Setter>
                                 <Setter Property="Cursor" Value="Hand"/>
-                                <Setter TargetName="Border" Property="BorderBrush" Value="White"/>
-                                <Setter TargetName="Border" Property="Background" Value="#330000FF" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

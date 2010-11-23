@@ -118,15 +118,23 @@
 					</Viewbox>
 				</Grid>
 				<ControlTemplate.Triggers>
-					<DataTrigger Binding="{Binding Status}" Value="{x:Null}">
+					<DataTrigger Binding="{Binding Status}" Value="Loading">
 						<DataTrigger.EnterActions>
-							<BeginStoryboard Storyboard="{StaticResource FadeToUnknownIcon}" Name="UnknownStoryboard"/>
+                            <BeginStoryboard Storyboard="{StaticResource FadeToUnknownIcon}" Name="LoadingStoryboard"/>
 						</DataTrigger.EnterActions>
 						<DataTrigger.ExitActions>
-							<StopStoryboard BeginStoryboardName="UnknownStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="LoadingStoryboard"/>
 						</DataTrigger.ExitActions>
 					</DataTrigger>
-					<DataTrigger Binding="{Binding Status}" Value="Succeeded">
+                    <DataTrigger Binding="{Binding Status}" Value="NoneFound">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard Storyboard="{StaticResource FadeToUnknownIcon}" Name="NoneFoundStoryboard"/>
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <StopStoryboard BeginStoryboardName="NoneFoundStoryboard"/>
+                        </DataTrigger.ExitActions>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Status}" Value="Succeeded">
 						<DataTrigger.EnterActions>
 							<BeginStoryboard Storyboard="{StaticResource FadeToSuccessIcon}" Name="SucceededStoryboard"/>
 						</DataTrigger.EnterActions>

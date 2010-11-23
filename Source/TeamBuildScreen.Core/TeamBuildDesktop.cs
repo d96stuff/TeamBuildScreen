@@ -29,7 +29,24 @@ namespace TeamBuildScreen.Core
 
         public void Startup()
         {
-            this.service.TfsUrl = Settings.Default.TfsUri;
+            string tfsUri = Settings.Default.TfsUri;
+
+            if (string.IsNullOrEmpty(tfsUri))
+            {
+                // no config found, show settings dialog
+                var saved = this.ShowSettingsDialog();
+
+                tfsUri = Settings.Default.TfsUri;
+
+                if (!saved || string.IsNullOrEmpty(tfsUri))
+                {
+                    // no config found, user cancelled settings dialog - exit application
+                    Application.Current.Shutdown();
+                    return;
+                }
+            }
+            
+            this.service.TfsUrl = tfsUri;
             var builds = Settings.Default.Builds;
             var viewModel = new DesktopViewModel(this.service, builds);
             var desktop = new Desktop(viewModel);

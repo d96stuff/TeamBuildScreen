@@ -114,11 +114,23 @@ namespace TeamBuildScreen.Demo
                             return;
                     }
 
-                    IBuildInfo latestBuild = null;
+                    MockBuildInfo latestBuild = null;
 
                     if (status.HasValue)
                     {
                         latestBuild = new MockBuildInfo(status.Value, "DOMAIN\\Joe Blogs", GetRandomDateTime(), true, GetRandomDateTime());
+
+                        switch (status)
+                        {
+                            case BuildStatus.Succeeded:
+                                latestBuild.TestsFailed = 0;
+                                latestBuild.TestsPassed = 1770;
+                                break;
+                            case BuildStatus.PartiallySucceeded:
+                                latestBuild.TestsFailed = 100;
+                                latestBuild.TestsPassed = 1670;
+                                break;
+                        }
                     }
 
                     latestBuilds.Add(key, latestBuild);

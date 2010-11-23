@@ -41,6 +41,9 @@
   <PropertyGroup>
     <StartupObject>TeamBuildScreen.DesktopTfs2010.App</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>..\TeamBuildScreen.Core\PartiallySucceeded.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -80,6 +83,11 @@
       <Project>{08AFCDC9-3CA6-4859-A977-AEABB4E6B506}</Project>
       <Name>TeamBuildScreen.Tfs2010</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\TeamBuildScreen.Core\PartiallySucceeded.ico">
+      <Link>PartiallySucceeded.ico</Link>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

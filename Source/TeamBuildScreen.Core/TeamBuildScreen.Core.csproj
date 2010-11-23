@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="ViewModels\DesktopViewModel.cs" />
+    <Compile Include="Views\ScalingTextBlock.cs" />
     <Compile Include="Views\WindowStateVisibilityConverter.cs" />
     <Reference Include="PresentationCore">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>

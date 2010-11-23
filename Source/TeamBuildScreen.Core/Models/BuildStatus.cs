@@ -12,6 +12,8 @@ namespace TeamBuildScreen.Core.Models
         Failed,
         InProgress,
         NotStarted,
-        PartiallySucceeded
+        PartiallySucceeded,
+        Loading,
+        NoneFound
     }
 }

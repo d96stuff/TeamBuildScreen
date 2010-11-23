@@ -82,6 +82,9 @@
 			<Path Width="118.448" Height="49.6716" Canvas.Left="68.7762" Canvas.Top="66.8656" Stretch="Fill" Fill="#FF7B1A00" Data="M 97.9106,76.4179L 75.9404,76.4179L 68.7762,66.8657L 99.3434,66.8657L 128,105.075L 156.657,66.8656L 187.224,66.8656L 180.06,76.4179L 158.09,76.4179L 128,116.537L 97.9106,76.4179 Z "/>
 			<Path Width="47.7612" Height="63.6816" Canvas.Left="143.284" Canvas.Top="125.453" Stretch="Fill" Fill="#FF7B1A00" Data="M 182.448,189.134L 143.284,136.915L 143.284,125.453L 147.582,131.184L 191.045,189.134L 182.448,189.134 Z "/>
 			<Path Width="47.7613" Height="63.6815" Canvas.Left="64.9553" Canvas.Top="125.453" Stretch="Fill" Fill="#FF7B1A00" Data="M 112.716,125.453L 112.717,136.915L 73.5524,189.134L 64.9553,189.134L 108.418,131.184L 112.716,125.453 Z "/>
+            <Canvas.Effect>
+                <DropShadowEffect ShadowDepth="0" Color="Red" BlurRadius="100" />
+            </Canvas.Effect>
 		</Canvas>
 	</ControlTemplate>
 	<ControlTemplate x:Key="InProgressIcon">

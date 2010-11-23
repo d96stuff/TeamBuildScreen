@@ -26,14 +26,34 @@ namespace TeamBuildScreen.Core.ViewModels
         private BuildInfoModel dataModel;
 
         /// <summary>
-        /// The summary for the <see cref="BuildInfoViewModel"/>.
+        /// The description for the <see cref="BuildInfoViewModel"/>.
         /// </summary>
-        private string summary;
+        private string description;
+
+        /// <summary>
+        /// The name of the person who requested the <see cref="BuildInfoViewModel"/>.
+        /// </summary>
+        private string requestedBy;
+
+        /// <summary>
+        /// The time when the build was started.
+        /// </summary>
+        private DateTime? startedOn;
+
+        /// <summary>
+        /// The time the build was completed.
+        /// </summary>
+        private DateTime? completedOn;
+
+        /// <summary>
+        /// The test results for the <see cref="BuildInfoViewModel"/>.
+        /// </summary>
+        private string testResults;
 
         /// <summary>
         /// The status for the <see cref="BuildInfoViewModel"/>.
         /// </summary>
-        private BuildStatus? status = null;
+        private BuildStatus status;
 
         /// <summary>
         /// A static synchronisation lock used to synchronise access across all instances.
@@ -47,7 +67,7 @@ namespace TeamBuildScreen.Core.ViewModels
         /// <summary>
         /// Gets the status for the <see cref="BuildInfoViewModel"/>.
         /// </summary>
-        public BuildStatus? Status
+        public BuildStatus Status
         {
             get
             {
@@ -56,13 +76,57 @@ namespace TeamBuildScreen.Core.ViewModels
         }
 
         /// <summary>
-        /// Gets the summary for the <see cref="BuildInfoViewModel"/>.
+        /// Gets the description for the <see cref="BuildInfoViewModel"/>.
         /// </summary>
-        public string Summary
+        public string Description
         {
             get
             {
-                return this.summary;
+                return this.description;
+            }
+        }
+
+        /// <summary>
+        /// Gets the name of the person who requested the <see cref="BuildInfoViewModel"/>.
+        /// </summary>
+        public string RequestedBy
+        {
+            get
+            {
+                return this.requestedBy;
+            }
+        }
+
+        /// <summary>
+        /// Gets the time when the build was started.
+        /// </summary>
+        public DateTime? StartedOn
+        {
+            get
+            {
+                return this.startedOn;
+            }
+        }
+
+        /// <summary>
+        /// Gets the time the build was completed.
+        /// </summary>
+        public DateTime? CompletedOn
+        {
+            get
+            {
+                return this.completedOn;
+            }
+        }
+
+        /// <summary>
+        /// Gets the test results for the <see cref="BuildInfoViewModel"/>.
+        /// </summary>
+        public string TestResults
+        {
+            get
+            {
+                return this.testResults;
             }
         }
 
@@ -127,30 +191,10 @@ namespace TeamBuildScreen.Core.ViewModels
                 this.UpdateFromModel();
             };
 
-            StringBuilder text = new StringBuilder();
-            text.AppendLine(string.Format(
-                "{0}: {1}",
-                this.dataModel.TeamProject,
-                this.dataModel.DefinitionName));
-            text.Append("Loading...");
-
-            this.summary = text.ToString();
-
-            this.EnsureSummaryIsCorrectNumberOfLines();
+            this.description = this.dataModel.DefinitionName;
+            this.status = BuildStatus.Loading;
 
             this.HasWarnings = false;
-        }
-
-        private void EnsureSummaryIsCorrectNumberOfLines()
-        {
-            string[] lines = this.summary.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-
-            int difference = 6 - lines.Length;
-
-            for (int i = 0; i < difference; i++)
-            {
-                this.summary = this.summary + Environment.NewLine;
-            }
         }
 
         /// <summary>
@@ -158,55 +202,51 @@ namespace TeamBuildScreen.Core.ViewModels
         /// </summary>
         private void UpdateFromModel()
         {
-            StringBuilder text = new StringBuilder();
             bool hasWarnings = false;
 
-            text.AppendLine(string.Format(
-                "{0}: {1}",
-                this.dataModel.TeamProject,
-                this.dataModel.DefinitionName));
+            this.description = this.dataModel.DefinitionName;
+            this.status = BuildStatus.NoneFound;
+            this.requestedBy = null;
+            this.startedOn = null;
+            this.completedOn = null;
+            this.testResults = null;
 
             if (this.dataModel.Model != null)
             {
                 this.status = this.dataModel.Model.Status;
+                this.requestedBy = this.dataModel.Model.RequestedFor;
 
-                text.AppendLine(new BuildStatusStringConverter().Convert(this.dataModel.Model.Status, typeof(string), null, null).ToString());
-                text.AppendLine("Requested by " + this.dataModel.Model.RequestedFor);
-                text.Append("Started on " + this.dataModel.Model.StartTime);
+                // remove domain prefix from requestedBy, if found
+                this.requestedBy = this.requestedBy.Contains("\\") ? this.requestedBy.Split('\\')[1] : this.requestedBy;
+                this.startedOn = this.dataModel.Model.StartTime;
 
                 if (this.dataModel.Model.BuildFinished)
                 {
-                    text.AppendLine();
-                    text.AppendLine("Completed on " + this.dataModel.Model.FinishTime);
+                    this.completedOn = this.dataModel.Model.FinishTime;
 
                     if (this.dataModel.Model.TestsTotal.HasValue)
                     {
-                        text.Append(string.Format("Test results: {0} passed, {1} failed, {2} total.", this.dataModel.Model.TestsPassed, this.dataModel.Model.TestsFailed, this.dataModel.Model.TestsTotal));
+                        this.testResults = string.Format("Test results: {0} passed, {1} failed, {2} total.", this.dataModel.Model.TestsPassed, this.dataModel.Model.TestsFailed, this.dataModel.Model.TestsTotal);
                     }
                     else
                     {
-                        text.Append("No test result.");
+                        this.testResults = "No test result.";
                     }
 
                     hasWarnings = this.dataModel.Model.HasWarnings;
                 }
             }
-            else
-            {
-                this.status = null;
 
-                text.Append("No build(s) found.");
-            }
-
-            this.summary = text.ToString();
             this.HasWarnings = hasWarnings;
-
-            this.EnsureSummaryIsCorrectNumberOfLines();
 
             this.OnPropertyChanged("IsQueued");
             this.OnPropertyChanged("IsStale");
             this.OnPropertyChanged("Status");
-            this.OnPropertyChanged("Summary");
+            this.OnPropertyChanged("Description");
+            this.OnPropertyChanged("RequestedBy");
+            this.OnPropertyChanged("StartedOn");
+            this.OnPropertyChanged("CompletedOn");
+            this.OnPropertyChanged("TestResults");
             this.OnPropertyChanged("HasWarnings");
         }
 

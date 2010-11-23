@@ -68,35 +68,35 @@ namespace TeamBuildScreen.Core.UnitTests
             Assert.AreEqual<BuildStatus?>(this.mockBuildInfo.Status, this.viewModel.Status);
         }
 
-        [TestMethod]
-        public void SummaryWithTestResultsCorrectlyPopulated()
-        {
-            // arrange
-            this.mockBuildInfo.TestsPassed = 100;
-            this.mockBuildInfo.TestsFailed = 50;
-            StringBuilder summary = this.GetSummaryPrefix();
-            summary.AppendLine(string.Format("Test results: {0} passed, {1} failed, {2} total.", this.mockBuildInfo.TestsPassed, this.mockBuildInfo.TestsFailed, this.mockBuildInfo.TestsTotal));
-            this.mockService.SetBuildInfo(this.key, this.mockBuildInfo);
+        //[TestMethod]
+        //public void SummaryWithTestResultsCorrectlyPopulated()
+        //{
+        //    // arrange
+        //    this.mockBuildInfo.TestsPassed = 100;
+        //    this.mockBuildInfo.TestsFailed = 50;
+        //    StringBuilder summary = this.GetSummaryPrefix();
+        //    summary.AppendLine(string.Format("Test results: {0} passed, {1} failed, {2} total.", this.mockBuildInfo.TestsPassed, this.mockBuildInfo.TestsFailed, this.mockBuildInfo.TestsTotal));
+        //    this.mockService.SetBuildInfo(this.key, this.mockBuildInfo);
 
-            // act
-            this.mockService.RaiseQueryCompleted();
+        //    // act
+        //    this.mockService.RaiseQueryCompleted();
 
-            // assert
-            Assert.AreEqual<string>(summary.ToString().Trim(), this.viewModel.Summary.Trim());
-        }
+        //    // assert
+        //    Assert.AreEqual<string>(summary.ToString().Trim(), this.viewModel.Summary.Trim());
+        //}
 
-        [TestMethod]
-        public void SummaryWithoutTestResultsCorrectlyPopulated()
-        {
-            StringBuilder summary = this.GetSummaryPrefix();
-            summary.AppendLine("No test result.");
+        //[TestMethod]
+        //public void SummaryWithoutTestResultsCorrectlyPopulated()
+        //{
+        //    StringBuilder summary = this.GetSummaryPrefix();
+        //    summary.AppendLine("No test result.");
 
-            this.mockService.SetBuildInfo(this.key, this.mockBuildInfo);
+        //    this.mockService.SetBuildInfo(this.key, this.mockBuildInfo);
 
-            this.mockService.RaiseQueryCompleted();
+        //    this.mockService.RaiseQueryCompleted();
 
-            Assert.AreEqual<string>(summary.ToString().Trim(), this.viewModel.Summary.Trim());
-        }
+        //    Assert.AreEqual<string>(summary.ToString().Trim(), this.viewModel.Summary.Trim());
+        //}
 
         [TestMethod]
         public void IsQueuedPropertyChangedWhenServiceQueryCompleted()

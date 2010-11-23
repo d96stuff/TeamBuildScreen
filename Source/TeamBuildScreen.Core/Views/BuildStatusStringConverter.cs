@@ -36,6 +36,10 @@ namespace TeamBuildScreen.Core.Views
                     return "Not Started";
                 case BuildStatus.PartiallySucceeded:
                     return "Partially Succeeded";
+                case BuildStatus.Loading:
+                    return "Loading...";
+                case BuildStatus.NoneFound:
+                    return "No build(s) found.";
                 default:
                     return status.ToString();
             }

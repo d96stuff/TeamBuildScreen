@@ -741,6 +741,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -1428,7 +1441,7 @@
         {
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_357106FB6A1445EDA66E41138813EFE2"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFilesFolder]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -1503,7 +1516,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Team Build Screen 2010"
         "ProductCode" = "8:{08B77CC2-6BE5-4D69-A420-5AC9F9AC2C80}"
-        "PackageCode" = "8:{E1384CD7-CF25-4E38-B3D1-2C5D4F609341}"
+        "PackageCode" = "8:{9CC5B04A-F76C-405A-92F3-F0122083CBF8}"
         "UpgradeCode" = "8:{6E3200AB-A3BC-4D7A-A939-ED0EC8691064}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

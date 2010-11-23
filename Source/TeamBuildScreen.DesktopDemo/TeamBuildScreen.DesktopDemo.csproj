@@ -48,6 +48,9 @@
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>..\TeamBuildScreen.Core\PartiallySucceeded.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -96,6 +99,11 @@
       <Project>{AC3CF5C4-B571-448F-A708-840AF5170D32}</Project>
       <Name>TeamBuildScreen.Demo</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\TeamBuildScreen.Core\PartiallySucceeded.ico">
+      <Link>PartiallySucceeded.ico</Link>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
