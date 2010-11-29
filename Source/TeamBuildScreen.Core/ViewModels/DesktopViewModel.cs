@@ -27,7 +27,7 @@ namespace TeamBuildScreen.Core.ViewModels
         }
 
         /// <summary>
-        /// Gets the icon for the <see cref="BuildGridViewModel"/>.
+        /// Gets the icon for the <see cref="DesktopViewModel"/>.
         /// </summary>
         /// <remarks>The icon reflects the overall status of all the builds.</remarks>
         public ImageSource SummaryIcon
@@ -60,7 +60,7 @@ namespace TeamBuildScreen.Core.ViewModels
                 {
                     uriString = @"pack://application:,,/TeamBuildScreen.Core;component/Succeeded.ico";
                 }
-                else
+                else // includes Loading and NoneFound
                 {
                     uriString = @"pack://application:,,/TeamBuildScreen.Core;component/Unknown.ico";
                 }

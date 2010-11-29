@@ -123,7 +123,8 @@
 			</Path>
 			<Path Width="200.033" Height="200.033" Canvas.Left="11.4627" Canvas.Top="11.4628" Stretch="Fill" Fill="#34FFFFFF" Data="F1 M 45.5957,45.5957C 0.0850578,91.1064 0.0850509,164.894 45.5957,210.404C 49.2588,214.067 41.8508,207.076 45.8508,210.149C 10.7398,164.453 25.3623,109.057 67.2099,67.2099C 109.057,25.3624 164.453,10.7399 210.149,45.8509C 207.076,41.8509 214.067,49.2588 210.404,45.5957C 164.894,0.0850983 91.1063,0.0850983 45.5957,45.5957 Z "/>
 			<Path Width="200.015" Height="200.015" Canvas.Left="44.5223" Canvas.Top="44.5225" Stretch="Fill" Fill="#34717171" Data="F1 M 210.404,210.405C 255.915,164.894 255.915,91.1066 210.404,45.596C 206.741,41.9329 214.297,49.0721 210.297,45.9987C 245.408,91.6949 230.638,146.943 188.79,188.79C 146.943,230.638 91.6947,245.408 45.9985,210.297C 49.072,214.297 41.9328,206.742 45.5959,210.405C 91.1065,255.915 164.894,255.915 210.404,210.405 Z "/>
-		</Canvas>	</ControlTemplate>
+		</Canvas>
+	</ControlTemplate>
 	<ControlTemplate x:Key="StoppedIcon">
 		<Canvas PresentationOptions:Freeze="True" Width="256" Height="256" Canvas.Left="0" Canvas.Top="0">
 			<Ellipse Width="256" Height="256" Canvas.Left="-1.19209e-005" Canvas.Top="0.000106812" Stretch="Fill">
@@ -304,5 +305,6 @@
 					</Path>
 				</Canvas>
 			</Viewbox>
-		</Canvas>	</ControlTemplate>
+		</Canvas>
+	</ControlTemplate>
 </ResourceDictionary>

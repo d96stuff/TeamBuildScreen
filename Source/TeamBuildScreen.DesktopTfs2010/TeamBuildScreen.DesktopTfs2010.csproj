@@ -42,7 +42,7 @@
     <StartupObject>TeamBuildScreen.DesktopTfs2010.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>..\TeamBuildScreen.Core\PartiallySucceeded.ico</ApplicationIcon>
+    <ApplicationIcon>..\TeamBuildScreen.Core\tbs.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -85,8 +85,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="..\TeamBuildScreen.Core\PartiallySucceeded.ico">
-      <Link>PartiallySucceeded.ico</Link>
+    <Resource Include="..\TeamBuildScreen.Core\tbs.ico">
+      <Link>tbs.ico</Link>
     </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
