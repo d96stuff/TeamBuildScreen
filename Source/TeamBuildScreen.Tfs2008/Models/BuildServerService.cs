@@ -15,6 +15,7 @@ namespace TeamBuildScreen.Tfs2008.Models
     using Microsoft.TeamFoundation.Client;
     using Microsoft.TeamFoundation.VersionControl.Client;
     using TeamBuildScreen.Core.Models;
+    using System.Diagnostics;
 
     #endregion
 
@@ -115,11 +116,11 @@ namespace TeamBuildScreen.Tfs2008.Models
 
             BuildServerService.ParseBuild(key, out teamProject, out definitionName);
 
-            return new BuildInfo(this.builds.Single(x =>
+            var buildDetail = this.builds.Single(x =>
                 x.Key.DefinitionSpec.Name == definitionName &&
-                x.Key.DefinitionSpec.TeamProject == teamProject).Value,
-                configuration,
-                platform);
+                x.Key.DefinitionSpec.TeamProject == teamProject).Value;
+
+            return new BuildInfo(buildDetail, configuration, platform);
         }
 
         /// <summary>

@@ -7,12 +7,9 @@ using Microsoft.TeamFoundation.Build.Client;
 
 namespace TeamBuildScreen.Tfs2008.Models
 {
-    public class BuildInfo : IBuildInfo
+    public class BuildInfo : BuildInfoBase, IBuildInfo
     {
         private IBuildDetail buildDetail;
-        private int? testsFailed;
-        private int? testsPassed;
-        private int? testsTotal;
 
         public BuildInfo(IBuildDetail buildDetail, string flavour, string platform)
         {
@@ -26,9 +23,9 @@ namespace TeamBuildScreen.Tfs2008.Models
                 {
                     ITestSummary testSummary = configurationSummary.TestSummaries[0];
 
-                    this.testsFailed = testSummary.TestsFailed;
-                    this.testsPassed = testSummary.TestsPassed;
-                    this.testsTotal = testSummary.TestsTotal;
+                    this.TestsFailed = testSummary.TestsFailed;
+                    this.TestsPassed = testSummary.TestsPassed;
+                    this.TestsTotal = testSummary.TestsTotal;
                 }
 
                 if (configurationSummary.CompilationSummaries.Count > 0)
@@ -46,7 +43,14 @@ namespace TeamBuildScreen.Tfs2008.Models
         {
             get
             {
-                return this.buildDetail.BuildFinished;
+                if (this.buildDetail != null)
+                {
+                    return this.buildDetail.BuildFinished;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 
@@ -54,7 +58,14 @@ namespace TeamBuildScreen.Tfs2008.Models
         {
             get
             {
-                return this.buildDetail.FinishTime;
+                if (this.buildDetail != null)
+                {
+                    return this.buildDetail.FinishTime;
+                }
+                else
+                {
+                    return DateTime.MinValue;
+                }
             }
         }
 
@@ -62,7 +73,14 @@ namespace TeamBuildScreen.Tfs2008.Models
         {
             get
             {
-                return BuildStatusConverter.Convert(this.buildDetail.Status);
+                if (this.buildDetail != null)
+                {
+                    return BuildStatusConverter.Convert(this.buildDetail.Status);
+                }
+                else
+                {
+                    return TeamBuildScreen.Core.Models.BuildStatus.NotStarted;
+                }
             }
         }
 
@@ -70,7 +88,14 @@ namespace TeamBuildScreen.Tfs2008.Models
         {
             get
             {
-                return this.buildDetail.RequestedFor;
+                if (this.buildDetail != null)
+                {
+                    return this.buildDetail.RequestedFor;
+                }
+                else
+                {
+                    return string.Empty;
+                }
             }
         }
 
@@ -78,38 +103,15 @@ namespace TeamBuildScreen.Tfs2008.Models
         {
             get
             {
-                return this.buildDetail.StartTime;
+                if (this.buildDetail != null)
+                {
+                    return this.buildDetail.StartTime;
+                }
+                else
+                {
+                    return DateTime.MinValue;
+                }
             }
-        }
-
-        public int? TestsFailed
-        {
-            get
-            {
-                return this.testsFailed;
-            }
-        }
-
-        public int? TestsPassed
-        {
-            get
-            {
-                return this.testsPassed;
-            }
-        }
-
-        public int? TestsTotal
-        {
-            get
-            {
-                return this.testsTotal;
-            }
-        }
-
-        public bool HasWarnings
-        {
-            get;
-            private set;
         }
 
         #endregion

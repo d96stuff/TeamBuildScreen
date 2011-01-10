@@ -35,6 +35,11 @@ namespace TeamBuildScreen.Core.Models
         /// </summary>
         event EventHandler NotConfigured;
 
+        /// <summary>
+        /// Occurs when the service has been stopped.
+        /// </summary>
+        event EventHandler Stopped;
+
         #endregion
 
         #region Properties
@@ -85,6 +90,11 @@ namespace TeamBuildScreen.Core.Models
         /// Starts querying the server.
         /// </summary>
         void Start();
+
+        /// <summary>
+        /// Stops querying the server.
+        /// </summary>
+        void Stop();
 
         /// <summary>
         /// Loads the available builds from the build server.

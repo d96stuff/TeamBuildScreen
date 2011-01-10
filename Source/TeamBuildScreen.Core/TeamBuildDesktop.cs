@@ -58,6 +58,9 @@ namespace TeamBuildScreen.Core
                 // restore the view
                 desktop.Restore();
 
+                // stop querying the server
+                this.service.Stop();
+
                 // this is a blocking call
                 var saved = this.ShowSettingsDialog();
 
@@ -65,7 +68,10 @@ namespace TeamBuildScreen.Core
                 {
                     // re-init builds after settings dialog is closed
                     viewModel.InitializeBuildPanels(Settings.Default.Builds);
+                    viewModel.Columns = Settings.Default.Columns;
                 }
+
+                this.service.Start();
             };
 
             // configure view

@@ -8,6 +8,7 @@ namespace TeamBuildScreen.Core.Views
 {
     using System;
     using System.Windows;
+    using System.Windows.Input;
 
     /// <summary>
     /// Interaction logic for Desktop.xaml

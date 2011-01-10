@@ -110,12 +110,6 @@ namespace TeamBuildScreen.Core.UnitTests
             this.AssertPropertyChangedWhenServiceQueryCompleted("Status");
         }
 
-        [TestMethod]
-        public void SummaryPropertyChangedWhenServiceQueryCompleted()
-        {
-            this.AssertPropertyChangedWhenServiceQueryCompleted("Summary");
-        }
-
         private StringBuilder GetSummaryPrefix()
         {
             StringBuilder summary = new StringBuilder();

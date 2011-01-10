@@ -23,6 +23,7 @@ namespace TeamBuildScreen.Core.ViewModels
             service.QueryCompleted += OnQueryCompleted;
             service.Error += OnError;
             service.NotConfigured += OnNotConfigured;
+            service.Stopped += OnStopped;
         }
 
         #endregion
@@ -37,15 +38,22 @@ namespace TeamBuildScreen.Core.ViewModels
 
         private void OnError(object sender, EventArgs e)
         {
-            this.Message = "Unable to contact Team Foundation Server.";
-            this.IsVisible = true;
-            this.OnPropertyChanged("Message");
-            this.OnPropertyChanged("IsVisible");
+            this.DisplayMessage("Unable to contact Team Foundation Server.");
         }
 
         private void OnNotConfigured(object sender, EventArgs e)
         {
-            this.Message = "No builds have been configured.";
+            this.DisplayMessage("No builds have been configured.");
+        }
+
+        private void OnStopped(object sender, EventArgs e)
+        {
+            this.DisplayMessage(string.Empty);
+        }
+
+        private void DisplayMessage(string message)
+        {
+            this.Message = message;
             this.IsVisible = true;
             this.OnPropertyChanged("Message");
             this.OnPropertyChanged("IsVisible");

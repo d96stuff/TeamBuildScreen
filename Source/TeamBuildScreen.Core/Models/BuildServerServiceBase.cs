@@ -44,6 +44,20 @@ namespace TeamBuildScreen.Core.Models
             }
         }
 
+        /// <summary>
+        /// Stops querying the server.
+        /// </summary>
+        public void Stop()
+        {
+            if (this.queryTimer != null)
+            {
+                this.queryTimer.Dispose();
+                this.queryTimer = null;
+            }
+
+            this.OnStopped();
+        }
+
         protected abstract void Query(object stateInfo);
 
         /// <summary>
@@ -51,9 +65,26 @@ namespace TeamBuildScreen.Core.Models
         /// </summary>
         protected void OnQueryCompleted()
         {
+            // if the service has been stopped, do not fire the event
+            if (this.queryTimer == null)
+            {
+                return;
+            }
+
             if (this.QueryCompleted != null)
             {
                 this.QueryCompleted(this, EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Raises the <see cref="TeamBuildScreenSaver.Models.IBuildServerService.NotConfigured"/> event.
+        /// </summary>
+        protected void OnNotConfigured()
+        {
+            if (this.NotConfigured != null)
+            {
+                this.NotConfigured(this, EventArgs.Empty);
             }
         }
 
@@ -69,13 +100,13 @@ namespace TeamBuildScreen.Core.Models
         }
 
         /// <summary>
-        /// Raises the <see cref="TeamBuildScreenSaver.Models.IBuildServerService.NotConfigured"/> event.
+        /// Raises the <see cref="TeamBuildScreenSaver.Models.IBuildServerService.Stopped"/> event.
         /// </summary>
-        protected void OnNotConfigured()
+        protected void OnStopped()
         {
-            if (this.NotConfigured != null)
+            if (this.Stopped != null)
             {
-                this.NotConfigured(this, EventArgs.Empty);
+                this.Stopped(this, EventArgs.Empty);
             }
         }
 
@@ -111,6 +142,11 @@ namespace TeamBuildScreen.Core.Models
         /// Occurs when the service has not been configured.
         /// </summary>
         public event EventHandler NotConfigured;
+
+        /// <summary>
+        /// Occurs when the service has been stopped.
+        /// </summary>
+        public event EventHandler Stopped;
 
         #endregion
 

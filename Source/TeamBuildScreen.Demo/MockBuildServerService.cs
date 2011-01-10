@@ -118,7 +118,7 @@ namespace TeamBuildScreen.Demo
 
                     if (status.HasValue)
                     {
-                        latestBuild = new MockBuildInfo(status.Value, "DOMAIN\\Joe Blogs", GetRandomDateTime(), true, GetRandomDateTime());
+                        latestBuild = new MockBuildInfo(status.Value, "DOMAIN\\Joe Bloggs", GetRandomDateTime(), true, GetRandomDateTime());
 
                         switch (status)
                         {
@@ -235,5 +235,20 @@ namespace TeamBuildScreen.Demo
         }
 
         #endregion
+
+        public event EventHandler Stopped;
+
+        public void Stop()
+        {
+            this.OnStopped();
+        }
+
+        private void OnStopped()
+        {
+            if (this.Stopped != null)
+            {
+                this.Stopped(this, EventArgs.Empty);
+            }
+        }
     }
 }

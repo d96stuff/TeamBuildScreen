@@ -11,6 +11,7 @@ namespace TeamBuildScreen.Core.Models
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
+    using System;
 
     #endregion
 
@@ -172,11 +173,13 @@ namespace TeamBuildScreen.Core.Models
         public void Save()
         {
             this.settings.TfsUri = this.tfsUri;
-            this.settings.Columns = this.columns;
             this.settings.UpdateInterval = this.updateInterval;
             this.settings.StaleThreshold = this.staleThreshold;
 
             this.SaveBuilds();
+
+            // don't allow columns to be greater than the number of builds
+            this.settings.Columns = Math.Min(this.columns, this.settings.Builds.Count);
 
             this.settings.Save();
         }
