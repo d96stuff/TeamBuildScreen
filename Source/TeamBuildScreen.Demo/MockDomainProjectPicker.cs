@@ -17,7 +17,7 @@ namespace TeamBuildScreen.Demo
 
         public string TfsUri
         {
-            get { return string.Empty; }
+            get { return "http://default/"; }
         }
 
         #endregion

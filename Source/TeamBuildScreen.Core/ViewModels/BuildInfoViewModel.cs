@@ -191,7 +191,7 @@ namespace TeamBuildScreen.Core.ViewModels
                 this.UpdateFromModel();
             };
 
-            this.description = this.dataModel.DefinitionName;
+            this.description = string.Format("{0}: {1}", this.dataModel.TeamProject, this.dataModel.DefinitionName);
             this.status = BuildStatus.Loading;
 
             this.HasWarnings = false;

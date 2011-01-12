@@ -29,27 +29,28 @@ namespace TeamBuildScreen.Core
 
         public void Startup()
         {
-            string tfsUri = Settings.Default.TfsUri;
+            var settingsModel = new ScreenSaverSettingsModel(this.service, this.projectPicker);
+            var builds = Settings.Default.Builds;
+            var viewModel = new DesktopViewModel(this.service, builds);
 
-            if (string.IsNullOrEmpty(tfsUri))
+            // we must instantiate this window first in the application, otherwise the settings for will become the main 
+            // window for the application and it will exit after the settings for is closed
+            var desktop = new Desktop(viewModel);
+
+            if (string.IsNullOrEmpty(settingsModel.TfsUri))
             {
                 // no config found, show settings dialog
-                var saved = this.ShowSettingsDialog();
+                var saved = this.ShowSettingsDialog(settingsModel);
 
-                tfsUri = Settings.Default.TfsUri;
-
-                if (!saved || string.IsNullOrEmpty(tfsUri))
+                if (!saved || string.IsNullOrEmpty(settingsModel.TfsUri))
                 {
                     // no config found, user cancelled settings dialog - exit application
                     Application.Current.Shutdown();
                     return;
                 }
             }
-            
-            this.service.TfsUrl = tfsUri;
-            var builds = Settings.Default.Builds;
-            var viewModel = new DesktopViewModel(this.service, builds);
-            var desktop = new Desktop(viewModel);
+
+            this.service.TfsUrl = settingsModel.TfsUri;
 
             // configure view model
             viewModel.Columns = Settings.Default.Columns;
@@ -62,7 +63,7 @@ namespace TeamBuildScreen.Core
                 this.service.Stop();
 
                 // this is a blocking call
-                var saved = this.ShowSettingsDialog();
+                var saved = this.ShowSettingsDialog(settingsModel);
 
                 if (saved)
                 {
@@ -88,10 +89,9 @@ namespace TeamBuildScreen.Core
             this.service.Start();
         }
 
-        private bool ShowSettingsDialog()
+        private bool ShowSettingsDialog(ScreenSaverSettingsModel settingsModel)
         {
             var saved = false;
-            var settingsModel = new ScreenSaverSettingsModel(this.service, this.projectPicker);
             var viewModel = new ScreenSaverSettingsViewModel(settingsModel);
             var settings = new ScreenSaverSettings(viewModel);
 
@@ -105,8 +105,8 @@ namespace TeamBuildScreen.Core
             };
             viewModel.SaveRequested += (object sender, EventArgs e) =>
             {
-                settings.Close();
                 saved = true;
+                settings.Close();
             };
 
             // show view
