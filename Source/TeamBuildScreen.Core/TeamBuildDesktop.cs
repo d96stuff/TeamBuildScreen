@@ -29,13 +29,10 @@ namespace TeamBuildScreen.Core
 
         public void Startup()
         {
-            var settingsModel = new ScreenSaverSettingsModel(this.service, this.projectPicker);
-            var builds = Settings.Default.Builds;
-            var viewModel = new DesktopViewModel(this.service, builds);
+            // we will take care of shutting things down
+            Application.Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
-            // we must instantiate this window first in the application, otherwise the settings for will become the main 
-            // window for the application and it will exit after the settings for is closed
-            var desktop = new Desktop(viewModel);
+            var settingsModel = new ScreenSaverSettingsModel(this.service, this.projectPicker);
 
             if (string.IsNullOrEmpty(settingsModel.TfsUri))
             {
@@ -51,6 +48,9 @@ namespace TeamBuildScreen.Core
             }
 
             this.service.TfsUrl = settingsModel.TfsUri;
+            var builds = Settings.Default.Builds;
+            var viewModel = new DesktopViewModel(this.service, builds);
+            var desktop = new Desktop(viewModel);
 
             // configure view model
             viewModel.Columns = Settings.Default.Columns;
