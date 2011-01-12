@@ -204,7 +204,7 @@ namespace TeamBuildScreen.Core.ViewModels
         {
             bool hasWarnings = false;
 
-            this.description = this.dataModel.DefinitionName;
+            this.description = string.Format("{0}: {1}", this.dataModel.TeamProject, this.dataModel.DefinitionName);
             this.status = BuildStatus.NoneFound;
             this.requestedBy = null;
             this.startedOn = null;
