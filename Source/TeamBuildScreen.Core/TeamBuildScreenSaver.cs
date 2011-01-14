@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="TeamBuildDesktop.cs" company="Jim Liddell"> 
+// <copyright file="TeamBuildScreenSaver.cs" company="Jim Liddell"> 
 //    Copyright © Jim Liddell. All rights reserved. 
 // </copyright>
 //-----------------------------------------------------------------------

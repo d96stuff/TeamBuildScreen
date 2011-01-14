@@ -36,6 +36,7 @@ namespace TeamBuildScreen.Core
         private HwndSource hostWindow;
         private IList<V> windows;
         private VM dataContext;
+        private object token;
 
         #endregion
 
@@ -45,6 +46,7 @@ namespace TeamBuildScreen.Core
         {
             this.windows = new List<V>();
             this.dataContext = dataContext;
+            this.token = new object();
         }
 
         #endregion
@@ -90,7 +92,14 @@ namespace TeamBuildScreen.Core
 
             this.hostWindow = new HwndSource(sourceParams);
             this.hostWindow.Disposed += OnHostWindowDisposed;
-            this.hostWindow.RootVisual = (Visual)preview.FindName(rootVisualPropertyName);
+
+            lock (this.token)
+            {
+                if (this.hostWindow != null)
+                {
+                    this.hostWindow.RootVisual = (Visual)preview.FindName(rootVisualPropertyName);
+                }
+            }
         }
 
         private V CreateWindow(System.Windows.Forms.Screen display, bool showCursor)
@@ -139,7 +148,11 @@ namespace TeamBuildScreen.Core
         {
             if (this.hostWindow != null)
             {
-                this.hostWindow.Dispose();
+                lock (this.token)
+                {
+                    this.hostWindow.Dispose();
+                    this.hostWindow = null;
+                }
             }
         }
 
