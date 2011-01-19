@@ -28,7 +28,7 @@
         "Entry"
         {
         "MsmKey" = "8:_0A6166C8F23B11E8AC3895C1633FBAAB"
-        "OwnerKey" = "8:_88E5F2D6BA8A34D9765A0D855BDEC14B"
+        "OwnerKey" = "8:_E904771D3CE9B3064F80124497C80412"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -112,7 +112,7 @@
         "Entry"
         {
         "MsmKey" = "8:_24C6BDCAD4405AB60B7715CBBEF0EA7A"
-        "OwnerKey" = "8:_88E5F2D6BA8A34D9765A0D855BDEC14B"
+        "OwnerKey" = "8:_E904771D3CE9B3064F80124497C80412"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -161,6 +161,36 @@
         {
         "MsmKey" = "8:_511D1252ADE245A4A41490635E493C2D"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_550231C277F649BA865DFF588A3AC918"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5F0903B78B36887971052F616763C4A0"
+        "OwnerKey" = "8:_511D1252ADE245A4A41490635E493C2D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5F0903B78B36887971052F616763C4A0"
+        "OwnerKey" = "8:_550231C277F649BA865DFF588A3AC918"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5F0903B78B36887971052F616763C4A0"
+        "OwnerKey" = "8:_88074E91EDD94DE5BD1B88A51F3A72C6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5F0903B78B36887971052F616763C4A0"
+        "OwnerKey" = "8:_E904771D3CE9B3064F80124497C80412"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -256,7 +286,7 @@
         "Entry"
         {
         "MsmKey" = "8:_88C906130614B85EDF1C29305D3141D7"
-        "OwnerKey" = "8:_88E5F2D6BA8A34D9765A0D855BDEC14B"
+        "OwnerKey" = "8:_E904771D3CE9B3064F80124497C80412"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -275,36 +305,6 @@
         {
         "MsmKey" = "8:_88C906130614B85EDF1C29305D3141D7"
         "OwnerKey" = "8:_511D1252ADE245A4A41490635E493C2D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_88E5F2D6BA8A34D9765A0D855BDEC14B"
-        "OwnerKey" = "8:_511D1252ADE245A4A41490635E493C2D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8B5B1F7E906603EC1C6BDC0661483476"
-        "OwnerKey" = "8:_511D1252ADE245A4A41490635E493C2D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8B5B1F7E906603EC1C6BDC0661483476"
-        "OwnerKey" = "8:_88074E91EDD94DE5BD1B88A51F3A72C6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8B5B1F7E906603EC1C6BDC0661483476"
-        "OwnerKey" = "8:_88E5F2D6BA8A34D9765A0D855BDEC14B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A84C4259B0A64803B7F41DECAAF69FEC"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -388,7 +388,7 @@
         "Entry"
         {
         "MsmKey" = "8:_D0CCDB51ECC3176B2DA293896FA2EA85"
-        "OwnerKey" = "8:_88E5F2D6BA8A34D9765A0D855BDEC14B"
+        "OwnerKey" = "8:_E904771D3CE9B3064F80124497C80412"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -437,6 +437,18 @@
         {
         "MsmKey" = "8:_D539B383EE489E74817143E2A3BF54F8"
         "OwnerKey" = "8:_511D1252ADE245A4A41490635E493C2D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E904771D3CE9B3064F80124497C80412"
+        "OwnerKey" = "8:_511D1252ADE245A4A41490635E493C2D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E904771D3CE9B3064F80124497C80412"
+        "OwnerKey" = "8:_550231C277F649BA865DFF588A3AC918"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -484,7 +496,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A84C4259B0A64803B7F41DECAAF69FEC"
+        "OwnerKey" = "8:_88C906130614B85EDF1C29305D3141D7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -521,12 +533,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B665C716C4CF2FA0546D2E154BA85F57"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_88C906130614B85EDF1C29305D3141D7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -604,13 +610,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_88E5F2D6BA8A34D9765A0D855BDEC14B"
+        "OwnerKey" = "8:_E904771D3CE9B3064F80124497C80412"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8B5B1F7E906603EC1C6BDC0661483476"
+        "OwnerKey" = "8:_5F0903B78B36887971052F616763C4A0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_550231C277F649BA865DFF588A3AC918"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -710,7 +722,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:3.5.30729     "
+                "FrameworkVersion" = "8:3.5.30729      "
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=76617"
                 }
@@ -924,6 +936,68 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_550231C277F649BA865DFF588A3AC918"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:TeamBuildScreen.SaverTfs2008, Version=1.3.0.0, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_550231C277F649BA865DFF588A3AC918"
+                    {
+                    "Name" = "8:TBS2008.scr"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\TeamBuildScreen.SaverTfs2008\\bin\\TBS2008.scr"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_93723E4D48C947D9BCA090AB2E292826"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5F0903B78B36887971052F616763C4A0"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:TeamBuildScreen.Core, Version=1.3.0.0, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_5F0903B78B36887971052F616763C4A0"
+                    {
+                    "Name" = "8:TeamBuildScreen.Core.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:TeamBuildScreen.Core.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_951F4562C8C343399DCF0F57D5ED2FE2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_618DE6BD94A3271B5701BD36424AB13C"
             {
             "AssemblyRegister" = "3:1"
@@ -1055,11 +1129,6 @@
             "AssemblyAsmDisplayName" = "8:TeamBuildScreen.Tfs2008, Version=1.3.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_88E5F2D6BA8A34D9765A0D855BDEC14B"
-                    {
-                    "Name" = "8:TeamBuildScreen.Tfs2008.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:TeamBuildScreen.Tfs2008.dll"
             "TargetName" = "8:"
@@ -1086,11 +1155,6 @@
             "AssemblyAsmDisplayName" = "8:TeamBuildScreen.Core, Version=1.3.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_8B5B1F7E906603EC1C6BDC0661483476"
-                    {
-                    "Name" = "8:TeamBuildScreen.Core.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:TeamBuildScreen.Core.dll"
             "TargetName" = "8:"
@@ -1108,37 +1172,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A84C4259B0A64803B7F41DECAAF69FEC"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TeamBuildScreen.Saver2008, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_A84C4259B0A64803B7F41DECAAF69FEC"
-                    {
-                    "Name" = "8:TBS2008.scr"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\TeamBuildScreen.Saver2008\\bin\\TBS2008.scr"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_93723E4D48C947D9BCA090AB2E292826"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B665C716C4CF2FA0546D2E154BA85F57"
@@ -1293,6 +1326,37 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E904771D3CE9B3064F80124497C80412"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:TeamBuildScreen.Tfs2008, Version=1.3.0.0, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_E904771D3CE9B3064F80124497C80412"
+                    {
+                    "Name" = "8:TeamBuildScreen.Tfs2008.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:TeamBuildScreen.Tfs2008.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_951F4562C8C343399DCF0F57D5ED2FE2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -2091,7 +2155,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_511D1252ADE245A4A41490635E493C2D"
             {
-            "SourcePath" = "8:..\\TeamBuildScreen.DesktopTfs2008\\obj\\x86\\Debug\\TeamBuildScreen.DesktopTfs2008.exe"
+            "SourcePath" = "8:..\\TeamBuildScreen.DesktopTfs2008\\obj\\x86\\Release\\TeamBuildScreen.DesktopTfs2008.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_951F4562C8C343399DCF0F57D5ED2FE2"
@@ -2119,7 +2183,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_88074E91EDD94DE5BD1B88A51F3A72C6"
             {
-            "SourcePath" = "8:..\\TeamBuildScreen.Tfs2008\\obj\\x86\\Debug\\TeamBuildScreen.Tfs2008.dll"
+            "SourcePath" = "8:..\\TeamBuildScreen.Tfs2008\\obj\\x86\\Release\\TeamBuildScreen.Tfs2008.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_93723E4D48C947D9BCA090AB2E292826"
@@ -2147,7 +2211,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B9BB1D62AE91415FB9444D4D058C0296"
             {
-            "SourcePath" = "8:..\\TeamBuildScreen.Core\\obj\\x86\\Debug\\TeamBuildScreen.Core.dll"
+            "SourcePath" = "8:..\\TeamBuildScreen.Core\\obj\\x86\\Release\\TeamBuildScreen.Core.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_951F4562C8C343399DCF0F57D5ED2FE2"

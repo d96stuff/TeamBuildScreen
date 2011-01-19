@@ -36,7 +36,6 @@ namespace TeamBuildScreen.Core
         private HwndSource hostWindow;
         private IList<V> windows;
         private VM dataContext;
-        private object token;
 
         #endregion
 
@@ -46,7 +45,6 @@ namespace TeamBuildScreen.Core
         {
             this.windows = new List<V>();
             this.dataContext = dataContext;
-            this.token = new object();
         }
 
         #endregion
@@ -90,16 +88,18 @@ namespace TeamBuildScreen.Core
             sourceParams.ParentWindow = previewPointer;
             sourceParams.WindowStyle = (int)(Interop.WindowStyles.WindowStyleVisible | Interop.WindowStyles.WindowStyleChild | Interop.WindowStyles.WindowStyleClipChildren);
 
-            this.hostWindow = new HwndSource(sourceParams);
-            this.hostWindow.Disposed += OnHostWindowDisposed;
-
-            lock (this.token)
+            try
             {
-                if (this.hostWindow != null)
-                {
-                    this.hostWindow.RootVisual = (Visual)preview.FindName(rootVisualPropertyName);
-                }
+                // at this point a window with the specified handle may no longer exist, so we wrap this in a try-catch
+                this.hostWindow = new HwndSource(sourceParams);
             }
+            catch (Exception)
+            {
+                return;
+            }
+
+            this.hostWindow.Disposed += OnHostWindowDisposed;
+            this.hostWindow.RootVisual = (Visual)preview.FindName(rootVisualPropertyName);
         }
 
         private V CreateWindow(System.Windows.Forms.Screen display, bool showCursor)
@@ -148,11 +148,8 @@ namespace TeamBuildScreen.Core
         {
             if (this.hostWindow != null)
             {
-                lock (this.token)
-                {
-                    this.hostWindow.Dispose();
-                    this.hostWindow = null;
-                }
+                this.hostWindow.Dispose();
+                this.hostWindow = null;
             }
         }
 
