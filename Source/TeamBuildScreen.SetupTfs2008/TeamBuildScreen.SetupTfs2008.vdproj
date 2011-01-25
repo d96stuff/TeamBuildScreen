@@ -28,7 +28,7 @@
         "Entry"
         {
         "MsmKey" = "8:_0A6166C8F23B11E8AC3895C1633FBAAB"
-        "OwnerKey" = "8:_E904771D3CE9B3064F80124497C80412"
+        "OwnerKey" = "8:_F0892F5979A9787FA49D69AC94B3A0E2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -112,7 +112,7 @@
         "Entry"
         {
         "MsmKey" = "8:_24C6BDCAD4405AB60B7715CBBEF0EA7A"
-        "OwnerKey" = "8:_E904771D3CE9B3064F80124497C80412"
+        "OwnerKey" = "8:_F0892F5979A9787FA49D69AC94B3A0E2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -167,30 +167,6 @@
         {
         "MsmKey" = "8:_550231C277F649BA865DFF588A3AC918"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5F0903B78B36887971052F616763C4A0"
-        "OwnerKey" = "8:_511D1252ADE245A4A41490635E493C2D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5F0903B78B36887971052F616763C4A0"
-        "OwnerKey" = "8:_550231C277F649BA865DFF588A3AC918"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5F0903B78B36887971052F616763C4A0"
-        "OwnerKey" = "8:_88074E91EDD94DE5BD1B88A51F3A72C6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5F0903B78B36887971052F616763C4A0"
-        "OwnerKey" = "8:_E904771D3CE9B3064F80124497C80412"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -286,7 +262,7 @@
         "Entry"
         {
         "MsmKey" = "8:_88C906130614B85EDF1C29305D3141D7"
-        "OwnerKey" = "8:_E904771D3CE9B3064F80124497C80412"
+        "OwnerKey" = "8:_F0892F5979A9787FA49D69AC94B3A0E2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -388,7 +364,7 @@
         "Entry"
         {
         "MsmKey" = "8:_D0CCDB51ECC3176B2DA293896FA2EA85"
-        "OwnerKey" = "8:_E904771D3CE9B3064F80124497C80412"
+        "OwnerKey" = "8:_F0892F5979A9787FA49D69AC94B3A0E2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -441,18 +417,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E904771D3CE9B3064F80124497C80412"
-        "OwnerKey" = "8:_511D1252ADE245A4A41490635E493C2D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E904771D3CE9B3064F80124497C80412"
-        "OwnerKey" = "8:_550231C277F649BA865DFF588A3AC918"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_EE87E1158824429DACC65AE9365A97FB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -489,6 +453,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F0892F5979A9787FA49D69AC94B3A0E2"
+        "OwnerKey" = "8:_550231C277F649BA865DFF588A3AC918"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F0892F5979A9787FA49D69AC94B3A0E2"
+        "OwnerKey" = "8:_511D1252ADE245A4A41490635E493C2D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_F2DB88E68E6B4B9D9BE612A8C3D60EFB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -502,13 +478,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8B5B1F7E906603EC1C6BDC0661483476"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_88E5F2D6BA8A34D9765A0D855BDEC14B"
+        "OwnerKey" = "8:_511D1252ADE245A4A41490635E493C2D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -550,6 +520,18 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_8B5B1F7E906603EC1C6BDC0661483476"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_88E5F2D6BA8A34D9765A0D855BDEC14B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_659C2FEF2975096744B06A12716BB36B"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -563,6 +545,24 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_618DE6BD94A3271B5701BD36424AB13C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_550231C277F649BA865DFF588A3AC918"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F0892F5979A9787FA49D69AC94B3A0E2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F0892F5979A9787FA49D69AC94B3A0E2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -622,19 +622,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_88074E91EDD94DE5BD1B88A51F3A72C6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_511D1252ADE245A4A41490635E493C2D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E904771D3CE9B3064F80124497C80412"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5F0903B78B36887971052F616763C4A0"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -734,7 +728,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:3.5.30729       "
+                "FrameworkVersion" = "8:3.5.30729        "
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=76617"
                 }
@@ -977,37 +971,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5F0903B78B36887971052F616763C4A0"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TeamBuildScreen.Core, Version=1.3.0.0, Culture=neutral, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_5F0903B78B36887971052F616763C4A0"
-                    {
-                    "Name" = "8:TeamBuildScreen.Core.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:TeamBuildScreen.Core.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_951F4562C8C343399DCF0F57D5ED2FE2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_618DE6BD94A3271B5701BD36424AB13C"
@@ -1351,37 +1314,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E904771D3CE9B3064F80124497C80412"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TeamBuildScreen.Tfs2008, Version=1.3.0.0, Culture=neutral, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_E904771D3CE9B3064F80124497C80412"
-                    {
-                    "Name" = "8:TeamBuildScreen.Tfs2008.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:TeamBuildScreen.Tfs2008.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_951F4562C8C343399DCF0F57D5ED2FE2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EE87E1158824429DACC65AE9365A97FB"
             {
             "SourcePath" = "8:..\\TeamBuildScreen.Core\\tbs.ico"
@@ -1430,6 +1362,37 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F0892F5979A9787FA49D69AC94B3A0E2"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:TeamBuildScreen.Tfs2008, Version=1.3.0.0, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_F0892F5979A9787FA49D69AC94B3A0E2"
+                    {
+                    "Name" = "8:TeamBuildScreen.Tfs2008.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:TeamBuildScreen.Tfs2008.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_951F4562C8C343399DCF0F57D5ED2FE2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -1504,17 +1467,6 @@
                 {
                 }
             }
-            "{1525181F-901A-416C-8A58-119130FE478E}:_FC64565871A9443A8D18EE7A14A8B262"
-            {
-            "Name" = "8:#1921"
-            "AlwaysCreate" = "11:FALSE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Property" = "8:StartMenuFolder"
-                "Folders"
-                {
-                }
-            }
         }
         "LaunchCondition"
         {
@@ -1547,7 +1499,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Team Build Screen 2008"
         "ProductCode" = "8:{4502BC63-3D4B-4C27-88D9-F39BAD18EF60}"
-        "PackageCode" = "8:{F18FA070-CE64-4CB8-8402-6013AB990302}"
+        "PackageCode" = "8:{8325E483-3306-40A1-8C40-4A886C2E165F}"
         "UpgradeCode" = "8:{A0558686-D411-41E9-8371-ACE2ECDBB2DC}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1667,20 +1619,6 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_A6E60FEF4CDC4CA3B341EBDA745FD345"
-            {
-            "Name" = "8:Team Build Screen 2008"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_511D1252ADE245A4A41490635E493C2D"
-            "Folder" = "8:_FC64565871A9443A8D18EE7A14A8B262"
-            "WorkingFolder" = "8:_951F4562C8C343399DCF0F57D5ED2FE2"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E38C100E3B0F4781A488A2DC979ED1FE"
             {
             "Name" = "8:Team Build Screen 2008"

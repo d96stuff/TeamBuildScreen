@@ -15,24 +15,27 @@ namespace TeamBuildScreen.Tfs2008.Models
         {
             this.buildDetail = buildDetail;
 
-            IConfigurationSummary configurationSummary = InformationNodeConverters.GetConfigurationSummary(this.buildDetail, flavour, platform);
-
-            if (configurationSummary != null)
+            if (this.buildDetail != null)
             {
-                if (configurationSummary.TestSummaries.Count > 0)
+                IConfigurationSummary configurationSummary = InformationNodeConverters.GetConfigurationSummary(this.buildDetail, flavour, platform);
+
+                if (configurationSummary != null)
                 {
-                    ITestSummary testSummary = configurationSummary.TestSummaries[0];
+                    if (configurationSummary.TestSummaries.Count > 0)
+                    {
+                        ITestSummary testSummary = configurationSummary.TestSummaries[0];
 
-                    this.TestsFailed = testSummary.TestsFailed;
-                    this.TestsPassed = testSummary.TestsPassed;
-                    this.TestsTotal = testSummary.TestsTotal;
-                }
+                        this.TestsFailed = testSummary.TestsFailed;
+                        this.TestsPassed = testSummary.TestsPassed;
+                        this.TestsTotal = testSummary.TestsTotal;
+                    }
 
-                if (configurationSummary.CompilationSummaries.Count > 0)
-                {
-                    ICompilationSummary compilationSummary = configurationSummary.CompilationSummaries[0];
+                    if (configurationSummary.CompilationSummaries.Count > 0)
+                    {
+                        ICompilationSummary compilationSummary = configurationSummary.CompilationSummaries[0];
 
-                    this.HasWarnings = compilationSummary.CompilationWarnings > 0;
+                        this.HasWarnings = compilationSummary.CompilationWarnings > 0;
+                    }
                 }
             }
         }

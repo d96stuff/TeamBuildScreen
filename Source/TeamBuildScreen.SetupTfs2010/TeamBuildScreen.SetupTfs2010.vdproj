@@ -1451,17 +1451,6 @@
                 {
                 }
             }
-            "{1525181F-901A-416C-8A58-119130FE478E}:_6F9E1705F17F45388BF189574B90FC76"
-            {
-            "Name" = "8:#1921"
-            "AlwaysCreate" = "11:FALSE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Property" = "8:StartMenuFolder"
-                "Folders"
-                {
-                }
-            }
             "{1525181F-901A-416C-8A58-119130FE478E}:_E1CD705BF9B94255908C3EB71CEED251"
             {
             "Name" = "8:#1914"
@@ -1527,7 +1516,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Team Build Screen 2010"
         "ProductCode" = "8:{08B77CC2-6BE5-4D69-A420-5AC9F9AC2C80}"
-        "PackageCode" = "8:{48C92870-C721-4E05-A248-818DE15853AC}"
+        "PackageCode" = "8:{741A0C59-F3D8-4517-A665-A11B4C06333C}"
         "UpgradeCode" = "8:{6E3200AB-A3BC-4D7A-A939-ED0EC8691064}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1659,20 +1648,6 @@
             "Folder" = "8:_CE722A678438489384D851885EFDEE08"
             "WorkingFolder" = "8:_357106FB6A1445EDA66E41138813EFE2"
             "Icon" = "8:_0373EBA26CCC4472BFB8095FFA7E0E6C"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D55B45521CF1443B9014ED1F08D90524"
-            {
-            "Name" = "8:Team Build Screen 2010"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_F21D86946342448EB025220A4794EE2D"
-            "Folder" = "8:_6F9E1705F17F45388BF189574B90FC76"
-            "WorkingFolder" = "8:_357106FB6A1445EDA66E41138813EFE2"
-            "Icon" = "8:"
             "Feature" = "8:"
             }
         }
