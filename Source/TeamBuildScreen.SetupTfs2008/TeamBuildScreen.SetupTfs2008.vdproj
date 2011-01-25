@@ -502,6 +502,18 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_8B5B1F7E906603EC1C6BDC0661483476"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_88E5F2D6BA8A34D9765A0D855BDEC14B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_EFD91185F444885B012162BC837CBA56"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -551,6 +563,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_618DE6BD94A3271B5701BD36424AB13C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_550231C277F649BA865DFF588A3AC918"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -617,12 +635,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_5F0903B78B36887971052F616763C4A0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_550231C277F649BA865DFF588A3AC918"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -722,7 +734,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:3.5.30729      "
+                "FrameworkVersion" = "8:3.5.30729       "
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=76617"
                 }
@@ -1129,6 +1141,11 @@
             "AssemblyAsmDisplayName" = "8:TeamBuildScreen.Tfs2008, Version=1.3.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
+                    "_88E5F2D6BA8A34D9765A0D855BDEC14B"
+                    {
+                    "Name" = "8:TeamBuildScreen.Tfs2008.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:TeamBuildScreen.Tfs2008.dll"
             "TargetName" = "8:"
@@ -1155,6 +1172,11 @@
             "AssemblyAsmDisplayName" = "8:TeamBuildScreen.Core, Version=1.3.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
+                    "_8B5B1F7E906603EC1C6BDC0661483476"
+                    {
+                    "Name" = "8:TeamBuildScreen.Core.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:TeamBuildScreen.Core.dll"
             "TargetName" = "8:"
@@ -1437,6 +1459,28 @@
         }
         "Folder"
         {
+            "{1525181F-901A-416C-8A58-119130FE478E}:_0EB8FD7AC4454F2DBA7BC76333518618"
+            {
+            "Name" = "8:#1919"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:ProgramMenuFolder"
+                "Folders"
+                {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_A071EC988339415EA76BA2B651BE16AC"
+                    {
+                    "Name" = "8:Team Build Screen"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_516DBF5444ED4F6E9B48A19B9884B260"
+                        "Folders"
+                        {
+                        }
+                    }
+                }
+            }
             "{1525181F-901A-416C-8A58-119130FE478E}:_93723E4D48C947D9BCA090AB2E292826"
             {
             "Name" = "8:#1914"
@@ -1460,7 +1504,7 @@
                 {
                 }
             }
-            "{1525181F-901A-416C-8A58-119130FE478E}:_C52EC3B6435F4C5AA43C144657769BB3"
+            "{1525181F-901A-416C-8A58-119130FE478E}:_FC64565871A9443A8D18EE7A14A8B262"
             {
             "Name" = "8:#1921"
             "AlwaysCreate" = "11:FALSE"
@@ -1469,17 +1513,6 @@
             "Property" = "8:StartMenuFolder"
                 "Folders"
                 {
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_D7239DCE3B8B4E899335448DF023CEAD"
-                    {
-                    "Name" = "8:Team Build Screen"
-                    "AlwaysCreate" = "11:FALSE"
-                    "Condition" = "8:"
-                    "Transitive" = "11:FALSE"
-                    "Property" = "8:_516DBF5444ED4F6E9B48A19B9884B260"
-                        "Folders"
-                        {
-                        }
-                    }
                 }
             }
         }
@@ -1514,7 +1547,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Team Build Screen 2008"
         "ProductCode" = "8:{4502BC63-3D4B-4C27-88D9-F39BAD18EF60}"
-        "PackageCode" = "8:{98A11B41-326B-4A14-8C91-DD6C1DE44751}"
+        "PackageCode" = "8:{F18FA070-CE64-4CB8-8402-6013AB990302}"
         "UpgradeCode" = "8:{A0558686-D411-41E9-8371-ACE2ECDBB2DC}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1634,6 +1667,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_A6E60FEF4CDC4CA3B341EBDA745FD345"
+            {
+            "Name" = "8:Team Build Screen 2008"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_511D1252ADE245A4A41490635E493C2D"
+            "Folder" = "8:_FC64565871A9443A8D18EE7A14A8B262"
+            "WorkingFolder" = "8:_951F4562C8C343399DCF0F57D5ED2FE2"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E38C100E3B0F4781A488A2DC979ED1FE"
             {
             "Name" = "8:Team Build Screen 2008"
@@ -1643,7 +1690,7 @@
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_511D1252ADE245A4A41490635E493C2D"
-            "Folder" = "8:_D7239DCE3B8B4E899335448DF023CEAD"
+            "Folder" = "8:_A071EC988339415EA76BA2B651BE16AC"
             "WorkingFolder" = "8:_951F4562C8C343399DCF0F57D5ED2FE2"
             "Icon" = "8:_EE87E1158824429DACC65AE9365A97FB"
             "Feature" = "8:"
