@@ -190,6 +190,14 @@ namespace TeamBuildScreen.Core.Models
             }
         }
 
+        public string Description
+        {
+            get
+            {
+                return string.IsNullOrEmpty(this.TeamProject) ? this.DefinitionName : string.Format("{0}: {1}", this.TeamProject, this.DefinitionName);
+            }
+        }
+
         #endregion
 
         #region Methods

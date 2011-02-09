@@ -15,7 +15,6 @@ namespace TeamBuildScreen.Tfs2008.Models
     using Microsoft.TeamFoundation.Client;
     using Microsoft.TeamFoundation.VersionControl.Client;
     using TeamBuildScreen.Core.Models;
-    using System.Diagnostics;
 
     #endregion
 

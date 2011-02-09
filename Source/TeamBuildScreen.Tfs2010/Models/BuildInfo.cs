@@ -91,14 +91,7 @@ namespace TeamBuildScreen.Tfs2010.Models
         {
             get
             {
-                if (this.buildDetail != null)
-                {
-                    return this.buildDetail.RequestedFor;
-                }
-                else
-                {
-                    return string.Empty;
-                }
+                return this.buildDetail != null ? string.Format("Requested by {0}", this.buildDetail.RequestedFor) : string.Empty;
             }
         }
 

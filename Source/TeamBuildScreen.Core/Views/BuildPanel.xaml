@@ -113,7 +113,7 @@
                         </Grid.ColumnDefinitions>
                         <local:ScalingTextBlock Grid.Row="0" Text="{Binding Description}" />
                         <local:ScalingTextBlock Grid.Row="1" Text="{Binding Status, Converter={StaticResource BuildStatusStringConverter}}" />
-                        <local:ScalingTextBlock Grid.Row="2" Text="{Binding RequestedBy, StringFormat=Requested by {0}, TargetNullValue={x:Static sys:String.Empty}}" />
+                        <local:ScalingTextBlock Grid.Row="2" Text="{Binding RequestedBy}" />
                         <local:ScalingTextBlock Grid.Row="3" Text="{Binding StartedOn, StringFormat=Started on {0}, TargetNullValue={x:Static sys:String.Empty}}" />
                         <local:ScalingTextBlock Grid.Row="4" Text="{Binding CompletedOn, StringFormat=Completed on {0}, TargetNullValue={x:Static sys:String.Empty}}" />
                         <local:ScalingTextBlock Grid.Row="5" Text="{Binding TestResults, TargetNullValue={x:Static sys:String.Empty}}" />
