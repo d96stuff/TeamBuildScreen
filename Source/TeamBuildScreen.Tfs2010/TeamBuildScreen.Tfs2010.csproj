@@ -55,7 +55,7 @@
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Models\BuildInfo.cs" />
+    <Compile Include="Models\Tfs2010BuildInfo.cs" />
     <Compile Include="Models\BuildServerService.cs" />
     <Compile Include="Models\BuildStatusConverter.cs" />
     <Compile Include="Models\DomainProjectPickerAdapter.cs" />

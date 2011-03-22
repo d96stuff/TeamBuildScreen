@@ -9,10 +9,12 @@ using TeamBuildScreen.Core.Models;
 
 namespace TeamBuildScreen.Hudson.Models
 {
+    using TeamBuildScreen.Hudson.Models.Tasks.JUnit;
+
     public class HudsonBuildServerService : BuildServerServiceBase, IBuildServerService
     {
         private IDictionary<string, IBuildInfo> builds;
-        private hudson hudson;
+        private Hudson hudson;
         private string hudsonUri;
 
         /// <summary>
@@ -21,18 +23,24 @@ namespace TeamBuildScreen.Hudson.Models
         public HudsonBuildServerService()
             : base(30000)
         {
-            this.Init();
+            this.Init(7);
         }
 
-        public HudsonBuildServerService(int period)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HudsonBuildServerService"/> class.
+        /// </summary>
+        /// <param name="period">The interval between queries (in milliseconds).</param>
+        /// <param name="staleThreshold">The number of days elapsed before a build is considered 'stale'.</param>
+        public HudsonBuildServerService(int period, int staleThreshold)
             : base(period)
         {
-            this.Init();
+            this.Init(staleThreshold);
         }
 
-        private void Init()
+        private void Init(int staleThreshold)
         {
             this.builds = new Dictionary<string, IBuildInfo>();
+            this.StaleThreshold = staleThreshold;
         }
 
         #region Properties
@@ -55,9 +63,9 @@ namespace TeamBuildScreen.Hudson.Models
                     var client = new WebClient();
                     var hudsonString = client.DownloadString(value + "api/xml");
                     var reader = new StringReader(hudsonString);
-                    this.hudson = new hudson();
+                    this.hudson = new Hudson();
                     var serializer = new XmlSerializer(hudson.GetType());
-                    this.hudson = (hudson)serializer.Deserialize(reader);
+                    this.hudson = (Hudson)serializer.Deserialize(reader);
                     this.hudsonUri = value;
                 }
             }
@@ -75,12 +83,11 @@ namespace TeamBuildScreen.Hudson.Models
             lock (this.builds)
             {
                 var keys = this.builds.Keys.ToArray();
+
                 // update the IBuildInfo associated with each build
                 foreach (var name in keys)
                 {
-                    var build = GetBuild(name);
-                    var testResults = this.GetTestResultsForBuild(name, build.number);
-                    var buildInfo = new HudsonBuildInfo(build, testResults);
+                    var buildInfo = this.GetBuildInfo(name);
 
                     this.builds[name] = buildInfo;
                 }
@@ -89,18 +96,27 @@ namespace TeamBuildScreen.Hudson.Models
             this.OnQueryCompleted();
         }
 
-        private freeStyleBuild GetBuild(string name)
+        private HudsonBuildInfo GetBuildInfo(string name)
         {
-            WebClient client = new WebClient();
+            var build = this.GetBuild(name);
+            var testResults = this.GetTestResultsForBuild(name, build.Number);
+
+            return new HudsonBuildInfo(build, testResults);
+        }
+
+        private FreeStyleBuild GetBuild(string name)
+        {
+            var client = new WebClient();
             var buildString = client.DownloadString(this.hudsonUri + "job/" + Uri.EscapeUriString(name) + "/lastBuild/api/xml");
-            StringReader reader = new StringReader(buildString);
-            freeStyleBuild build = new freeStyleBuild();
-            XmlSerializer serializer = new XmlSerializer(build.GetType());
-            build = (freeStyleBuild)serializer.Deserialize(reader);
+            var reader = new StringReader(buildString);
+            var build = new FreeStyleBuild();
+            var serializer = new XmlSerializer(build.GetType());
+            build = (FreeStyleBuild)serializer.Deserialize(reader);
+
             return build;
         }
 
-        private testResult GetTestResultsForBuild(string name, string number)
+        private TestResult GetTestResultsForBuild(string name, int number)
         {
             WebRequest request = HttpWebRequest.Create(this.hudsonUri + "job/" + Uri.EscapeUriString(name) + "/" + number + "/testReport/api/xml");
             request.Method = "GET";
@@ -114,9 +130,9 @@ namespace TeamBuildScreen.Hudson.Models
                     {
                         var stream = response.GetResponseStream();
                         var reader = new StreamReader(stream);
-                        var testResult = new testResult();
+                        var testResult = new TestResult();
                         var serializer = new XmlSerializer(testResult.GetType());
-                        testResult = (testResult)serializer.Deserialize(reader);
+                        testResult = (TestResult)serializer.Deserialize(reader);
 
                         return testResult;
                     }
@@ -136,7 +152,7 @@ namespace TeamBuildScreen.Hudson.Models
 
                 ParseBuild(key, out teamProject, out definitionName);
 
-                this.builds.Add(definitionName, null);
+                this.builds.Add(definitionName, this.GetBuildInfo(definitionName));
             }
         }
 
@@ -155,7 +171,12 @@ namespace TeamBuildScreen.Hudson.Models
 
             ParseBuild(key, out teamProject, out definitionName);
 
-            return this.builds[definitionName];
+            if (this.builds.ContainsKey(definitionName))
+            {
+                return this.builds[definitionName];
+            }
+
+            return BuildInfo.Empty;
         }
 
         public bool IsQueued(string key)
@@ -166,9 +187,11 @@ namespace TeamBuildScreen.Hudson.Models
 
         public void LoadBuilds(ICollection<BuildSetting> builds)
         {
-            foreach (var job in this.hudson.job)
+            builds.Clear();
+
+            foreach (var job in this.hudson.Job.Cast<Job>())
             {
-                builds.Add(new BuildSetting { DefinitionName = job.name });
+                builds.Add(new BuildSetting { DefinitionName = job.Name });
             }
         }
     }

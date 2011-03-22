@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Jim Liddell" file="Build.cs">
+// <copyright file="BallColor.cs" company="Jim Liddell">
 //   Copyright © 2011 Jim Liddell. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -7,20 +7,23 @@
 namespace TeamBuildScreen.Hudson.Models
 {
     using System;
-    using System.CodeDom.Compiler;
-    using System.ComponentModel;
-    using System.Diagnostics;
     using System.Xml.Serialization;
 
-    using TeamBuildScreen.Hudson.Models;
-
-    [XmlInclude(typeof(FreeStyleBuild))]
-    [GeneratedCode("xsd", "4.0.30319.1")]
     [Serializable]
-    [DebuggerStepThrough]
-    [DesignerCategory("code")]
-    [XmlType(TypeName = "hudson.model.Build")]
-    public class Build : AbstractBuild
+    [XmlType(TypeName = "hudson.model.BallColor")]
+    public enum BallColor
     {
+        red, 
+        red_anime, 
+        yellow, 
+        yellow_anime, 
+        blue, 
+        blue_anime, 
+        grey, 
+        grey_anime, 
+        disabled, 
+        disabled_anime, 
+        aborted, 
+        aborted_anime, 
     }
 }

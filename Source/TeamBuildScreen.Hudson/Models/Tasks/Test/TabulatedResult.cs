@@ -1,26 +1,23 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Jim Liddell" file="Build.cs">
+// <copyright file="TabulatedResult.cs" company="Jim Liddell">
 //   Copyright © 2011 Jim Liddell. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace TeamBuildScreen.Hudson.Models
+namespace TeamBuildScreen.Hudson.Models.Tasks.Test
 {
     using System;
-    using System.CodeDom.Compiler;
     using System.ComponentModel;
     using System.Diagnostics;
     using System.Xml.Serialization;
 
-    using TeamBuildScreen.Hudson.Models;
-
-    [XmlInclude(typeof(FreeStyleBuild))]
-    [GeneratedCode("xsd", "4.0.30319.1")]
+    [XmlInclude(typeof(MetaTabulatedResult))]
+    [XmlInclude(typeof(JUnit.TestResult))]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategory("code")]
-    [XmlType(TypeName = "hudson.model.Build")]
-    public class Build : AbstractBuild
+    [XmlType(TypeName = "hudson.tasks.test.TabulatedResult")]
+    public class TabulatedResult : TestResult
     {
     }
 }

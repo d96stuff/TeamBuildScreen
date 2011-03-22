@@ -110,13 +110,18 @@ namespace TeamBuildScreen.Tfs2010.Models
             string teamProject;
             string definitionName;
 
-            BuildServerService.ParseBuild(key, out teamProject, out definitionName);
+            ParseBuild(key, out teamProject, out definitionName);
 
             var buildDetail = this.builds.SingleOrDefault(x =>
                 x.Key.DefinitionSpec.Name == definitionName &&
                 x.Key.DefinitionSpec.TeamProject == teamProject).Value;
 
-            return new BuildInfo(buildDetail, configuration, platform);
+            if (buildDetail != null)
+            {
+                return new Tfs2010BuildInfo(buildDetail, configuration, platform);
+            }
+
+            return BuildInfo.Empty;
         }
 
         /// <summary>

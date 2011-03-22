@@ -49,12 +49,47 @@
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Models\AbstractBuild.cs" />
+    <Compile Include="Models\AbstractItem.cs" />
+    <Compile Include="Models\AbstractProject.cs" />
+    <Compile Include="Models\Actionable.cs" />
+    <Compile Include="Models\BallColor.cs" />
     <Compile Include="Models\Build.cs" />
-    <Compile Include="Models\HudsonBuildServerService.cs" />
+    <Compile Include="Models\FreeStyleBuild.cs" />
+    <Compile Include="Models\HealthReport.cs" />
     <Compile Include="Models\Hudson.cs" />
+    <Compile Include="Models\HudsonBuildServerService.cs" />
     <Compile Include="Models\HudsonDomainProjectPicker.cs" />
     <Compile Include="Models\HudsonBuildInfo.cs" />
-    <Compile Include="Models\TestResult.cs" />
+    <Compile Include="Models\Job.cs" />
+    <Compile Include="Models\JobProperty.cs" />
+    <Compile Include="Models\Label.cs" />
+    <Compile Include="Models\Labels\LabelAtom.cs" />
+    <Compile Include="Models\Labels\LabelAtomProperty.cs" />
+    <Compile Include="Models\LoadStatistics.cs" />
+    <Compile Include="Models\MultiStageTimeSeries.cs" />
+    <Compile Include="Models\Node.cs" />
+    <Compile Include="Models\NodeMode.cs" />
+    <Compile Include="Models\OverallLoadStatistics.cs" />
+    <Compile Include="Models\QueueItem.cs" />
+    <Compile Include="Models\Run.cs" />
+    <Compile Include="Models\RunArtifact.cs" />
+    <Compile Include="Models\Scm\ChangeLogSet.cs" />
+    <Compile Include="Models\Scm\RepositoryBrowser.cs" />
+    <Compile Include="Models\Scm\Scm.cs" />
+    <Compile Include="Models\Tasks\JUnit\CaseResult.cs" />
+    <Compile Include="Models\Tasks\JUnit\CaseResultStatus.cs" />
+    <Compile Include="Models\Tasks\JUnit\SuiteResult.cs" />
+    <Compile Include="Models\Tasks\JUnit\TestObject.cs" />
+    <Compile Include="Models\Tasks\JUnit\TestResult.cs" />
+    <Compile Include="Models\Tasks\Test\MetaTabulatedResult.cs" />
+    <Compile Include="Models\Tasks\Test\TabulatedResult.cs" />
+    <Compile Include="Models\Tasks\Test\TestObject.cs" />
+    <Compile Include="Models\Tasks\Test\TestResult.cs" />
+    <Compile Include="Models\TimeSeries.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserProperty.cs" />
+    <Compile Include="Models\View.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\SelectHudsonViewModel.cs" />
     <Compile Include="Views\SelectHudson.xaml.cs">
@@ -73,6 +108,7 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

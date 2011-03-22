@@ -1,26 +1,24 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Jim Liddell" file="Build.cs">
+// <copyright file="LabelAtomProperty.cs" company="Jim Liddell">
 //   Copyright © 2011 Jim Liddell. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace TeamBuildScreen.Hudson.Models
+namespace TeamBuildScreen.Hudson.Models.Labels
 {
     using System;
-    using System.CodeDom.Compiler;
     using System.ComponentModel;
     using System.Diagnostics;
     using System.Xml.Serialization;
 
-    using TeamBuildScreen.Hudson.Models;
-
-    [XmlInclude(typeof(FreeStyleBuild))]
-    [GeneratedCode("xsd", "4.0.30319.1")]
+    /// <summary>
+    /// The label atom property.
+    /// </summary>
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategory("code")]
-    [XmlType(TypeName = "hudson.model.Build")]
-    public class Build : AbstractBuild
+    [XmlType(TypeName = "hudson.model.labels.LabelAtomProperty")]
+    public class LabelAtomProperty
     {
     }
 }

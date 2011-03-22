@@ -1,26 +1,29 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Jim Liddell" file="Build.cs">
+// <copyright file="TestObject.cs" company="Jim Liddell">
 //   Copyright © 2011 Jim Liddell. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace TeamBuildScreen.Hudson.Models
+namespace TeamBuildScreen.Hudson.Models.Tasks.JUnit
 {
     using System;
-    using System.CodeDom.Compiler;
     using System.ComponentModel;
     using System.Diagnostics;
     using System.Xml.Serialization;
 
-    using TeamBuildScreen.Hudson.Models;
+    using TeamBuildScreen.Hudson.Models.Tasks.Test;
 
-    [XmlInclude(typeof(FreeStyleBuild))]
-    [GeneratedCode("xsd", "4.0.30319.1")]
+    [XmlInclude(typeof(Test.TestObject))]
+    [XmlInclude(typeof(Test.TestResult))]
+    [XmlInclude(typeof(TabulatedResult))]
+    [XmlInclude(typeof(MetaTabulatedResult))]
+    [XmlInclude(typeof(TestResult))]
+    [XmlInclude(typeof(CaseResult))]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategory("code")]
-    [XmlType(TypeName = "hudson.model.Build")]
-    public class Build : AbstractBuild
+    [XmlType(TypeName = "hudson.tasks.junit.TestObject")]
+    public class TestObject
     {
     }
 }

@@ -1,95 +1,116 @@
 ﻿using System.Globalization;
-using System.Linq;
 using TeamBuildScreen.Core.Models;
 
 namespace TeamBuildScreen.Hudson.Models
 {
     using System;
+    using System.Xml;
 
-    public class HudsonBuildInfo : IBuildInfo
+    using TeamBuildScreen.Hudson.Models.Tasks.JUnit;
+
+    public class HudsonBuildInfo : BuildInfo, IBuildInfo
     {
         private static readonly DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0,
                                                       DateTimeKind.Utc);
-        private readonly freeStyleBuild hudsonBuild;
-        private readonly testResult testResult;
+        private readonly FreeStyleBuild hudsonBuild;
+        private readonly TestResult testResult;
 
-        public HudsonBuildInfo(freeStyleBuild hudsonBuild, testResult testResult)
+        public HudsonBuildInfo(FreeStyleBuild hudsonBuild, TestResult testResult)
         {
             this.hudsonBuild = hudsonBuild;
             this.testResult = testResult;
+
+            if (this.testResult != null)
+            {
+                this.TestsFailed = this.testResult.FailCount;
+                this.TestsPassed = this.testResult.PassCount;
+
+                int skipped = this.testResult.SkipCount;
+
+                this.TestsTotal = skipped+ this.TestsFailed + this.TestsPassed;
+            }
         }
 
         public bool BuildFinished
         {
-            get { return !bool.Parse(this.hudsonBuild.building); }
+            get
+            {
+                if (this.hudsonBuild != null)
+                {
+                    return !this.hudsonBuild.Building;
+                }
+
+                return false;
+            }
         }
 
         public DateTime FinishTime
         {
-            get { return this.StartTime.AddMilliseconds(long.Parse(this.hudsonBuild.duration)); }
+            get
+            {
+                if (this.hudsonBuild != null)
+                {
+                    return this.StartTime.AddMilliseconds(this.hudsonBuild.Duration);
+                }
+
+                return DateTime.MinValue;
+            }
         }
 
         public BuildStatus Status
         {
-            get { return this.GetBuildStatusFromString(this.hudsonBuild.result); }
+            get
+            {
+                if (this.hudsonBuild != null)
+                {
+                    return !this.BuildFinished
+                               ? BuildStatus.InProgress
+                               : GetBuildStatusFromResult(this.hudsonBuild.Result);
+                }
+
+                return BuildStatus.NotStarted;
+            }
         }
 
         public string RequestedFor
         {
             get
             {
-                var cause = this.hudsonBuild.action.FirstOrDefault(a => a.cause != null);
-
-                if (cause != null)
+                if (this.hudsonBuild != null)
                 {
-                    return cause.cause.First().shortDescription;
+                    if (this.hudsonBuild.Culprit == null || this.hudsonBuild.Culprit.Length == 0)
+                    {
+                        return "anonymous";
+                    }
+
+                    return this.hudsonBuild.Culprit[0].FullName;
                 }
 
-                return null;
+                return string.Empty;
             }
         }
 
         public DateTime StartTime
         {
-            get { return Epoch.AddSeconds(long.Parse(this.hudsonBuild.timestamp.Substring(0, 10), CultureInfo.InvariantCulture)); }
-        }
-
-        public int? TestsFailed
-        {
-            get { return this.testResult == null ? (int?)null : int.Parse(this.testResult.failCount); }
-        }
-
-        public int? TestsPassed
-        {
-            get { return this.testResult == null ? (int?)null : int.Parse(this.testResult.passCount); }
-        }
-
-        public int? TestsTotal
-        {
             get
             {
-                if (this.testResult == null)
+                if (this.hudsonBuild != null)
                 {
-                    return null;
+                    var timeStampInMilliseconds = this.hudsonBuild.Timestamp.ToString().Substring(0, 10);
+
+                    return Epoch.AddSeconds(long.Parse(timeStampInMilliseconds, CultureInfo.InvariantCulture));
                 }
 
-                int skipped = int.Parse(this.testResult.skipCount);
-
-                return skipped + this.TestsFailed + this.TestsPassed;
+                return DateTime.MinValue;
             }
         }
 
-        public bool HasWarnings
+        private static BuildStatus GetBuildStatusFromResult(object result)
         {
-            get { return false; }
-        }
+            var nodes = result as XmlNode[];
 
-        private BuildStatus GetBuildStatusFromString(string s)
-        {
-            switch (s)
+            switch (nodes[0].InnerText)
             {
-                case null:
-                    return BuildStatus.InProgress;
                 case "ABORTED":
                     return BuildStatus.Stopped;
                 case "FAILURE":
