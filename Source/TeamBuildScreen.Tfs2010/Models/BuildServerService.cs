@@ -11,9 +11,9 @@ namespace TeamBuildScreen.Tfs2010.Models
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading;
     using Microsoft.TeamFoundation.Build.Client;
     using Microsoft.TeamFoundation.Client;
+    using Microsoft.TeamFoundation.TestManagement.Client;
     using Microsoft.TeamFoundation.VersionControl.Client;
     using TeamBuildScreen.Core.Models;
 
@@ -43,6 +43,11 @@ namespace TeamBuildScreen.Tfs2010.Models
 
         private VersionControlServer versionControlServer;
 
+        /// <summary>
+        /// Provides access to test runs.
+        /// </summary>
+        private ITestManagementService testManagementService;
+
         #endregion
 
         #region Properties
@@ -60,9 +65,10 @@ namespace TeamBuildScreen.Tfs2010.Models
         {
             set
             {
-                TeamFoundationServer tfs = TeamFoundationServerFactory.GetServer(value);
-                this.buildServer = (IBuildServer)tfs.GetService(typeof(IBuildServer));
-                this.versionControlServer = (VersionControlServer)tfs.GetService(typeof(VersionControlServer));
+                var tfs = new TfsTeamProjectCollection(TfsTeamProjectCollection.GetFullyQualifiedUriForName(value));
+                this.buildServer = tfs.GetService<IBuildServer>();
+                this.versionControlServer = tfs.GetService<VersionControlServer>();
+                this.testManagementService = tfs.GetService<ITestManagementService>();
             }
         }
 
@@ -118,7 +124,10 @@ namespace TeamBuildScreen.Tfs2010.Models
 
             if (buildDetail != null)
             {
-                return new Tfs2010BuildInfo(buildDetail, configuration, platform);
+                var project = this.testManagementService.GetTeamProject(teamProject);
+                var testRuns = project.TestRuns.ByBuild(buildDetail.Uri);
+
+                return new Tfs2010BuildInfo(buildDetail, configuration, platform, testRuns);
             }
 
             return BuildInfo.Empty;
@@ -134,7 +143,7 @@ namespace TeamBuildScreen.Tfs2010.Models
             string teamProject;
             string definitionName;
 
-            BuildServerService.ParseBuild(key, out teamProject, out definitionName);
+            ParseBuild(key, out teamProject, out definitionName);
 
             return this.buildQueues.First(q => q.TeamProject == teamProject).QueuedBuilds.Any(b => b.BuildDefinition.Name == definitionName);
         }
@@ -150,9 +159,9 @@ namespace TeamBuildScreen.Tfs2010.Models
                 string teamProject;
                 string definitionName;
 
-                BuildServerService.ParseBuild(key, out teamProject, out definitionName);
+                ParseBuild(key, out teamProject, out definitionName);
 
-                IBuildDetailSpec buildDetailSpec = this.buildServer.CreateBuildDetailSpec(teamProject, definitionName);
+                var buildDetailSpec = this.buildServer.CreateBuildDetailSpec(teamProject, definitionName);
 
                 // only interested in the most recently started build
                 buildDetailSpec.MaxBuildsPerDefinition = 1;
@@ -163,7 +172,7 @@ namespace TeamBuildScreen.Tfs2010.Models
                 // check if a build queue exists for the team project
                 if (!this.buildQueues.Any(q => q.TeamProject == teamProject))
                 {
-                    IQueuedBuildsView view = this.buildServer.CreateQueuedBuildsView(teamProject);
+                    var view = this.buildServer.CreateQueuedBuildsView(teamProject);
 
                     // only interested in queued builds
                     view.StatusFilter = QueueStatus.Queued;
@@ -189,13 +198,13 @@ namespace TeamBuildScreen.Tfs2010.Models
         {
             builds.Clear();
 
-            TeamProject[] teamProjects = this.versionControlServer.GetAllTeamProjects(true);
+            var teamProjects = this.versionControlServer.GetAllTeamProjects(true);
 
-            foreach (TeamProject project in teamProjects)
+            foreach (var project in teamProjects)
             {
                 IBuildDefinition[] projectBuilds = this.buildServer.QueryBuildDefinitions(project.Name);
 
-                foreach (IBuildDefinition definition in projectBuilds)
+                foreach (var definition in projectBuilds)
                 {
                     BuildSetting buildSettingDataModel = new BuildSetting()
                     {
@@ -221,7 +230,7 @@ namespace TeamBuildScreen.Tfs2010.Models
 
             lock (this.builds)
             {
-                IBuildDetailSpec[] buildDetailSpecs = (from b in this.builds select b.Key).ToArray();
+                var buildDetailSpecs = (from b in this.builds select b.Key).ToArray();
 
                 if (buildDetailSpecs.Count() == 0)
                 {
@@ -236,7 +245,7 @@ namespace TeamBuildScreen.Tfs2010.Models
                     results = this.buildServer.QueryBuilds(buildDetailSpecs);
 
                     // refresh build queueus
-                    foreach (IQueuedBuildsView buildQueue in this.buildQueues)
+                    foreach (var buildQueue in this.buildQueues)
                     {
                         buildQueue.Refresh(false);
                     }
@@ -257,7 +266,7 @@ namespace TeamBuildScreen.Tfs2010.Models
                     string definitionName = build.Key.DefinitionSpec.Name;
 
                     // select the first build that corresponds to this build detail spec, or null
-                    IBuildQueryResult result =
+                    var result =
                         results.FirstOrDefault(
                         x => x.Builds.Any(
                             b => b.BuildDefinition.TeamProject == teamProject &&

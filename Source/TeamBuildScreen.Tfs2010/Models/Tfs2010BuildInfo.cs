@@ -1,86 +1,38 @@
 ﻿namespace TeamBuildScreen.Tfs2010.Models
 {
-    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     using Microsoft.TeamFoundation.Build.Client;
+    using Microsoft.TeamFoundation.TestManagement.Client;
 
     using TeamBuildScreen.Core.Models;
 
-    using BuildStatus = TeamBuildScreen.Core.Models.BuildStatus;
-
     public class Tfs2010BuildInfo : BuildInfo
     {
-        private readonly IBuildDetail buildDetail;
-
-        public Tfs2010BuildInfo(IBuildDetail buildDetail, string flavour, string platform)
+        public Tfs2010BuildInfo(IBuildDetail buildDetail, string flavour, string platform, IEnumerable<ITestRun> testRuns)
         {
-            this.buildDetail = buildDetail;
+            this.Init(buildDetail, flavour, platform, testRuns);
+        }
 
-            IConfigurationSummary configurationSummary =
-                InformationNodeConverters.GetConfigurationSummary(this.buildDetail, flavour, platform);
+        private void Init(IBuildDetail buildDetail, string flavour, string platform, IEnumerable<ITestRun> testRuns)
+        {
+            this.TestsFailed = testRuns.Select(run => run.Statistics.FailedTests).Sum();
+            this.TestsPassed = testRuns.Select(run => run.Statistics.PassedTests).Sum();
+            this.TestsTotal = testRuns.Select(run => run.Statistics.TotalTests).Sum();
+
+            var configurationSummary = InformationNodeConverters.GetConfigurationSummary(buildDetail, flavour, platform);
 
             if (configurationSummary != null)
             {
-                if (configurationSummary.TestSummaries.Count > 0)
-                {
-                    ITestSummary testSummary = configurationSummary.TestSummaries[0];
-
-                    this.TestsFailed = testSummary.TestsFailed;
-                    this.TestsPassed = testSummary.TestsPassed;
-                    this.TestsTotal = testSummary.TestsTotal;
-                }
-
-                if (configurationSummary.CompilationSummaries.Count > 0)
-                {
-                    ICompilationSummary compilationSummary = configurationSummary.CompilationSummaries[0];
-
-                    this.HasWarnings = compilationSummary.CompilationWarnings > 0;
-                }
+                this.HasWarnings = configurationSummary.TotalCompilationWarnings > 0;
             }
+
+            this.BuildFinished = buildDetail.BuildFinished;
+            this.FinishTime = buildDetail.FinishTime;
+            this.Status = BuildStatusConverter.Convert(buildDetail.Status);
+            this.RequestedFor = buildDetail.RequestedFor;
+            this.StartTime = buildDetail.StartTime;
         }
-
-        #region IBuildInfo Members
-
-        public override bool BuildFinished
-        {
-            get
-            {
-                return this.buildDetail.BuildFinished;
-            }
-        }
-
-        public override DateTime FinishTime
-        {
-            get
-            {
-                return this.buildDetail.FinishTime;
-            }
-        }
-
-        public override BuildStatus Status
-        {
-            get
-            {
-                return BuildStatusConverter.Convert(this.buildDetail.Status);
-            }
-        }
-
-        public override string RequestedFor
-        {
-            get
-            {
-                return this.buildDetail.RequestedFor;
-            }
-        }
-
-        public override DateTime StartTime
-        {
-            get
-            {
-                return this.buildDetail.StartTime;
-            }
-        }
-
-        #endregion
     }
 }
