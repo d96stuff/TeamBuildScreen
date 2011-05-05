@@ -56,11 +56,13 @@
     <Compile Include="Models\BallColor.cs" />
     <Compile Include="Models\Build.cs" />
     <Compile Include="Models\FreeStyleBuild.cs" />
+    <Compile Include="Models\FreeStyleBuildProvider.cs" />
     <Compile Include="Models\HealthReport.cs" />
     <Compile Include="Models\Hudson.cs" />
     <Compile Include="Models\HudsonBuildServerService.cs" />
     <Compile Include="Models\HudsonDomainProjectPicker.cs" />
     <Compile Include="Models\HudsonBuildInfo.cs" />
+    <Compile Include="Models\HudsonProvider.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\JobProperty.cs" />
     <Compile Include="Models\Label.cs" />

@@ -8,7 +8,8 @@
     <StackPanel Margin="8">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,16">
             <Label>Url:</Label>
-            <TextBox Text="{Binding Url}"  Width="356" />
+            <TextBox Text="{Binding Url}"  Width="256" />
+            <Label Content="e.g. http://server/hudson/" FontStyle="Italic" Foreground="Gray" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" Height="28" HorizontalAlignment="Right">
             <Button Width="90" Command="{Binding RequestOk}" Content="Ok"/>

@@ -50,6 +50,9 @@
             }
 
             this.BuildFinished = !hudsonBuild.Building;
+            var timeStampInMilliseconds = hudsonBuild.Timestamp.ToString().Substring(0, 10);
+
+            this.StartTime = Epoch.AddSeconds(long.Parse(timeStampInMilliseconds, CultureInfo.InvariantCulture));
             this.FinishTime = this.StartTime.AddMilliseconds(hudsonBuild.Duration);
             this.Status = this.BuildFinished ? GetBuildStatusFromResult(hudsonBuild.Result) : BuildStatus.InProgress;
 
@@ -62,9 +65,6 @@
                 this.RequestedFor = hudsonBuild.Culprit[0].FullName;
             }
 
-            var timeStampInMilliseconds = hudsonBuild.Timestamp.ToString().Substring(0, 10);
-
-            this.StartTime = Epoch.AddSeconds(long.Parse(timeStampInMilliseconds, CultureInfo.InvariantCulture));
         }
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Xml.Serialization;
 using TeamBuildScreen.Core.Models;
 
@@ -60,12 +59,7 @@ namespace TeamBuildScreen.Hudson.Models
             {
                 if (!string.IsNullOrEmpty(value))
                 {
-                    var client = new WebClient();
-                    var hudsonString = client.DownloadString(value + "api/xml");
-                    var reader = new StringReader(hudsonString);
-                    this.hudson = new Hudson();
-                    var serializer = new XmlSerializer(hudson.GetType());
-                    this.hudson = (Hudson)serializer.Deserialize(reader);
+                    this.hudson = HudsonProvider.Get(value);
                     this.hudsonUri = value;
                 }
             }
@@ -98,22 +92,10 @@ namespace TeamBuildScreen.Hudson.Models
 
         private HudsonBuildInfo GetBuildInfo(string name)
         {
-            var build = this.GetBuild(name);
+            var build = FreeStyleBuildProvider.Get(this.hudsonUri, name);
             var testResults = this.GetTestResultsForBuild(name, build.Number);
 
             return new HudsonBuildInfo(build, testResults);
-        }
-
-        private FreeStyleBuild GetBuild(string name)
-        {
-            var client = new WebClient();
-            var buildString = client.DownloadString(this.hudsonUri + "job/" + Uri.EscapeUriString(name) + "/lastBuild/api/xml");
-            var reader = new StringReader(buildString);
-            var build = new FreeStyleBuild();
-            var serializer = new XmlSerializer(build.GetType());
-            build = (FreeStyleBuild)serializer.Deserialize(reader);
-
-            return build;
         }
 
         private TestResult GetTestResultsForBuild(string name, int number)
@@ -181,15 +163,21 @@ namespace TeamBuildScreen.Hudson.Models
 
         public bool IsQueued(string key)
         {
-            // TODO: Implement
-            return false;
+            var job = this.hudson.Job.Where(j => j.Name == key).FirstOrDefault();
+
+            if (job == null)
+            {
+                return false;
+            }
+
+            return job.InQueue;
         }
 
         public void LoadBuilds(ICollection<BuildSetting> builds)
         {
             builds.Clear();
 
-            foreach (var job in this.hudson.Job.Cast<Job>())
+            foreach (var job in this.hudson.Job)
             {
                 builds.Add(new BuildSetting { DefinitionName = job.Name });
             }
