@@ -1,0 +1,183 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)'==''">Debug</Configuration>
+    <DefaultClrNameSpace>Screensaver</DefaultClrNameSpace>
+    <AssemblyName>TeamBuildScreenSaver</AssemblyName>
+    <RootNamespace>TeamBuildScreenSaver</RootNamespace>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <ApplicationVersion>1.0.0.*</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <AlwaysCompileMarkupFilesInSeparateDomain>false</AlwaysCompileMarkupFilesInSeparateDomain>
+    <ExpressionBlendCreationVersion>2.0.1523.0</ExpressionBlendCreationVersion>
+    <ProjectGuid>{40B36C3C-325C-4E09-8D1C-3346C213C7B8}</ProjectGuid>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <OutputType>WinExe</OutputType>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <StartupObject>TeamBuildScreenSaver.App</StartupObject>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <Win32Resource>resource.res</Win32Resource>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Release\TeamBuildScreenSaver.XML</DocumentationFile>
+    <Optimize>true</Optimize>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\TeamBuildScreenSaver.XML</DocumentationFile>
+    <Optimize>true</Optimize>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="$(TargetDir)\$(TargetName).exe" DestinationFiles="$(ProjectDir)\bin\TBSS.scr" SkipUnchangedFiles="true" />
+  </Target>
+  <ItemGroup>
+    <Reference Include="Microsoft.TeamFoundation, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\Microsoft.TeamFoundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Build.Client, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\Microsoft.TeamFoundation.Build.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Build.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\Microsoft.TeamFoundation.Build.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Client, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\Microsoft.TeamFoundation.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.VersionControl.Client, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\Microsoft.TeamFoundation.VersionControl.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TfsCommands.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Interop\Rectangle.cs" />
+    <Compile Include="Interop\Win32Api.cs" />
+    <Compile Include="Interop\WindowStyles.cs" />
+    <Compile Include="Models\BuildDetailModel.cs" />
+    <Compile Include="Models\BuildServerService.cs" />
+    <Compile Include="Models\BuildSetting.cs" />
+    <Compile Include="Models\IBuildServerService.cs" />
+    <Compile Include="Models\ScreenSaverSettingsModel.cs" />
+    <Compile Include="ScreenSaver.cs" />
+    <Compile Include="Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\BuildDetailViewModel.cs" />
+    <Compile Include="ViewModels\BuildServerServiceMessageViewModel.cs" />
+    <Compile Include="ViewModels\ConfigurationSummaryHandler.cs" />
+    <Compile Include="ViewModels\IMessageViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ScreenSaverSettingsViewModel.cs" />
+    <Compile Include="Views\BuildGrid.xaml.cs">
+      <DependentUpon>BuildGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BuildPanel.xaml.cs">
+      <DependentUpon>BuildPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BuildStatusIcon.xaml.cs">
+      <DependentUpon>BuildStatusIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BuildStatusStringConverter.cs" />
+    <Compile Include="Views\MessagePanel.xaml.cs">
+      <DependentUpon>MessagePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScreenSaverSettings.xaml.cs">
+      <DependentUpon>ScreenSaverSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main.xaml.cs">
+      <DependentUpon>Main.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="resource.res" />
+    <None Include="Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\BuildGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BuildPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\BuildStatusIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Dictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MessagePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ScreenSaverSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Main.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="tbs.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+</Project>
