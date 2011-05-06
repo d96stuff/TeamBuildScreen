@@ -15,6 +15,7 @@ namespace TeamBuildScreen.Tfs2008.Models
     using Microsoft.TeamFoundation.Client;
     using Microsoft.TeamFoundation.VersionControl.Client;
     using TeamBuildScreen.Core.Models;
+    using System.Diagnostics;
 
     #endregion
 
@@ -113,18 +114,13 @@ namespace TeamBuildScreen.Tfs2008.Models
             string teamProject;
             string definitionName;
 
-            ParseBuild(key, out teamProject, out definitionName);
+            BuildServerService.ParseBuild(key, out teamProject, out definitionName);
 
             var buildDetail = this.builds.SingleOrDefault(x =>
                 x.Key.DefinitionSpec.Name == definitionName &&
                 x.Key.DefinitionSpec.TeamProject == teamProject).Value;
 
-            if (buildDetail != null)
-            {
-                return new Tfs2008BuildInfo(buildDetail, configuration, platform);
-            }
-
-            return BuildInfo.Empty;
+            return new BuildInfo(buildDetail, configuration, platform);
         }
 
         /// <summary>
@@ -137,7 +133,7 @@ namespace TeamBuildScreen.Tfs2008.Models
             string teamProject;
             string definitionName;
 
-            ParseBuild(key, out teamProject, out definitionName);
+            BuildServerService.ParseBuild(key, out teamProject, out definitionName);
 
             return this.buildQueues.First(q => q.TeamProject == teamProject).QueuedBuilds.Any(b => b.BuildDefinition.Name == definitionName);
         }
@@ -153,7 +149,7 @@ namespace TeamBuildScreen.Tfs2008.Models
                 string teamProject;
                 string definitionName;
 
-                ParseBuild(key, out teamProject, out definitionName);
+                BuildServerService.ParseBuild(key, out teamProject, out definitionName);
 
                 IBuildDetailSpec buildDetailSpec = this.buildServer.CreateBuildDetailSpec(teamProject, definitionName);
 

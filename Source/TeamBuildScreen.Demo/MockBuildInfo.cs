@@ -17,6 +17,7 @@ namespace TeamBuildScreen.Demo
     {
         #region Fields
 
+        private BuildStatus status;
         private string requestedFor;
         private DateTime startTime;
         private bool buildFinished;
@@ -28,7 +29,7 @@ namespace TeamBuildScreen.Demo
 
         public MockBuildInfo(BuildStatus status, string requestedFor, DateTime startTime, bool buildFinished, DateTime finishTime)
         {
-            this.Status = status;
+            this.status = status;
             this.requestedFor = requestedFor;
             this.startTime = startTime;
             this.buildFinished = buildFinished;
@@ -51,7 +52,7 @@ namespace TeamBuildScreen.Demo
 
         public string RequestedFor
         {
-            get { return string.Format("Requested by {0}", this.requestedFor); }
+            get { return this.requestedFor; }
         }
 
         public DateTime StartTime
@@ -59,7 +60,17 @@ namespace TeamBuildScreen.Demo
             get { return this.startTime; }
         }
 
-        public BuildStatus Status { get; set; }
+        public BuildStatus Status
+        {
+            get
+            {
+                return this.status;
+            }
+            set
+            {
+                this.status = value;
+            }
+        }
 
         public int? TestsFailed { get; set; }
 

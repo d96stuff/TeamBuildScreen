@@ -132,9 +132,9 @@ namespace TeamBuildScreen.Core.ViewModels
 
         private void RegisterCommands()
         {
-            this.RequestSelectServer = new RelayCommand(this.RequestSelectServerExecuted, this.CommandCanExecute);
-            this.RequestSave = new RelayCommand(this.RequestSaveExecuted, this.CommandCanExecute);
-            this.RequestClose = new RelayCommand(this.RequestCloseExecuted, this.CommandCanExecute);
+            this.RequestSelectServer = new RelayCommand(x => this.RequestSelectServerExecuted(x), x => this.CommandCanExecute(x));
+            this.RequestSave = new RelayCommand(x => this.RequestSaveExecuted(x), x => this.CommandCanExecute(x));
+            this.RequestClose = new RelayCommand(x => this.RequestCloseExecuted(x), x => this.CommandCanExecute(x));
         }
 
         /// <summary>

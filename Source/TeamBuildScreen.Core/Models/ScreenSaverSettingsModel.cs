@@ -237,7 +237,7 @@ namespace TeamBuildScreen.Core.Models
                     string platform = buildParts[3];
 
                     if (definitionName.Equals(buildSetting.DefinitionName) &&
-                        ((string.IsNullOrEmpty(teamProject) && string.IsNullOrEmpty(buildSetting.TeamProject)) || (teamProject != null && teamProject.Equals(buildSetting.TeamProject))))
+                        teamProject.Equals(buildSetting.TeamProject))
                     {
                         buildSetting.Configuration = configuration;
                         buildSetting.Platform = platform;
