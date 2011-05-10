@@ -63,8 +63,8 @@ namespace TeamBuildScreen.Core.Views
         /// <returns>The base implementation of MeasureOverride.</returns>
         protected override Size MeasureOverride(Size constraint)
         {
-            // set FontSize to 80% of the available height
-            this.textBlock.FontSize = constraint.Height * 0.8;
+            // set FontSize to 80% of the available height, but no less than 0.1
+            this.textBlock.FontSize = Math.Max(0.1, constraint.Height * 0.8);
 
             return base.MeasureOverride(constraint);
         }
