@@ -7,35 +7,27 @@ using Microsoft.TeamFoundation.Build.Client;
 
 namespace TeamBuildScreen.Tfs2010.Models
 {
+    using Microsoft.TeamFoundation.TestManagement.Client;
+
     public class BuildInfo : BuildInfoBase, IBuildInfo
     {
         private IBuildDetail buildDetail;
 
-        public BuildInfo(IBuildDetail buildDetail, string flavour, string platform)
+        public BuildInfo(IBuildDetail buildDetail, string flavour, string platform, IEnumerable<ITestRun> testRuns)
         {
             this.buildDetail = buildDetail;
 
             if (this.buildDetail != null)
             {
-                IConfigurationSummary configurationSummary = InformationNodeConverters.GetConfigurationSummary(this.buildDetail, flavour, platform);
+                this.TestsFailed = testRuns.Select(run => run.Statistics.FailedTests).Sum();
+                this.TestsPassed = testRuns.Select(run => run.Statistics.PassedTests).Sum();
+                this.TestsTotal = testRuns.Select(run => run.Statistics.TotalTests).Sum();
+
+                var configurationSummary = InformationNodeConverters.GetConfigurationSummary(buildDetail, flavour, platform);
 
                 if (configurationSummary != null)
                 {
-                    if (configurationSummary.TestSummaries.Count > 0)
-                    {
-                        ITestSummary testSummary = configurationSummary.TestSummaries[0];
-
-                        this.TestsFailed = testSummary.TestsFailed;
-                        this.TestsPassed = testSummary.TestsPassed;
-                        this.TestsTotal = testSummary.TestsTotal;
-                    }
-
-                    if (configurationSummary.CompilationSummaries.Count > 0)
-                    {
-                        ICompilationSummary compilationSummary = configurationSummary.CompilationSummaries[0];
-
-                        this.HasWarnings = compilationSummary.CompilationWarnings > 0;
-                    }
+                    this.HasWarnings = configurationSummary.TotalCompilationWarnings > 0;
                 }
             }
         }

@@ -60,7 +60,7 @@
     <Compile Include="Models\Tfs2010BuildInfo.cs" />
     <Compile Include="Models\BuildServerService.cs" />
     <Compile Include="Models\BuildStatusConverter.cs" />
-    <Compile Include="Models\DomainProjectPickerAdapter.cs" />
+    <Compile Include="Models\TeamProjectPickerAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

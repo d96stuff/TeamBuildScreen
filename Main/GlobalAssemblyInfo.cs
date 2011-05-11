@@ -12,6 +12,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany("Jim Liddell")]
 [assembly: AssemblyCopyright("Copyright © Jim Liddell. All rights reserved.")]
 [assembly: NeutralResourcesLanguageAttribute("")]
-[assembly: AssemblyVersion("1.3.0.0")]
-[assembly: AssemblyFileVersion("1.3.0.0")]
+[assembly: AssemblyVersion("2.0.0.0")]
+[assembly: AssemblyFileVersion("2.0.0.0")]
 [assembly: ComVisible(false)]

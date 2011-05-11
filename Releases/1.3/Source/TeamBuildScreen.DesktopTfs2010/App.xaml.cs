@@ -22,7 +22,7 @@ namespace TeamBuildScreen.DesktopTfs2010
         private void OnStartup(object sender, StartupEventArgs e)
         {
             IBuildServerService service = new BuildServerService();
-            IDomainProjectPicker projectPicker = new DomainProjectPickerAdapter();
+            IDomainProjectPicker projectPicker = new TeamProjectPickerAdapter();
 
             TeamBuildDesktop teamBuildDesktop = new TeamBuildDesktop(service, projectPicker, "Team Build Screen 2010");
             teamBuildDesktop.Startup();

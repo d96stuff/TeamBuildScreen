@@ -34,7 +34,7 @@ namespace TeamBuildScreen.SaverTfs2010
         private void OnStartup(Object sender, StartupEventArgs e)
         {
             IBuildServerService service = new BuildServerService();
-            IDomainProjectPicker projectPicker = new DomainProjectPickerAdapter();
+            IDomainProjectPicker projectPicker = new TeamProjectPickerAdapter();
             this.screenSaver = new TeamBuildScreenSaver(service, projectPicker);
 
             string[] args = e.Args;

@@ -145,7 +145,7 @@ namespace TeamBuildScreen.Tfs2010.Models
 
             ParseBuild(key, out teamProject, out definitionName);
 
-            return this.buildQueues.First(q => q.TeamProject == teamProject).QueuedBuilds.Any(b => b.BuildDefinition.Name == definitionName);
+            return this.buildQueues.First(q => q.TeamProjectFilter == teamProject).QueuedBuilds.Any(b => b.BuildDefinition.Name == definitionName);
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace TeamBuildScreen.Tfs2010.Models
                 this.builds.Add(buildDetailSpec, null);
 
                 // check if a build queue exists for the team project
-                if (!this.buildQueues.Any(q => q.TeamProject == teamProject))
+                if (!this.buildQueues.Any(q => q.TeamProjectFilter == teamProject))
                 {
                     var view = this.buildServer.CreateQueuedBuildsView(teamProject);
 
