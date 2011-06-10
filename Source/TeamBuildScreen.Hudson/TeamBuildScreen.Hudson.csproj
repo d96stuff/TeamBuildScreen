@@ -10,12 +10,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TeamBuildScreen.Hudson</RootNamespace>
     <AssemblyName>TeamBuildScreen.Hudson</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,7 +40,9 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -56,12 +60,13 @@
     <Compile Include="Models\BallColor.cs" />
     <Compile Include="Models\Build.cs" />
     <Compile Include="Models\FreeStyleBuild.cs" />
-    <Compile Include="Models\FreeStyleBuildProvider.cs" />
+    <Compile Include="Models\BuildProvider.cs" />
     <Compile Include="Models\HealthReport.cs" />
     <Compile Include="Models\Hudson.cs" />
     <Compile Include="Models\HudsonBuildServerService.cs" />
     <Compile Include="Models\HudsonDomainProjectPicker.cs" />
     <Compile Include="Models\HudsonBuildInfo.cs" />
+    <Compile Include="Models\HudsonManifest.cs" />
     <Compile Include="Models\HudsonProvider.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\JobProperty.cs" />
@@ -69,6 +74,7 @@
     <Compile Include="Models\Labels\LabelAtom.cs" />
     <Compile Include="Models\Labels\LabelAtomProperty.cs" />
     <Compile Include="Models\LoadStatistics.cs" />
+    <Compile Include="Models\MatrixBuild.cs" />
     <Compile Include="Models\MultiStageTimeSeries.cs" />
     <Compile Include="Models\Node.cs" />
     <Compile Include="Models\NodeMode.cs" />
@@ -81,6 +87,7 @@
     <Compile Include="Models\Scm\Scm.cs" />
     <Compile Include="Models\Tasks\JUnit\CaseResult.cs" />
     <Compile Include="Models\Tasks\JUnit\CaseResultStatus.cs" />
+    <Compile Include="Models\Tasks\JUnit\MatrixTestResult.cs" />
     <Compile Include="Models\Tasks\JUnit\SuiteResult.cs" />
     <Compile Include="Models\Tasks\JUnit\TestObject.cs" />
     <Compile Include="Models\Tasks\JUnit\TestResult.cs" />
@@ -88,6 +95,7 @@
     <Compile Include="Models\Tasks\Test\TabulatedResult.cs" />
     <Compile Include="Models\Tasks\Test\TestObject.cs" />
     <Compile Include="Models\Tasks\Test\TestResult.cs" />
+    <Compile Include="Models\TestResultProvider.cs" />
     <Compile Include="Models\TimeSeries.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserProperty.cs" />

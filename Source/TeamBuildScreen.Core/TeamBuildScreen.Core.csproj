@@ -6,7 +6,7 @@
     <RootNamespace>TeamBuildScreen.Core</RootNamespace>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <ProjectGuid>{40B36C3C-325C-4E09-8D1C-3346C213C7B8}</ProjectGuid>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <OutputType>Library</OutputType>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -16,6 +16,8 @@
     <SccProvider>SAK</SccProvider>
     <Win32Resource>
     </Win32Resource>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -41,7 +43,10 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="Models\BuildInfo.cs" />
+    <Compile Include="Models\IServerManifest.cs" />
     <Compile Include="Models\RelayCommand.cs" />
+    <Compile Include="Models\ServerManifest.cs" />
+    <Compile Include="Models\ServerProvider.cs" />
     <Compile Include="ViewModels\DesktopViewModel.cs" />
     <Compile Include="Views\ScalingTextBlock.cs" />
     <Compile Include="Views\WindowStateVisibilityConverter.cs" />
@@ -52,6 +57,7 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq">
@@ -59,6 +65,7 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="UIAutomationProvider">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>

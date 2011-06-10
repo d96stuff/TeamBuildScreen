@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using TeamBuildScreen.Core.Models;
+﻿using TeamBuildScreen.Core.Models;
 
 namespace TeamBuildScreen.Demo
 {

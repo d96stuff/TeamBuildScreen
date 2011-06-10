@@ -11,7 +11,7 @@
     {
         private static readonly DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
-        public HudsonBuildInfo(FreeStyleBuild hudsonBuild, TestResult testResult)
+        public HudsonBuildInfo(AbstractBuild hudsonBuild, TestResult testResult)
         {
             this.Init(hudsonBuild, testResult);
         }
@@ -37,7 +37,7 @@
             }
         }
 
-        private void Init(FreeStyleBuild hudsonBuild, TestResult testResult)
+        private void Init(AbstractBuild hudsonBuild, TestResult testResult)
         {
             if (testResult != null)
             {

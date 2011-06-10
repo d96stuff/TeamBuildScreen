@@ -1,8 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FreeStyleBuild.cs" company="Jim Liddell">
+// <copyright file="MatrixBuild.cs" company="Jim Liddell">
 //   Copyright © 2011 Jim Liddell. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
+
 
 namespace TeamBuildScreen.Hudson.Models
 {
@@ -14,9 +15,9 @@ namespace TeamBuildScreen.Hudson.Models
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategory("code")]
-    [XmlType(TypeName = "hudson.model.FreeStyleBuild")]
-    [XmlRoot("freeStyleBuild", Namespace = "", IsNullable = false)]
-    public class FreeStyleBuild : Build
+    [XmlType(TypeName = "hudson.model.MatrixBuild")]
+    [XmlRoot("matrixBuild", Namespace = "", IsNullable = false)]
+    public class MatrixBuild : Build
     {
     }
 }

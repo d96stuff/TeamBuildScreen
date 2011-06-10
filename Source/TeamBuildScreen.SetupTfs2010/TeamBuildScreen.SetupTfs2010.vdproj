@@ -220,12 +220,6 @@
         "Entry"
         {
         "MsmKey" = "8:_65AA11BCFD0FCC9A598D5A06AA0318B6"
-        "OwnerKey" = "8:_42D485E7CDD6558451B2F4263985148A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_65AA11BCFD0FCC9A598D5A06AA0318B6"
         "OwnerKey" = "8:_F21D86946342448EB025220A4794EE2D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -604,12 +598,6 @@
         "Entry"
         {
         "MsmKey" = "8:_E53A0C1813F34BE6A67A20BFE5D8507B"
-        "OwnerKey" = "8:_9BEBD57AA01C4A689C052D40CADFE7E8"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E53A0C1813F34BE6A67A20BFE5D8507B"
         "OwnerKey" = "8:_42D485E7CDD6558451B2F4263985148A"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -617,6 +605,12 @@
         {
         "MsmKey" = "8:_E53A0C1813F34BE6A67A20BFE5D8507B"
         "OwnerKey" = "8:_F21D86946342448EB025220A4794EE2D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E53A0C1813F34BE6A67A20BFE5D8507B"
+        "OwnerKey" = "8:_9BEBD57AA01C4A689C052D40CADFE7E8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -640,6 +634,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_42D485E7CDD6558451B2F4263985148A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_9BEBD57AA01C4A689C052D40CADFE7E8"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -647,12 +647,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_F21D86946342448EB025220A4794EE2D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_42D485E7CDD6558451B2F4263985148A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -802,10 +796,10 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0"
                     {
-                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
-                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    "Name" = "8:Microsoft .NET Framework 4 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0"
                     }
                     "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
                     {
@@ -872,9 +866,9 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.0"
                 "AllowLaterVersions" = "11:FALSE"
-                "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=131000"
+                "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=181011"
                 }
             }
         }
@@ -1079,7 +1073,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TeamBuildScreen.Tfs2010, Version=1.3.0.0, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:TeamBuildScreen.Tfs2010, Version=2.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_42D485E7CDD6558451B2F4263985148A"
@@ -1203,7 +1197,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TeamBuildScreen.SaverTfs2010, Version=1.3.0.0, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:TeamBuildScreen.SaverTfs2010, Version=2.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_9BEBD57AA01C4A689C052D40CADFE7E8"
@@ -1544,7 +1538,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TeamBuildScreen.Core, Version=1.3.0.0, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:TeamBuildScreen.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_E53A0C1813F34BE6A67A20BFE5D8507B"
@@ -1674,7 +1668,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Team Build Screen 2010"
         "ProductCode" = "8:{788FF194-CAB5-4419-9422-25DFE8D77B3F}"
-        "PackageCode" = "8:{258D2DC4-936E-42E6-8C4A-63DB4E71B099}"
+        "PackageCode" = "8:{1FA26025-3945-461A-82C4-D5A7DC3F67E8}"
         "UpgradeCode" = "8:{6E3200AB-A3BC-4D7A-A939-ED0EC8691064}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
