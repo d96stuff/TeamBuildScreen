@@ -223,7 +223,7 @@ namespace TeamBuildScreen.Core.Models
         {
             if (this.Model != null && this.Model.BuildFinished)
             {
-                bool isStale = this.Model.FinishTime.CompareTo(DateTime.UtcNow.AddDays(-this.service.StaleThreshold)) < 0;
+                bool isStale = this.Model.FinishTime.HasValue && this.Model.FinishTime.Value.CompareTo(DateTime.UtcNow.AddDays(-this.service.StaleThreshold)) < 0;
 
                 return isStale;
             }

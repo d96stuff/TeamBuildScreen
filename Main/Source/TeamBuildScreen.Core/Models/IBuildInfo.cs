@@ -9,13 +9,13 @@ namespace TeamBuildScreen.Core.Models
     {
         bool BuildFinished { get; }
 
-        DateTime FinishTime { get; }
+        DateTime? FinishTime { get; }
 
         BuildStatus Status { get; }
 
         string RequestedFor { get; }
 
-        DateTime StartTime { get; }
+        DateTime? StartTime { get; }
 
         int? TestsFailed { get; }
 
