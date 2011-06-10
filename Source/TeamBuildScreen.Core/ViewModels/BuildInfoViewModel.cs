@@ -217,7 +217,12 @@ namespace TeamBuildScreen.Core.ViewModels
                 this.requestedBy = this.dataModel.Model.RequestedFor;
 
                 // remove domain prefix from requestedBy, if found
-                this.requestedBy = this.requestedBy.Contains("\\") ? this.requestedBy.Split('\\')[1] : this.requestedBy;
+                if (!string.IsNullOrEmpty(this.requestedBy))
+                {
+                    this.requestedBy = this.requestedBy.Contains("\\")
+                                           ? this.requestedBy.Split('\\')[1]
+                                           : this.requestedBy;
+                }
                 this.startedOn = this.dataModel.Model.StartTime;
 
                 if (this.dataModel.Model.BuildFinished)

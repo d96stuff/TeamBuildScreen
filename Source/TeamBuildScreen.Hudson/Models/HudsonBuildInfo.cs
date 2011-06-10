@@ -53,7 +53,7 @@
             var timeStampInMilliseconds = hudsonBuild.Timestamp.ToString().Substring(0, 10);
 
             this.StartTime = Epoch.AddSeconds(long.Parse(timeStampInMilliseconds, CultureInfo.InvariantCulture));
-            this.FinishTime = this.StartTime.AddMilliseconds(hudsonBuild.Duration);
+            this.FinishTime = this.StartTime.Value.AddMilliseconds(hudsonBuild.Duration);
             this.Status = this.BuildFinished ? GetBuildStatusFromResult(hudsonBuild.Result) : BuildStatus.InProgress;
 
             if (hudsonBuild.Culprit == null || hudsonBuild.Culprit.Length == 0)

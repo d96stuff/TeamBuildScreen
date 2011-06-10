@@ -90,12 +90,18 @@ namespace TeamBuildScreen.Hudson.Models
             this.OnQueryCompleted();
         }
 
-        private HudsonBuildInfo GetBuildInfo(string name)
+        private IBuildInfo GetBuildInfo(string name)
         {
             var build = BuildProvider.Get(this.hudsonUri, name);
-            var testResults = TestResultProvider.Get(this.hudsonUri, name, build.Number);
 
-            return new HudsonBuildInfo(build, testResults);
+            if (build != null)
+            {
+                var testResults = TestResultProvider.Get(this.hudsonUri, name, build.Number);
+
+                return new HudsonBuildInfo(build, testResults);
+            }
+
+            return BuildInfo.Empty;
         }
 
         public void AddBuild(string key)

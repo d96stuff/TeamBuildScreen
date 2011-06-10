@@ -44,7 +44,7 @@ namespace TeamBuildScreen.Demo
             get { return this.buildFinished; }
         }
 
-        public DateTime FinishTime
+        public DateTime? FinishTime
         {
             get { return this.finishTime; }
         }
@@ -54,7 +54,7 @@ namespace TeamBuildScreen.Demo
             get { return string.Format("Requested by {0}", this.requestedFor); }
         }
 
-        public DateTime StartTime
+        public DateTime? StartTime
         {
             get { return this.startTime; }
         }
