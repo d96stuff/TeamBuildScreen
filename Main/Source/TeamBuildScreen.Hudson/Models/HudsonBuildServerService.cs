@@ -92,37 +92,10 @@ namespace TeamBuildScreen.Hudson.Models
 
         private HudsonBuildInfo GetBuildInfo(string name)
         {
-            var build = FreeStyleBuildProvider.Get(this.hudsonUri, name);
-            var testResults = this.GetTestResultsForBuild(name, build.Number);
+            var build = BuildProvider.Get(this.hudsonUri, name);
+            var testResults = TestResultProvider.Get(this.hudsonUri, name, build.Number);
 
             return new HudsonBuildInfo(build, testResults);
-        }
-
-        private TestResult GetTestResultsForBuild(string name, int number)
-        {
-            WebRequest request = HttpWebRequest.Create(this.hudsonUri + "job/" + Uri.EscapeUriString(name) + "/" + number + "/testReport/api/xml");
-            request.Method = "GET";
-            request.Credentials = CredentialCache.DefaultCredentials;
-
-            try
-            {
-                using (var response = (HttpWebResponse)request.GetResponse())
-                {
-                    if (response.StatusCode == HttpStatusCode.OK)
-                    {
-                        var stream = response.GetResponseStream();
-                        var reader = new StreamReader(stream);
-                        var testResult = new TestResult();
-                        var serializer = new XmlSerializer(testResult.GetType());
-                        testResult = (TestResult)serializer.Deserialize(reader);
-
-                        return testResult;
-                    }
-                }
-            }
-            catch (WebException) { }
-
-            return null;
         }
 
         public void AddBuild(string key)
