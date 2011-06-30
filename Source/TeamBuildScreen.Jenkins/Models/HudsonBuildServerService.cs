@@ -67,7 +67,7 @@ namespace TeamBuildScreen.Hudson.Models
 
         #endregion
 
-        protected override void Query(object stateInfo)
+        public override void Query()
         {
             if (this.hudson == null)
             {

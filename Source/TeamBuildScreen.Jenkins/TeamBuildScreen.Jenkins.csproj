@@ -8,8 +8,8 @@
     <ProjectGuid>{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TeamBuildScreen.Hudson</RootNamespace>
-    <AssemblyName>TeamBuildScreen.Hudson</AssemblyName>
+    <RootNamespace>TeamBuildScreen.Jenkins</RootNamespace>
+    <AssemblyName>TeamBuildScreen.Jenkins</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>

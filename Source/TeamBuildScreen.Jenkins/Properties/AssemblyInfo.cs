@@ -6,4 +6,4 @@
 
 using System.Reflection;
 
-[assembly: AssemblyTitle("TeamBuildScreen.DesktopHudson")]
+[assembly: AssemblyTitle("TeamBuildScreen.Jenkins")]

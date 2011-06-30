@@ -220,8 +220,7 @@ namespace TeamBuildScreen.Tfs2010.Models
         /// <summary>
         /// Issues a query against the server.
         /// </summary>
-        /// <param name="stateInfo"></param>
-        protected override void Query(object stateInfo)
+        public override void Query()
         {
             if (this.buildServer == null)
             {

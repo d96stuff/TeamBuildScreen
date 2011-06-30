@@ -97,6 +97,11 @@ namespace TeamBuildScreen.Core.Models
         void Stop();
 
         /// <summary>
+        /// Query the server immediately.
+        /// </summary>
+        void Query();
+
+        /// <summary>
         /// Loads the available builds from the build server.
         /// </summary>
         /// <param name="builds">The collection to populate.</param>

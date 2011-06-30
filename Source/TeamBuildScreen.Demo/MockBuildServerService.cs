@@ -58,7 +58,7 @@ namespace TeamBuildScreen.Demo
         {
             if (this.backgroundTimer == null)
             {
-                this.backgroundTimer = new Timer(new TimerCallback(this.backgroundTimer_TimerCallback), null, 0, this.period);
+                this.backgroundTimer = new Timer(new TimerCallback(this.Query), null, 0, this.period);
             }
         }
 
@@ -70,7 +70,12 @@ namespace TeamBuildScreen.Demo
         {
         }
 
-        private void backgroundTimer_TimerCallback(Object stateInfo)
+        public void Query()
+        {
+            this.Query(null);
+        }
+
+        private void Query(Object stateInfo)
         {
             Hashtable latestBuilds = new Hashtable();
             Random random = new Random();
