@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;
 using System.Text;
+using OpenRasta.Configuration;
+using OpenRasta.Hosting.HttpListener;
+using OpenRasta.DI;
 
 namespace TeamBuildScreen.Service
 {
@@ -15,9 +18,9 @@ namespace TeamBuildScreen.Service
         {
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[] 
-			{ 
-				new Service() 
-			};
+            { 
+                new Service() 
+            };
             ServiceBase.Run(ServicesToRun);
         }
     }

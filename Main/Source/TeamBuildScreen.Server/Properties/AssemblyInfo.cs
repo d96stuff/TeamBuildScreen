@@ -6,4 +6,4 @@
 
 using System.Reflection;
 
-[assembly: AssemblyTitle("TeamBuildScreen.Service")]
+[assembly: AssemblyTitle("TeamBuildScreen.Server")]

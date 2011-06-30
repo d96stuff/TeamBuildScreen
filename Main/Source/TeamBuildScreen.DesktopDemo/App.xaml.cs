@@ -8,12 +8,8 @@ namespace TeamBuildScreen.DesktopDemo
 {
     #region Usings
 
-    using System;
-    using System.Collections.Specialized;
     using System.Windows;
     using TeamBuildScreen.Core.Models;
-    using TeamBuildScreen.Core.Views;
-    using TeamBuildScreen.Core.ViewModels;
     using TeamBuildScreen.Core;
     using TeamBuildScreen.Demo;
 

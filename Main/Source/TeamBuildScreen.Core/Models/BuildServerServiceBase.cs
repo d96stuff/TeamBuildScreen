@@ -40,7 +40,7 @@ namespace TeamBuildScreen.Core.Models
         {
             if (this.queryTimer == null)
             {
-                this.queryTimer = new Timer(new TimerCallback(this.Query), null, 0, this.period);
+                this.queryTimer = new Timer(this.Query, null, 0, this.period);
             }
         }
 
@@ -58,7 +58,12 @@ namespace TeamBuildScreen.Core.Models
             this.OnStopped();
         }
 
-        protected abstract void Query(object stateInfo);
+        private void Query(object stateInfo)
+        {
+            this.Query();
+        }
+
+        public abstract void Query();
 
         /// <summary>
         /// Raises the <see cref="TeamBuildScreenSaver.Models.IBuildServerService.QueryCompleted"/> event.

@@ -38,17 +38,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{CD02D804-1
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TeamBuildScreen.SetupTfs2008", "Source\TeamBuildScreen.SetupTfs2008\TeamBuildScreen.SetupTfs2008.vdproj", "{1ED52B4A-93F9-4D19-8221-2F3A48F8E680}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hudson", "Hudson", "{7C1A629E-2AEE-4C54-B2B6-7A3BC9C8DFBE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamBuildScreen.Hudson", "Source\TeamBuildScreen.Hudson\TeamBuildScreen.Hudson.csproj", "{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamBuildScreen.DesktopHudson", "Source\TeamBuildScreen.DesktopHudson\TeamBuildScreen.DesktopHudson.csproj", "{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jenkins", "Jenkins", "{7C1A629E-2AEE-4C54-B2B6-7A3BC9C8DFBE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamBuildScreen.Service", "Source\TeamBuildScreen.Service\TeamBuildScreen.Service.csproj", "{191E721F-0831-4274-98B4-D53B902A2029}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamBuildScreen.Console", "Source\TeamBuildScreen.Console\TeamBuildScreen.Console.csproj", "{082CDED2-1AA4-4E87-9C6C-0F2379DC3A78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamBuildScreen.Server", "Source\TeamBuildScreen.Server\TeamBuildScreen.Server.csproj", "{DF4FC314-3BB5-4352-903B-3D515A8C1C8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamBuildScreen.DesktopJenkins", "Source\TeamBuildScreen.DesktopJenkins\TeamBuildScreen.DesktopJenkins.csproj", "{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamBuildScreen.Jenkins", "Source\TeamBuildScreen.Jenkins\TeamBuildScreen.Jenkins.csproj", "{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 16
+		SccNumberOfProjects = 18
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs03
 		SccLocalPath0 = .
@@ -98,17 +102,23 @@ Global
 		SccProjectTopLevelParentUniqueName12 = TeamBuildScreen.sln
 		SccProjectName12 = Source/TeamBuildScreen.SetupTfs2008
 		SccLocalPath12 = Source\\TeamBuildScreen.SetupTfs2008
-		SccProjectUniqueName13 = Source\\TeamBuildScreen.Hudson\\TeamBuildScreen.Hudson.csproj
-		SccProjectTopLevelParentUniqueName13 = TeamBuildScreen.sln
-		SccProjectName13 = Source/TeamBuildScreen.Hudson
-		SccLocalPath13 = Source\\TeamBuildScreen.Hudson
-		SccProjectUniqueName14 = Source\\TeamBuildScreen.DesktopHudson\\TeamBuildScreen.DesktopHudson.csproj
-		SccProjectTopLevelParentUniqueName14 = TeamBuildScreen.sln
-		SccProjectName14 = Source/TeamBuildScreen.DesktopHudson
-		SccLocalPath14 = Source\\TeamBuildScreen.DesktopHudson
-		SccProjectUniqueName15 = Source\\TeamBuildScreen.Service\\TeamBuildScreen.Service.csproj
-		SccProjectName15 = Source/TeamBuildScreen.Service
-		SccLocalPath15 = Source\\TeamBuildScreen.Service
+		SccProjectUniqueName13 = Source\\TeamBuildScreen.Service\\TeamBuildScreen.Service.csproj
+		SccProjectName13 = Source/TeamBuildScreen.Service
+		SccLocalPath13 = Source\\TeamBuildScreen.Service
+		SccProjectUniqueName14 = Source\\TeamBuildScreen.Console\\TeamBuildScreen.Console.csproj
+		SccProjectName14 = Source/TeamBuildScreen.Console
+		SccLocalPath14 = Source\\TeamBuildScreen.Console
+		SccProjectUniqueName15 = Source\\TeamBuildScreen.Server\\TeamBuildScreen.Server.csproj
+		SccProjectName15 = Source/TeamBuildScreen.Server
+		SccLocalPath15 = Source\\TeamBuildScreen.Server
+		SccProjectUniqueName16 = Source\\TeamBuildScreen.DesktopJenkins\\TeamBuildScreen.DesktopJenkins.csproj
+		SccProjectTopLevelParentUniqueName16 = TeamBuildScreen.sln
+		SccProjectName16 = Source/TeamBuildScreen.DesktopJenkins
+		SccLocalPath16 = Source\\TeamBuildScreen.DesktopJenkins
+		SccProjectUniqueName17 = Source\\TeamBuildScreen.Jenkins\\TeamBuildScreen.Jenkins.csproj
+		SccProjectTopLevelParentUniqueName17 = TeamBuildScreen.sln
+		SccProjectName17 = Source/TeamBuildScreen.Jenkins
+		SccLocalPath17 = Source\\TeamBuildScreen.Jenkins
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = TeamBuildScreen.vsmdi
@@ -246,26 +256,6 @@ Global
 		{1ED52B4A-93F9-4D19-8221-2F3A48F8E680}.Release|Mixed Platforms.Build.0 = Release
 		{1ED52B4A-93F9-4D19-8221-2F3A48F8E680}.Release|x86.ActiveCfg = Release
 		{1ED52B4A-93F9-4D19-8221-2F3A48F8E680}.Release|x86.Build.0 = Release
-		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}.Release|x86.ActiveCfg = Release|Any CPU
-		{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}.Debug|x86.ActiveCfg = Debug|x86
-		{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}.Debug|x86.Build.0 = Debug|x86
-		{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}.Release|Any CPU.ActiveCfg = Release|x86
-		{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}.Release|Mixed Platforms.Build.0 = Release|x86
-		{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}.Release|x86.ActiveCfg = Release|x86
-		{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}.Release|x86.Build.0 = Release|x86
 		{191E721F-0831-4274-98B4-D53B902A2029}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{191E721F-0831-4274-98B4-D53B902A2029}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{191E721F-0831-4274-98B4-D53B902A2029}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -276,6 +266,46 @@ Global
 		{191E721F-0831-4274-98B4-D53B902A2029}.Release|Mixed Platforms.Build.0 = Release|x86
 		{191E721F-0831-4274-98B4-D53B902A2029}.Release|x86.ActiveCfg = Release|x86
 		{191E721F-0831-4274-98B4-D53B902A2029}.Release|x86.Build.0 = Release|x86
+		{082CDED2-1AA4-4E87-9C6C-0F2379DC3A78}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{082CDED2-1AA4-4E87-9C6C-0F2379DC3A78}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{082CDED2-1AA4-4E87-9C6C-0F2379DC3A78}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{082CDED2-1AA4-4E87-9C6C-0F2379DC3A78}.Debug|x86.ActiveCfg = Debug|x86
+		{082CDED2-1AA4-4E87-9C6C-0F2379DC3A78}.Debug|x86.Build.0 = Debug|x86
+		{082CDED2-1AA4-4E87-9C6C-0F2379DC3A78}.Release|Any CPU.ActiveCfg = Release|x86
+		{082CDED2-1AA4-4E87-9C6C-0F2379DC3A78}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{082CDED2-1AA4-4E87-9C6C-0F2379DC3A78}.Release|Mixed Platforms.Build.0 = Release|x86
+		{082CDED2-1AA4-4E87-9C6C-0F2379DC3A78}.Release|x86.ActiveCfg = Release|x86
+		{082CDED2-1AA4-4E87-9C6C-0F2379DC3A78}.Release|x86.Build.0 = Release|x86
+		{DF4FC314-3BB5-4352-903B-3D515A8C1C8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF4FC314-3BB5-4352-903B-3D515A8C1C8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF4FC314-3BB5-4352-903B-3D515A8C1C8C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{DF4FC314-3BB5-4352-903B-3D515A8C1C8C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{DF4FC314-3BB5-4352-903B-3D515A8C1C8C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DF4FC314-3BB5-4352-903B-3D515A8C1C8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF4FC314-3BB5-4352-903B-3D515A8C1C8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF4FC314-3BB5-4352-903B-3D515A8C1C8C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DF4FC314-3BB5-4352-903B-3D515A8C1C8C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{DF4FC314-3BB5-4352-903B-3D515A8C1C8C}.Release|x86.ActiveCfg = Release|Any CPU
+		{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}.Debug|x86.ActiveCfg = Debug|x86
+		{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}.Debug|x86.Build.0 = Debug|x86
+		{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}.Release|Any CPU.ActiveCfg = Release|x86
+		{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}.Release|Mixed Platforms.Build.0 = Release|x86
+		{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}.Release|x86.ActiveCfg = Release|x86
+		{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42}.Release|x86.Build.0 = Release|x86
+		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -291,7 +321,7 @@ Global
 		{8EDDA3B9-3BA4-4520-A497-10FADFCEB899} = {8C78FFB4-371A-4D47-9F94-45F7987102F5}
 		{29A8EEA0-844E-438A-B814-BA0CBD9E142A} = {8C78FFB4-371A-4D47-9F94-45F7987102F5}
 		{08AFCDC9-3CA6-4859-A977-AEABB4E6B506} = {8C78FFB4-371A-4D47-9F94-45F7987102F5}
-		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F} = {7C1A629E-2AEE-4C54-B2B6-7A3BC9C8DFBE}
 		{849D4C5D-B9BF-4E43-A5BC-9E0D7C88EF42} = {7C1A629E-2AEE-4C54-B2B6-7A3BC9C8DFBE}
+		{D574AB5B-FF76-43C8-A9D3-EC111EE7B77F} = {7C1A629E-2AEE-4C54-B2B6-7A3BC9C8DFBE}
 	EndGlobalSection
 EndGlobal

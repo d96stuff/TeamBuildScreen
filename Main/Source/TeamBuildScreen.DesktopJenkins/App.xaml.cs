@@ -27,7 +27,7 @@ namespace TeamBuildScreen.DesktopHudson
             HudsonBuildServerService service = new HudsonBuildServerService();
             IDomainProjectPicker projectPicker = new HudsonDomainProjectPicker();
 
-            TeamBuildDesktop teamBuildDesktop = new TeamBuildDesktop(service, projectPicker, "Team Build Screen Hudson");
+            TeamBuildDesktop teamBuildDesktop = new TeamBuildDesktop(service, projectPicker, "Team Build Screen Jenkins");
             teamBuildDesktop.Startup();
         }
 

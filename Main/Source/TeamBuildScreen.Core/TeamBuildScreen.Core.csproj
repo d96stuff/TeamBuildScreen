@@ -42,6 +42,8 @@
   </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="DataTransfer\BuildInfoViewModelDto.cs" />
+    <Compile Include="DataTransfer\BuildInfoViewModelExtensions.cs" />
     <Compile Include="Models\BuildInfo.cs" />
     <Compile Include="Models\IServerManifest.cs" />
     <Compile Include="Models\RelayCommand.cs" />
@@ -64,6 +66,7 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
