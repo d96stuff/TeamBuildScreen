@@ -265,6 +265,11 @@ namespace TeamBuildScreen.Core.ViewModels
             }
         }
 
+        public static BuildInfoViewModel FromString(string s, IBuildServerService service)
+        {
+            return new BuildInfoViewModel(BuildInfoModel.FromString(s, service));
+        }
+
         #endregion
 
         #region INotifyPropertyChanged Members

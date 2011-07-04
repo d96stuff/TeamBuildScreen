@@ -44,12 +44,15 @@
   <ItemGroup>
     <Compile Include="DataTransfer\BuildInfoViewModelDto.cs" />
     <Compile Include="DataTransfer\BuildInfoViewModelExtensions.cs" />
+    <Compile Include="JsonExtensions.cs" />
     <Compile Include="Models\BuildInfo.cs" />
     <Compile Include="Models\IServerManifest.cs" />
     <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="Models\ServerManifest.cs" />
     <Compile Include="Models\ServerProvider.cs" />
+    <Compile Include="TeamBuildServer.cs" />
     <Compile Include="ViewModels\DesktopViewModel.cs" />
+    <Compile Include="ViewModels\IndexViewModel.cs" />
     <Compile Include="Views\ScalingTextBlock.cs" />
     <Compile Include="Views\WindowStateVisibilityConverter.cs" />
     <Reference Include="PresentationCore">

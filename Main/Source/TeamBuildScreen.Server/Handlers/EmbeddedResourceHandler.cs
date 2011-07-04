@@ -20,15 +20,14 @@ namespace TeamBuildScreen.Server.Handlers
 
         public Stream Get(string path)
         {
-            var fileName = "TeamBuildScreen.Server.Views" + this.context.Request.Uri.AbsolutePath.Substring(7).Replace('/', '.');
+            var fileName = "TeamBuildScreen.Server.Views" + this.context.Request.Uri.AbsolutePath.Substring(8).Replace('/', '.');
 
-            return this.assembly.GetManifestResourceStream(fileName);
-            //if (!this.cache.ContainsKey(fileName))
-            //{
-            //    this.cache[fileName] = this.assembly.GetManifestResourceStream(fileName);
-            //}
+            if (!this.cache.ContainsKey(fileName))
+            {
+                this.cache[fileName] = this.assembly.GetManifestResourceStream(fileName);
+            }
             
-            //return this.cache[fileName];
+            return this.cache[fileName];
         }
     }
 }

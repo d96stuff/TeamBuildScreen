@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using OpenRasta.Codecs;
+using OpenRasta.Codecs.Razor;
 using OpenRasta.Configuration;
-using OpenRasta.Configuration.Fluent;
 using TeamBuildScreen.Core.DataTransfer;
 using TeamBuildScreen.Server.Handlers;
+using TeamBuildScreen.Server.Resources;
 
 namespace TeamBuildScreen.Server
 {
@@ -14,23 +16,23 @@ namespace TeamBuildScreen.Server
         {
             using (OpenRastaConfiguration.Manual)
             {
-                //ResourceSpace.Uses.ViewsEmbeddedInTheAssembly(Assembly.GetExecutingAssembly(), "TeamBuildScreen.Console.Views");
+                ResourceSpace.Uses.ViewsEmbeddedInTheAssembly(Assembly.GetExecutingAssembly(), "TeamBuildScreen.Server.Views");
 
-                ResourceSpace.Has
-                    .ResourcesOfType<BuildInfoViewModelDto>()
-                    .AtUri("/builds/{id}")
-                    .HandledBy<BuildHandler>()
-                    .AsJsonDataContract();
                 ResourceSpace.Has
                     .ResourcesOfType<IList<BuildInfoViewModelDto>>()
                     .AtUri("/builds")
                     .HandledBy<BuildHandler>()
                     .AsJsonDataContract();
                 ResourceSpace.Has
+                    .ResourcesOfType<IndexViewModelDto>()
+                    .AtUri("/")
+                    .HandledBy<IndexHandler>()
+                    .RenderedByRazor("Index.cshtml");
+                ResourceSpace.Has
                     .ResourcesOfType<Stream>()
-                    .AtUri("/static/{path}")
-                    .And.AtUri("/static/images/{path}")
-                    .And.AtUri("/static/colors/{path}")
+                    .AtUri("/content/{path}")
+                    .And.AtUri("/content/images/{path}")
+                    .And.AtUri("/content/colors/{path}")
                     .HandledBy<EmbeddedResourceHandler>()
                     .TranscodedBy<ApplicationOctetStreamCodec>().ForMediaType("text/html").ForExtension(".html")
                     .And.TranscodedBy<ApplicationOctetStreamCodec>().ForMediaType("text/javascript").ForExtension(".js")

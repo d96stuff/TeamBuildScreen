@@ -7,8 +7,6 @@
 namespace TeamBuildScreen.Core
 {
     using System;
-    using System.Collections.Specialized;
-    using System.Globalization;
     using System.Windows;
     using TeamBuildScreen.Core.Models;
     using TeamBuildScreen.Core.ViewModels;
