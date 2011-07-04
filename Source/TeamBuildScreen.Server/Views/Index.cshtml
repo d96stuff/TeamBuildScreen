@@ -1,13 +1,17 @@
+﻿@resource TeamBuildScreen.Server.Resources.IndexViewModelDto
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
  
 <html xmlns="http://www.w3.org/1999/xhtml" >
 	<head>
-		<link type="text/css" href="jquery.ui.all.css" rel="stylesheet" />
-		<script src="raphael-min.js"></script>
-		<script src="jquery-1.5.min.js"></script>
-		<script src="jquery-ui.min.js"></script>
-		<script src="jquery.uniform.min.js"></script>
-		<script src="buildgrid.js"></script>
+        <title>Team Build Screen</title>
+		<link type="text/css" href="/content/jquery.ui.all.css" rel="stylesheet" />
+		<script src="/content/raphael-min.js"></script>
+		<script src="/content/jquery-1.5.min.js"></script>
+		<script src="/content/jquery-ui.min.js"></script>
+		<script src="/content/jquery.uniform.min.js"></script>
+		<script src="/content/tbs.core.js"></script>
+		<script src="/content/tbs.buildgrid.js"></script>
 		<script>
 		var configButton = function(id, onClick) {
 			this.init(id, onClick);
@@ -27,194 +31,12 @@
 			icon.node.onclick = onClick;
 		}
 
-		var buildServer = function(url) {
-			this.init(url);
-		}
-		buildServer.prototype.init = function (url) {
-		    this.listeners = [];
-		    this.builds = [
-			{
-			    "description": "TeamProject: MyFirstBuild",
-			    "status": "InProgress",
-			    "requestedBy": "Joe Bloggs",
-			    "startedOn": "1/14/2011 3:14:50 PM",
-			    "completedOn": "1/14/2011 3:14:50 PM",
-			    "testResults": "No test result.",
-			    "isQueued": false,
-			    "isFinished": false,
-			    "progress": 0.25
-			},
-			{
-			    "description": "TeamProject: MySecondBuild",
-			    "status": "Failed",
-			    "requestedBy": "Joe Bloggs",
-			    "startedOn": "1/14/2011 3:14:50 PM",
-			    "completedOn": "1/14/2011 3:14:50 PM",
-			    "testResults": "No test result.",
-			    "isQueued": false,
-			    "isFinished": true,
-			    "progress": 1
-			}];
-		    //			this.builds[2] = 
-		    //			{
-		    //				"description": "Team Project: MyThirdBuild",
-		    //				"status": "Stopped",
-		    //				"requestedBy": "Joe Bloggs",
-		    //				"startedOn": "1/14/2011 3:14:50 PM",
-		    //				"completedOn": "1/14/2011 3:14:50 PM",
-		    //				"testResults": "No test result.",
-		    //				"isQueued" : false,
-		    //				"isFinished" : true,
-		    //				"progress" : 1
-		    //			};
-		    //			this.builds[3] = 
-		    //			{
-		    //				"description": "Team Project: MyFourthBuild",
-		    //				"status": "Success",
-		    //				"requestedBy": "Joe Bloggs",
-		    //				"startedOn": "1/14/2011 3:14:50 PM",
-		    //				"completedOn": "1/14/2011 3:14:50 PM",
-		    //				"testResults": "No test result.",
-		    //				"isQueued" : true,
-		    //				"isFinished" : true,
-		    //				"progress" : 1
-		    //			};
-		    //			this.builds[4] = 
-		    //			{
-		    //				"description": "Team Project: MyFifthBuild",
-		    //				"status": "Unknown",
-		    //				"requestedBy": "Joe Bloggs",
-		    //				"startedOn": "1/14/2011 3:14:50 PM",
-		    //				"completedOn": "1/14/2011 3:14:50 PM",
-		    //				"testResults": "No test result.",
-		    //				"isQueued" : false,
-		    //				"isFinished" : true,
-		    //				"progress" : 1
-		    //			};
-		    //			this.builds[5] = 
-		    //			{
-		    //				"description": "Team Project: MySixthBuild",
-		    //				"status": "PartiallySucceeded",
-		    //				"requestedBy": "Joe Bloggs",
-		    //				"startedOn": "1/14/2011 3:14:50 PM",
-		    //				"completedOn": "1/14/2011 3:14:50 PM",
-		    //				"testResults": "No test result.",
-		    //				"isQueued" : true,
-		    //				"isFinished" : true,
-		    //				"progress" : 1
-		    //			};
-		    //			this.builds[6] = 
-		    //			{
-		    //				"description": "Team Project: MySeventhBuild",
-		    //				"status": "In Progress",
-		    //				"requestedBy": "Joe Bloggs",
-		    //				"startedOn": "1/14/2011 3:14:50 PM",
-		    //				"completedOn": "1/14/2011 3:14:50 PM",
-		    //				"testResults": "No test result.",
-		    //				"isQueued" : false,
-		    //				"isFinished" : false,
-		    //				"progress" : 0.2
-		    //			};
-		    //			this.builds[7] = 
-		    //			{
-		    //				"description": "Team Project: MyEighthBuild",
-		    //				"status": "Failed",
-		    //				"requestedBy": "Joe Bloggs",
-		    //				"startedOn": "1/14/2011 3:14:50 PM",
-		    //				"completedOn": "1/14/2011 3:14:50 PM",
-		    //				"testResults": "No test result.",
-		    //				"isQueued" : false,
-		    //				"isFinished" : true,
-		    //				"progress" : 1
-		    //			};
-		    //			this.builds[8] = 
-		    //			{
-		    //				"description": "Team Project: MyNinthBuild",
-		    //				"status": "Stopped",
-		    //				"requestedBy": "Joe Bloggs",
-		    //				"startedOn": "1/14/2011 3:14:50 PM",
-		    //				"completedOn": "1/14/2011 3:14:50 PM",
-		    //				"testResults": "No test result.",
-		    //				"isQueued" : false,
-		    //				"isFinished" : true,
-		    //				"progress" : 1
-		    //			};
-		    //			this.builds[9] = 
-		    //			{
-		    //				"description": "Team Project: MyTenthBuild",
-		    //				"status": "Success",
-		    //				"requestedBy": "Joe Bloggs",
-		    //				"startedOn": "1/14/2011 3:14:50 PM",
-		    //				"completedOn": "1/14/2011 3:14:50 PM",
-		    //				"testResults": "No test result.",
-		    //				"isQueued" : false,
-		    //				"isFinished" : true,
-		    //				"progress" : 1
-		    //			};
-		    //			this.builds[10] = 
-		    //			{
-		    //				"description": "Team Project: MyEleventhBuild",
-		    //				"status": "Unknown",
-		    //				"requestedBy": "Joe Bloggs",
-		    //				"startedOn": "1/14/2011 3:14:50 PM",
-		    //				"completedOn": "1/14/2011 3:14:50 PM",
-		    //				"testResults": "No test result.",
-		    //				"isQueued" : false,
-		    //				"isFinished" : true,
-		    //				"progress" : 1
-		    //			};
-		    //			this.builds[11] = 
-		    //			{
-		    //				"description": "Team Project: MyTwelthBuild",
-		    //				"status": "PartiallySucceeded",
-		    //				"requestedBy": "Joe Bloggs",
-		    //				"startedOn": "1/14/2011 3:14:50 PM",
-		    //				"completedOn": "1/14/2011 3:14:50 PM",
-		    //				"testResults": "No test result.",
-		    //				"isQueued" : false,
-		    //				"isFinished" : true,
-		    //				"progress" : 1
-		    //			};
-
-		    var self = this;
-		    setTimeout(query, 5000);
-
-		    function query() {
-		        $.getJSON('http://localhost:9222/builds', function (data) {
-		            self.builds = data;
-		            self.update();
-		            setTimeout(query, 5000);
-		        });
-		    }
-		}
-		buildServer.prototype.register = function(callback) {
-			if(typeof callback==="function"||typeof callback==="object") {
-				if(typeof callback.update==="function") {
-					this.listeners.push(callback);
-				}
-			}
-		}
-		buildServer.prototype.update = function() {
-			var size = this.listeners.length;
-
-			for(var x=0; x < size; x++) {
-				this.listeners[x].update(this);
-			}
-		}
-		buildServer.prototype.getBuild = function(description) {
-			for (i = 0; i < this.builds.length; i++)
-			{
-				var build = this.builds[i];
-
-				if (build.description == description) {
-					return build;
-				}
-			}
-		}
-
 		$(document).ready(function() {
-			$("#overlay").fadeTo(0, 0);
-			var grid = new buildGrid("canvas", new buildServer("url"));
+            var builds = @(new HtmlString(Resource.BuildData));
+            var interval = @Resource.UpdateInterval;
+            var columns = @Resource.Columns;
+            var messageView = new TeamBuildScreen.MessageView("overlay");
+			var grid = new TeamBuildScreen.BuildGrid("canvas", new TeamBuildScreen.BuildServer(builds, interval, messageView), columns);
 			var windowResizeThread;
 
 			$(window).resize(function() {
@@ -235,7 +57,7 @@
 
 				var height = $("#toolbar").css("height");
 
-				if (height == "0px") {
+				if (height === "0px") {
 					$("#toolbar").stop().animate({"height" : "60px"}, 1000, function() {
 						clearTimeout(mouseMoveThread);
 						mouseMoveThread = setTimeout(hideToolbar, 1500);
@@ -251,11 +73,11 @@
 				width: 600,
 				buttons: {
 					"Save": function() {
-						$("#overlay").fadeTo(1000, 0);
+						messageView.hide();
 						$(this).dialog("close"); 
 					}, 
 					"Close": function() {
-						$("#overlay").fadeTo(1000, 0);
+						messageView.hide();
 						$(this).dialog("close"); 
 					}
 				}
@@ -264,7 +86,7 @@
 			$("input:file, input:checkbox, input:radio, select").uniform();
 
 			new configButton("config-button", function() {
-				$("#overlay").fadeTo(1000, 0.85);
+				messageView.show();
 				$('#dialog').dialog('open');
 			});
 
@@ -280,7 +102,7 @@
 			});
 		});
 		</script>
-		<style>
+		<style type="text/css">
 		#canvas
 		{
 			background-color : #333333;
@@ -297,6 +119,19 @@
 			left : 0;
 			width : 100%;
 			height : 100%;
+		}
+		
+		#overlay span
+		{
+			width : 100%;
+		    height : 24px;
+		    position : absolute;
+		    top : 50%;
+		    margin-top : -12px;
+			text-align : center;
+			color : White;
+			font-family : "Segoe UI";
+			font-size : 24px;
 		}
 
 		#toolbar
@@ -338,13 +173,15 @@
 			overflow : hidden;
 		}
 		form input, div.selector { float: right; width: 60%; }
-		//form label { float: left; display: block; margin: 7px 0px 7px 0px; width: 38% }
+		/*form label { float: left; display: block; margin: 7px 0px 7px 0px; width: 38% }*/
 		form textarea { width: 100%; height: 70px; }
 		</style>
 	</head>
 	<body style="margin : 0">
 		<div id="canvas"></div>
-		<div id="overlay"></div>
+		<div id="overlay">
+            <span></span>
+        </div>
 		<div id="toolbar">
 			<div id="config-button"></div>
 		</div>
@@ -407,4 +244,4 @@
 			</div> 
 		</div>
 	</body>
-</>
+</html>

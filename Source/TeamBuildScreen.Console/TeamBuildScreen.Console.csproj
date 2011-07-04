@@ -61,6 +61,10 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TeamBuildScreen.Core\TeamBuildScreen.Core.csproj">
+      <Project>{40B36C3C-325C-4E09-8D1C-3346C213C7B8}</Project>
+      <Name>TeamBuildScreen.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TeamBuildScreen.Server\TeamBuildScreen.Server.csproj">
       <Project>{DF4FC314-3BB5-4352-903B-3D515A8C1C8C}</Project>
       <Name>TeamBuildScreen.Server</Name>

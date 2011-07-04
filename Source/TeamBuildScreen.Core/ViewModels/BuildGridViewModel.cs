@@ -9,7 +9,6 @@ namespace TeamBuildScreen.Core.ViewModels
     #region Usings
 
     using System;
-    using System.Linq;
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
     using System.ComponentModel;
@@ -95,19 +94,6 @@ namespace TeamBuildScreen.Core.ViewModels
 
         #region Methods
 
-        private BuildInfoViewModel GetBuildInfoViewModel(string build)
-        {
-            string[] buildParts = build.Split(';');
-            string teamProject = buildParts[0];
-            string definitionName = buildParts[1];
-            string configuration = buildParts[2];
-            string platform = buildParts[3];
-
-            BuildInfoModel dataModel = new BuildInfoModel(teamProject, definitionName, configuration, platform, service);
-            BuildInfoViewModel viewModel = new BuildInfoViewModel(dataModel);
-            return viewModel;
-        }
-
         public void InitializeBuildPanels(StringCollection builds)
         {
             this.Builds.Clear();
@@ -115,7 +101,7 @@ namespace TeamBuildScreen.Core.ViewModels
 
             foreach (string build in builds)
             {
-                BuildInfoViewModel viewModel = GetBuildInfoViewModel(build);
+                BuildInfoViewModel viewModel = BuildInfoViewModel.FromString(build, this.service);
 
                 this.Builds.Add(viewModel);
             }

@@ -243,6 +243,17 @@ namespace TeamBuildScreen.Core.Models
             }
         }
 
+        public static BuildInfoModel FromString(string s, IBuildServerService service)
+        {
+            string[] buildParts = s.Split(';');
+            string teamProject = buildParts[0];
+            string definitionName = buildParts[1];
+            string configuration = buildParts[2];
+            string platform = buildParts[3];
+
+            return new BuildInfoModel(teamProject, definitionName, configuration, platform, service);
+        }
+
         #endregion
     }
 }

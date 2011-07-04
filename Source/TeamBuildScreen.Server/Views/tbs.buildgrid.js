@@ -1,14 +1,23 @@
-var buildLabel = function(paper, x, y, text, fontSize, width) {
+/*
+* Team Build Screen 2.0.0
+* http://teambuildscreen.codeplex.com
+*
+* Copyright (c) 2011 Jim Liddell. All rights reserved.
+*/
+
+var TeamBuildScreen = TeamBuildScreen || {};
+
+TeamBuildScreen.BuildLabel = function (paper, x, y, text, fontSize, width) {
 	this.init(paper, x, y, text, fontSize, width);
 };
-buildLabel.prototype.init = function(paper, x, y, text, fontSize, width) {
+TeamBuildScreen.BuildLabel.prototype.init = function (paper, x, y, text, fontSize, width) {
 	var attributes = {"font-family": "Segoe UI", "text-anchor": "start"}
 	this.innerLabel = paper.text(x, y, text).attr(attributes).attr({"font-size": fontSize});
 	this.width = width;
 	this.text = text;
 	this.setText(text);
 }
-buildLabel.prototype.setText = function(text) {
+TeamBuildScreen.BuildLabel.prototype.setText = function (text) {
 	this.text = text;
 	this.innerLabel.attr("text", this.text);
 
@@ -25,13 +34,13 @@ buildLabel.prototype.setText = function(text) {
 		}
 	}
 };
-buildLabel.prototype.remove = function() {
+TeamBuildScreen.BuildLabel.prototype.remove = function () {
 	this.innerLabel.remove();
 }
-var buildIcon = function(paper, status) {
+TeamBuildScreen.BuildIcon = function (paper, status) {
 	this.init(paper, status);
 };
-buildIcon.prototype.init = function(paper, status) {
+TeamBuildScreen.BuildIcon.prototype.init = function (paper, status) {
 	if (this.status == undefined || this.status != status) {
 		this.createIconFromStatus(paper, status);
 	}
@@ -39,7 +48,7 @@ buildIcon.prototype.init = function(paper, status) {
 	this.nativeHeight = this.getWidth();
 	this.status = status;
 }
-buildIcon.prototype.createIconFromStatus = function(paper, status) {
+TeamBuildScreen.BuildIcon.prototype.createIconFromStatus = function (paper, status) {
 	if (status == "InProgress") {
 		this.icon = this.createInProgressIcon(paper);
 	} else if (status == "NotStarted") {
@@ -56,10 +65,10 @@ buildIcon.prototype.createIconFromStatus = function(paper, status) {
 		this.icon = this.createPartiallySucceededIcon(paper);
 	}
 }
-buildIcon.prototype.toFront = function() {
+TeamBuildScreen.BuildIcon.prototype.toFront = function () {
 	this.icon.toFront();
 }
-buildIcon.prototype.createPartiallySucceededIcon = function(paper) {
+TeamBuildScreen.BuildIcon.prototype.createPartiallySucceededIcon = function (paper) {
 	var partiallySucceededIcon = paper.set();
 	var offset = 150;
 	var offset2 = 20;
@@ -88,7 +97,7 @@ buildIcon.prototype.createPartiallySucceededIcon = function(paper) {
 
 	return partiallySucceededIcon;
 }
-buildIcon.prototype.createSuccessIcon = function(paper) {
+TeamBuildScreen.BuildIcon.prototype.createSuccessIcon = function (paper) {
 	var successIcon = paper.set();
 
 	successIcon.push(
@@ -103,7 +112,7 @@ buildIcon.prototype.createSuccessIcon = function(paper) {
 
 	return successIcon;
 }
-buildIcon.prototype.createFailedIcon = function(paper) {
+TeamBuildScreen.BuildIcon.prototype.createFailedIcon = function (paper) {
 	var failedIcon = paper.set();
 
 	failedIcon.push(
@@ -120,7 +129,7 @@ buildIcon.prototype.createFailedIcon = function(paper) {
 
 	return failedIcon;
 }
-buildIcon.prototype.createStoppedIcon = function(paper) {
+TeamBuildScreen.BuildIcon.prototype.createStoppedIcon = function (paper) {
 	var stoppedIcon = paper.set();
 
 	stoppedIcon.push(
@@ -134,7 +143,7 @@ buildIcon.prototype.createStoppedIcon = function(paper) {
 
 	return stoppedIcon;
 }
-buildIcon.prototype.createInProgressIcon = function(paper) {
+TeamBuildScreen.BuildIcon.prototype.createInProgressIcon = function (paper) {
 	var inProgressIcon = paper.set();
 
 	inProgressIcon.push(
@@ -148,7 +157,7 @@ buildIcon.prototype.createInProgressIcon = function(paper) {
 
 	return inProgressIcon;
 }
-buildIcon.prototype.createNotStartedIcon = function(paper) {
+TeamBuildScreen.BuildIcon.prototype.createNotStartedIcon = function (paper) {
 	var notStartedIcon = paper.set();
 
 	notStartedIcon.push(
@@ -162,7 +171,7 @@ buildIcon.prototype.createNotStartedIcon = function(paper) {
 
 	return notStartedIcon;
 }
-buildIcon.prototype.createUnknownIcon = function(paper) {
+TeamBuildScreen.BuildIcon.prototype.createUnknownIcon = function (paper) {
 	var unknownIcon = paper.set();
 
 	unknownIcon.push(
@@ -177,7 +186,7 @@ buildIcon.prototype.createUnknownIcon = function(paper) {
 
 	return unknownIcon;
 }
-buildIcon.prototype.moveTo = function(x, y) {
+TeamBuildScreen.BuildIcon.prototype.moveTo = function (x, y) {
 	if (this.x == undefined) {
 		this.x = x;
 		this.y = y;
@@ -188,21 +197,21 @@ buildIcon.prototype.moveTo = function(x, y) {
 
 	this.icon.translate(this.x, this.y);
 }
-buildIcon.prototype.scaleTo = function(scale) {
+TeamBuildScreen.BuildIcon.prototype.scaleTo = function (scale) {
 	this.icon.scale(scale, scale, 0, 0);
 
 	this.scale = scale;
 }
-buildIcon.prototype.getWidth = function() {
+TeamBuildScreen.BuildIcon.prototype.getWidth = function () {
 	return this.icon.getBBox().width;
 }
-buildIcon.prototype.scaleToHeight = function(height) {
+TeamBuildScreen.BuildIcon.prototype.scaleToHeight = function (height) {
 	this.height = height;
 
 	var scale = height / this.nativeHeight;
 	this.scaleTo(scale);
 }
-buildIcon.prototype.createColourFromStatus = function(status) {
+TeamBuildScreen.BuildIcon.prototype.createColourFromStatus = function (status) {
 	if (status == "Failed" || status == "Stopped" || status == "PartiallySucceeded") {
 		return "#D74C27";
 	} else if (status == "Succeeded") {
@@ -211,7 +220,7 @@ buildIcon.prototype.createColourFromStatus = function(status) {
 
 	return "#878787";
 }
-buildIcon.prototype.setStatus = function(paper, status) {
+TeamBuildScreen.BuildIcon.prototype.setStatus = function (paper, status) {
 	if (this.status != status) {
 		var colour = this.createColourFromStatus(status);
 		var self = this;
@@ -222,13 +231,13 @@ buildIcon.prototype.setStatus = function(paper, status) {
 		self.icon.translate(self.x, self.y);
 	}
 }
-buildIcon.prototype.remove = function() {
+TeamBuildScreen.BuildIcon.prototype.remove = function () {
 	this.icon.remove();
 }
-var buildPanel = function (paper, x, y, width, height, build) {
+TeamBuildScreen.BuildPanel = function (paper, x, y, width, height, build) {
 	this.init(paper, x, y, width, height, build);
 };
-buildPanel.prototype.init = function(paper, x, y, width, height, build) {
+TeamBuildScreen.BuildPanel.prototype.init = function (paper, x, y, width, height, build) {
 	this.build = build;
 	this.paper = paper;
 
@@ -236,7 +245,7 @@ buildPanel.prototype.init = function(paper, x, y, width, height, build) {
 
 	this.draw(x, y, width, height);
 }
-buildPanel.prototype.draw = function(x, y, width, height) {
+TeamBuildScreen.BuildPanel.prototype.draw = function (x, y, width, height) {
 	var margin = height * 0.04; // 4% of height
 	var shadowOffset = 6;
 	var shadowOpacity = 0.4;
@@ -274,7 +283,7 @@ buildPanel.prototype.draw = function(x, y, width, height) {
 	this.backgroundFade = this.paper.rect(x + height + 1, y, width - height - (height / 2), height).attr({fill : this.gradient, "stroke-opacity" : 0});
 
 	// primary icon
-	this.primaryIcon = new buildIcon(this.paper, this.build.status);
+	this.primaryIcon = new TeamBuildScreen.BuildIcon(this.paper, this.build.status);
 	this.primaryIcon.scaleToHeight(availableHeight);
 	this.primaryIcon.moveTo(x + margin, y + margin);
 
@@ -298,26 +307,26 @@ buildPanel.prototype.draw = function(x, y, width, height) {
 	this.labels = new Array(6);
 
 	// title
-	this.labels[0] = new buildLabel(this.paper, labelX, labelY, this.build.description, 2 * labelHeight, availableWidth);
+	this.labels[0] = new TeamBuildScreen.BuildLabel(this.paper, labelX, labelY, this.build.description, 2 * labelHeight, availableWidth);
 
 	labelY += 2 * labelHeight;
-	this.labels[1] = new buildLabel(this.paper, labelX, labelY, this.build.status, labelHeight, availableWidth);
+	this.labels[1] = new TeamBuildScreen.BuildLabel(this.paper, labelX, labelY, TeamBuildScreen.ConvertStatusToString(this.build.status), labelHeight, availableWidth);
 
-	var requestedBy = "Requested by " + this.build.requestedBy;
+	var requestedBy = this.build.requestedBy != null ? "Requested by " + this.build.requestedBy : "";
 	labelY += labelHeight;
-	this.labels[2] = new buildLabel(this.paper, labelX, labelY, requestedBy , labelHeight, availableWidth);
+	this.labels[2] = new TeamBuildScreen.BuildLabel(this.paper, labelX, labelY, requestedBy, labelHeight, availableWidth);
 
-	var startedOn = "Started on " + this.build.startedOn;
+	var startedOn = this.build.startedOn != null ? "Started on " + this.build.startedOn : "";
 	labelY += labelHeight;
-	this.labels[3] = new buildLabel(this.paper, labelX, labelY, startedOn, labelHeight, availableWidth);
+	this.labels[3] = new TeamBuildScreen.BuildLabel(this.paper, labelX, labelY, startedOn, labelHeight, availableWidth);
 
-	var completedOn = this.build.isFinished ? "Completed on " + this.build.completedOn : "";
-	labelY += labelHeight; 
-	this.labels[4] = new buildLabel(this.paper, labelX, labelY, completedOn, labelHeight, availableWidth);
-
-	var testResults = this.build.isFinished ? this.build.testResults : "";
+	var completedOn = this.build.isFinished && this.build.completedOn != null ? "Completed on " + this.build.completedOn : "";
 	labelY += labelHeight;
-	this.labels[5] = new buildLabel(this.paper, labelX, labelY, testResults, labelHeight, availableWidth);
+	this.labels[4] = new TeamBuildScreen.BuildLabel(this.paper, labelX, labelY, completedOn, labelHeight, availableWidth);
+
+	var testResults = this.build.isFinished && this.build.testResults != null ? this.build.testResults : "";
+	labelY += labelHeight;
+	this.labels[5] = new TeamBuildScreen.BuildLabel(this.paper, labelX, labelY, testResults, labelHeight, availableWidth);
 
 	// progress bar
 	this.progressBar = this.paper.rect(
@@ -333,7 +342,7 @@ buildPanel.prototype.draw = function(x, y, width, height) {
 	}
 
 	// secondary icon
-	this.secondaryIcon = new buildIcon(this.paper, "NotStarted");
+    this.secondaryIcon = new TeamBuildScreen.BuildIcon(this.paper, "NotStarted");
 	this.secondaryIcon.scaleToHeight(availableHeight / 2);
 	this.secondaryIcon.moveTo(x + width - this.secondaryIcon.getWidth() - margin, y + margin);
 
@@ -350,11 +359,11 @@ buildPanel.prototype.draw = function(x, y, width, height) {
 		this.blink();
 	}
 }
-buildPanel.prototype.redraw = function(x, y, width, height) {
+TeamBuildScreen.BuildPanel.prototype.redraw = function (x, y, width, height) {
 	this.stop();
 	this.draw(x, y, width, height);
 }
-buildPanel.prototype.update = function(build, paper) {
+TeamBuildScreen.BuildPanel.prototype.update = function (build, paper) {
 	var self = this;
 	
 	if (self.build.status != build.status) {
@@ -425,17 +434,17 @@ buildPanel.prototype.update = function(build, paper) {
 		self.progressBar.animate({"width" : self.labels[1].width * build.progress}, 1000);
 	}
 	
-	self.labels[1].setText(build.status);
-	self.labels[2].setText("Requested by " + build.requestedBy);
-	self.labels[3].setText("Started on " + build.startedOn);
-	var completedOn = build.isFinished ? "Completed on " + build.completedOn : "";
+	self.labels[1].setText(TeamBuildScreen.ConvertStatusToString(build.status));
+	self.labels[2].setText(build.requestedBy != null ? "Requested by " + build.requestedBy : "");
+	self.labels[3].setText(build.startedOn != null ? "Started on " + build.startedOn : "");
+	var completedOn = build.isFinished && build.completedOn != null ? "Completed on " + build.completedOn : "";
 	self.labels[4].setText(completedOn);
-	var testResults = build.isFinished ? build.testResults : "";
+	var testResults = build.isFinished && build.testResults != null ? build.testResults : "";
 	self.labels[5].setText(testResults);
 
 	self.build = build;
 }
-buildPanel.prototype.createColoursFromStatus = function(status) {
+TeamBuildScreen.BuildPanel.prototype.createColoursFromStatus = function (status) {
 	if (status == "Failed" || status == "Stopped" || status == "PartiallySucceeded") {
 		this.fromColour = "#D74C27";
 		this.toColour = "#EDB09F";
@@ -449,7 +458,7 @@ buildPanel.prototype.createColoursFromStatus = function(status) {
 
 	this.gradient = "180-" + this.toColour +"-" + this.fromColour;
 }
-buildPanel.prototype.blink = function() {
+TeamBuildScreen.BuildPanel.prototype.blink = function () {
 	var self = this;
 
 	function fadeIn() {
@@ -465,7 +474,7 @@ buildPanel.prototype.blink = function() {
 	self.primaryIconOverlay.show();
 	fadeIn();
 }
-buildPanel.prototype.stop = function() {
+TeamBuildScreen.BuildPanel.prototype.stop = function () {
 	this.primaryIconOverlay.stop();
 	this.primaryIconOverlay.animate({"opacity": 0}, 500);
 	this.progressBar.stop();
@@ -473,12 +482,12 @@ buildPanel.prototype.stop = function() {
 	this.secondaryIconOverlay.stop();
 	this.backgroundRight.stop();
 }
-var buildGrid = function(id, buildServer) {
-	this.init(id, buildServer);
+TeamBuildScreen.BuildGrid = function (id, buildServer, columns) {
+    this.init(id, buildServer, columns);
 };
-buildGrid.prototype.init = function(id, buildServer) {
+TeamBuildScreen.BuildGrid.prototype.init = function (id, buildServer, columns) {
 	this.margin = 16;
-	this.columns = 2;
+	this.columns = columns;
 	this.buildServer = buildServer;
 	this.id = id;
 	this.draw();
@@ -493,7 +502,7 @@ buildGrid.prototype.init = function(id, buildServer) {
 	for (var i in this.buildServer.builds)
 	{
 		var build = this.buildServer.builds[i];
-		var panel = new buildPanel(this.paper, x, y, this.buildPanelWidth, this.buildPanelHeight, build);
+		var panel = new TeamBuildScreen.BuildPanel(this.paper, x, y, this.buildPanelWidth, this.buildPanelHeight, build);
 
 		if (currentColumn < this.columns - 1) {
 			currentColumn++;
@@ -512,7 +521,7 @@ buildGrid.prototype.init = function(id, buildServer) {
 
 	buildServer.register(this);
 }
-buildGrid.prototype.draw = function() {
+TeamBuildScreen.BuildGrid.prototype.draw = function () {
 	this.calculateLayout();
 
 	if (this.paper == undefined) {
@@ -524,7 +533,7 @@ buildGrid.prototype.draw = function() {
 
 	this.paper.ellipse(this.width / 2, this.height / 2, this.width / 2, this.height / 2).attr({fill: "r#999999-#333333", stroke: 0});
 }
-buildGrid.prototype.calculateLayout = function() {
+TeamBuildScreen.BuildGrid.prototype.calculateLayout = function () {
 	var count = this.buildServer.builds.length;
 	var $window = $(window);
 	this.width = $window.width();
@@ -535,7 +544,7 @@ buildGrid.prototype.calculateLayout = function() {
 	var rows = Math.floor(count / this.columns);
 	this.buildPanelHeight = (this.availableHeight - ((rows - 1) * this.margin)) / rows;
 }
-buildGrid.prototype.update = function(buildServer) {
+TeamBuildScreen.BuildGrid.prototype.update = function (buildServer) {
 	for (i = 0; i < this.panels.length; i++)
 	{
 		var panel = this.panels[i];
@@ -544,7 +553,7 @@ buildGrid.prototype.update = function(buildServer) {
 		panel.update(build, this.paper);
 	}
 }
-buildGrid.prototype.resize = function() {
+TeamBuildScreen.BuildGrid.prototype.resize = function () {
 	this.draw();
 
 	var currentColumn = 0;

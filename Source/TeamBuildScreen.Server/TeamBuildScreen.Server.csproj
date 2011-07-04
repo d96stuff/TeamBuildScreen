@@ -38,11 +38,16 @@
     <Reference Include="OpenRasta">
       <HintPath>..\Lib\openrasta-2.0\OpenRasta.dll</HintPath>
     </Reference>
-    <Reference Include="OpenRasta.Codecs.WebForms">
-      <HintPath>..\Lib\openrasta-2.0\OpenRasta.Codecs.WebForms.dll</HintPath>
+    <Reference Include="OpenRasta.Codecs.Razor">
+      <HintPath>..\..\Lib\openrasta-codecs-razor\OpenRasta.Codecs.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\system-web-razor\System.Web.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,8 +61,11 @@
     <Compile Include="Configurator.cs" />
     <Compile Include="Handlers\BuildHandler.cs" />
     <Compile Include="Handlers\EmbeddedResourceHandler.cs" />
+    <Compile Include="Handlers\IndexHandler.cs" />
     <Compile Include="HttpListenerHostWithConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\IndexViewModelDto.cs" />
+    <Compile Include="Resources\IndexViewModelExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TeamBuildScreen.Core\TeamBuildScreen.Core.csproj">
@@ -70,13 +78,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\buildgrid.js" />
+    <EmbeddedResource Include="Views\tbs.buildgrid.js" />
     <EmbeddedResource Include="Views\colors\jquery.ui.colors.blue.css" />
     <EmbeddedResource Include="Views\images\selector.png" />
     <EmbeddedResource Include="Views\images\ui-icons_222222_256x240.png" />
     <EmbeddedResource Include="Views\images\ui-icons_eeeeee_256x240.png" />
     <EmbeddedResource Include="Views\images\ui-icons_ffffff_256x240.png" />
-    <EmbeddedResource Include="Views\index.html" />
+    <EmbeddedResource Include="Views\Index.cshtml" />
     <EmbeddedResource Include="Views\jquery-1.5.min.js" />
     <EmbeddedResource Include="Views\jquery-ui.min.js" />
     <EmbeddedResource Include="Views\jquery.ui.accordion.css" />
@@ -98,6 +106,9 @@
     <EmbeddedResource Include="Views\jquery.ui.wijmo.css" />
     <EmbeddedResource Include="Views\jquery.uniform.min.js" />
     <EmbeddedResource Include="Views\raphael-min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\tbs.core.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
