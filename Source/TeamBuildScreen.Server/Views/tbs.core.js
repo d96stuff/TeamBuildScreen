@@ -53,8 +53,8 @@ TeamBuildScreen.BuildServer.prototype.init = function (builds, interval, message
     query();
 }
 TeamBuildScreen.BuildServer.prototype.register = function (callback) {
-	if(typeof callback==="function"||typeof callback==="object") {
-		if(typeof callback.update==="function") {
+	if(typeof callback === "function" || typeof callback === "object") {
+		if(typeof callback.update === "function") {
 			this.listeners.push(callback);
 		}
 	}
