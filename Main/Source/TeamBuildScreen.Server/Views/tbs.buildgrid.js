@@ -364,85 +364,87 @@ TeamBuildScreen.BuildPanel.prototype.redraw = function (x, y, width, height) {
 	this.draw(x, y, width, height);
 }
 TeamBuildScreen.BuildPanel.prototype.update = function (build, paper) {
-	var self = this;
-	
-	if (self.build.status != build.status) {
-		var sourceFrom = self.fromColour;
-		var sourceTo = self.toColour;
+    var self = this;
 
-		self.createColoursFromStatus(build.status);
-		self.newStatus = build.status;
+    if (self.build.status != build.status) {
+        var sourceFrom = self.fromColour;
+        var sourceTo = self.toColour;
 
-		self.stop();
-		self.primaryIconOverlay.show();
-		self.primaryIconOverlay.animate({opacity : 1}, 500, function() {
-			self.primaryIcon.setStatus(paper, self.newStatus);
+        self.createColoursFromStatus(build.status);
+        self.newStatus = build.status;
 
-			self.primaryIconOverlay.insertAfter(self.primaryIcon.icon);
+        self.stop();
+        self.primaryIconOverlay.show();
+        self.primaryIconOverlay.animate({ opacity: 1 }, 500, function () {
+            self.primaryIcon.setStatus(paper, self.newStatus);
 
-			self.primaryIconOverlay.animate({opacity : 0}, 500, function() {
-				if (self.newStatus == "InProgress") {
-					self.blink();
-				}
-				self.primaryIconOverlay.hide();
-			});
-		});
+            self.primaryIconOverlay.insertAfter(self.primaryIcon.icon);
 
-		var animHelper = paper.rect().attr({opacity : 0, fill : sourceFrom, stroke : sourceTo});
+            self.primaryIconOverlay.animate({ opacity: 0 }, 500, function () {
+                if (self.newStatus == "InProgress") {
+                    self.blink();
+                }
+                self.primaryIconOverlay.hide();
+            });
+        });
 
-		animHelper.onAnimation(function() {
-			var from = animHelper.attr("fill");
-			var to = animHelper.attr("stroke");
-			var grad = "180-" + to + "-" + from;
+        var animHelper = paper.rect().attr({ opacity: 0, fill: sourceFrom, stroke: sourceTo });
 
-			self.backgroundFade.attr({fill : grad});
-		});
+        animHelper.onAnimation(function () {
+            var from = animHelper.attr("fill");
+            var to = animHelper.attr("stroke");
+            var grad = "180-" + to + "-" + from;
 
-		self.background.animate({'fill' : self.fromColour}, 1000);
-		self.primaryIconOverlay.animateWith(self.background, {'fill' : self.fromColour}, 1000);
-		self.secondaryIconOverlay.animateWith(self.background, {'fill' : self.toColour}, 1000);
-		self.backgroundRight.animateWith(self.background, {'fill' : self.toColour}, 1000);
-		animHelper.animateWith(self.background, {fill : self.fromColour, stroke : self.toColour}, 1000, function() {
-			self.backgroundFade.attr({fill : self.gradient});
-			animHelper.remove();
-		});
-	}
+            self.backgroundFade.attr({ fill: grad });
+        });
 
-	if (self.build.isQueued != build.isQueued) {
-		if (build.isQueued) {
-			// fade queued icon in
-			self.secondaryIconOverlay.show();
-			self.secondaryIcon.icon.show();
-			self.secondaryIconOverlay.animate({opacity : 0}, 1000, function() {
-				self.secondaryIconOverlay.hide();
-			});
-		} else {
-			// fade queued icon out
-			self.secondaryIconOverlay.show();
-			self.secondaryIconOverlay.animate({opacity : 1}, 1000, function() {
-				self.secondaryIcon.icon.hide();
-				self.secondaryIconOverlay.hide();
-			});
-		}
-	}
+        self.background.animate({ 'fill': self.fromColour }, 1000, function () {
+            animHelper.remove()
+        });
+        self.primaryIconOverlay.animateWith(self.background, { 'fill': self.fromColour }, 1000);
+        self.secondaryIconOverlay.animateWith(self.background, { 'fill': self.toColour }, 1000);
+        self.backgroundRight.animateWith(self.background, { 'fill': self.toColour }, 1000);
 
-	if (build.isFinished) {
-		self.progressBar.hide();
-		self.progressBar.attr({"width" : 1});
-	} else {
-		self.progressBar.show();
-		self.progressBar.animate({"width" : self.labels[1].width * build.progress}, 1000);
-	}
-	
-	self.labels[1].setText(TeamBuildScreen.ConvertStatusToString(build.status));
-	self.labels[2].setText(build.requestedBy != null ? "Requested by " + build.requestedBy : "");
-	self.labels[3].setText(build.startedOn != null ? "Started on " + build.startedOn : "");
-	var completedOn = build.isFinished && build.completedOn != null ? "Completed on " + build.completedOn : "";
-	self.labels[4].setText(completedOn);
-	var testResults = build.isFinished && build.testResults != null ? build.testResults : "";
-	self.labels[5].setText(testResults);
+        animHelper.animateWith(self.background, { fill: self.fromColour, stroke: self.toColour }, 1000, function () {
+            self.backgroundFade.attr({ fill: self.gradient });
+        });
+    }
 
-	self.build = build;
+    if (self.build.isQueued != build.isQueued) {
+        if (build.isQueued) {
+            // fade queued icon in
+            self.secondaryIconOverlay.show();
+            self.secondaryIcon.icon.show();
+            self.secondaryIconOverlay.animate({ opacity: 0 }, 1000, function () {
+                self.secondaryIconOverlay.hide();
+            });
+        } else {
+            // fade queued icon out
+            self.secondaryIconOverlay.show();
+            self.secondaryIconOverlay.animate({ opacity: 1 }, 1000, function () {
+                self.secondaryIcon.icon.hide();
+                self.secondaryIconOverlay.hide();
+            });
+        }
+    }
+
+    if (build.isFinished) {
+        self.progressBar.hide();
+        self.progressBar.attr({ "width": 1 });
+    } else {
+        self.progressBar.show();
+        self.progressBar.animate({ "width": self.labels[1].width * build.progress }, 1000);
+    }
+
+    self.labels[1].setText(TeamBuildScreen.ConvertStatusToString(build.status));
+    self.labels[2].setText(build.requestedBy != null ? "Requested by " + build.requestedBy : "");
+    self.labels[3].setText(build.startedOn != null ? "Started on " + build.startedOn : "");
+    var completedOn = build.isFinished && build.completedOn != null ? "Completed on " + build.completedOn : "";
+    self.labels[4].setText(completedOn);
+    var testResults = build.isFinished && build.testResults != null ? build.testResults : "";
+    self.labels[5].setText(testResults);
+
+    self.build = build;
 }
 TeamBuildScreen.BuildPanel.prototype.createColoursFromStatus = function (status) {
 	if (status == "Failed" || status == "Stopped" || status == "PartiallySucceeded") {
