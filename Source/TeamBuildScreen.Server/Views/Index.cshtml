@@ -50,7 +50,7 @@
 
 			var mouseMoveThread;
 
-			$(window).mousemove(function() {
+            var showToolbar = function() {
 				var hideToolbar = function() {
 					$("#toolbar").stop().animate({"height" : "0px"}, 1000);
 				};
@@ -66,7 +66,9 @@
 					clearTimeout(mouseMoveThread);
 					mouseMoveThread = setTimeout(hideToolbar, 1500);
 				}
-			});
+			}
+
+			$("#overlay").bind('mousemove', showToolbar);
 
 			$('#dialog').dialog({
 				autoOpen: false,
@@ -74,11 +76,13 @@
 				buttons: {
 					"Save": function() {
 						messageView.hide();
-						$(this).dialog("close"); 
+						$(this).dialog("close");
+			            $("#overlay").bind('mousemove', showToolbar);
 					}, 
 					"Close": function() {
 						messageView.hide();
-						$(this).dialog("close"); 
+						$(this).dialog("close");
+			            $("#overlay").bind('mousemove', showToolbar);
 					}
 				}
 			});
@@ -86,6 +90,7 @@
 			$("input:file, input:checkbox, input:radio, select").uniform();
 
 			new configButton("config-button", function() {
+                $("#overlay").unbind('mousemove');
 				messageView.show();
 				$('#dialog').dialog('open');
 			});
@@ -143,7 +148,7 @@
 			height : 0px;
 			overflow : hidden;
 			/* Fallback for web browsers that doesn't support RGBa */
-			background: rgb(0, 0, 0);
+			/*background: rgb(0, 0, 0);*/
 			/* for webkit browsers */
 			background : -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.0)), to(rgba(0, 0, 0, 0.75)));
 			/* for firefox 3.6+ */
