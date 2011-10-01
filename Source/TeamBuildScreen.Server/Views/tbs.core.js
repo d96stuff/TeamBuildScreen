@@ -85,7 +85,7 @@ TeamBuildScreen.MessageView.prototype.init = function (id) {
     this.$view.fadeTo(0, 0);
 }
 TeamBuildScreen.MessageView.prototype.error = function () {
-    this.setMessage("Unable to contact server.");
+    this.setMessage("Error contacting build server.");
     this.show();
 }
 TeamBuildScreen.MessageView.prototype.show = function () {

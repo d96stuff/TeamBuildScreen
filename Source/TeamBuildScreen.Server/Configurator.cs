@@ -5,6 +5,7 @@ using OpenRasta.Codecs;
 using OpenRasta.Codecs.Razor;
 using OpenRasta.Configuration;
 using TeamBuildScreen.Core.DataTransfer;
+using TeamBuildScreen.Server.Codecs;
 using TeamBuildScreen.Server.Handlers;
 using TeamBuildScreen.Server.Resources;
 
@@ -19,10 +20,15 @@ namespace TeamBuildScreen.Server
                 ResourceSpace.Uses.ViewsEmbeddedInTheAssembly(Assembly.GetExecutingAssembly(), "TeamBuildScreen.Server.Views");
 
                 ResourceSpace.Has
+                    .ResourcesOfType<IList<ServerDto>>()
+                    .AtUri("/servers")
+                    .HandledBy<ServerHandler>()
+                    .AsJsonDataContract();
+                ResourceSpace.Has
                     .ResourcesOfType<IList<BuildInfoViewModelDto>>()
                     .AtUri("/builds")
                     .HandledBy<BuildHandler>()
-                    .AsJsonDataContract();
+                    .TranscodedBy<NoCacheJsonDataContractCodec>();
                 ResourceSpace.Has
                     .ResourcesOfType<IndexViewModelDto>()
                     .AtUri("/")

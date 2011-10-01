@@ -38,7 +38,7 @@ namespace TeamBuildScreen.Core.ViewModels
 
         private void OnError(object sender, EventArgs e)
         {
-            this.DisplayMessage("Unable to contact Team Foundation Server.");
+            this.DisplayMessage("Unable to contact build server.");
         }
 
         private void OnNotConfigured(object sender, EventArgs e)

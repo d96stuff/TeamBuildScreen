@@ -5,5 +5,8 @@
     using TeamBuildScreen.Core.Models;
 
     [Export(typeof(IServerManifest))]
-    public class HudsonManifest : ServerManifest<MockBuildServerService, MockDomainProjectPicker> { }
+    public class DemoManifest : ServerManifest<MockBuildServerService, MockDomainProjectPicker>
+    {
+        public DemoManifest() : base("Demo") { }
+    }
 }
