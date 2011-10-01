@@ -1,4 +1,5 @@
-﻿namespace TeamBuildScreen.Server.Resources
+﻿using System.Collections.Generic;
+namespace TeamBuildScreen.Server.Resources
 {
     public class IndexViewModelDto
     {

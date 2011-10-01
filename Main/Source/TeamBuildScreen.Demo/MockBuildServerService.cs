@@ -116,6 +116,7 @@ namespace TeamBuildScreen.Demo
                             break;
                         case 7:
                             this.OnError();
+
                             return;
                     }
 
