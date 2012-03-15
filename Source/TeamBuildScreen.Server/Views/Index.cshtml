@@ -33,10 +33,11 @@
 
 		$(document).ready(function() {
             var builds = @(new HtmlString(Resource.BuildData));
-            var interval = @Resource.UpdateInterval;
-            var columns = @Resource.Columns;
+            var interval = @Resource.Settings.UpdateInterval;
+            var columns = @Resource.Settings.Columns;
             var messageView = new TeamBuildScreen.MessageView("overlay");
-			var grid = new TeamBuildScreen.BuildGrid("canvas", new TeamBuildScreen.BuildServer(builds, interval, messageView), columns);
+            var buildServer = new TeamBuildScreen.BuildServer(builds, interval, messageView);
+			var grid = new TeamBuildScreen.BuildGrid("canvas", buildServer, columns);
 			var windowResizeThread;
 
 			$(window).resize(function() {
@@ -78,11 +79,13 @@
 						messageView.hide();
 						$(this).dialog("close");
 			            $("#overlay").bind('mousemove', showToolbar);
+                        buildServer.start();
 					}, 
 					"Close": function() {
 						messageView.hide();
 						$(this).dialog("close");
 			            $("#overlay").bind('mousemove', showToolbar);
+                        buildServer.start();
 					}
 				}
 			});
@@ -91,6 +94,7 @@
 
 			new configButton("config-button", function() {
                 $("#overlay").unbind('mousemove');
+                buildServer.stop();
 				messageView.show();
 				$('#dialog').dialog('open');
 			});
