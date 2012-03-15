@@ -227,13 +227,13 @@ namespace TeamBuildScreen.Core.ViewModels
                 {
                     this.completedOn = this.dataModel.Model.FinishTime;
 
-                    if (this.dataModel.Model.TestsTotal.HasValue)
+                    if (this.dataModel.Model.TestsTotal.HasValue && this.dataModel.Model.TestsTotal > 0)
                     {
                         this.testResults = string.Format("Test results: {0} passed, {1} failed, {2} total.", this.dataModel.Model.TestsPassed, this.dataModel.Model.TestsFailed, this.dataModel.Model.TestsTotal);
                     }
                     else
                     {
-                        this.testResults = "No test result.";
+                        this.testResults = string.Empty;
                     }
 
                     hasWarnings = this.dataModel.Model.HasWarnings;
