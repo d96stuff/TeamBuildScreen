@@ -53,6 +53,7 @@
     <Compile Include="TeamBuildServer.cs" />
     <Compile Include="ViewModels\DesktopViewModel.cs" />
     <Compile Include="ViewModels\IndexViewModel.cs" />
+    <Compile Include="Views\DateTimeStringConverter.cs" />
     <Compile Include="Views\ScalingTextBlock.cs" />
     <Compile Include="Views\WindowStateVisibilityConverter.cs" />
     <Reference Include="PresentationCore">
