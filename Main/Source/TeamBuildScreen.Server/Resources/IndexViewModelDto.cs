@@ -10,10 +10,6 @@ namespace TeamBuildScreen.Server.Resources
 
     public class SettingsViewModelDto
     {
-        //public ?? ServerProviders { get; set; }
-
-        //public ?? Builds { get; set; }
-
         public DisplayOptions DisplayOptions { get; set; }
     }
 
