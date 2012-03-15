@@ -36,21 +36,30 @@ TeamBuildScreen.BuildServer.prototype.init = function (builds, interval, message
     this.builds = builds;
 
     var self = this;
+    var timer;
 
     function query() {
         $.getJSON('/builds', function (data) {
             self.builds = data;
             self.update();
             messageView.hide();
-            setTimeout(query, interval);
+            timer = setTimeout(query, interval);
         }).error(function (response) {
             messageView.error();
             TeamBuildScreen.Log(response.responseText)
-            setTimeout(query, interval);
+            timer = setTimeout(query, interval);
         });
     }
 
-    query();
+    this.start = function () {
+        query();
+    }
+
+    this.stop = function () {
+        clearTimeout(timer);
+    }
+
+    this.start();
 }
 TeamBuildScreen.BuildServer.prototype.register = function (callback) {
 	if(typeof callback === "function" || typeof callback === "object") {
