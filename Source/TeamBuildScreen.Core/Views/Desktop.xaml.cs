@@ -4,6 +4,8 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System.ComponentModel;
+
 namespace TeamBuildScreen.Core.Views
 {
     using System;
@@ -64,6 +66,29 @@ namespace TeamBuildScreen.Core.Views
         private void OnClose(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            Settings.Default.Height = Height;
+            Settings.Default.Width = Width;
+            Settings.Default.Top = Top;
+            Settings.Default.Left = Left;
+            Settings.Default.State = WindowState;
+            Settings.Default.Save();
+
+            base.OnClosing(e);
+        }
+
+        protected override void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
+
+            Height = Settings.Default.Height;
+            Width = Settings.Default.Width;
+            Top = Settings.Default.Top;
+            Left = Settings.Default.Left;
+            WindowState = Settings.Default.State;
         }
     }
 }

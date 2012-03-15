@@ -12,8 +12,15 @@ namespace TeamBuildScreen.Server.Resources
             return new IndexViewModelDto
                        {
                            BuildData = viewModel.BuildData.Select(x => x.ToDto()).ToJson(),
-                           Columns = viewModel.Columns,
-                           UpdateInterval = viewModel.UpdateInterval
+                           Settings = new SettingsViewModelDto
+                                          {
+                                              DisplayOptions = new DisplayOptions
+                                                                   {
+                                                                       Columns = viewModel.Columns,
+                                                                       UpdateInterval = viewModel.UpdateInterval
+                                                                   }
+                                          }
+                           
                        };
         }
     }
