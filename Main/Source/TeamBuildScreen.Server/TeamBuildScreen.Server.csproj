@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="OpenRasta">
-      <HintPath>..\Lib\openrasta-2.0\OpenRasta.dll</HintPath>
+      <HintPath>..\..\Lib\openrasta-2.0\OpenRasta.dll</HintPath>
     </Reference>
     <Reference Include="OpenRasta.Codecs.Razor">
       <HintPath>..\..\Lib\openrasta-codecs-razor\OpenRasta.Codecs.Razor.dll</HintPath>
