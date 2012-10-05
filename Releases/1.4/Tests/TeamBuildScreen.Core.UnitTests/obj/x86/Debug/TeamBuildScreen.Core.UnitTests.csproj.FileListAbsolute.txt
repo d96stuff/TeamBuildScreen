@@ -1,0 +1,9 @@
+C:\Users\Jahangeer_Pasha_Moha\Downloads\teambuildscreen-66630\Releases\1.4\Tests\TeamBuildScreen.Core.UnitTests\bin\x86\Debug\TeamBuildScreenSaver.UnitTests.dll
+C:\Users\Jahangeer_Pasha_Moha\Downloads\teambuildscreen-66630\Releases\1.4\Tests\TeamBuildScreen.Core.UnitTests\bin\x86\Debug\TeamBuildScreenSaver.UnitTests.pdb
+C:\Users\Jahangeer_Pasha_Moha\Downloads\teambuildscreen-66630\Releases\1.4\Tests\TeamBuildScreen.Core.UnitTests\bin\x86\Debug\TeamBuildScreen.Core.dll
+C:\Users\Jahangeer_Pasha_Moha\Downloads\teambuildscreen-66630\Releases\1.4\Tests\TeamBuildScreen.Core.UnitTests\bin\x86\Debug\TeamBuildScreen.Demo.dll
+C:\Users\Jahangeer_Pasha_Moha\Downloads\teambuildscreen-66630\Releases\1.4\Tests\TeamBuildScreen.Core.UnitTests\bin\x86\Debug\TeamBuildScreen.Core.pdb
+C:\Users\Jahangeer_Pasha_Moha\Downloads\teambuildscreen-66630\Releases\1.4\Tests\TeamBuildScreen.Core.UnitTests\bin\x86\Debug\TeamBuildScreen.Demo.pdb
+C:\Users\Jahangeer_Pasha_Moha\Downloads\teambuildscreen-66630\Releases\1.4\Tests\TeamBuildScreen.Core.UnitTests\obj\x86\Debug\TeamBuildScreen.Core.UnitTests.csprojResolveAssemblyReference.cache
+C:\Users\Jahangeer_Pasha_Moha\Downloads\teambuildscreen-66630\Releases\1.4\Tests\TeamBuildScreen.Core.UnitTests\obj\x86\Debug\TeamBuildScreenSaver.UnitTests.dll
+C:\Users\Jahangeer_Pasha_Moha\Downloads\teambuildscreen-66630\Releases\1.4\Tests\TeamBuildScreen.Core.UnitTests\obj\x86\Debug\TeamBuildScreenSaver.UnitTests.pdb
