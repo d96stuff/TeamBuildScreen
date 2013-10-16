@@ -12,16 +12,12 @@ namespace TeamBuildScreen.Core.Views
     using TeamBuildScreen.Core.ViewModels;
     using System.ComponentModel;
     using System.Windows;
-using System.Windows.Controls;
 
-    #endregion
+	#endregion
 
     public partial class BuildPanel
     {
-        private Border border;
-        private BuildStatusIcon statusIcon;
-
-        #region Constructors
+	    #region Constructors
 
         public BuildPanel()
 		{
