@@ -15,6 +15,10 @@
                 <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FFD74C27" Duration="0:0:0.5" />
                 <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#FFEDB09F" Duration="0:0:0.5" />
             </Storyboard>
+            <Storyboard x:Key="FadeToOrange">
+                <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FFFFBB00" Duration="0:0:0.5" />
+                <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#FFFFDD80" Duration="0:0:0.5" />
+            </Storyboard>
             <Storyboard x:Key="FadeToGrey">
                 <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FF878787" Duration="0:0:0.5" />
                 <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#FFCACACA" Duration="0:0:0.5" />
@@ -221,7 +225,7 @@
                             <StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
                             <StopStoryboard BeginStoryboardName="LoadingStoryboard"/>
                             <StopStoryboard BeginStoryboardName="NoneFoundStoryboard"/>
-                            <BeginStoryboard Storyboard="{StaticResource FadeToRed}" Name="PartiallySucceededStoryboard"/>
+                            <BeginStoryboard Storyboard="{StaticResource FadeToOrange}" Name="PartiallySucceededStoryboard"/>
                         </DataTrigger.EnterActions>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="Stopped">
@@ -233,7 +237,7 @@
                             <StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
                             <StopStoryboard BeginStoryboardName="LoadingStoryboard"/>
                             <StopStoryboard BeginStoryboardName="NoneFoundStoryboard"/>
-                            <BeginStoryboard Storyboard="{StaticResource FadeToRed}" Name="StoppedStoryboard"/>
+                            <BeginStoryboard Storyboard="{StaticResource FadeToGrey}" Name="StoppedStoryboard"/>
                         </DataTrigger.EnterActions>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="NotStarted">
