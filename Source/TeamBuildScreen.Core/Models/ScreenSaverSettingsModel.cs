@@ -52,9 +52,14 @@ namespace TeamBuildScreen.Core.Models
         /// </summary>
         private int staleThreshold;
 
+	    /// <summary>
+	    /// Specifies the format of the Team Project Name in the build info.
+	    /// </summary>
+		private TeamProjectNameFormat teamProjectNameFormat;
+
         private IBuildServerService buildServerService;
 
-        #endregion
+	    #endregion
 
         #region Properties
 
@@ -130,6 +135,23 @@ namespace TeamBuildScreen.Core.Models
             }
         }
 
+		public TeamProjectNameFormat CurrentTeamProjectNameFormat
+	    {
+		    get
+			{
+				return this.teamProjectNameFormat;
+			}
+			set
+			{
+				if (value != this.teamProjectNameFormat)
+				{
+					this.teamProjectNameFormat = value;
+
+					this.OnPropertyChanged("CurrentTeamProjectNameFormat");
+				}
+			}
+	    }
+
         public ObservableCollection<BuildSetting> Builds
         {
             get
@@ -144,7 +166,7 @@ namespace TeamBuildScreen.Core.Models
             private set;
         }
 
-        #endregion
+	    #endregion
 
         #region Constructors
 
@@ -175,6 +197,7 @@ namespace TeamBuildScreen.Core.Models
             this.settings.TfsUri = this.tfsUri;
             this.settings.UpdateInterval = this.updateInterval;
             this.settings.StaleThreshold = this.staleThreshold;
+	        this.settings.TeamProjectNameFormat = (int)this.teamProjectNameFormat;
 
             this.SaveBuilds();
 
@@ -190,6 +213,7 @@ namespace TeamBuildScreen.Core.Models
             this.columns = this.settings.Columns;
             this.updateInterval = this.settings.UpdateInterval;
             this.staleThreshold = this.settings.StaleThreshold;
+	        this.teamProjectNameFormat = (TeamProjectNameFormat)this.settings.TeamProjectNameFormat;
 
             if (!string.IsNullOrEmpty(this.TfsUri))
             {
@@ -273,7 +297,7 @@ namespace TeamBuildScreen.Core.Models
 
         #endregion
 
-        #region INotifyPropertyChanged Members
+	    #region INotifyPropertyChanged Members
 
         /// <summary>
         /// Occurs when a property value changes.

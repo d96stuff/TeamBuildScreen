@@ -56,6 +56,11 @@ namespace TeamBuildScreen.Core.Models
         /// </summary>
         private bool isStale = false;
 
+		/// <summary>
+		/// The <see cref="Settings"/> for the application
+		/// </summary>
+		private readonly Settings settings;
+
         #endregion
 
         #region Constructors
@@ -77,6 +82,7 @@ namespace TeamBuildScreen.Core.Models
 
             this.service.AddBuild(this.key);
             this.service.QueryCompleted += this.UpdateModel;
+	        this.settings = Settings.Default;
         }
 
         #endregion
@@ -194,11 +200,28 @@ namespace TeamBuildScreen.Core.Models
         {
             get
             {
-                return string.IsNullOrEmpty(this.TeamProject) ? this.DefinitionName : string.Format("{0}: {1}", this.TeamProject, this.DefinitionName);
+                return string.IsNullOrEmpty(TeamProject) ? DefinitionName : string.Format("{0}{1}", FormattedTeamProjectName, DefinitionName);
             }
         }
 
-        #endregion
+	    private string FormattedTeamProjectName
+	    {
+		    get
+		    {
+			    switch ((TeamProjectNameFormat) settings.TeamProjectNameFormat)
+			    {
+				    case TeamProjectNameFormat.None:
+					    return string.Empty;
+				    case TeamProjectNameFormat.Short:
+					    return TeamProject.FilterCapitalsAndNumbers() + ": ";
+				    case TeamProjectNameFormat.Full:
+					default:
+						return TeamProject + ": ";
+			    }
+		    }
+	    }
+
+	    #endregion
 
         #region Methods
 

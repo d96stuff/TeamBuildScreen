@@ -105,20 +105,33 @@ namespace TeamBuildScreen.Core.ViewModels
             }
         }
 
-        public int StaleThreshold
-        {
-            get
-            {
-                return this.dataModel.StaleThreshold;
-            }
+		public int StaleThreshold
+		{
+			get
+			{
+				return this.dataModel.StaleThreshold;
+			}
 
-            set
-            {
-                this.dataModel.StaleThreshold = value;
-            }
-        }
+			set
+			{
+				this.dataModel.StaleThreshold = value;
+			}
+		}
 
-        public ObservableCollection<BuildSetting> Builds
+		public TeamProjectNameFormat CurrentTeamProjectNameFormat
+		{
+			get
+			{
+				return this.dataModel.CurrentTeamProjectNameFormat;
+			}
+
+			set
+			{
+				this.dataModel.CurrentTeamProjectNameFormat = value;
+			}
+		}
+
+		public ObservableCollection<BuildSetting> Builds
         {
             get
             {
