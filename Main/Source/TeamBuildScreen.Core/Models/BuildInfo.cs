@@ -14,7 +14,8 @@
                 BuildFinished = false,
                 FinishTime = null,
                 StartTime = null,
-                Status = BuildStatus.NoneFound
+                Status = BuildStatus.NoneFound,
+				CodeCoverage = null
             };
 
         public virtual bool BuildFinished { get; protected set; }
@@ -33,6 +34,8 @@
 
         public virtual int? TestsPassed { get; protected set; }
 
-        public virtual int? TestsTotal { get; protected set; }
-    }
+		public virtual int? TestsTotal { get; protected set; }
+	
+		public virtual int? CodeCoverage { get; protected set; }
+	}
 }

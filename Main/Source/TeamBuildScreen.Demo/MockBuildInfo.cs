@@ -79,7 +79,8 @@ namespace TeamBuildScreen.Demo
         }
 
         public bool HasWarnings { get; set; }
+	    public int? CodeCoverage { get; private set; }
 
-        #endregion
+	    #endregion
     }
 }
