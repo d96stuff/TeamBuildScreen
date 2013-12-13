@@ -127,7 +127,7 @@ namespace TeamBuildScreen.Tfs2010.Models
                 var project = this.testManagementService.GetTeamProject(teamProject);
                 var testRuns = project.TestRuns.ByBuild(buildDetail.Uri);
 
-                return new Tfs2010BuildInfo(buildDetail, configuration, platform, testRuns);
+				return new Tfs2010BuildInfo(buildDetail, configuration, platform, testRuns, project.CoverageAnalysisManager);
             }
 
             return BuildInfo.Empty;

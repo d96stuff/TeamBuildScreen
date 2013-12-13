@@ -24,5 +24,7 @@ namespace TeamBuildScreen.Core.Models
         int? TestsTotal { get; }
 
         bool HasWarnings { get; }
+
+		int? CodeCoverage { get; }
     }
 }

@@ -236,6 +236,11 @@ namespace TeamBuildScreen.Core.ViewModels
                         this.testResults = string.Empty;
                     }
 
+					if (this.dataModel.Model.CodeCoverage.HasValue)
+					{
+						this.testResults += string.Format(" Code Coverage: {0}%", this.dataModel.Model.CodeCoverage);
+					}
+
                     hasWarnings = this.dataModel.Model.HasWarnings;
                 }
             }
