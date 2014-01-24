@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6B4C1B76-B994-4FD3-BB5A-7C50E14DBB9A}"
 	ProjectSection(SolutionItems) = preProject
 		GlobalAssemblyInfo.cs = GlobalAssemblyInfo.cs
@@ -61,9 +63,19 @@ Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "TeamBuildScreen.SetupTfs200
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamBuildScreen.DesktopTfs2008", "Source\TeamBuildScreen.DesktopTfs2008\TeamBuildScreen.DesktopTfs2008.csproj", "{7D53E59D-8F78-4A15-8F38-32B0C598F9E2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tfs2013", "Tfs2013", "{3ED4C9B1-B729-423D-B690-D41A867A48B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamBuildScreen.DesktopTfs2013", "Source\TeamBuildScreen.DesktopTfs2013\TeamBuildScreen.DesktopTfs2013.csproj", "{8E695BC0-C140-4307-8783-466198272A6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamBuildScreen.SaverTfs2013", "Source\TeamBuildScreen.SaverTfs2013\TeamBuildScreen.SaverTfs2013.csproj", "{5463E5F0-EA26-4162-9390-60975C49192F}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "TeamBuildScreen.SetupTfs2013", "Source\TeamBuildScreen.SetupTfs2013\TeamBuildScreen.SetupTfs2013.wixproj", "{967119EC-AF3A-4FDA-8B8B-FA33AA49A202}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamBuildScreen.Tfs2013", "Source\TeamBuildScreen.Tfs2013\TeamBuildScreen.Tfs2013.csproj", "{92160F64-3316-47A9-83F2-9157B9C58183}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 22
+		SccNumberOfProjects = 26
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs03
 		SccLocalPath0 = .
@@ -146,9 +158,22 @@ Global
 		SccProjectTopLevelParentUniqueName21 = TeamBuildScreen.sln
 		SccProjectName21 = Source/TeamBuildScreen.DesktopTfs2008
 		SccLocalPath21 = Source\\TeamBuildScreen.DesktopTfs2008
-	EndGlobalSection
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = TeamBuildScreen.vsmdi
+		SccProjectUniqueName22 = Source\\TeamBuildScreen.DesktopTfs2013\\TeamBuildScreen.DesktopTfs2013.csproj
+		SccProjectTopLevelParentUniqueName22 = TeamBuildScreen.sln
+		SccProjectName22 = Source/TeamBuildScreen.DesktopTfs2013
+		SccLocalPath22 = Source\\TeamBuildScreen.DesktopTfs2013
+		SccProjectUniqueName23 = Source\\TeamBuildScreen.SaverTfs2013\\TeamBuildScreen.SaverTfs2013.csproj
+		SccProjectTopLevelParentUniqueName23 = TeamBuildScreen.sln
+		SccProjectName23 = Source/TeamBuildScreen.SaverTfs2013
+		SccLocalPath23 = Source\\TeamBuildScreen.SaverTfs2013
+		SccProjectUniqueName24 = Source\\TeamBuildScreen.SetupTfs2013\\TeamBuildScreen.SetupTfs2013.wixproj
+		SccProjectTopLevelParentUniqueName24 = TeamBuildScreen.sln
+		SccProjectName24 = Source/TeamBuildScreen.SetupTfs2013
+		SccLocalPath24 = Source\\TeamBuildScreen.SetupTfs2013
+		SccProjectUniqueName25 = Source\\TeamBuildScreen.Tfs2013\\TeamBuildScreen.Tfs2013.csproj
+		SccProjectTopLevelParentUniqueName25 = TeamBuildScreen.sln
+		SccProjectName25 = Source/TeamBuildScreen.Tfs2013
+		SccLocalPath25 = Source\\TeamBuildScreen.Tfs2013
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -277,7 +302,6 @@ Global
 		{3E5AF14C-506C-4E4B-BE52-19D979933F70}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{3E5AF14C-506C-4E4B-BE52-19D979933F70}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{3E5AF14C-506C-4E4B-BE52-19D979933F70}.Debug|x86.ActiveCfg = Debug|x86
-		{3E5AF14C-506C-4E4B-BE52-19D979933F70}.Debug|x86.Build.0 = Debug|x86
 		{3E5AF14C-506C-4E4B-BE52-19D979933F70}.Release|Any CPU.ActiveCfg = Release|x86
 		{3E5AF14C-506C-4E4B-BE52-19D979933F70}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{3E5AF14C-506C-4E4B-BE52-19D979933F70}.Release|Mixed Platforms.Build.0 = Release|x86
@@ -347,7 +371,6 @@ Global
 		{D3320542-E577-4CBA-9F78-659FA4FE2E26}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{D3320542-E577-4CBA-9F78-659FA4FE2E26}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{D3320542-E577-4CBA-9F78-659FA4FE2E26}.Debug|x86.ActiveCfg = Debug|x86
-		{D3320542-E577-4CBA-9F78-659FA4FE2E26}.Debug|x86.Build.0 = Debug|x86
 		{D3320542-E577-4CBA-9F78-659FA4FE2E26}.Release|Any CPU.ActiveCfg = Release|x86
 		{D3320542-E577-4CBA-9F78-659FA4FE2E26}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{D3320542-E577-4CBA-9F78-659FA4FE2E26}.Release|Mixed Platforms.Build.0 = Release|x86
@@ -357,7 +380,6 @@ Global
 		{A028EB19-0591-4DE2-814F-B51FDFCD9877}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{A028EB19-0591-4DE2-814F-B51FDFCD9877}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{A028EB19-0591-4DE2-814F-B51FDFCD9877}.Debug|x86.ActiveCfg = Debug|x86
-		{A028EB19-0591-4DE2-814F-B51FDFCD9877}.Debug|x86.Build.0 = Debug|x86
 		{A028EB19-0591-4DE2-814F-B51FDFCD9877}.Release|Any CPU.ActiveCfg = Release|x86
 		{A028EB19-0591-4DE2-814F-B51FDFCD9877}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{A028EB19-0591-4DE2-814F-B51FDFCD9877}.Release|Mixed Platforms.Build.0 = Release|x86
@@ -373,6 +395,45 @@ Global
 		{7D53E59D-8F78-4A15-8F38-32B0C598F9E2}.Release|Mixed Platforms.Build.0 = Release|x86
 		{7D53E59D-8F78-4A15-8F38-32B0C598F9E2}.Release|x86.ActiveCfg = Release|x86
 		{7D53E59D-8F78-4A15-8F38-32B0C598F9E2}.Release|x86.Build.0 = Release|x86
+		{8E695BC0-C140-4307-8783-466198272A6D}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{8E695BC0-C140-4307-8783-466198272A6D}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{8E695BC0-C140-4307-8783-466198272A6D}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{8E695BC0-C140-4307-8783-466198272A6D}.Debug|x86.ActiveCfg = Debug|x86
+		{8E695BC0-C140-4307-8783-466198272A6D}.Debug|x86.Build.0 = Debug|x86
+		{8E695BC0-C140-4307-8783-466198272A6D}.Release|Any CPU.ActiveCfg = Release|x86
+		{8E695BC0-C140-4307-8783-466198272A6D}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{8E695BC0-C140-4307-8783-466198272A6D}.Release|Mixed Platforms.Build.0 = Release|x86
+		{8E695BC0-C140-4307-8783-466198272A6D}.Release|x86.ActiveCfg = Release|x86
+		{8E695BC0-C140-4307-8783-466198272A6D}.Release|x86.Build.0 = Release|x86
+		{5463E5F0-EA26-4162-9390-60975C49192F}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{5463E5F0-EA26-4162-9390-60975C49192F}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{5463E5F0-EA26-4162-9390-60975C49192F}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{5463E5F0-EA26-4162-9390-60975C49192F}.Debug|x86.ActiveCfg = Debug|x86
+		{5463E5F0-EA26-4162-9390-60975C49192F}.Debug|x86.Build.0 = Debug|x86
+		{5463E5F0-EA26-4162-9390-60975C49192F}.Release|Any CPU.ActiveCfg = Release|x86
+		{5463E5F0-EA26-4162-9390-60975C49192F}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{5463E5F0-EA26-4162-9390-60975C49192F}.Release|Mixed Platforms.Build.0 = Release|x86
+		{5463E5F0-EA26-4162-9390-60975C49192F}.Release|x86.ActiveCfg = Release|x86
+		{5463E5F0-EA26-4162-9390-60975C49192F}.Release|x86.Build.0 = Release|x86
+		{967119EC-AF3A-4FDA-8B8B-FA33AA49A202}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{967119EC-AF3A-4FDA-8B8B-FA33AA49A202}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{967119EC-AF3A-4FDA-8B8B-FA33AA49A202}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{967119EC-AF3A-4FDA-8B8B-FA33AA49A202}.Debug|x86.ActiveCfg = Debug|x86
+		{967119EC-AF3A-4FDA-8B8B-FA33AA49A202}.Release|Any CPU.ActiveCfg = Release|x86
+		{967119EC-AF3A-4FDA-8B8B-FA33AA49A202}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{967119EC-AF3A-4FDA-8B8B-FA33AA49A202}.Release|Mixed Platforms.Build.0 = Release|x86
+		{967119EC-AF3A-4FDA-8B8B-FA33AA49A202}.Release|x86.ActiveCfg = Release|x86
+		{967119EC-AF3A-4FDA-8B8B-FA33AA49A202}.Release|x86.Build.0 = Release|x86
+		{92160F64-3316-47A9-83F2-9157B9C58183}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{92160F64-3316-47A9-83F2-9157B9C58183}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{92160F64-3316-47A9-83F2-9157B9C58183}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{92160F64-3316-47A9-83F2-9157B9C58183}.Debug|x86.ActiveCfg = Debug|x86
+		{92160F64-3316-47A9-83F2-9157B9C58183}.Debug|x86.Build.0 = Debug|x86
+		{92160F64-3316-47A9-83F2-9157B9C58183}.Release|Any CPU.ActiveCfg = Release|x86
+		{92160F64-3316-47A9-83F2-9157B9C58183}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{92160F64-3316-47A9-83F2-9157B9C58183}.Release|Mixed Platforms.Build.0 = Release|x86
+		{92160F64-3316-47A9-83F2-9157B9C58183}.Release|x86.ActiveCfg = Release|x86
+		{92160F64-3316-47A9-83F2-9157B9C58183}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -394,5 +455,12 @@ Global
 		{92C37E36-F73F-4C0B-9AB7-FB21076862F6} = {B56273A6-3057-4213-9F5A-29F769E7DE72}
 		{A028EB19-0591-4DE2-814F-B51FDFCD9877} = {B56273A6-3057-4213-9F5A-29F769E7DE72}
 		{7D53E59D-8F78-4A15-8F38-32B0C598F9E2} = {B56273A6-3057-4213-9F5A-29F769E7DE72}
+		{8E695BC0-C140-4307-8783-466198272A6D} = {3ED4C9B1-B729-423D-B690-D41A867A48B4}
+		{5463E5F0-EA26-4162-9390-60975C49192F} = {3ED4C9B1-B729-423D-B690-D41A867A48B4}
+		{967119EC-AF3A-4FDA-8B8B-FA33AA49A202} = {3ED4C9B1-B729-423D-B690-D41A867A48B4}
+		{92160F64-3316-47A9-83F2-9157B9C58183} = {3ED4C9B1-B729-423D-B690-D41A867A48B4}
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = TeamBuildScreen.vsmdi
 	EndGlobalSection
 EndGlobal
