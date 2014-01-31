@@ -93,6 +93,6 @@
   </Target>
   -->
   <Target Name="AfterBuild">
-    <Copy SourceFiles="$(TargetDir)\$(TargetName).exe" DestinationFiles="$(ProjectDir)\bin\TBS2010.scr" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(TargetDir)\$(TargetName).exe" DestinationFiles="$(TargetDir)\$(TargetName).scr" SkipUnchangedFiles="true" />
   </Target>
 </Project>

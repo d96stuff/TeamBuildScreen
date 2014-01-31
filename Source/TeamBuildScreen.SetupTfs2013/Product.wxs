@@ -1,78 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-    <Product Id="135E68ED-1229-441F-8D67-B5A300E9A713" Name="Team Build Screen 2013" Language="1033" Version="1.4.0.0" Manufacturer="Jim Liddell" UpgradeCode="1315fd74-f039-4d8a-aa20-bfbc7b1c6d13">
-        <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
-        <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-        <!--	<MediaTemplate /> -->
-        <Media Id="1" Cabinet="product.cab" EmbedCab="yes" />
-        <Icon Id="ProductIcon" SourceFile="..\TeamBuildScreen.Core\tbs.ico" />
-        <Property Id="ARPPRODUCTICON" Value="ProductIcon" />
-        <Feature Id="ProductFeature" Title="Team Build Screen 2013" Level="1">
-            <ComponentGroupRef Id="ProductComponents" />
-            <ComponentRef Id="TeamBuildScreen.DesktopTfs2013" />
-            <ComponentRef Id="TeamBuildScreen.Tfs2013" />
-            <ComponentRef Id="TeamBuildScreen.Core" />
-            <ComponentRef Id="tbs" />
-            <ComponentRef Id="banner" />
-            <ComponentRef Id="MPL" />
-            <!-- Step 3: Tell WiX to install the shortcut -->
-            <ComponentRef Id="ApplicationShortcut" />
-        </Feature>
-      <UI>
-        <UIRef Id="WixUI_Minimal" />
-      </UI>
-      <WixVariable Id="WixUIBannerBmp" Value="banner.bmp" />
-      <WixVariable Id="WixUILicenseRtf" Value="Microsoft Public License.rtf" />
-    </Product>
-    <Fragment>
-        <Directory Id="TARGETDIR" Name="SourceDir">
-            <Directory Id="ProgramFilesFolder">
-                <Directory Id="INSTALLFOLDER" Name="Team Build Screen 2013" />
-            </Directory>
-            <!-- Step 1: Define the directory structure -->
-            <Directory Id="ProgramMenuFolder">
-                <Directory Id="ApplicationProgramsFolder" Name="Team Build Screen 2013" />
-            </Directory>
-        </Directory>
-    </Fragment>
-    <Fragment>
-        <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-            <!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
-            <!-- <Component Id="ProductComponent"> -->
-            <!-- TODO: Insert files, registry keys, and other resources here. -->
-            <!-- </Component> -->
-            <Component Id="TeamBuildScreen.DesktopTfs2013" Guid="34C038E1-06DA-4F59-BC4E-6CC0C491D96D">
-                <File Id="TeamBuildScreen.DesktopTfs2013" Name="TeamBuildScreen.DesktopTfs2013.exe" DiskId="1" Source="..\TeamBuildScreen.DesktopTfs2013\bin\Release\TeamBuildScreen.DesktopTfs2013.exe" KeyPath="yes" />
-                <Shortcut Id="startmenuTeamBuild2013" Directory="INSTALLFOLDER" Name="TeamBuildScreen2013" Description="TeamBuildScreen2013" Advertise="yes" />
-            </Component>
-            <Component Id="TeamBuildScreen.Tfs2013" Guid="297293DE-CFAD-4534-9714-F526FA7BFA44">
-                <File Id="TeamBuildScreen.Tfs2013" Name="TeamBuildScreen.Tfs2013.dll" DiskId="1" Source="..\TeamBuildScreen.DesktopTfs2013\bin\Release\TeamBuildScreen.Tfs2013.dll" KeyPath="yes">
-                </File>
-            </Component>
-            <Component Id="TeamBuildScreen.Core" Guid="E3BD1BE4-3773-4007-B87A-C0554FFC71F5">
-                <File Id="TeamBuildScreen.Core" Name="TeamBuildScreen.Core.dll" DiskId="1" Source="..\TeamBuildScreen.DesktopTfs2013\bin\Release\TeamBuildScreen.Core.dll" KeyPath="yes">
-                </File>
-            </Component>
-            <Component Id="tbs" Guid="7333ED51-C003-40B3-904B-04A44E660579">
-                <File Id="tbs" Name="tbs.ico" DiskId="1" Source="..\TeamBuildScreen.Core\tbs.ico" KeyPath="yes">
-                </File>
-            </Component>
-            <Component Id="banner" Guid="F326C89E-A518-44FC-9F77-F73E7E32DD7A">
-                <File Id="banner" Name="banner.bmp" DiskId="1" Source="banner.bmp" KeyPath="yes">
-                </File>
-            </Component>
-            <Component Id="MPL" Guid="2401F644-1D43-443A-8C29-E5E7F5CC3D5F">
-                <File Id="MPL" Name="Microsoft Public License.rtf" DiskId="1" Source="Microsoft Public License.rtf" KeyPath="yes">
-                </File>
-            </Component>
-        </ComponentGroup>
-        <!-- Step 2: Add the shortcut to your installer package -->
-        <DirectoryRef Id="ApplicationProgramsFolder">
-            <Component Id="ApplicationShortcut" Guid="C9B95D13-C342-47A5-AA7B-A95C683F71D9">
-                <Shortcut Id="ApplicationStartMenuShortcut" Name="Team Build Screen 2013" Description="Team Build Screen 2013" Target="[INSTALLFOLDER]TeamBuildScreen.DesktopTfs2013.exe" WorkingDirectory="INSTALLFOLDER" />
-                <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
-                <RegistryValue Root="HKCU" Key="Software\Microsoft\Team Build Screen 2013" Name="installed" Type="integer" Value="1" KeyPath="yes" />
-            </Component>
-        </DirectoryRef>
-    </Fragment>
+  <Product Id="135E68ED-1229-441F-8D67-B5A300E9A713" Name="Team Build Screen 2013" Language="1033" Version="2.0.0.0" Manufacturer="Jim Liddell" UpgradeCode="1315fd74-f039-4d8a-aa20-bfbc7b1c6d13">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <Media Id="1" Cabinet="product.cab" EmbedCab="yes" />
+    <Icon Id="ProductIcon" SourceFile="..\TeamBuildScreen.Core\tbs.ico" />
+    <Property Id="ARPPRODUCTICON" Value="ProductIcon" />
+    <Feature Id="ProductFeature" Title="Team Build Screen 2013" Level="1">
+      <ComponentRef Id="TeamBuildScreen.DesktopTfs2013" />
+      <ComponentRef Id="Screensaver" />
+      <ComponentRef Id="ApplicationShortcut" />
+    </Feature>
+    <UI>
+      <UIRef Id="WixUI_Minimal" />
+    </UI>
+    <WixVariable Id="WixUIBannerBmp" Value="banner.bmp" />
+    <WixVariable Id="WixUILicenseRtf" Value="Microsoft Public License.rtf" />
+  </Product>
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="Team Build Screen 2013" />
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="Team Build Screen 2013" />
+      </Directory>
+      <Directory Id="SystemFolder" />
+    </Directory>
+  </Fragment>
+  <Fragment>
+    <DirectoryRef Id="SystemFolder" FileSource="..\TeamBuildScreen.SaverTfs2013\bin\Release">
+      <Component Id="Screensaver" Guid="AA33ED51-C003-40B3-904B-04A44E6605AA">
+        <File Id="TeamBuildScreen.SaverTfs2013" Name="TeamBuildScreen.SaverTfs2013.scr" KeyPath="yes" />
+        <File Id="TeamBuildScreen.CoreSCR" Name="TeamBuildScreen.Core.dll" />
+        <File Id="TeamBuildScreen.Tfs2013SCR" Name="TeamBuildScreen.Tfs2013.dll" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER" FileSource="..\TeamBuildScreen.DesktopTfs2013\bin\Release\">
+      <Component Id="TeamBuildScreen.DesktopTfs2013" Guid="34C038E1-06DA-4F59-BC4E-6CC0C491D96D">
+        <File Id="TeamBuildScreen.DesktopTfs2013" Name="TeamBuildScreen.DesktopTfs2013.exe" KeyPath="yes" />
+        <File Id="TeamBuildScreen.Tfs2013" Name="TeamBuildScreen.Tfs2013.dll" />
+        <File Id="TeamBuildScreen.Core" Name="TeamBuildScreen.Core.dll" />
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid="C9B95D13-C342-47A5-AA7B-A95C683F71D9">
+        <Shortcut Id="ApplicationStartMenuShortcut" Name="Team Build Screen 2013" Description="Team Build Screen 2013" Target="[INSTALLFOLDER]TeamBuildScreen.DesktopTfs2013.exe" WorkingDirectory="INSTALLFOLDER" />
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\Microsoft\Team Build Screen 2013" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
 </Wix>
