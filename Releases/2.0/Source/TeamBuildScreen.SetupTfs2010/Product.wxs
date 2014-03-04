@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="105E68ED-1229-441F-8D67-B5A300E9A710" Name="Team Build Screen 2010" Language="1033" Version="2.0.0.0" Manufacturer="Jim Liddell" UpgradeCode="ee15fd74-f039-4d8a-aa20-bfbc7b1c6de8">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <Media Id="1" Cabinet="product.cab" EmbedCab="yes"/>
+    <Icon Id="ProductIcon" SourceFile="..\TeamBuildScreen.Core\tbs.ico" />
+    <Property Id="ARPPRODUCTICON" Value="ProductIcon" />
+    <Feature Id="ProductFeature" Title="Team Build Screen 2010" Level="1">
+      <ComponentRef Id='TeamBuildScreen.DesktopTfs2010' />
+      <ComponentRef Id="Screensaver" />
+      <ComponentRef Id="ApplicationShortcut" />
+    </Feature>
+    <UI>
+      <UIRef Id="WixUI_Minimal" />
+    </UI>
+    <WixVariable Id="WixUIBannerBmp" Value="banner.bmp" />
+    <WixVariable Id="WixUILicenseRtf" Value="Microsoft Public License.rtf" />
+  </Product>
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="Team Build Screen 2010" />
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="Team Build Screen 2010"/>
+      </Directory>
+      <Directory Id="SystemFolder" />
+    </Directory>
+  </Fragment>
+  <Fragment>
+    <DirectoryRef Id="SystemFolder" FileSource="..\TeamBuildScreen.SaverTfs2010\bin\Release">
+      <Component Id="Screensaver" Guid="AA33ED51-C003-40B3-904B-04A44E6605AA">
+        <File Id="TeamBuildScreen.SaverTfs2010" Name="TeamBuildScreen.SaverTfs2010.scr" KeyPath="yes" />
+        <File Id="TeamBuildScreen.CoreSCR" Name="TeamBuildScreen.Core.dll" />
+        <File Id="TeamBuildScreen.Tfs2010SCR" Name="TeamBuildScreen.Tfs2010.dll" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER" FileSource="..\TeamBuildScreen.DesktopTfs2010\bin\Release\">
+      <Component Id='TeamBuildScreen.DesktopTfs2010' Guid='34C038E1-06DA-4F59-BC4E-6CC0C491D96C'>
+        <File Id='TeamBuildScreen.DesktopTfs2010' Name='TeamBuildScreen.DesktopTfs2010.exe' KeyPath='yes' />
+        <File Id='TeamBuildScreen.Tfs2010' Name='TeamBuildScreen.Tfs2010.dll' />
+        <File Id='TeamBuildScreen.Core' Name='TeamBuildScreen.Core.dll' />
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid="C9B95D13-C342-47A5-AA7B-A95C683F71D8">
+        <Shortcut Id="ApplicationStartMenuShortcut" Name="Team Build Screen 2010" Description="Team Build Screen 2010" Target="[INSTALLFOLDER]TeamBuildScreen.DesktopTfs2010.exe" WorkingDirectory="INSTALLFOLDER" />
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+        <RegistryValue Root="HKCU" Key="Software\Microsoft\Team Build Screen 2010" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>
