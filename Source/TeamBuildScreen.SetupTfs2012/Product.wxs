@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="905E68ED-1229-441F-8D67-B5A300E9A7EA" Name="Team Build Screen 2012" Language="1033" Version="2.0.0.0" Manufacturer="Jim Liddell" UpgradeCode="ee15fd74-f039-4d8a-aa20-bfbc7b1c6de9">
+  <Product Id="905E68ED-1229-441F-8D67-B5A300E9A7EA" Name="Team Build Screen 2012" Language="1033" Version="2.1.0.0" Manufacturer="Jim Liddell" UpgradeCode="ee15fd74-f039-4d8a-aa20-bfbc7b1c6de9">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
     <Media Id="1" Cabinet="product.cab" EmbedCab="yes" />
