@@ -29,7 +29,7 @@
 			this.BuildFinished = buildDetail.BuildFinished;
 			this.FinishTime = buildDetail.FinishTime;
 			this.Status = BuildStatusConverter.Convert(buildDetail.Status);
-			this.RequestedFor = buildDetail.RequestedFor;
+			this.RequestedFor = buildDetail.LastChangedByDisplayName;
 			this.StartTime = buildDetail.StartTime;
 			this.CodeCoverage = GetCodeCoverage(buildDetail, coverageAnalysisManager);
 		}
