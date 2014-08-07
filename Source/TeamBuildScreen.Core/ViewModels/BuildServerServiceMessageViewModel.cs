@@ -36,9 +36,9 @@ namespace TeamBuildScreen.Core.ViewModels
             this.OnPropertyChanged("IsVisible");
         }
 
-        private void OnError(object sender, EventArgs e)
+        private void OnError(object sender, StringEventArgs e)
         {
-            this.DisplayMessage("Unable to contact build server.");
+			this.DisplayMessage(string.Format("Unable to contact build server.\nLast connection {0}", e.Value));
         }
 
         private void OnNotConfigured(object sender, EventArgs e)
