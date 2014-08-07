@@ -28,7 +28,7 @@ namespace TeamBuildScreen.Core.Models
         /// <summary>
         /// Occurs when an error occurs.
         /// </summary>
-        event EventHandler Error;
+        event EventHandler<StringEventArgs> Error;
 
         /// <summary>
         /// Occurs when the service has not been configured.

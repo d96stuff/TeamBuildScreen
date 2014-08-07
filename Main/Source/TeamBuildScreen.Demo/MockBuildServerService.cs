@@ -174,7 +174,7 @@ namespace TeamBuildScreen.Demo
         {
             if (this.Error != null)
             {
-                this.Error(this, EventArgs.Empty);
+                this.Error(this, new StringEventArgs(string.Empty));
             }
         }
 
@@ -219,7 +219,7 @@ namespace TeamBuildScreen.Demo
 
         public event EventHandler QueryCompleted;
 
-        public event EventHandler Error;
+        public event EventHandler<StringEventArgs> Error;
 
         public event EventHandler NotConfigured;
 

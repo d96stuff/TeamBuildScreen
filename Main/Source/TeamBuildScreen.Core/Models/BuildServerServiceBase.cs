@@ -20,6 +20,8 @@ namespace TeamBuildScreen.Core.Models
         /// </summary>
         private int period;
 
+	    private DateTime LastConnectionTime;
+
         #endregion
 
         #region Constructors
@@ -80,6 +82,7 @@ namespace TeamBuildScreen.Core.Models
             {
                 this.QueryCompleted(this, EventArgs.Empty);
             }
+	        LastConnectionTime = DateTime.Now;
         }
 
         /// <summary>
@@ -100,7 +103,7 @@ namespace TeamBuildScreen.Core.Models
         {
             if (this.Error != null)
             {
-                this.Error(this, EventArgs.Empty);
+	            this.Error(this, new StringEventArgs(LastConnectionTime.ToShortTimeString()));
             }
         }
 
@@ -141,7 +144,7 @@ namespace TeamBuildScreen.Core.Models
         /// <summary>
         /// Occurs when an error occurs.
         /// </summary>
-        public event EventHandler Error;
+        public event EventHandler<StringEventArgs> Error;
 
         /// <summary>
         /// Occurs when the service has not been configured.
