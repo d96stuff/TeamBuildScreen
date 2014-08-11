@@ -4,16 +4,17 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace TeamBuildScreen.Core.Views
+using System;
+using System.Globalization;
+using System.Threading;
+
+namespace TeamBuildScreen.Core.Views.Converters
 {
     #region Usings
 
-    using System;
-    using System.Globalization;
-    using System.Threading;
-    using TeamBuildScreen.Core.Models;
+	
 
-    #endregion
+	#endregion
 
     public class DateTimeStringConverter : System.Windows.Data.IValueConverter
     {

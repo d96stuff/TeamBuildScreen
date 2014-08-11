@@ -4,6 +4,8 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System;
+
 namespace TeamBuildScreen.Core.Models
 {
     #region Usings
@@ -12,7 +14,7 @@ namespace TeamBuildScreen.Core.Models
 
     #endregion
 
-    public class BuildSetting : INotifyPropertyChanged
+	public class BuildSetting : INotifyPropertyChanged, IComparable<BuildSetting>, IEquatable<BuildSetting>
     {
         #region Fields
 
@@ -21,6 +23,7 @@ namespace TeamBuildScreen.Core.Models
         private string teamProject;
         private string definitionName;
         private bool isEnabled;
+	    private int orderNo;
 
         #endregion
 
@@ -97,9 +100,26 @@ namespace TeamBuildScreen.Core.Models
             {
                 this.isEnabled = value;
 
+				OrderNo = value ? Int32.MaxValue - 1 : Int32.MaxValue;
+
                 this.OnPropertyChanged("IsEnabled");
             }
         }
+
+		public int OrderNo
+		{
+			get
+			{
+				return this.orderNo;
+			}
+
+			set
+			{
+				this.orderNo = value;
+
+				this.OnPropertyChanged("OrderNo");
+			}
+		}		
 
         #endregion
 
@@ -127,5 +147,21 @@ namespace TeamBuildScreen.Core.Models
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
+
+		public int CompareTo(BuildSetting other)
+		{
+			if (this.OrderNo == other.OrderNo && this.TeamProject == other.TeamProject)
+				return String.Compare(this.DefinitionName, other.DefinitionName, StringComparison.Ordinal);
+			if (this.OrderNo == other.OrderNo)
+				return String.Compare(this.TeamProject, other.TeamProject, StringComparison.Ordinal);
+			return this.OrderNo.CompareTo(other.OrderNo);
+		}
+
+		public bool Equals(BuildSetting other)
+		{
+			if (this.DefinitionName.Equals(other.DefinitionName) && this.TeamProject.Equals(other.TeamProject))
+				return true;
+			return false;
+		}
     }
 }

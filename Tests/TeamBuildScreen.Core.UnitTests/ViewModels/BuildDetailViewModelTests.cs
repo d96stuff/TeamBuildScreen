@@ -4,6 +4,8 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using TeamBuildScreen.Core.Views.Converters;
+
 namespace TeamBuildScreen.Core.UnitTests
 {
     #region Usings

@@ -4,6 +4,9 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System.Linq;
+using TeamBuildScreen.Core.Views;
+
 namespace TeamBuildScreen.Core.ViewModels
 {
     #region Usings
@@ -60,7 +63,19 @@ namespace TeamBuildScreen.Core.ViewModels
             set;
         }
 
-        public ICommand RequestSelectServer
+		public ICommand RequestMoveUp
+		{
+			get;
+			set;
+		}
+
+		public ICommand RequestMoveDown
+		{
+			get;
+			set;
+		}
+
+		public ICommand RequestSelectServer
         {
             get;
             set;
@@ -148,7 +163,9 @@ namespace TeamBuildScreen.Core.ViewModels
             this.RequestSelectServer = new RelayCommand(this.RequestSelectServerExecuted, this.CommandCanExecute);
             this.RequestSave = new RelayCommand(this.RequestSaveExecuted, this.CommandCanExecute);
             this.RequestClose = new RelayCommand(this.RequestCloseExecuted, this.CommandCanExecute);
-        }
+			this.RequestMoveUp = new RelayCommand(this.RequestMoveUpExecuted, this.CommandCanExecute);
+			this.RequestMoveDown = new RelayCommand(this.RequestMoveDownExecuted, this.CommandCanExecute);
+		}
 
         /// <summary>
         /// Raises the <see cref="INotifyPropertyChanged.PropertyChanged"/> event.
@@ -202,10 +219,42 @@ namespace TeamBuildScreen.Core.ViewModels
             }
         }
 
-        #endregion
+		private void RequestMoveUpExecuted(object sender)
+		{
+			BuildSetting selectedBuild = sender as BuildSetting;
+
+			if (selectedBuild != null)
+			{
+				int selectedOrderNo = selectedBuild.OrderNo;
+				if (selectedOrderNo < 1)
+					return;
+				if (selectedOrderNo > Builds.Count(x => x.OrderNo < Int32.MaxValue) - 1)
+					return;
+				Builds[selectedOrderNo - 1].OrderNo = selectedOrderNo;
+				selectedBuild.OrderNo = selectedOrderNo - 1;
+			}
+			dataModel.SortBuildDefinitions(Builds);
+		}
+
+		private void RequestMoveDownExecuted(object sender)
+		{
+			BuildSetting selectedBuild = sender as BuildSetting;
+
+			if (selectedBuild != null)
+			{
+				int selectedOrderNo = selectedBuild.OrderNo;
+				if (selectedOrderNo > Builds.Count(x => x.OrderNo < Int32.MaxValue) - 2)
+					return;
+				Builds[selectedOrderNo + 1].OrderNo = selectedOrderNo;
+				selectedBuild.OrderNo = selectedOrderNo + 1;
+			}
+			dataModel.SortBuildDefinitions(Builds);
+		}
+
+		#endregion
 
         public event EventHandler CloseRequested;
 
         public event EventHandler SaveRequested;
-    }
+	}
 }

@@ -4,15 +4,16 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace TeamBuildScreen.Core.Views
+using System;
+using System.Windows;
+
+namespace TeamBuildScreen.Core.Views.Converters
 {
     #region Usings
 
-    using System;
-    using TeamBuildScreen.Core.Models;
-    using System.Windows;
+	
 
-    #endregion
+	#endregion
 
     /// <summary>
     /// Converts and instance of <see cref="WindowState"/> to an instance of <see cref="Visibility"/>.

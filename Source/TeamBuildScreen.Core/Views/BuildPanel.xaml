@@ -1,7 +1,9 @@
 ﻿<UserControl
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	x:Class="TeamBuildScreen.Core.Views.BuildPanel" xmlns:local="clr-namespace:TeamBuildScreen.Core.Views" xmlns:sys="clr-namespace:System;assembly=mscorlib" Background="{x:Null}">
+	x:Class="TeamBuildScreen.Core.Views.BuildPanel" xmlns:local="clr-namespace:TeamBuildScreen.Core.Views" xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:converters="clr-namespace:TeamBuildScreen.Core.Views.Converters"
+    Background="{x:Null}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -102,8 +104,8 @@
                     </Viewbox>
                     <Grid Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="8">
                         <Grid.Resources>
-                            <local:BuildStatusStringConverter x:Key="BuildStatusStringConverter" />
-                            <local:DateTimeStringConverter x:Key="DateTimeStringConverter" />
+                            <converters:BuildStatusStringConverter x:Key="BuildStatusStringConverter" />
+                            <converters:DateTimeStringConverter x:Key="DateTimeStringConverter" />
                         </Grid.Resources>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="2*" />
