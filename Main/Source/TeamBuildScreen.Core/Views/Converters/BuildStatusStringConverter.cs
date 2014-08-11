@@ -4,14 +4,16 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace TeamBuildScreen.Core.Views
+using System;
+using TeamBuildScreen.Core.Models;
+
+namespace TeamBuildScreen.Core.Views.Converters
 {
     #region Usings
 
-    using System;
-    using TeamBuildScreen.Core.Models;
+	
 
-    #endregion
+	#endregion
 
     /// <summary>
     /// Converts and instance of <see cref="BuildStatus"/> to an instance of <see cref="System.String"/>.

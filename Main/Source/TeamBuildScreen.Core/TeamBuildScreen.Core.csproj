@@ -56,9 +56,11 @@
     <Compile Include="TeamBuildServer.cs" />
     <Compile Include="ViewModels\DesktopViewModel.cs" />
     <Compile Include="ViewModels\IndexViewModel.cs" />
-    <Compile Include="Views\DateTimeStringConverter.cs" />
+    <Compile Include="Views\Converters\DateTimeStringConverter.cs" />
+    <Compile Include="Views\Converters\MoveDownConverter.cs" />
+    <Compile Include="Views\Converters\MoveUpConverter.cs" />
     <Compile Include="Views\ScalingTextBlock.cs" />
-    <Compile Include="Views\WindowStateVisibilityConverter.cs" />
+    <Compile Include="Views\Converters\WindowStateVisibilityConverter.cs" />
     <Reference Include="PresentationCore">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -120,7 +122,7 @@
     <Compile Include="Views\BuildStatusIcon.xaml.cs">
       <DependentUpon>BuildStatusIcon.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\BuildStatusStringConverter.cs" />
+    <Compile Include="Views\Converters\BuildStatusStringConverter.cs" />
     <Compile Include="Views\Desktop.xaml.cs">
       <DependentUpon>Desktop.xaml</DependentUpon>
     </Compile>

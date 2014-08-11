@@ -4,6 +4,8 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System.Linq;
+
 namespace TeamBuildScreen.Core.Models
 {
     #region Usings
@@ -242,15 +244,17 @@ namespace TeamBuildScreen.Core.Models
         /// <summary>
         /// Loads the available builds from the build server.
         /// </summary>
-        /// <param name="builds">The collection to populate.</param>
-        private void LoadBuilds(ICollection<BuildSetting> builds)
+        /// <param name="buildsToLoad">The collection to populate.</param>
+        private void LoadBuilds(ObservableCollection<BuildSetting> buildsToLoad)
         {
             this.buildServerService.TfsUrl = this.tfsUri;
-            this.buildServerService.LoadBuilds(builds);
+            this.buildServerService.LoadBuilds(buildsToLoad);
 
-            foreach (BuildSetting buildSetting in builds)
+
+            foreach (BuildSetting buildSetting in buildsToLoad)
             {
                 bool found = false;
+				int foundOrderNo = 0;
 
                 foreach (string build in this.settings.Builds)
                 {
@@ -266,10 +270,12 @@ namespace TeamBuildScreen.Core.Models
                         buildSetting.Configuration = configuration;
                         buildSetting.Platform = platform;
                         buildSetting.IsEnabled = true;
+	                    buildSetting.OrderNo = foundOrderNo;
 
                         found = true;
                         break;
                     }
+	                foundOrderNo++;
                 }
 
                 if (!found)
@@ -277,11 +283,18 @@ namespace TeamBuildScreen.Core.Models
                     buildSetting.Configuration = "Release";
                     buildSetting.Platform = "Any CPU";
                     buildSetting.IsEnabled = false;
+	                buildSetting.OrderNo = Int32.MaxValue;
                 }
             }
+			SortBuildDefinitions(buildsToLoad);
 
-            this.OnPropertyChanged("Builds");
         }
+
+	    public void SortBuildDefinitions(ObservableCollection<BuildSetting> buildsToSort)
+	    {
+			builds = new ObservableCollection<BuildSetting>(buildsToSort.OrderBy(x => x));
+			this.OnPropertyChanged("Builds");
+		}
 
         /// <summary>
         /// Raises the <see cref="INotifyPropertyChanged.PropertyChanged"/> event.

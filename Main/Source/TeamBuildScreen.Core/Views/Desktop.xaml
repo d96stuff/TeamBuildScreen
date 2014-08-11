@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Team Build Screen" Height="600" Width="800"
         x:Name="DesktopWindow"
-        xmlns:b="clr-namespace:TeamBuildScreen.Core.Views" ResizeMode="CanResizeWithGrip" Icon="{Binding SummaryIcon}" WindowStyle="SingleBorderWindow" WindowStartupLocation="Manual">
+        xmlns:b="clr-namespace:TeamBuildScreen.Core.Views"
+        xmlns:converters="clr-namespace:TeamBuildScreen.Core.Views.Converters"
+        ResizeMode="CanResizeWithGrip" Icon="{Binding SummaryIcon}" WindowStyle="SingleBorderWindow" WindowStartupLocation="Manual">
     <Window.Resources>
         <Style TargetType="Button" x:Key="TransparentButton">
             <Setter Property="Template">
@@ -39,7 +41,7 @@
         <ControlTemplate x:Key="DesktopTemplate">
             <Grid x:Name="LayoutRoot">
                 <Grid.Resources>
-                    <b:WindowStateVisibilityConverter x:Key="WindowStateVisibilityConverter" />
+                    <converters:WindowStateVisibilityConverter x:Key="WindowStateVisibilityConverter" />
                 </Grid.Resources>
                 <b:BuildGrid />
                 <Border x:Name="TopFade" VerticalAlignment="Top" Height="60" Margin="0,-60,0,0" Visibility="{Binding ElementName=DesktopWindow, Path=WindowState, Converter={StaticResource WindowStateVisibilityConverter}}">
