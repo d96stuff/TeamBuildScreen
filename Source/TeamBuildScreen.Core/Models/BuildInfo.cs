@@ -24,7 +24,11 @@
 
         public virtual bool HasWarnings { get; protected set; }
 
-        public virtual string RequestedFor { get; protected set; }
+		public BuildPhaseStatus CompilationStatus { get; protected set; }
+
+		public BuildPhaseStatus TestStatus { get; protected set; }
+
+		public virtual string RequestedFor { get; protected set; }
 
         public virtual DateTime? StartTime { get; protected set; }
 

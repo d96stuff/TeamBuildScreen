@@ -113,17 +113,14 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <local:ScalingTextBlock Grid.Row="0" Text="{Binding Description}" />
-                        <local:ScalingTextBlock Grid.Row="1" Text="{Binding Status, Converter={StaticResource BuildStatusStringConverter}}" />
-                        <local:ScalingTextBlock Grid.Row="2" Text="{Binding RequestedBy, TargetNullValue={x:Static sys:String.Empty},StringFormat=Requested by {0}}" />
-                        <local:ScalingTextBlock Grid.Row="3" Text="{Binding StartedOn, Converter={StaticResource DateTimeStringConverter}, TargetNullValue={x:Static sys:String.Empty}, StringFormat=Started on {0}}" />
-                        <local:ScalingTextBlock Grid.Row="4" Text="{Binding CompletedOn, Converter={StaticResource DateTimeStringConverter}, TargetNullValue={x:Static sys:String.Empty}, StringFormat=Completed on {0}}" />
-                        <local:ScalingTextBlock Grid.Row="5" Text="{Binding TestResults, TargetNullValue={x:Static sys:String.Empty}}" />
+                        <local:ScalingTextBlock Grid.Row="1" Text="{Binding RequestedBy, TargetNullValue={x:Static sys:String.Empty},StringFormat=Requested by {0}}" />
+                        <local:ScalingTextBlock Grid.Row="2" Text="{Binding LatestStatus, TargetNullValue={x:Static sys:String.Empty}}" />
+                        <local:ScalingTextBlock Grid.Row="3" Text="{Binding TestResults, TargetNullValue={x:Static sys:String.Empty}}" />
                     </Grid>
                     <Viewbox x:Name="QueuedIconContainer" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                         <Viewbox Margin="0,16,16,0" x:Name="QueuedIcon" Opacity="0">

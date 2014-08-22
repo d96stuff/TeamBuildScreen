@@ -49,7 +49,11 @@ namespace TeamBuildScreen.Demo
             get { return this.finishTime; }
         }
 
-        public string RequestedFor
+		public BuildPhaseStatus CompilationStatus { get; private set; }
+
+		public BuildPhaseStatus TestStatus { get; private set; }
+
+		public string RequestedFor
         {
             get { return string.Format("Requested by {0}", this.requestedFor); }
         }

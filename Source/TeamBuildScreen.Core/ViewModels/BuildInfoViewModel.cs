@@ -38,6 +38,11 @@ namespace TeamBuildScreen.Core.ViewModels
         /// </summary>
         private DateTime? startedOn;
 
+		/// <summary>
+		/// Formatted string for status.
+		/// </summary>
+	    private string latestStatus;
+
         /// <summary>
         /// The time the build was completed.
         /// </summary>
@@ -105,6 +110,17 @@ namespace TeamBuildScreen.Core.ViewModels
                 return this.startedOn;
             }
         }
+
+		/// <summary>
+		/// Gets the formatted string for status.
+		/// </summary>
+		public string LatestStatus
+		{
+			get
+			{
+				return this.latestStatus;
+			}
+		}
 
         /// <summary>
         /// Gets the time the build was completed.
@@ -191,6 +207,7 @@ namespace TeamBuildScreen.Core.ViewModels
 
             this.description = this.dataModel.Description;
             this.status = BuildStatus.Loading;
+			this.latestStatus = BuildStatus.Loading.ToFriendlyString();
 
             this.HasWarnings = false;
         }
@@ -202,16 +219,18 @@ namespace TeamBuildScreen.Core.ViewModels
         {
             bool hasWarnings = false;
 
-            this.description = this.dataModel.Description;
+	        this.description = this.dataModel.Description;
             this.status = BuildStatus.NoneFound;
             this.requestedBy = null;
             this.startedOn = null;
             this.completedOn = null;
             this.testResults = null;
+			this.latestStatus = BuildStatus.NoneFound.ToFriendlyString();
 
             if (this.dataModel.Model != null)
             {
                 this.status = this.dataModel.Model.Status;
+
                 this.requestedBy = this.dataModel.Model.RequestedFor;
 
                 // remove domain prefix from requestedBy, if found
@@ -221,28 +240,22 @@ namespace TeamBuildScreen.Core.ViewModels
                                            ? this.requestedBy.Split('\\')[1]
                                            : this.requestedBy;
                 }
-                this.startedOn = this.dataModel.Model.StartTime;
+				this.startedOn = this.dataModel.Model.StartTime;
+	            if (dataModel.Model.Status == BuildStatus.InProgress)
+	            {
+					UpdateInProgress();
+	            }
+	            else
+	            {
+		            this.latestStatus = this.dataModel.Model.Status.ToFriendlyString();
+	            }
 
-                if (this.dataModel.Model.BuildFinished)
-                {
-                    this.completedOn = this.dataModel.Model.FinishTime;
+	            if (this.dataModel.Model.BuildFinished)
+	            {
+		            UpdateFinished();
 
-                    if (this.dataModel.Model.TestsTotal.HasValue && this.dataModel.Model.TestsTotal > 0)
-                    {
-                        this.testResults = string.Format("Test results: {0} passed, {1} failed, {2} total.", this.dataModel.Model.TestsPassed, this.dataModel.Model.TestsFailed, this.dataModel.Model.TestsTotal);
-                    }
-                    else
-                    {
-                        this.testResults = string.Empty;
-                    }
-
-					if (this.dataModel.Model.CodeCoverage.HasValue)
-					{
-						this.testResults += string.Format(" Code Coverage: {0}%", this.dataModel.Model.CodeCoverage);
-					}
-
-                    hasWarnings = this.dataModel.Model.HasWarnings;
-                }
+		            hasWarnings = this.dataModel.Model.HasWarnings;
+	            }
             }
 
             this.HasWarnings = hasWarnings;
@@ -255,10 +268,64 @@ namespace TeamBuildScreen.Core.ViewModels
             this.OnPropertyChanged("StartedOn");
             this.OnPropertyChanged("CompletedOn");
             this.OnPropertyChanged("TestResults");
-            this.OnPropertyChanged("HasWarnings");
-        }
+			this.OnPropertyChanged("HasWarnings");
+			this.OnPropertyChanged("LatestStatus");
+		}
 
-        /// <summary>
+	    private void UpdateFinished()
+	    {
+		    TimeSpan buildTime = (TimeSpan) (this.dataModel.Model.FinishTime - this.dataModel.Model.StartTime);
+		    this.latestStatus = String.Format("{0} {1:d} {1:t} ({2} min)", this.dataModel.Model.Status.ToFriendlyString(),
+			    this.dataModel.Model.FinishTime, Math.Round(buildTime.TotalMinutes));
+		    this.completedOn = this.dataModel.Model.FinishTime;
+
+		    if (this.dataModel.Model.TestsTotal.HasValue && this.dataModel.Model.TestsTotal > 0)
+		    {
+			    this.testResults = string.Format("Test results: {0} passed, {1} failed, {2} total.",
+				    this.dataModel.Model.TestsPassed, this.dataModel.Model.TestsFailed,
+				    this.dataModel.Model.TestsTotal);
+		    }
+		    else
+		    {
+			    this.testResults = string.Empty;
+		    }
+
+		    if (this.dataModel.Model.CodeCoverage.HasValue)
+		    {
+			    this.testResults += string.Format(" Code Coverage: {0}%", this.dataModel.Model.CodeCoverage);
+		    }
+	    }
+
+	    private void UpdateInProgress()
+	    {
+		    TimeSpan buildTime = (TimeSpan) (DateTime.Now - this.dataModel.Model.StartTime);
+		    this.latestStatus = String.Format("{0} {1:d} {1:t} ({2} min)", this.dataModel.Model.Status.ToFriendlyString(),
+			    this.dataModel.Model.StartTime, Math.Round(buildTime.TotalMinutes));
+		    switch (dataModel.Model.CompilationStatus)
+		    {
+			    case BuildPhaseStatus.Failed:
+				    this.testResults = String.Format("Compilation Failed");
+				    break;
+			    case BuildPhaseStatus.Succeeded:
+				    this.testResults = String.Format("Compilation Succeeded");
+				    break;
+			    case BuildPhaseStatus.Unknown:
+				    break;
+		    }
+		    switch (dataModel.Model.TestStatus)
+		    {
+			    case BuildPhaseStatus.Failed:
+				    this.testResults += String.Format(" Test Failed");
+				    break;
+			    case BuildPhaseStatus.Succeeded:
+				    this.testResults += String.Format(" Test Succeeded");
+				    break;
+			    case BuildPhaseStatus.Unknown:
+				    break;
+		    }
+	    }
+
+	    /// <summary>
         /// Raises the <see cref="INotifyPropertyChanged.PropertyChanged"/> event.
         /// </summary>
         /// <param name="propertyName">The name of the property that changed.</param>
