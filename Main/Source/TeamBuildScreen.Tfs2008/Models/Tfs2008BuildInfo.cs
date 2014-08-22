@@ -32,7 +32,9 @@
             this.BuildFinished = buildDetail.BuildFinished;
             this.FinishTime = buildDetail.FinishTime;
             this.Status = BuildStatusConverter.Convert(buildDetail.Status);
-            this.RequestedFor = buildDetail.RequestedFor;
+			this.CompilationStatus = BuildPhaseStatusConverter.Convert(buildDetail.CompilationStatus);
+			this.TestStatus = BuildPhaseStatusConverter.Convert(buildDetail.TestStatus);
+			this.RequestedFor = buildDetail.RequestedFor;
             this.StartTime = buildDetail.StartTime;
         }
     }

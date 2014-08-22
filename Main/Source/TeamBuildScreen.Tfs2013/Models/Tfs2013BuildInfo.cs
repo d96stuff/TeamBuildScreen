@@ -15,9 +15,10 @@
 
 		private void Init(IBuildDetail buildDetail, string flavour, string platform, IEnumerable<ITestRun> testRuns, ICoverageAnalysisManager coverageAnalysisManager)
 		{
-			this.TestsFailed = testRuns.Select(run => run.Statistics.FailedTests).Sum();
-			this.TestsPassed = testRuns.Select(run => run.Statistics.PassedTests).Sum();
-			this.TestsTotal = testRuns.Select(run => run.Statistics.TotalTests).Sum();
+			var testRunList = testRuns as IList<ITestRun> ?? testRuns.ToList();
+			this.TestsFailed = testRunList.Select(run => run.Statistics.FailedTests).Sum();
+			this.TestsPassed = testRunList.Select(run => run.Statistics.PassedTests).Sum();
+			this.TestsTotal = testRunList.Select(run => run.Statistics.TotalTests).Sum();
 
 			var configurationSummary = InformationNodeConverters.GetConfigurationSummary(buildDetail, flavour, platform);
 
@@ -29,6 +30,8 @@
 			this.BuildFinished = buildDetail.BuildFinished;
 			this.FinishTime = buildDetail.FinishTime;
 			this.Status = BuildStatusConverter.Convert(buildDetail.Status);
+			this.CompilationStatus = BuildPhaseStatusConverter.Convert(buildDetail.CompilationStatus);
+			this.TestStatus = BuildPhaseStatusConverter.Convert(buildDetail.TestStatus);
 			this.RequestedFor = buildDetail.RequestedFor;
 			this.StartTime = buildDetail.StartTime;
 			this.CodeCoverage = GetCodeCoverage(buildDetail, coverageAnalysisManager);

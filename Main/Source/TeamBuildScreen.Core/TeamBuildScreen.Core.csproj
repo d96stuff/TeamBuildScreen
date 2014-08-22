@@ -46,6 +46,8 @@
     <Compile Include="DataTransfer\BuildInfoViewModelExtensions.cs" />
     <Compile Include="JsonExtensions.cs" />
     <Compile Include="Models\BuildInfo.cs" />
+    <Compile Include="Models\BuildPhaseStatus.cs" />
+    <Compile Include="Models\BuildStatusExtensions.cs" />
     <Compile Include="Models\IServerManifest.cs" />
     <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="Models\ServerManifest.cs" />

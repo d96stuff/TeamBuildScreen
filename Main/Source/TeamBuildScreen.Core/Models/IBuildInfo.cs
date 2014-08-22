@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace TeamBuildScreen.Core.Models
 {
@@ -13,7 +10,11 @@ namespace TeamBuildScreen.Core.Models
 
         BuildStatus Status { get; }
 
-        string RequestedFor { get; }
+		BuildPhaseStatus CompilationStatus { get; }
+
+		BuildPhaseStatus TestStatus { get; }
+
+		string RequestedFor { get; }
 
         DateTime? StartTime { get; }
 
