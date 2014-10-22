@@ -20,6 +20,12 @@
 			this.TestsPassed = testRunList.Select(run => run.Statistics.PassedTests).Sum();
 			this.TestsTotal = testRunList.Select(run => run.Statistics.TotalTests).Sum();
 
+			this.FailedTests = new List<string>();
+			foreach (ITestCaseResult testCaseResult in testRunList.SelectMany(testRun => testRun.QueryResultsByOutcome(TestOutcome.Failed)))
+			{
+				this.FailedTests.Add(testCaseResult.TestCaseTitle);
+			}
+
 			var configurationSummary = InformationNodeConverters.GetConfigurationSummary(buildDetail, flavour, platform);
 
 			if (configurationSummary != null)
