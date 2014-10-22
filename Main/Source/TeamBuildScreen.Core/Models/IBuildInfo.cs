@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TeamBuildScreen.Core.Models
 {
@@ -27,5 +28,7 @@ namespace TeamBuildScreen.Core.Models
         bool HasWarnings { get; }
 
 		int? CodeCoverage { get; }
+
+		List<string> FailedTests { get; }
     }
 }

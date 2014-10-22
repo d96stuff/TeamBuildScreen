@@ -1,4 +1,6 @@
-﻿namespace TeamBuildScreen.Tfs2008.Models
+﻿using System.Collections.Generic;
+
+namespace TeamBuildScreen.Tfs2008.Models
 {
     using Microsoft.TeamFoundation.Build.Client;
 
@@ -13,7 +15,9 @@
 
         private void Init(IBuildDetail buildDetail, string flavour, string platform)
         {
-            var configurationSummary = InformationNodeConverters.GetConfigurationSummary(buildDetail, flavour, platform);
+			this.FailedTests = new List<string>();
+
+			var configurationSummary = InformationNodeConverters.GetConfigurationSummary(buildDetail, flavour, platform);
 
             if (configurationSummary != null)
             {

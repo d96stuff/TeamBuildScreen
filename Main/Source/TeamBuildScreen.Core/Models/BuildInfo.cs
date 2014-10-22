@@ -1,4 +1,6 @@
-﻿namespace TeamBuildScreen.Core.Models
+﻿using System.Collections.Generic;
+
+namespace TeamBuildScreen.Core.Models
 {
     using System;
 
@@ -39,7 +41,9 @@
         public virtual int? TestsPassed { get; protected set; }
 
 		public virtual int? TestsTotal { get; protected set; }
-	
+
+		public virtual List<string> FailedTests { get; protected set; }
+
 		public virtual int? CodeCoverage { get; protected set; }
 	}
 }

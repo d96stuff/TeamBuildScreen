@@ -53,6 +53,11 @@ namespace TeamBuildScreen.Core.ViewModels
         /// </summary>
         private string testResults;
 
+		/// <summary>
+		/// The bottom line for the <see cref="BuildInfoViewModel"/>.
+		/// </summary>
+	    private string bottomLine;
+
         /// <summary>
         /// The status for the <see cref="BuildInfoViewModel"/>.
         /// </summary>
@@ -63,7 +68,7 @@ namespace TeamBuildScreen.Core.ViewModels
         /// </summary>
         private static object synchronisationLock = new object();
 
-        #endregion
+	    #endregion
 
         #region Properties
 
@@ -143,6 +148,17 @@ namespace TeamBuildScreen.Core.ViewModels
                 return this.testResults;
             }
         }
+
+		/// <summary>
+		/// Gets the bottom line for the <see cref="BuildInfoViewModel"/>.
+		/// </summary>
+		public string BottomLine
+		{
+			get
+			{
+				return this.bottomLine;
+			}
+		}
 
         /// <summary>
         /// Gets a value that indicates whether the build has any builds queued.
@@ -270,6 +286,7 @@ namespace TeamBuildScreen.Core.ViewModels
             this.OnPropertyChanged("TestResults");
 			this.OnPropertyChanged("HasWarnings");
 			this.OnPropertyChanged("LatestStatus");
+			this.OnPropertyChanged("BottomLine");
 		}
 
 	    private void UpdateFinished()
@@ -284,6 +301,19 @@ namespace TeamBuildScreen.Core.ViewModels
 			    this.testResults = string.Format("Test results: {0} passed, {1} failed, {2} total.",
 				    this.dataModel.Model.TestsPassed, this.dataModel.Model.TestsFailed,
 				    this.dataModel.Model.TestsTotal);
+
+			    if (dataModel.Model.FailedTests.Count > 0)
+			    {
+				    this.bottomLine = "Failed tests: ";
+				    foreach (string failedTestName in this.dataModel.Model.FailedTests)
+				    {
+					    this.bottomLine += failedTestName + " ";
+				    }
+			    }
+			    else
+			    {
+				    this.bottomLine = string.Empty;
+			    }
 		    }
 		    else
 		    {
@@ -323,6 +353,7 @@ namespace TeamBuildScreen.Core.ViewModels
 			    case BuildPhaseStatus.Unknown:
 				    break;
 		    }
+			this.bottomLine = string.Empty;
 	    }
 
 	    /// <summary>

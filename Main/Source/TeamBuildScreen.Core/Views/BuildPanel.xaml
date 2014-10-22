@@ -121,6 +121,7 @@
                         <local:ScalingTextBlock Grid.Row="1" Text="{Binding RequestedBy, TargetNullValue={x:Static sys:String.Empty},StringFormat=Requested by {0}}" />
                         <local:ScalingTextBlock Grid.Row="2" Text="{Binding LatestStatus, TargetNullValue={x:Static sys:String.Empty}}" />
                         <local:ScalingTextBlock Grid.Row="3" Text="{Binding TestResults, TargetNullValue={x:Static sys:String.Empty}}" />
+                        <local:ScalingTextBlock Grid.Row="4" Text="{Binding BottomLine, TargetNullValue={x:Static sys:String.Empty}}" />
                     </Grid>
                     <Viewbox x:Name="QueuedIconContainer" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                         <Viewbox Margin="0,16,16,0" x:Name="QueuedIcon" Opacity="0">

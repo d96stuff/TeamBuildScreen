@@ -4,6 +4,8 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System.Collections.Generic;
+
 namespace TeamBuildScreen.Demo
 {
     #region Usings
@@ -84,6 +86,7 @@ namespace TeamBuildScreen.Demo
 
         public bool HasWarnings { get; set; }
 	    public int? CodeCoverage { get; private set; }
+	    public List<string> FailedTests { get; private set; }
 
 	    #endregion
     }
