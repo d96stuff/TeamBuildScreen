@@ -4,6 +4,9 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System.Threading;
+using Microsoft.TeamFoundation;
+
 namespace TeamBuildScreen.Tfs2013.Models
 {
     #region Usings
@@ -110,32 +113,54 @@ namespace TeamBuildScreen.Tfs2013.Models
             this.StaleThreshold = staleThreshold;
         }
 
-        /// <summary>
-        /// Gets the <see cref="Microsoft.TeamFoundation.Build.Client.IBuildDetail"/> for the build with the specified key.
-        /// </summary>
-        /// <param name="key">The key of the build definition.</param>
-        /// <returns>The <see cref="Microsoft.TeamFoundation.Build.Client.IBuildDetail"/> for the build with the specified key.</returns>
-        public IBuildInfo GetBuildInfo(string key, string configuration, string platform)
-        {
-            string teamProject;
-            string definitionName;
+	    /// <summary>
+	    /// Gets the <see cref="Microsoft.TeamFoundation.Build.Client.IBuildDetail"/> for the build with the specified key.
+	    /// </summary>
+	    /// <param name="key">The key of the build definition.</param>
+	    /// <param name="configuration"></param>
+	    /// <param name="platform"></param>
+	    /// <returns>The <see cref="Microsoft.TeamFoundation.Build.Client.IBuildDetail"/> for the build with the specified key.</returns>
+	    public IBuildInfo GetBuildInfo(string key, string configuration, string platform)
+		{
+			string teamProject;
+			string definitionName;
 
-            ParseBuild(key, out teamProject, out definitionName);
+			ParseBuild(key, out teamProject, out definitionName);
 
-            var buildDetail = this.builds.SingleOrDefault(x =>
-                x.Key.DefinitionSpec.Name == definitionName &&
-                x.Key.DefinitionSpec.TeamProject == teamProject).Value;
+			var buildDetail = this.builds.SingleOrDefault(x =>
+				x.Key.DefinitionSpec.Name == definitionName &&
+				x.Key.DefinitionSpec.TeamProject == teamProject).Value;
 
-            if (buildDetail != null)
-            {
-                var project = this.testManagementService.GetTeamProject(teamProject);
-                var testRuns = project.TestRuns.ByBuild(buildDetail.Uri);
+	        if (buildDetail == null)
+				return BuildInfo.Empty;
+
+			for (int connectionAttempt = 1; connectionAttempt <= 3; connectionAttempt++)
+		    {
+				IBuildInfo buildInfo = CreateBuildInfo(configuration, platform, teamProject, buildDetail);
+				if (buildInfo != null)
+				{
+					return buildInfo;
+				}
+				Thread.Sleep(100);
+			}
+
+	        return BuildInfo.Empty;
+		}
+
+		private IBuildInfo CreateBuildInfo(string configuration, string platform, string teamProject, IBuildDetail buildDetail)
+		{
+			try
+			{
+				var project = this.testManagementService.GetTeamProject(teamProject);
+				var testRuns = project.TestRuns.ByBuild(buildDetail.Uri);
 
 				return new Tfs2013BuildInfo(buildDetail, configuration, platform, testRuns, project.CoverageAnalysisManager);
-            }
-
-            return Core.Models.BuildInfo.Empty;
-        }
+			}
+			catch (TeamFoundationServiceUnavailableException)
+			{
+				return null;
+			}
+		}
 
         /// <summary>
         /// Returns a value that indicates whether the build with the specified key has any builds queued.
