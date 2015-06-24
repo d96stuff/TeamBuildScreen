@@ -103,12 +103,14 @@ namespace TeamBuildScreen.Tfs2008.Models
             this.StaleThreshold = staleThreshold;
         }
 
-        /// <summary>
-        /// Gets the <see cref="Microsoft.TeamFoundation.Build.Client.IBuildDetail"/> for the build with the specified key.
-        /// </summary>
-        /// <param name="key">The key of the build definition.</param>
-        /// <returns>The <see cref="Microsoft.TeamFoundation.Build.Client.IBuildDetail"/> for the build with the specified key.</returns>
-        public IBuildInfo GetBuildInfo(string key, string configuration, string platform)
+	    /// <summary>
+	    /// Gets the <see cref="Microsoft.TeamFoundation.Build.Client.IBuildDetail"/> for the build with the specified key.
+	    /// </summary>
+	    /// <param name="key">The key of the build definition.</param>
+	    /// <param name="configuration"></param>
+	    /// <param name="platform"></param>
+	    /// <returns>The <see cref="Microsoft.TeamFoundation.Build.Client.IBuildDetail"/> for the build with the specified key.</returns>
+	    public IBuildInfo GetBuildInfo(string key, string configuration, string platform)
         {
             string teamProject;
             string definitionName;
@@ -160,11 +162,13 @@ namespace TeamBuildScreen.Tfs2008.Models
                 // only interested in the most recently started build
                 buildDetailSpec.MaxBuildsPerDefinition = 1;
                 buildDetailSpec.QueryOrder = BuildQueryOrder.StartTimeDescending;
+				buildDetailSpec.QueryOptions = QueryOptions.All;
+				buildDetailSpec.InformationTypes = null;
 
                 this.builds.Add(buildDetailSpec, null);
 
                 // check if a build queue exists for the team project
-                if (!this.buildQueues.Any(q => q.TeamProject == teamProject))
+                if (this.buildQueues.All(q => q.TeamProject != teamProject))
                 {
                     IQueuedBuildsView view = this.buildServer.CreateQueuedBuildsView(teamProject);
 
@@ -187,10 +191,10 @@ namespace TeamBuildScreen.Tfs2008.Models
         /// <summary>
         /// Loads the available builds from the build server.
         /// </summary>
-        /// <param name="builds">The collection to populate.</param>
-        public void LoadBuilds(ICollection<BuildSetting> builds)
+        /// <param name="buildsToLoad">The collection to populate.</param>
+        public void LoadBuilds(ICollection<BuildSetting> buildsToLoad)
         {
-            builds.Clear();
+            buildsToLoad.Clear();
 
             TeamProject[] teamProjects = this.versionControlServer.GetAllTeamProjects(true);
 
@@ -200,13 +204,13 @@ namespace TeamBuildScreen.Tfs2008.Models
 
                 foreach (IBuildDefinition definition in projectBuilds)
                 {
-                    BuildSetting buildSettingDataModel = new BuildSetting()
+                    BuildSetting buildSettingDataModel = new BuildSetting
                     {
                         DefinitionName = definition.Name,
                         TeamProject = project.Name
                     };
 
-                    builds.Add(buildSettingDataModel);
+                    buildsToLoad.Add(buildSettingDataModel);
                 }
             }
         }
@@ -225,7 +229,7 @@ namespace TeamBuildScreen.Tfs2008.Models
             {
                 IBuildDetailSpec[] buildDetailSpecs = (from b in this.builds select b.Key).ToArray();
 
-                if (buildDetailSpecs.Count() == 0)
+                if (!buildDetailSpecs.Any())
                 {
                     return;
                 }
