@@ -232,14 +232,21 @@ namespace TeamBuildScreen.Core.Models
         /// <param name="e"></param>
         private void UpdateModel(object sender, EventArgs e)
         {
-            Dispatcher.CurrentDispatcher.Invoke(
-                DispatcherPriority.DataBind,
-                new Action(delegate
-                    {
-                        this.Model = this.service.GetBuildInfo(this.key, this.configuration, this.platform);
-                        this.IsQueued = this.service.IsQueued(this.key);
-                        this.IsStale = this.GetIsStale();
-                    }));
+			try
+			{
+				Dispatcher.CurrentDispatcher.Invoke(
+				DispatcherPriority.DataBind,
+				new Action(delegate
+				{
+					this.Model = this.service.GetBuildInfo(this.key, this.configuration, this.platform);
+					this.IsQueued = this.service.IsQueued(this.key);
+					this.IsStale = this.GetIsStale();
+				}));
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine("unable to update model: {0}", ex);
+			}
         }
 
         private bool GetIsStale()
