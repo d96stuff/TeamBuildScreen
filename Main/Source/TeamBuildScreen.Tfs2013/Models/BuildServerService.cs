@@ -45,9 +45,7 @@ namespace TeamBuildScreen.Tfs2013.Models
         /// </summary>
         private IBuildServer buildServer;
 
-        private VersionControlServer versionControlServer;
-
-        /// <summary>
+	    /// <summary>
         /// Provides access to test runs.
         /// </summary>
         private ITestManagementService testManagementService;
@@ -73,7 +71,6 @@ namespace TeamBuildScreen.Tfs2013.Models
             {
                 var tfs = new TfsTeamProjectCollection(TfsTeamProjectCollection.GetFullyQualifiedUriForName(value));
                 this.buildServer = tfs.GetService<IBuildServer>();
-                this.versionControlServer = tfs.GetService<VersionControlServer>();
                 this.testManagementService = tfs.GetService<ITestManagementService>();
                 this.commonStructureService = tfs.GetService<ICommonStructureService>();
             }
@@ -195,11 +192,13 @@ namespace TeamBuildScreen.Tfs2013.Models
                 // only interested in the most recently started build
                 buildDetailSpec.MaxBuildsPerDefinition = 1;
                 buildDetailSpec.QueryOrder = BuildQueryOrder.StartTimeDescending;
+	            buildDetailSpec.QueryOptions = QueryOptions.Definitions | QueryOptions.BatchedRequests;
+				buildDetailSpec.InformationTypes = null;
 
                 this.builds.Add(buildDetailSpec, null);
 
                 // check if a build queue exists for the team project
-                if (!this.buildQueues.Any(q => q.TeamProjectFilter == teamProject))
+                if (this.buildQueues.All(q => q.TeamProjectFilter != teamProject))
                 {
                     var view = this.buildServer.CreateQueuedBuildsView(teamProject);
 
@@ -222,26 +221,26 @@ namespace TeamBuildScreen.Tfs2013.Models
         /// <summary>
         /// Loads the available builds from the build server.
         /// </summary>
-        /// <param name="builds">The collection to populate.</param>
-        public void LoadBuilds(ICollection<BuildSetting> builds)
+        /// <param name="buildsToLoad">The collection to populate.</param>
+        public void LoadBuilds(ICollection<BuildSetting> buildsToLoad)
         {
-            builds.Clear();
+            buildsToLoad.Clear();
 
-            //var teamProjects = this.versionControlServer.GetAllTeamProjects(true);
             var teamProjects = this.commonStructureService.ListAllProjects();
-            foreach (var project in teamProjects)
+            
+			foreach (var project in teamProjects)
             {
                 IBuildDefinition[] projectBuilds = this.buildServer.QueryBuildDefinitions(project.Name);
 
                 foreach (var definition in projectBuilds)
                 {
-                    BuildSetting buildSettingDataModel = new BuildSetting()
+                    BuildSetting buildSettingDataModel = new BuildSetting
                     {
                         DefinitionName = definition.Name,
                         TeamProject = project.Name
                     };
 
-                    builds.Add(buildSettingDataModel);
+                    buildsToLoad.Add(buildSettingDataModel);
                 }
             }
         }
@@ -260,7 +259,7 @@ namespace TeamBuildScreen.Tfs2013.Models
             {
                 var buildDetailSpecs = (from b in this.builds select b.Key).ToArray();
 
-                if (buildDetailSpecs.Count() == 0)
+                if (!buildDetailSpecs.Any())
                 {
                     return;
                 }
