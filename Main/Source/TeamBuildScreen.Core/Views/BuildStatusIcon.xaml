@@ -105,7 +105,7 @@
 						<ContentControl Template="{StaticResource InProgressIcon}" />
 					</Viewbox>
 					<Viewbox Stretch="Fill" x:Name="PartiallySucceededIcon" Opacity="0" HorizontalAlignment="Left" VerticalAlignment="Top" d:LayoutOverrides="GridBox" Height="256" Width="256">
-						<ContentControl Template="{StaticResource PartiallySucceededIcon}" />
+						<ContentControl Template="{StaticResource FailedIconBlank}" />
 					</Viewbox>
 					<Viewbox Stretch="Fill" x:Name="StoppedIcon" Opacity="0" HorizontalAlignment="Left" VerticalAlignment="Top" d:LayoutOverrides="GridBox" Height="256" Width="256">
 						<ContentControl Template="{StaticResource StoppedIcon}" />

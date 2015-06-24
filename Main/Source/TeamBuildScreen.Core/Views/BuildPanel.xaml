@@ -99,9 +99,17 @@
                             <SolidColorBrush Color="{Binding ElementName=SecondGradientStop, Path=Color}" />
                         </Rectangle.Fill>
                     </Rectangle>
-                    <Viewbox Grid.RowSpan="2" Grid.ColumnSpan="2" x:Name="StatusIconContainer">
+                    <Viewbox Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="0"
+                             x:Name="StatusIconContainer">
                         <local:BuildStatusIcon x:Name="StatusIcon" Status="{Binding Status}" Margin="8" />
                     </Viewbox>
+                    <Viewbox Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="0" x:Name="FailedTestsContainer" Stretch="Uniform" Margin="13">
+                        <Grid>
+                            <TextBlock Text="{Binding FailedTests}" HorizontalAlignment="Center" Foreground="#FF7B1A00" FontWeight="Medium" Margin="0,-0.62,0,0" />
+                            <TextBlock Text="{Binding FailedTests}" HorizontalAlignment="Center" Foreground="White" FontWeight="Medium" />
+                        </Grid>
+                    </Viewbox>
+
                     <Grid Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="8">
                         <Grid.Resources>
                             <converters:BuildStatusStringConverter x:Key="BuildStatusStringConverter" />
@@ -153,9 +161,9 @@
                     <DataTrigger Binding="{Binding Status}" Value="Loading">
                         <DataTrigger.EnterActions>
                             <!--
-							Frustratingly, using a StopStoryboard element within DataTrigger.ExitActions 
-							occasionally does not work - so instead we need to explicitly stop 
-							any storyboards that may have been started. This results in silent warnings in 
+							Frustratingly, using a StopStoryboard element within DataTrigger.ExitActions
+							occasionally does not work - so instead we need to explicitly stop
+							any storyboards that may have been started. This results in silent warnings in
 							the output window during runtime.
 							 -->
                             <StopStoryboard BeginStoryboardName="FailedStoryboard"/>
