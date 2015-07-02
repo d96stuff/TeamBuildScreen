@@ -218,7 +218,7 @@ namespace TeamBuildScreen.Core.ViewModels
 				{
 					this.BottomLine = string.Empty;
 				}
-				if (this.DataModel.Model.TestsFailed > 0)
+				if (this.DataModel.Model.TestsFailed > 0 && this.Status == BuildStatus.PartiallySucceeded)
 				{
 					this.FailedTests = this.DataModel.Model.TestsFailed.ToString();
 				}
