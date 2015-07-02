@@ -8,87 +8,108 @@ using System.ComponentModel;
 
 namespace TeamBuildScreen.Core.Views
 {
-    using System;
-    using System.Windows;
-    using System.Windows.Input;
+	using System;
+	using System.Windows;
+	using System.Windows.Input;
 
-    /// <summary>
-    /// Interaction logic for Desktop.xaml
-    /// </summary>
-    public partial class Desktop : Window
-    {
-        private bool maximizing = false;
+	/// <summary>
+	/// Interaction logic for Desktop.xaml
+	/// </summary>
+	public partial class Desktop : Window
+	{
+		private bool maximizing = false;
 
-        public Desktop(object viewModel)
-        {
-            InitializeComponent();
+		public Desktop(object viewModel)
+		{
+			InitializeComponent();
 
-            this.StateChanged += new EventHandler(this.OnStateChanged);
-            this.DataContext = viewModel;
-        }
+			this.StateChanged += new EventHandler(this.OnStateChanged);
+			this.DataContext = viewModel;
+			this.PreviewMouseLeftButtonDown += OnPreviewMouseLeftButtonDown;
+			this.PreviewMouseMove += OnPreviewMouseMove;
+		}
 
-        public void Restore()
-        {
-            this.OnRestore(this, new RoutedEventArgs());
-        }
+		private void OnPreviewMouseLeftButtonDown(object sender, MouseEventArgs mouseEventArgs)
+		{
+			this.LeftClickMousePosition = mouseEventArgs.GetPosition(this);
+		}
 
-        private void OnStateChanged(object sender, EventArgs e)
-        {
-            if (this.WindowState == WindowState.Maximized && !this.maximizing)
-            {
-                this.maximizing = true;
+		public Point LeftClickMousePosition { get; set; }
 
-                // flick the WindowState to Normal and back to Maximised to make sure it 
-                // appears over the TaskBar.
-                this.WindowState = WindowState.Normal;
-                this.WindowStyle = WindowStyle.None;
-                this.Topmost = true;
-                this.WindowState = WindowState.Maximized;
-                this.ResizeMode = ResizeMode.NoResize;
+		private void OnPreviewMouseMove(object sender, MouseEventArgs mouseEventArgs)
+		{
+			if (mouseEventArgs.LeftButton == MouseButtonState.Pressed)
+			{
+				if (Math.Abs(mouseEventArgs.GetPosition(this).X - LeftClickMousePosition.X) > 4
+					|| Math.Abs(mouseEventArgs.GetPosition(this).Y - LeftClickMousePosition.Y) > 4)
+				{
+					this.DragMove();
+				}
+			}
+		}
 
-                this.maximizing = false;
-            }
-        }
+		public void Restore()
+		{
+			this.OnRestore(this, new RoutedEventArgs());
+		}
 
-        private void OnRestore(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = System.Windows.WindowState.Normal;
-            this.WindowStyle = WindowStyle.SingleBorderWindow;
-            this.ResizeMode = ResizeMode.CanResizeWithGrip;
-            this.Topmost = false;
-        }
+		private void OnStateChanged(object sender, EventArgs e)
+		{
+			if (this.WindowState == WindowState.Maximized && !this.maximizing)
+			{
+				this.maximizing = true;
 
-        private void OnMinimize(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = System.Windows.WindowState.Minimized;
-        }
+				// flick the WindowState to Normal and back to Maximised to make sure it 
+				// appears over the TaskBar.
+				this.WindowState = WindowState.Normal;
+				this.WindowStyle = WindowStyle.None;
+				this.Topmost = true;
+				this.WindowState = WindowState.Maximized;
+				this.ResizeMode = ResizeMode.NoResize;
 
-        private void OnClose(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
+				this.maximizing = false;
+			}
+		}
 
-        protected override void OnClosing(CancelEventArgs e)
-        {
-            Settings.Default.Height = Height;
-            Settings.Default.Width = Width;
-            Settings.Default.Top = Top;
-            Settings.Default.Left = Left;
-            Settings.Default.State = WindowState;
-            Settings.Default.Save();
+		private void OnRestore(object sender, RoutedEventArgs e)
+		{
+			this.WindowState = System.Windows.WindowState.Normal;
+			this.WindowStyle = WindowStyle.SingleBorderWindow;
+			this.ResizeMode = ResizeMode.CanResizeWithGrip;
+			this.Topmost = false;
+		}
 
-            base.OnClosing(e);
-        }
+		private void OnMinimize(object sender, RoutedEventArgs e)
+		{
+			this.WindowState = System.Windows.WindowState.Minimized;
+		}
 
-        protected override void OnInitialized(EventArgs e)
-        {
-            base.OnInitialized(e);
+		private void OnClose(object sender, RoutedEventArgs e)
+		{
+			this.Close();
+		}
 
-            Height = Settings.Default.Height;
-            Width = Settings.Default.Width;
-            Top = Settings.Default.Top;
-            Left = Settings.Default.Left;
-            WindowState = Settings.Default.State;
-        }
-    }
+		protected override void OnClosing(CancelEventArgs e)
+		{
+			Settings.Default.Height = Height;
+			Settings.Default.Width = Width;
+			Settings.Default.Top = Top;
+			Settings.Default.Left = Left;
+			Settings.Default.State = WindowState;
+			Settings.Default.Save();
+
+			base.OnClosing(e);
+		}
+
+		protected override void OnInitialized(EventArgs e)
+		{
+			base.OnInitialized(e);
+
+			Height = Settings.Default.Height;
+			Width = Settings.Default.Width;
+			Top = Settings.Default.Top;
+			Left = Settings.Default.Left;
+			WindowState = Settings.Default.State;
+		}
+	}
 }
