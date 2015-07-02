@@ -35,6 +35,7 @@ namespace TeamBuildScreen.Demo
             this.startTime = startTime;
             this.buildFinished = buildFinished;
             this.finishTime = finishTime;
+			this.FailedTests = new List<string>();
         }
 
         #endregion

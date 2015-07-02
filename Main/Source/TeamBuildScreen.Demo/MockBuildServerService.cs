@@ -66,9 +66,21 @@ namespace TeamBuildScreen.Demo
         /// Loads the available builds from the build server.
         /// </summary>
         /// <param name="builds">The collection to populate.</param>
-        public void LoadBuilds(ICollection<BuildSetting> builds)
+		public void LoadBuilds(ICollection<BuildSetting> buildsToLoad)
         {
-        }
+			buildsToLoad.Clear();
+
+			for (int i = 0; i < 10; i++)
+			{
+				BuildSetting buildSettingDataModel = new BuildSetting
+				{
+					DefinitionName = "Build " + i,
+					TeamProject = "TeamProject"
+				};
+
+				buildsToLoad.Add(buildSettingDataModel);
+			}
+		}
 
         public void Query()
         {
@@ -100,7 +112,7 @@ namespace TeamBuildScreen.Demo
                             status = BuildStatus.Succeeded;
                             break;
                         case 2:
-                            status = BuildStatus.PartiallySucceeded;
+                            status = BuildStatus.Succeeded;
                             break;
                         case 3:
                             status = BuildStatus.Failed;
@@ -112,29 +124,36 @@ namespace TeamBuildScreen.Demo
                             status = BuildStatus.NotStarted;
                             break;
                         case 6:
-                            status = null;
+                            status = BuildStatus.Succeeded;
                             break;
                         case 7:
-                            this.OnError();
+                            status = BuildStatus.PartiallySucceeded;
+                            break;
+							//this.OnError();
 
-                            return;
+							//return;
                     }
 
                     MockBuildInfo latestBuild = null;
 
                     if (status.HasValue)
                     {
-                        latestBuild = new MockBuildInfo(status.Value, "DOMAIN\\Joe Bloggs", GetRandomDateTime(), true, GetRandomDateTime());
+						var start = GetRandomDateTimeForStart();
+                        latestBuild = new MockBuildInfo(status.Value, "DOMAIN\\Joe Bloggs", start, true, GetRandomDateTimeForEnd(start));
+						latestBuild.FailedTests.Clear();
 
                         switch (status)
                         {
                             case BuildStatus.Succeeded:
                                 latestBuild.TestsFailed = 0;
-                                latestBuild.TestsPassed = 1770;
+                                latestBuild.TestsPassed = 1337;
                                 break;
                             case BuildStatus.PartiallySucceeded:
-                                latestBuild.TestsFailed = 100;
-                                latestBuild.TestsPassed = 1670;
+                                latestBuild.TestsFailed = 42;
+                                latestBuild.TestsPassed = 1066;
+								latestBuild.FailedTests.Add("TestDatabase");
+								latestBuild.FailedTests.Add("TestLogin");
+								latestBuild.FailedTests.Add("TestPurchase");
                                 break;
                         }
                     }
@@ -151,18 +170,25 @@ namespace TeamBuildScreen.Demo
             this.OnQueryCompleted();
         }
 
-        private static DateTime GetRandomDateTime()
+        private static DateTime GetRandomDateTimeForStart()
         {
-            DateTime start = DateTime.UtcNow.AddDays(-14);
-            DateTime end = DateTime.UtcNow;
-            Random random = new Random(Environment.TickCount);
+			Random random = new Random(Environment.TickCount);
+			
+			DateTime start = DateTime.UtcNow.AddDays(-14);
+            DateTime end = DateTime.UtcNow.AddMinutes(-random.Next(60));
 
             int range = ((TimeSpan)(end - start)).Days;
 
             return start.AddDays(random.Next(range));
         }
 
-        private void OnQueryCompleted()
+		private static DateTime GetRandomDateTimeForEnd(DateTime start)
+		{
+			Random random = new Random(Environment.TickCount);
+			return start.AddMinutes(random.Next(60));
+		}
+
+		private void OnQueryCompleted()
         {
             if (this.QueryCompleted != null)
             {
