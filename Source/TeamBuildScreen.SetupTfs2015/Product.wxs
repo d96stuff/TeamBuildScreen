@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="135E68ED-1229-441F-8D67-B5A300E9A715" Name="Team Build Screen 2015" Language="1033" Version="3.0.0.0" Manufacturer="Jim Liddell" UpgradeCode="cbed956a-207a-416d-8601-824e557c9e61">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <Media Id="1" Cabinet="product.cab" EmbedCab="yes" />
+    <Icon Id="ProductIcon" SourceFile="..\TeamBuildScreen.Core\tbs.ico" />
+    <Property Id="ARPPRODUCTICON" Value="ProductIcon" />
+    <Feature Id="ProductFeature" Title="Team Build Screen 2015" Level="1">
+      <ComponentRef Id="TeamBuildScreen.DesktopTfs2015" />
+      <ComponentRef Id="Screensaver" />
+      <ComponentRef Id="Tfs2015ObjectModel" />
+      <ComponentRef Id="ApplicationShortcut" />
+    </Feature>
+    <UI>
+      <UIRef Id="WixUI_Minimal" />
+    </UI>
+    <WixVariable Id="WixUIBannerBmp" Value="banner.bmp" />
+    <WixVariable Id="WixUILicenseRtf" Value="Microsoft Public License.rtf" />
+  </Product>
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="Team Build Screen 2015" />
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="Team Build Screen 2015" />
+      </Directory>
+      <Directory Id="SystemFolder" />
+    </Directory>
+  </Fragment>
+  <Fragment>
+    <DirectoryRef Id="SystemFolder" FileSource="..\TeamBuildScreen.SaverTfs2015\bin\Release">
+      <Component Id="Screensaver" Guid="AA33ED51-C003-40B3-904B-04A44E6605AA">
+        <File Id="TeamBuildScreen.SaverTfs2015" Name="TeamBuildScreen.SaverTfs2015.scr" KeyPath="yes" />
+        <File Id="TeamBuildScreen.CoreSCR" Name="TeamBuildScreen.Core.dll" />
+        <File Id="TeamBuildScreen.Tfs2015SCR" Name="TeamBuildScreen.Tfs2015.dll" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER" FileSource="..\TeamBuildScreen.DesktopTfs2015\bin\Release\">
+      <Component Id="TeamBuildScreen.DesktopTfs2015" Guid="34C038E1-06DA-4F59-BC4E-6CC0C491D96D">
+        <File Id="TeamBuildScreen.DesktopTfs2015" Name="TeamBuildScreen.DesktopTfs2015.exe" KeyPath="yes" />
+        <File Id="TeamBuildScreen.Tfs2015" Name="TeamBuildScreen.Tfs2015.dll" />
+        <File Id="TeamBuildScreen.Core" Name="TeamBuildScreen.Core.dll" />
+      </Component>
+      <Component Id="Tfs2015ObjectModel" Guid="64C038E1-06DA-4F59-BC4E-6CC0C491D96E">
+        <File Id="TeamBuildScreen.DesktopTfs2015x" Name="Microsoft.TeamFoundation.VersionControl.Common.dll" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid="C9B95D13-C342-47A5-AA7B-A95C683F71D9">
+        <Shortcut Id="ApplicationStartMenuShortcut" Name="Team Build Screen 2015" Description="Team Build Screen 2015" Target="[INSTALLFOLDER]TeamBuildScreen.DesktopTfs2015.exe" WorkingDirectory="INSTALLFOLDER" />
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\Microsoft\Team Build Screen 2015" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>

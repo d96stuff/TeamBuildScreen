@@ -1,10 +1,10 @@
 ﻿namespace TeamBuildScreen.Tfs2012.Models
 {
-    using System.Collections.Generic;
-    using System.Linq;
+	using System.Collections.Generic;
+	using System.Linq;
 
-    using Microsoft.TeamFoundation.Build.Client;
-    using Microsoft.TeamFoundation.TestManagement.Client;
+	using Microsoft.TeamFoundation.Build.Client;
+	using Microsoft.TeamFoundation.TestManagement.Client;
 
 	public class Tfs2012BuildInfo : Core.Models.BuildInfo
 	{
