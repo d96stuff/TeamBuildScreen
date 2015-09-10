@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.TeamFoundation.Build.Client;
 
-namespace TeamBuildScreen.Tfs2015.Models
+namespace TeamBuildScreen.Tfs.Models
 {
 	public static class BuildStatusConverter
 	{

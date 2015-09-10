@@ -2,10 +2,10 @@
 using System.Windows;
 using System.Windows.Threading;
 using TeamBuildScreen.Core.Models;
-using TeamBuildScreen.Tfs2015.Models;
+using TeamBuildScreen.Tfs.Models;
 using TeamBuildScreen.Core;
 
-namespace TeamBuildScreen.SaverTfs2015
+namespace TeamBuildScreen.Tfs.Saver
 {
 	/// <summary>
 	/// Interaction logic for App.xaml

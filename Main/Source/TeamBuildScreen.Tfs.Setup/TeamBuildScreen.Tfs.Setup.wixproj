@@ -6,7 +6,7 @@
     <ProductVersion>3.9</ProductVersion>
     <ProjectGuid>651962fa-7538-4925-a7df-85e7427f4d63</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>TeamBuildScreen.SetupTfs2015</OutputName>
+    <OutputName>TeamBuildScreen.Tfs.Setup</OutputName>
     <OutputType>Package</OutputType>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
@@ -14,6 +14,7 @@
     <SccProvider>SAK</SccProvider>
     <SccAuxPath>SAK</SccAuxPath>
     <SccLocalPath>SAK</SccLocalPath>
+    <Name>TeamBuildScreen.Tfs.Setup</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -23,21 +24,22 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <SuppressIces>ICE09</SuppressIces>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Product.wxs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TeamBuildScreen.DesktopTfs2015\TeamBuildScreen.DesktopTfs2015.csproj">
-      <Name>TeamBuildScreen.DesktopTfs2015</Name>
+    <ProjectReference Include="..\TeamBuildScreen.Tfs.Desktop\TeamBuildScreen.tfs.Desktop.csproj">
+      <Name>TeamBuildScreen.Tfs.Desktop</Name>
       <Project>{83f4dbcb-b45a-4f5d-9f1b-21c601dac2e8}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
-    <ProjectReference Include="..\TeamBuildScreen.SaverTfs2015\TeamBuildScreen.SaverTfs2015.csproj">
-      <Name>TeamBuildScreen.SaverTfs2015</Name>
+    <ProjectReference Include="..\TeamBuildScreen.Tfs.Saver\TeamBuildScreen.tfs.Saver.csproj">
+      <Name>TeamBuildScreen.Tfs.Saver</Name>
       <Project>{7b6608e6-3707-43bc-9c5f-913ac104dc80}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>

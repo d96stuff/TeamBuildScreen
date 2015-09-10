@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TeamBuildScreen.SaverTfs2015.Properties {
+namespace TeamBuildScreen.Tfs.Saver.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace TeamBuildScreen.SaverTfs2015.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TeamBuildScreen.SaverTfs2015.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TeamBuildScreen.Tfs.Saver.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
