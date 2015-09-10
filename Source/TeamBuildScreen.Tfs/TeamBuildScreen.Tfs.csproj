@@ -7,8 +7,8 @@
     <ProjectGuid>{00448DB2-4A78-4FB3-9BC7-CA5509771F6D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TeamBuildScreen.Tfs2015</RootNamespace>
-    <AssemblyName>TeamBuildScreen.Tfs2015</AssemblyName>
+    <RootNamespace>TeamBuildScreen.Tfs</RootNamespace>
+    <AssemblyName>TeamBuildScreen.Tfs</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>

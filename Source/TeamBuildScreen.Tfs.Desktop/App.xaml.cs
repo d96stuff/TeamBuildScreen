@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using TeamBuildScreen.Core.Models;
-using TeamBuildScreen.Tfs2015.Models;
+using TeamBuildScreen.Tfs.Models;
 using TeamBuildScreen.Core;
 
-namespace TeamBuildScreen.DesktopTfs2015
+namespace TeamBuildScreen.Tfs.Desktop
 {
 	/// <summary>
 	/// Interaction logic for App.xaml
@@ -15,7 +15,7 @@ namespace TeamBuildScreen.DesktopTfs2015
 			IBuildServerService service = new BuildServerService();
 			IDomainProjectPicker projectPicker = new TeamProjectPickerAdapter();
 
-			TeamBuildDesktop teamBuildDesktop = new TeamBuildDesktop(service, projectPicker, "Team Build Screen 2015");
+			TeamBuildDesktop teamBuildDesktop = new TeamBuildDesktop(service, projectPicker, "Team Build Screen");
 			teamBuildDesktop.Startup();
 		}
 	}

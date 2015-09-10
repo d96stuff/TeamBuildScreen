@@ -1,4 +1,4 @@
-﻿namespace TeamBuildScreen.Tfs2015.Models
+﻿namespace TeamBuildScreen.Tfs.Models
 {
 	using System.Collections.Generic;
 	using System.Linq;
@@ -6,9 +6,9 @@
 	using Microsoft.TeamFoundation.Build.Client;
 	using Microsoft.TeamFoundation.TestManagement.Client;
 
-	public class Tfs2015BuildInfo : Core.Models.BuildInfo
+	public class TfsBuildInfo : Core.Models.BuildInfo
 	{
-		public Tfs2015BuildInfo(IBuildDetail buildDetail, string flavour, string platform, IEnumerable<ITestRun> testRuns, ICoverageAnalysisManager coverageAnalysisManager)
+		public TfsBuildInfo(IBuildDetail buildDetail, string flavour, string platform, IEnumerable<ITestRun> testRuns, ICoverageAnalysisManager coverageAnalysisManager)
 		{
 			this.Init(buildDetail, flavour, platform, testRuns, coverageAnalysisManager);
 		}

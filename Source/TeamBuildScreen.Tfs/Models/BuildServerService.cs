@@ -7,7 +7,7 @@
 using System.Threading;
 using Microsoft.TeamFoundation;
 
-namespace TeamBuildScreen.Tfs2015.Models
+namespace TeamBuildScreen.Tfs.Models
 {
 	#region Usings
 
@@ -151,7 +151,7 @@ namespace TeamBuildScreen.Tfs2015.Models
 				var project = this.testManagementService.GetTeamProject(teamProject);
 				var testRuns = project.TestRuns.ByBuild(buildDetail.Uri);
 
-				return new Tfs2015BuildInfo(buildDetail, configuration, platform, testRuns, project.CoverageAnalysisManager);
+				return new TfsBuildInfo(buildDetail, configuration, platform, testRuns, project.CoverageAnalysisManager);
 			}
 			catch (TeamFoundationServiceUnavailableException)
 			{

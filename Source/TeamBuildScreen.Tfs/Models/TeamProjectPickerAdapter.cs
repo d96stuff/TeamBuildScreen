@@ -6,7 +6,7 @@
 
 using TeamBuildScreen.Core.Models;
 
-namespace TeamBuildScreen.Tfs2015.Models
+namespace TeamBuildScreen.Tfs.Models
 {
 	using Microsoft.TeamFoundation.Client;
 
