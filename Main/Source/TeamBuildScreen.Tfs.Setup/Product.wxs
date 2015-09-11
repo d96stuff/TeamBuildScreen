@@ -105,7 +105,7 @@
     </DirectoryRef>
     <DirectoryRef Id="ApplicationProgramsFolder">
       <Component Id="ApplicationShortcut" Guid="C9B95D13-C342-47A5-AA7B-A95C683F71D9">
-        <Shortcut Id="ApplicationStartMenuShortcut" Name="Team Build Screen" Description="Team Build Screen" Target="[INSTALLFOLDER]TeamBuildScreen.DesktopTfs.exe" WorkingDirectory="INSTALLFOLDER" />
+        <Shortcut Id="ApplicationStartMenuShortcut" Name="Team Build Screen" Description="Team Build Screen" Target="[INSTALLFOLDER]TeamBuildScreen.Tfs.Desktop.exe" WorkingDirectory="INSTALLFOLDER" />
         <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
         <RegistryValue Root="HKCU" Key="Software\Microsoft\Team Build Screen" Name="installed" Type="integer" Value="1" KeyPath="yes" />
       </Component>
