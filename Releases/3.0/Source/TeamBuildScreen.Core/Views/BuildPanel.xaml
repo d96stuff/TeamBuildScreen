@@ -1,0 +1,306 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="TeamBuildScreen.Core.Views.BuildPanel" xmlns:local="clr-namespace:TeamBuildScreen.Core.Views" xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:converters="clr-namespace:TeamBuildScreen.Core.Views.Converters"
+    Background="{x:Null}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Dictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Storyboard x:Key="FadeToGreen">
+                <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FF4B8C41" Duration="0:0:0.5" />
+                <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#FFAFCCAB" Duration="0:0:0.5" />
+            </Storyboard>
+            <Storyboard x:Key="FadeToRed">
+                <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FFD74C27" Duration="0:0:0.5" />
+                <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#FFEDB09F" Duration="0:0:0.5" />
+            </Storyboard>
+            <Storyboard x:Key="FadeToOrange">
+                <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FFFFBB00" Duration="0:0:0.5" />
+                <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#FFFFDD80" Duration="0:0:0.5" />
+            </Storyboard>
+            <Storyboard x:Key="FadeToGrey">
+                <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FF878787" Duration="0:0:0.5" />
+                <ColorAnimation Storyboard.TargetName="FadedBackground" Storyboard.TargetProperty="(Shape.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#FFCACACA" Duration="0:0:0.5" />
+            </Storyboard>
+            <Storyboard x:Key="ShowQueuedIcon">
+                <DoubleAnimation To="1" Storyboard.TargetName="QueuedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01" />
+            </Storyboard>
+            <Storyboard x:Key="HideQueuedIcon">
+                <DoubleAnimation To="0" Storyboard.TargetName="QueuedIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01" />
+            </Storyboard>
+            <!--
+            <Storyboard x:Key="ShowWarningIcon">
+                <DoubleAnimation To="1" Storyboard.TargetName="WarningIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01" />
+            </Storyboard>
+            <Storyboard x:Key="HideWarningIcon">
+                <DoubleAnimation To="0" Storyboard.TargetName="WarningIcon" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01" />
+            </Storyboard>
+            -->
+            <Storyboard x:Key="BrightenBuildPanel">
+                <DoubleAnimation To="1" Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01" />
+            </Storyboard>
+            <Storyboard x:Key="DimBuildPanel">
+                <DoubleAnimation To="0.75" Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:01" />
+            </Storyboard>
+            <ControlTemplate x:Key="BuildPanelTemplate">
+                <Grid x:Name="LayoutRoot">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" MinWidth="{Binding ElementName=QueuedIconContainer, Path=ActualWidth}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.Effect>
+                        <DropShadowEffect ShadowDepth="8" Opacity="0.6" Color="#FF000000" Direction="-45" />
+                    </Grid.Effect>
+                    <Ellipse x:Name="Circle" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Width="{Binding ElementName=Circle, Path=ActualHeight}" Grid.ColumnSpan="2">
+                        <Ellipse.Fill>
+                            <SolidColorBrush Color="{Binding ElementName=FirstGradientStop, Path=Color}" />
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <Rectangle x:Name="FadedBackground" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" SnapsToDevicePixels="True">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop x:Name="FirstGradientStop" Color="#FF878787" Offset="0" />
+                                <GradientStop x:Name="SecondGradientStop" Color="#FFCACACA" Offset="1" />
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Viewbox Grid.Row="0" Grid.Column="3">
+                        <Path SnapsToDevicePixels="True">
+                            <Path.Fill>
+                                <SolidColorBrush Color="{Binding ElementName=SecondGradientStop, Path=Color}" />
+                            </Path.Fill>
+                            <Path.Data>
+                                <PathGeometry>
+                                    <PathGeometry.Figures>
+                                        <PathFigure StartPoint="0,100">
+                                            <PathFigure.Segments>
+                                                <LineSegment Point="0,0" />
+                                                <LineSegment Point="50,0" />
+                                                <ArcSegment Size="50,50" IsLargeArc="False" RotationAngle="90" SweepDirection="Clockwise" Point="100,50" />
+                                                <LineSegment Point="100,100" />
+                                            </PathFigure.Segments>
+                                        </PathFigure >
+                                    </PathGeometry.Figures>
+                                </PathGeometry>
+                            </Path.Data>
+                        </Path>
+                    </Viewbox>
+                    <Rectangle Grid.Row="1" Grid.Column="3" SnapsToDevicePixels="True">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="{Binding ElementName=SecondGradientStop, Path=Color}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Viewbox Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="0"
+                             x:Name="StatusIconContainer">
+                        <local:BuildStatusIcon x:Name="StatusIcon" Status="{Binding Status}" Margin="8" />
+                    </Viewbox>
+                    <Viewbox Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="0" x:Name="FailedTestsContainer" Stretch="Uniform" Margin="13">
+                        <Grid>
+                            <TextBlock Text="{Binding FailedTests}" HorizontalAlignment="Center" Foreground="#FF7B1A00" FontWeight="Medium" Margin="0,-0.62,0,0" />
+                            <TextBlock Text="{Binding FailedTests}" HorizontalAlignment="Center" Foreground="White" FontWeight="Medium" />
+                        </Grid>
+                    </Viewbox>
+
+                    <Grid Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="8">
+                        <Grid.Resources>
+                            <converters:BuildStatusStringConverter x:Key="BuildStatusStringConverter" />
+                            <converters:DateTimeStringConverter x:Key="DateTimeStringConverter" />
+                        </Grid.Resources>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <local:ScalingTextBlock Grid.Row="0" Text="{Binding Description}" />
+                        <local:ScalingTextBlock Grid.Row="1" Text="{Binding RequestedBy, TargetNullValue={x:Static sys:String.Empty},StringFormat=Requested by {0}}" />
+                        <local:ScalingTextBlock Grid.Row="2" Text="{Binding LatestStatus, TargetNullValue={x:Static sys:String.Empty}}" />
+                        <local:ScalingTextBlock Grid.Row="3" Text="{Binding TestResults, TargetNullValue={x:Static sys:String.Empty}}" />
+                        <local:ScalingTextBlock Grid.Row="4" Text="{Binding BottomLine, TargetNullValue={x:Static sys:String.Empty}}" />
+                    </Grid>
+                    <Viewbox x:Name="QueuedIconContainer" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                        <Viewbox Margin="0,16,16,0" x:Name="QueuedIcon" Opacity="0">
+                            <ContentControl Template="{StaticResource NotStartedIcon}" />
+                        </Viewbox>
+                    </Viewbox>
+                    <!--
+                    <Viewbox Grid.Row="1" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Grid HorizontalAlignment="Stretch" Margin="0,16,8,8" x:Name="WarningIcon" Opacity="0">
+                            <Path Data="M 30 0 L 60 45 0 45 Z" StrokeThickness="6" StrokeLineJoin="Round" >
+                                <Path.Stroke>
+                                    <SolidColorBrush Color="Orange" />
+                                </Path.Stroke>
+                                <Path.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Color="Orange" Offset="1" />
+                                        <GradientStop Color="Yellow" Offset="0" />
+                                    </RadialGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                            <Viewbox>
+                                <Glyphs FontUri="C:\WINDOWS\Fonts\TIMES.TTF" FontRenderingEmSize="22" StyleSimulations="BoldSimulation" UnicodeString="!" Fill="Black" OriginX="-1" OriginY="22" />
+                            </Viewbox>
+                        </Grid>
+                    </Viewbox>
+                    -->
+                </Grid>
+                <ControlTemplate.Triggers>
+                    <DataTrigger Binding="{Binding Status}" Value="Loading">
+                        <DataTrigger.EnterActions>
+                            <!--
+							Frustratingly, using a StopStoryboard element within DataTrigger.ExitActions
+							occasionally does not work - so instead we need to explicitly stop
+							any storyboards that may have been started. This results in silent warnings in
+							the output window during runtime.
+							 -->
+                            <StopStoryboard BeginStoryboardName="FailedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="InProgressStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="SucceededStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="NoneFoundStoryboard"/>
+                            <BeginStoryboard Storyboard="{StaticResource FadeToGrey}" Name="LoadingStoryboard"/>
+                        </DataTrigger.EnterActions>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Status}" Value="NoneFound">
+                        <DataTrigger.EnterActions>
+                            <StopStoryboard BeginStoryboardName="FailedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="InProgressStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="SucceededStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="LoadingStoryboard"/>
+                            <BeginStoryboard Storyboard="{StaticResource FadeToGrey}" Name="NoneFoundStoryboard"/>
+                        </DataTrigger.EnterActions>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Status}" Value="Succeeded">
+                        <DataTrigger.EnterActions>
+                            <StopStoryboard BeginStoryboardName="FailedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="InProgressStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="LoadingStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="NoneFoundStoryboard"/>
+                            <BeginStoryboard Storyboard="{StaticResource FadeToGreen}" Name="SucceededStoryboard"/>
+                        </DataTrigger.EnterActions>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Status}" Value="Failed">
+                        <DataTrigger.EnterActions>
+                            <StopStoryboard BeginStoryboardName="SucceededStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="InProgressStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="LoadingStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="NoneFoundStoryboard"/>
+                            <BeginStoryboard Storyboard="{StaticResource FadeToRed}" Name="FailedStoryboard"/>
+                        </DataTrigger.EnterActions>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Status}" Value="InProgress">
+                        <DataTrigger.EnterActions>
+                            <StopStoryboard BeginStoryboardName="SucceededStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="FailedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="LoadingStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="NoneFoundStoryboard"/>
+                            <BeginStoryboard Storyboard="{StaticResource FadeToGrey}" Name="InProgressStoryboard"/>
+                        </DataTrigger.EnterActions>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Status}" Value="PartiallySucceeded">
+                        <DataTrigger.EnterActions>
+                            <StopStoryboard BeginStoryboardName="SucceededStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="FailedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="InProgressStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="LoadingStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="NoneFoundStoryboard"/>
+                            <BeginStoryboard Storyboard="{StaticResource FadeToOrange}" Name="PartiallySucceededStoryboard"/>
+                        </DataTrigger.EnterActions>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Status}" Value="Stopped">
+                        <DataTrigger.EnterActions>
+                            <StopStoryboard BeginStoryboardName="SucceededStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="FailedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="InProgressStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="NotStartedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="LoadingStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="NoneFoundStoryboard"/>
+                            <BeginStoryboard Storyboard="{StaticResource FadeToGrey}" Name="StoppedStoryboard"/>
+                        </DataTrigger.EnterActions>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Status}" Value="NotStarted">
+                        <DataTrigger.EnterActions>
+                            <StopStoryboard BeginStoryboardName="SucceededStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="FailedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="InProgressStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="PartiallySucceededStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="StoppedStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="LoadingStoryboard"/>
+                            <StopStoryboard BeginStoryboardName="NoneFoundStoryboard"/>
+                            <BeginStoryboard Storyboard="{StaticResource FadeToGrey}" Name="NotStartedStoryboard"/>
+                        </DataTrigger.EnterActions>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsQueued}" Value="True">
+                        <DataTrigger.EnterActions>
+                            <StopStoryboard BeginStoryboardName="HideQueuedIconStoryboard"/>
+                            <BeginStoryboard Storyboard="{StaticResource ShowQueuedIcon}" Name="ShowQueuedIconStoryboard"/>
+                        </DataTrigger.EnterActions>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsQueued}" Value="False">
+                        <DataTrigger.EnterActions>
+                            <StopStoryboard BeginStoryboardName="ShowQueuedIconStoryboard"/>
+                            <BeginStoryboard Storyboard="{StaticResource HideQueuedIcon}" Name="HideQueuedIconStoryboard"/>
+                        </DataTrigger.EnterActions>
+                    </DataTrigger>
+                    <!--
+                    <DataTrigger Binding="{Binding HasWarnings}" Value="True">
+                        <DataTrigger.EnterActions>
+                            <StopStoryboard BeginStoryboardName="HideWarningIconStoryboard"/>
+                            <BeginStoryboard Storyboard="{StaticResource ShowWarningIcon}" Name="ShowWarningIconStoryboard"/>
+                        </DataTrigger.EnterActions>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding HasWarnings}" Value="False">
+                        <DataTrigger.EnterActions>
+                            <StopStoryboard BeginStoryboardName="ShowWarningIconStoryboard"/>
+                            <BeginStoryboard Storyboard="{StaticResource HideWarningIcon}" Name="HideWarningIconStoryboard"/>
+                        </DataTrigger.EnterActions>
+                    </DataTrigger>
+                    -->
+                    <DataTrigger Binding="{Binding IsStale}" Value="False">
+                        <DataTrigger.EnterActions>
+                            <StopStoryboard BeginStoryboardName="IsStaleStoryboard"/>
+                            <BeginStoryboard Storyboard="{StaticResource BrightenBuildPanel}" Name="IsNotStaleStoryboard"/>
+                        </DataTrigger.EnterActions>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsStale}" Value="True">
+                        <DataTrigger.EnterActions>
+                            <StopStoryboard BeginStoryboardName="IsNotStaleStoryboard"/>
+                            <BeginStoryboard Storyboard="{StaticResource DimBuildPanel}" Name="IsStaleStoryboard"/>
+                        </DataTrigger.EnterActions>
+                    </DataTrigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <ContentControl Template="{StaticResource BuildPanelTemplate}" />
+</UserControl>

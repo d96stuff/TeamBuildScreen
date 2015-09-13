@@ -1,0 +1,10 @@
+Introduce KnockoutJS to wrap settings in a viewmodel.
+Ensure that Jenkins builds are appropriately deserialized.
+Remove need for configuration settings by adding together test results for TFS.
+Add ability to select server type to WPF settings.
+Implement web settings UI.
+Implement web settings handler.
+
+Credits for next release
+------------------------
+

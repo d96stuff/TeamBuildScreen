@@ -1,0 +1,124 @@
+﻿<Window x:Class="TeamBuildScreen.Core.Views.Desktop"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Team Build Screen" Height="600" Width="800"
+        x:Name="DesktopWindow"
+        xmlns:b="clr-namespace:TeamBuildScreen.Core.Views"
+        xmlns:converters="clr-namespace:TeamBuildScreen.Core.Views.Converters"
+        ResizeMode="CanResizeWithGrip" Icon="{Binding SummaryIcon}" WindowStyle="SingleBorderWindow" WindowStartupLocation="Manual">
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="TransparentButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Border" Background="Transparent" BorderThickness="2" CornerRadius="2" Padding="4" Margin="6">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect ShadowDepth="0" Color="White" BlurRadius="20" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Storyboard x:Key="FadeControls" AutoReverse="False">
+            <ThicknessAnimation Storyboard.TargetName="BottomFade" Storyboard.TargetProperty="Margin" Duration="0:0:0.25" FillBehavior="HoldEnd" To="0,0,0,0" />
+            <DoubleAnimation Storyboard.TargetName="ConfigButton" Storyboard.TargetProperty="Opacity" BeginTime="0:0:0.25" Duration="0:0:0.25" To="1" />
+            <ThicknessAnimation Storyboard.TargetName="TopFade" Storyboard.TargetProperty="Margin" Duration="0:0:0.25" FillBehavior="HoldEnd" To="0,0,0,0" />
+            <DoubleAnimation Storyboard.TargetName="WindowButtons" Storyboard.TargetProperty="Opacity" BeginTime="0:0:0.25" Duration="0:0:0.25" To="1" />
+            <DoubleAnimation Storyboard.TargetName="ConfigButton" Storyboard.TargetProperty="Opacity" BeginTime="0:0:3.0" Duration="0:0:0.25" To="0" />
+            <ThicknessAnimation Storyboard.TargetName="BottomFade" Storyboard.TargetProperty="Margin" BeginTime="0:0:3.5" Duration="0:0:0.25" FillBehavior="HoldEnd" To="0,0,0,-60" />
+            <DoubleAnimation Storyboard.TargetName="WindowButtons" Storyboard.TargetProperty="Opacity" BeginTime="0:0:3.0" Duration="0:0:0.25" To="0" />
+            <ThicknessAnimation Storyboard.TargetName="TopFade" Storyboard.TargetProperty="Margin" BeginTime="0:0:3.5" Duration="0:0:0.25" FillBehavior="HoldEnd" To="0,-60,0,0" />
+        </Storyboard>
+        <ControlTemplate x:Key="DesktopTemplate">
+            <Grid x:Name="LayoutRoot">
+                <Grid.Resources>
+                    <converters:WindowStateVisibilityConverter x:Key="WindowStateVisibilityConverter" />
+                </Grid.Resources>
+                <b:BuildGrid />
+                <Border x:Name="TopFade" VerticalAlignment="Top" Height="60" Margin="0,-60,0,0" Visibility="{Binding ElementName=DesktopWindow, Path=WindowState, Converter={StaticResource WindowStateVisibilityConverter}}">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Color="#CC000000" Offset="0.25" />
+                                <GradientStop Color="#00000000" Offset="1" />
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <StackPanel x:Name="WindowButtons" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
+                        <Button Style="{StaticResource TransparentButton}" Click="OnMinimize">
+                            <Button.Content>
+                                <Canvas Width="41.3135" Height="33.0508">
+                                    <Canvas.LayoutTransform>
+                                        <ScaleTransform ScaleX="0.75" ScaleY="0.75"/>
+                                    </Canvas.LayoutTransform>
+                                    <Path Width="41.3135" Height="7.47797" Canvas.Top="25.57283" Stretch="Fill" Fill="#FFFFFFFF" Data="M 58.735,167.563L 51.2571,167.563L 24.8996,167.563L 17.4215,167.563L 17.4215,160.085L 24.8995,160.085L 51.2571,160.085L 58.735,160.085L 58.735,167.563 Z "/>
+                                </Canvas>
+                            </Button.Content>
+                        </Button>
+                        <Button Style="{StaticResource TransparentButton}" Click="OnRestore">
+                            <Button.Content>
+                                <Canvas Width="41.3135" Height="33.0508">
+                                    <Canvas.LayoutTransform>
+                                        <ScaleTransform ScaleX="0.75" ScaleY="0.75"/>
+                                    </Canvas.LayoutTransform>
+                                    <Path Width="41.3135" Height="33.0507" Stretch="Fill" Fill="#FFFFFFFF" Data="M 145.562,157.544L 145.562,159.706L 145.562,167.184L 118.02,167.184L 118.02,159.706L 118.02,151.251L 118.02,143.773L 131.791,143.773L 131.791,141.611L 131.791,134.133L 159.333,134.133L 159.333,141.611L 159.333,150.066L 159.333,157.544L 145.562,157.544 Z M 139.269,143.773L 145.562,143.773L 145.562,150.066L 151.855,150.066L 151.855,141.611L 139.269,141.611L 139.269,143.773 Z M 131.791,151.251L 125.498,151.251L 125.498,159.706L 138.084,159.706L 138.084,157.544L 138.084,151.251L 131.791,151.251 Z "/>
+                                </Canvas>
+                            </Button.Content>
+                        </Button>
+                        <Button Style="{StaticResource TransparentButton}" Click="OnClose">
+                            <Button.Content>
+                                <Canvas Width="41.3135" Height="33.0508">
+                                    <Canvas.LayoutTransform>
+                                        <ScaleTransform ScaleX="0.75" ScaleY="0.75"/>
+                                    </Canvas.LayoutTransform>
+                                    <Path Width="41.3135" Height="33.0508" Stretch="Fill" Fill="#FFFFFFFF" Data="M 206.517,167.184L 199.318,167.184L 188.677,155.479L 178.035,167.184L 170.837,167.184L 168.02,167.184L 182.261,151.52L 183.669,149.97L 172.089,137.232L 171.619,136.716L 169.272,134.133L 179.287,134.133L 188.677,144.462L 198.066,134.133L 208.081,134.133L 205.734,136.716L 205.265,137.232L 193.684,149.97L 195.093,151.52L 209.333,167.184L 206.517,167.184 Z "/>
+                                </Canvas>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+                </Border>
+                <Border x:Name="BottomFade" VerticalAlignment="Bottom" Height="60" Margin="0,0,0,-60">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Color="#CC000000" Offset="0.75" />
+                                <GradientStop Color="#00000000" Offset="0" />
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                        <Button x:Name="ConfigButton" Style="{StaticResource TransparentButton}" Command="{Binding RequestConfig}" Opacity="0">
+                            <Button.Content>
+                                <Canvas Width="33.0508" Height="33.0508">
+                                    <Path Width="23.5192" Height="23.5192" Stretch="Fill" Fill="#FFFFFFFF" Data="M 96.6726,56.433L 98.0667,53.0672L 101.126,53.6122C 101.594,53.0149 102.127,52.4845 102.712,52.0275L 102.167,48.9669L 105.533,47.5727L 107.312,50.1223C 108.048,50.032 108.801,50.0296 109.553,50.1217L 111.331,47.5727L 114.697,48.9669L 114.152,52.0267C 114.75,52.4938 115.28,53.0275 115.737,53.6123L 118.798,53.0672L 120.192,56.433L 117.642,58.2117C 117.732,58.9484 117.735,59.7008 117.643,60.4534L 120.192,62.2316L 118.798,65.5975L 115.738,65.0525C 115.271,65.6497 114.737,66.1801 114.152,66.6372L 114.697,69.6977L 111.331,71.0919L 109.553,68.5423C 108.816,68.6326 108.064,68.635 107.311,68.543L 105.533,71.0919L 102.167,69.6977L 102.712,66.638C 102.115,66.1709 101.584,65.6371 101.127,65.0523L 98.0667,65.5975L 96.6726,62.2316L 99.2222,60.453C 99.1319,59.7162 99.1295,58.9638 99.2215,58.2112L 96.6726,56.433 Z M 103.71,57.3763C 102.63,59.9843 103.868,62.9743 106.476,64.0546C 109.084,65.1349 112.074,63.8964 113.154,61.2884C 114.235,58.6803 112.996,55.6903 110.388,54.61C 107.78,53.5297 104.79,54.7682 103.71,57.3763 Z "/>
+                                    <Path Width="16.6927" Height="16.6927" Canvas.Left="16.3584" Canvas.Top="16.3584" Stretch="Fill" Fill="#FFFFFFFF" Data="M 114.578,67.2735L 116.373,65.4778L 118.198,66.645C 118.658,66.3849 119.144,66.1858 119.642,66.0474L 120.108,63.9311L 122.647,63.9311L 123.112,66.0474C 123.611,66.1858 124.096,66.3849 124.556,66.645L 126.381,65.4778L 128.177,67.2735L 127.01,69.0985C 127.27,69.5586 127.469,70.0438 127.607,70.5424L 129.724,71.0077L 129.724,73.5471L 127.607,74.0125C 127.469,74.511 127.27,74.9962 127.01,75.4563L 128.177,77.2813L 126.381,79.077L 124.556,77.9098C 124.096,78.1698 123.611,78.369 123.112,78.5074L 122.647,80.6237L 120.108,80.6237L 119.642,78.5074C 119.144,78.369 118.658,78.1698 118.198,77.9098L 116.373,79.077L 114.578,77.2813L 115.745,75.4563C 115.485,74.9962 115.286,74.511 115.147,74.0125L 113.031,73.5471L 113.031,71.0077L 115.147,70.5424C 115.286,70.0438 115.485,69.5586 115.745,69.0985L 114.578,67.2735 Z M 118.858,69.7581C 117.467,71.1495 117.467,73.4053 118.858,74.7967C 120.249,76.1881 122.505,76.1881 123.897,74.7967C 125.288,73.4053 125.288,71.1495 123.897,69.7581C 122.505,68.3667 120.249,68.3667 118.858,69.7581 Z "/>
+                                </Canvas>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="Window.WindowState">
+                    <Setter TargetName="TopFade" Property="FrameworkElement.Visibility" Value="Visible" />
+                    <Trigger.Value>
+                        <x:Static Member="WindowState.Maximized" />
+                    </Trigger.Value>
+                </Trigger>
+                <EventTrigger RoutedEvent="Mouse.MouseMove">
+                    <BeginStoryboard HandoffBehavior="Compose" Storyboard="{StaticResource FadeControls}" />
+                </EventTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+    <ContentControl Template="{StaticResource DesktopTemplate}" />
+</Window>

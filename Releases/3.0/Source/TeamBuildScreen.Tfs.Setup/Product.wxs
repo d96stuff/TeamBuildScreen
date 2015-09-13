@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="135E68ED-1229-441F-8D67-B5A300E9A715" Name="Team Build Screen" Language="1033" Version="3.0.0.0" Manufacturer="Jim Liddell" UpgradeCode="cbed956a-207a-416d-8601-824e557c9e61">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <Media Id="1" Cabinet="product.cab" EmbedCab="yes" />
+    <Icon Id="ProductIcon" SourceFile="..\TeamBuildScreen.Core\tbs.ico" />
+    <Property Id="ARPPRODUCTICON" Value="ProductIcon" />
+    <Feature Id="ProductFeature" Title="Team Build Screen" Level="1">
+      <ComponentRef Id="TeamBuildScreen.Tfs.Desktop" />
+      <ComponentRef Id="Screensaver" />
+      <ComponentRef Id="TfsObjectModel" />
+      <ComponentRef Id="TfsObjectModelScr" />
+      <ComponentRef Id="ApplicationShortcut" />
+    </Feature>
+    <UI>
+      <UIRef Id="WixUI_Minimal" />
+    </UI>
+    <WixVariable Id="WixUIBannerBmp" Value="banner.bmp" />
+    <WixVariable Id="WixUILicenseRtf" Value="Microsoft Public License.rtf" />
+  </Product>
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="Team Build Screen" />
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="Team Build Screen" />
+      </Directory>
+      <Directory Id="SystemFolder" />
+    </Directory>
+  </Fragment>
+  <Fragment>
+    <DirectoryRef Id="SystemFolder" FileSource="..\TeamBuildScreen.Tfs.Saver\bin\Release">
+      <Component Id="Screensaver" Guid="AA33ED51-C003-40B3-904B-04A44E6605AA">
+        <File Id="TeamBuildScreen.Tfs.Saver" Name="TeamBuildScreen.Tfs.Saver.scr" KeyPath="yes" />
+        <File Id="TeamBuildScreen.CoreSCR" Name="TeamBuildScreen.Core.dll" />
+        <File Id="TeamBuildScreen.TfsSCR" Name="TeamBuildScreen.Tfs.dll" />
+      </Component>
+      <Component Id="TfsObjectModelScr" Guid="74C038E1-06DA-4F59-BC4E-6CC0C491D97F">
+        <File Id="TfsObjectModelScr.ActiveDirectory" Name="Microsoft.IdentityModel.Clients.ActiveDirectory.dll" KeyPath="yes" />
+        <File Id="TfsObjectModelScr.ServiceBus" Name="Microsoft.ServiceBus.dll" />
+        <File Id="TfsObjectModelScr.Build.Client" Name="Microsoft.TeamFoundation.Build.Client.dll" />
+        <File Id="TfsObjectModelScr.Build.Common" Name="Microsoft.TeamFoundation.Build.Common.dll" />
+        <File Id="TfsObjectModelScr.Client" Name="Microsoft.TeamFoundation.Client.dll" />
+        <File Id="TfsObjectModelScr.Common" Name="Microsoft.TeamFoundation.Common.dll" />
+        <File Id="TfsObjectModelScr.Core.WebApi" Name="Microsoft.TeamFoundation.Core.WebApi.dll" />
+        <File Id="TfsObjectModelScr.Diff" Name="Microsoft.TeamFoundation.Diff.dll" />
+        <File Id="TfsObjectModelScr.ProjectManagement" Name="Microsoft.TeamFoundation.ProjectManagement.dll" />
+        <File Id="TfsObjectModelScr.SourceControl.WebApi" Name="Microsoft.TeamFoundation.SourceControl.WebApi.dll" />
+        <File Id="TfsObjectModelScr.TestManagement.Client" Name="Microsoft.TeamFoundation.TestManagement.Client.dll" />
+        <File Id="TfsObjectModelScr.TestManagement.Common" Name="Microsoft.TeamFoundation.TestManagement.Common.dll" />
+        <File Id="TfsObjectModelScr.VersionControl.Client" Name="Microsoft.TeamFoundation.VersionControl.Client.dll" />
+        <File Id="TfsObjectModelScr.VersionControl.Common" Name="Microsoft.TeamFoundation.VersionControl.Common.dll" />
+        <File Id="TfsObjectModelScr.VersionControl.Common.Integration" Name="Microsoft.TeamFoundation.VersionControl.Common.Integration.dll" />
+        <File Id="TfsObjectModelScr.DataStoreLoader" Name="Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll" />
+        <File Id="TfsObjectModelScr.WorkItemTracking.Client" Name="Microsoft.TeamFoundation.WorkItemTracking.Client.dll" />
+        <File Id="TfsObjectModelScr.QueryLanguage" Name="Microsoft.TeamFoundation.WorkItemTracking.Client.QueryLanguage.dll" />
+        <File Id="TfsObjectModelScr.WorkItemTracking.Common" Name="Microsoft.TeamFoundation.WorkItemTracking.Common.dll" />
+        <File Id="TfsObjectModelScr.Proxy" Name="Microsoft.TeamFoundation.WorkItemTracking.Proxy.dll" />
+        <File Id="TfsObjectModelScr.VisualStudio.Services.Client" Name="Microsoft.VisualStudio.Services.Client.dll" />
+        <File Id="TfsObjectModelScr.VisualStudio.Services.Common" Name="Microsoft.VisualStudio.Services.Common.dll" />
+        <File Id="TfsObjectModelScr.VisualStudio.Services.WebApi" Name="Microsoft.VisualStudio.Services.WebApi.dll" />
+        <File Id="TfsObjectModelScr.WITDataStore32" Name="Microsoft.WITDataStore32.dll" />
+        <File Id="TfsObjectModelScr.Json" Name="Newtonsoft.Json.dll" />
+        <File Id="TfsObjectModelScr.Http.Formatting" Name="System.Net.Http.Formatting.dll" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER" FileSource="..\TeamBuildScreen.Tfs.Desktop\bin\Release\">
+      <Component Id="TeamBuildScreen.Tfs.Desktop" Guid="34C038E1-06DA-4F59-BC4E-6CC0C491D96D">
+        <File Id="TeamBuildScreen.Tfs.Desktop" Name="TeamBuildScreen.Tfs.Desktop.exe" KeyPath="yes" />
+        <File Id="TeamBuildScreen.Tfs" Name="TeamBuildScreen.Tfs.dll" />
+        <File Id="TeamBuildScreen.Core" Name="TeamBuildScreen.Core.dll" />
+      </Component>
+      <Component Id="TfsObjectModel" Guid="64C038E1-06DA-4F59-BC4E-6CC0C491D96E">
+        <File Id="TfsObjectModel.ActiveDirectory" Name="Microsoft.IdentityModel.Clients.ActiveDirectory.dll" KeyPath="yes" />
+        <File Id="TfsObjectModel.ServiceBus" Name="Microsoft.ServiceBus.dll" />
+        <File Id="TfsObjectModel.Build.Client" Name="Microsoft.TeamFoundation.Build.Client.dll" />
+        <File Id="TfsObjectModel.Build.Common" Name="Microsoft.TeamFoundation.Build.Common.dll" />
+        <File Id="TfsObjectModel.Client" Name="Microsoft.TeamFoundation.Client.dll" />
+        <File Id="TfsObjectModel.Common" Name="Microsoft.TeamFoundation.Common.dll" />
+        <File Id="TfsObjectModel.Core.WebApi" Name="Microsoft.TeamFoundation.Core.WebApi.dll" />
+        <File Id="TfsObjectModel.Diff" Name="Microsoft.TeamFoundation.Diff.dll" />
+        <File Id="TfsObjectModel.ProjectManagement" Name="Microsoft.TeamFoundation.ProjectManagement.dll" />
+        <File Id="TfsObjectModel.SourceControl.WebApi" Name="Microsoft.TeamFoundation.SourceControl.WebApi.dll" />
+        <File Id="TfsObjectModel.TestManagement.Client" Name="Microsoft.TeamFoundation.TestManagement.Client.dll" />
+        <File Id="TfsObjectModel.TestManagement.Common" Name="Microsoft.TeamFoundation.TestManagement.Common.dll" />
+        <File Id="TfsObjectModel.VersionControl.Client" Name="Microsoft.TeamFoundation.VersionControl.Client.dll" />
+        <File Id="TfsObjectModel.VersionControl.Common" Name="Microsoft.TeamFoundation.VersionControl.Common.dll" />
+        <File Id="TfsObjectModel.VersionControl.Common.Integration" Name="Microsoft.TeamFoundation.VersionControl.Common.Integration.dll" />
+        <File Id="TfsObjectModel.DataStoreLoader" Name="Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll" />
+        <File Id="TfsObjectModel.WorkItemTracking.Client" Name="Microsoft.TeamFoundation.WorkItemTracking.Client.dll" />
+        <File Id="TfsObjectModel.QueryLanguage" Name="Microsoft.TeamFoundation.WorkItemTracking.Client.QueryLanguage.dll" />
+        <File Id="TfsObjectModel.WorkItemTracking.Common" Name="Microsoft.TeamFoundation.WorkItemTracking.Common.dll" />
+        <File Id="TfsObjectModel.Proxy" Name="Microsoft.TeamFoundation.WorkItemTracking.Proxy.dll" />
+        <File Id="TfsObjectModel.VisualStudio.Services.Client" Name="Microsoft.VisualStudio.Services.Client.dll" />
+        <File Id="TfsObjectModel.VisualStudio.Services.Common" Name="Microsoft.VisualStudio.Services.Common.dll" />
+        <File Id="TfsObjectModel.VisualStudio.Services.WebApi" Name="Microsoft.VisualStudio.Services.WebApi.dll" />
+        <File Id="TfsObjectModel.WITDataStore32" Name="Microsoft.WITDataStore32.dll" />
+        <File Id="TfsObjectModel.Json" Name="Newtonsoft.Json.dll" />
+        <File Id="TfsObjectModel.Http.Formatting" Name="System.Net.Http.Formatting.dll" />
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid="C9B95D13-C342-47A5-AA7B-A95C683F71D9">
+        <Shortcut Id="ApplicationStartMenuShortcut" Name="Team Build Screen" Description="Team Build Screen" Target="[INSTALLFOLDER]TeamBuildScreen.Tfs.Desktop.exe" WorkingDirectory="INSTALLFOLDER" />
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\Microsoft\Team Build Screen" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>
