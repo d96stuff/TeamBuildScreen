@@ -19,6 +19,7 @@ namespace TeamBuildScreen.Tfs.Models
 	using Microsoft.TeamFoundation.Server;
 	using Microsoft.TeamFoundation.TestManagement.Client;
 	using Microsoft.TeamFoundation.VersionControl.Client;
+	using Microsoft.TeamFoundation.Build.WebApi;
 	using TeamBuildScreen.Core.Models;
 
 	#endregion
@@ -44,6 +45,11 @@ namespace TeamBuildScreen.Tfs.Models
 		/// The Team Foundation Server to query.
 		/// </summary>
 		private IBuildServer buildServer;
+
+		/// <summary>
+		/// The Team Foundation Server Build WebApi to query.
+		/// </summary>
+		private BuildHttpClient buildClient;
 
 		/// <summary>
 		/// Provides access to test runs.
@@ -73,6 +79,7 @@ namespace TeamBuildScreen.Tfs.Models
 				this.buildServer = tfs.GetService<IBuildServer>();
 				this.testManagementService = tfs.GetService<ITestManagementService>();
 				this.commonStructureService = tfs.GetService<ICommonStructureService>();
+				this.buildClient = tfs.GetClient<BuildHttpClient>();
 			}
 		}
 
@@ -230,9 +237,9 @@ namespace TeamBuildScreen.Tfs.Models
 
 			foreach (var project in teamProjects)
 			{
-				IBuildDefinition[] projectBuilds = this.buildServer.QueryBuildDefinitions(project.Name);
+				List<DefinitionReference> definitions = buildClient.GetDefinitionsAsync(project: project.Name).Result;
 
-				foreach (var definition in projectBuilds)
+				foreach (var definition in definitions)
 				{
 					BuildSetting buildSettingDataModel = new BuildSetting
 					{
