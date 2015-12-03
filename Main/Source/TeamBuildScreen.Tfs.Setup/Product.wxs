@@ -36,12 +36,14 @@
         <File Id="TeamBuildScreen.Tfs.Saver" Name="TeamBuildScreen.Tfs.Saver.scr" KeyPath="yes" />
         <File Id="TeamBuildScreen.CoreSCR" Name="TeamBuildScreen.Core.dll" />
         <File Id="TeamBuildScreen.TfsSCR" Name="TeamBuildScreen.Tfs.dll" />
+        <File Id="TeamBuildScreen.Tfs.Saver.configSCR" Name="TeamBuildScreen.Tfs.Saver.scr.config" />
       </Component>
       <Component Id="TfsObjectModelScr" Guid="74C038E1-06DA-4F59-BC4E-6CC0C491D97F">
         <File Id="TfsObjectModelScr.ActiveDirectory" Name="Microsoft.IdentityModel.Clients.ActiveDirectory.dll" KeyPath="yes" />
         <File Id="TfsObjectModelScr.ServiceBus" Name="Microsoft.ServiceBus.dll" />
         <File Id="TfsObjectModelScr.Build.Client" Name="Microsoft.TeamFoundation.Build.Client.dll" />
         <File Id="TfsObjectModelScr.Build.Common" Name="Microsoft.TeamFoundation.Build.Common.dll" />
+        <File Id="TfsObjectModelScr.Build2.WebApi" Name="Microsoft.TeamFoundation.Build2.WebApi.dll" />
         <File Id="TfsObjectModelScr.Client" Name="Microsoft.TeamFoundation.Client.dll" />
         <File Id="TfsObjectModelScr.Common" Name="Microsoft.TeamFoundation.Common.dll" />
         <File Id="TfsObjectModelScr.Core.WebApi" Name="Microsoft.TeamFoundation.Core.WebApi.dll" />
@@ -73,12 +75,14 @@
         <File Id="TeamBuildScreen.Tfs.Desktop" Name="TeamBuildScreen.Tfs.Desktop.exe" KeyPath="yes" />
         <File Id="TeamBuildScreen.Tfs" Name="TeamBuildScreen.Tfs.dll" />
         <File Id="TeamBuildScreen.Core" Name="TeamBuildScreen.Core.dll" />
+        <File Id="TeamBuildScreen.Tfs.Desktop.config" Name="TeamBuildScreen.Tfs.Desktop.exe.config" />
       </Component>
       <Component Id="TfsObjectModel" Guid="64C038E1-06DA-4F59-BC4E-6CC0C491D96E">
         <File Id="TfsObjectModel.ActiveDirectory" Name="Microsoft.IdentityModel.Clients.ActiveDirectory.dll" KeyPath="yes" />
         <File Id="TfsObjectModel.ServiceBus" Name="Microsoft.ServiceBus.dll" />
         <File Id="TfsObjectModel.Build.Client" Name="Microsoft.TeamFoundation.Build.Client.dll" />
         <File Id="TfsObjectModel.Build.Common" Name="Microsoft.TeamFoundation.Build.Common.dll" />
+        <File Id="TfsObjectModel.Build2.WebApi" Name="Microsoft.TeamFoundation.Build2.WebApi.dll" />
         <File Id="TfsObjectModel.Client" Name="Microsoft.TeamFoundation.Client.dll" />
         <File Id="TfsObjectModel.Common" Name="Microsoft.TeamFoundation.Common.dll" />
         <File Id="TfsObjectModel.Core.WebApi" Name="Microsoft.TeamFoundation.Core.WebApi.dll" />
