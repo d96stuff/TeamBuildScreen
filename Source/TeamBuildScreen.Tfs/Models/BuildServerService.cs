@@ -18,7 +18,6 @@ namespace TeamBuildScreen.Tfs.Models
 	using Microsoft.TeamFoundation.Client;
 	using Microsoft.TeamFoundation.Server;
 	using Microsoft.TeamFoundation.TestManagement.Client;
-	using Microsoft.TeamFoundation.VersionControl.Client;
 	using Microsoft.TeamFoundation.Build.WebApi;
 	using TeamBuildScreen.Core.Models;
 
@@ -198,7 +197,7 @@ namespace TeamBuildScreen.Tfs.Models
 
 				// only interested in the most recently started build
 				buildDetailSpec.MaxBuildsPerDefinition = 1;
-				buildDetailSpec.QueryOrder = BuildQueryOrder.StartTimeDescending;
+				buildDetailSpec.QueryOrder = Microsoft.TeamFoundation.Build.Client.BuildQueryOrder.StartTimeDescending;
 				buildDetailSpec.QueryOptions = QueryOptions.Definitions | QueryOptions.BatchedRequests;
 				buildDetailSpec.InformationTypes = null;
 
