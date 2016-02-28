@@ -135,7 +135,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y $(SolutionDir)packages\Microsoft.TeamFoundationServer.ExtendedClient.14.83.2\lib\native\x86\Microsoft.WITDataStore32.dll $(TargetDir)</PostBuildEvent>
+    <PostBuildEvent>xcopy /Y $(SolutionDir)packages\Microsoft.TeamFoundationServer.ExtendedClient.14.89.0\lib\native\x86\Microsoft.WITDataStore32.dll $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

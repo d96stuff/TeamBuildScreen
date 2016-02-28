@@ -33,7 +33,7 @@ namespace TeamBuildScreen.Tfs.Models
 		/// <summary>
 		/// Stores the list of build definitions to query.
 		/// </summary>
-		private IDictionary<IBuildDetailSpec, IBuildDetail> builds;
+		private IDictionary<IBuildDetailSpec, Build> builds;
 
 		/// <summary>
 		/// Stores the list of build queues to refresh.
@@ -44,6 +44,8 @@ namespace TeamBuildScreen.Tfs.Models
 		/// The Team Foundation Server to query.
 		/// </summary>
 		private IBuildServer buildServer;
+
+		private TfsTeamProjectCollection tfs;
 
 		/// <summary>
 		/// The Team Foundation Server Build WebApi to query.
@@ -56,6 +58,8 @@ namespace TeamBuildScreen.Tfs.Models
 		private ITestManagementService testManagementService;
 
 		private ICommonStructureService commonStructureService;
+
+		private Core.Models.ServerVersion serverVersion;
 
 		#endregion
 
@@ -74,11 +78,12 @@ namespace TeamBuildScreen.Tfs.Models
 		{
 			set
 			{
-				var tfs = new TfsTeamProjectCollection(TfsTeamProjectCollection.GetFullyQualifiedUriForName(value));
+				tfs = new TfsTeamProjectCollection(TfsTeamProjectCollection.GetFullyQualifiedUriForName(value));
 				this.buildServer = tfs.GetService<IBuildServer>();
 				this.testManagementService = tfs.GetService<ITestManagementService>();
 				this.commonStructureService = tfs.GetService<ICommonStructureService>();
 				this.buildClient = tfs.GetClient<BuildHttpClient>();
+				GetTfsVersion();
 			}
 		}
 
@@ -111,9 +116,21 @@ namespace TeamBuildScreen.Tfs.Models
 
 		private void Init(int staleThreshold)
 		{
-			this.builds = new Dictionary<IBuildDetailSpec, IBuildDetail>();
+			this.builds = new Dictionary<IBuildDetailSpec, Build>();
 			this.buildQueues = new List<IQueuedBuildsView>();
 			this.StaleThreshold = staleThreshold;
+		}
+
+		private void GetTfsVersion()
+		{
+			if (tfs.ServerDataProvider.ServerVersion == null)
+			{
+				serverVersion = Core.Models.ServerVersion.Dev12;
+			}
+			else
+			{
+				serverVersion = Core.Models.ServerVersion.Dev14;
+			}
 		}
 
 		/// <summary>
@@ -150,7 +167,7 @@ namespace TeamBuildScreen.Tfs.Models
 			return BuildInfo.Empty;
 		}
 
-		private IBuildInfo CreateBuildInfo(string configuration, string platform, string teamProject, IBuildDetail buildDetail)
+		private IBuildInfo CreateBuildInfo(string configuration, string platform, string teamProject, Build buildDetail)
 		{
 			try
 			{
@@ -261,6 +278,87 @@ namespace TeamBuildScreen.Tfs.Models
 				this.OnNotConfigured();
 			}
 
+			switch (serverVersion)
+			{
+				case Core.Models.ServerVersion.Dev12:
+					QueryLib();
+					break;
+				case Core.Models.ServerVersion.Dev14:
+					QueryREST();
+					break;
+				default:
+					QueryLib();
+					break;
+			}
+
+			this.OnQueryCompleted();
+		}
+
+		private void QueryREST()
+		{
+			lock (this.builds)
+			{
+				var teamProjects = this.commonStructureService.ListAllProjects();
+
+				if (!teamProjects.Any())
+				{
+					return;
+				}
+
+				List<Build> buildResults = new List<Build>();
+
+				try
+				{
+					foreach (var teamProject in teamProjects)
+					{
+						buildResults.AddRange(buildClient.GetBuildsAsync(project: teamProject.Name).Result);
+					}
+
+					if (!buildResults.Any())
+					{
+						return;
+					}
+
+					// refresh build queueus
+					foreach (var buildQueue in this.buildQueues)
+					{
+						buildQueue.Refresh(false);
+					}
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e);
+					this.OnError();
+
+					return;
+				}
+
+				// update the IBuildDetail associated with each IBuildDetailSpec
+				for (int i = 0; i < this.builds.Count; i++)
+				{
+					KeyValuePair<IBuildDetailSpec, Build> build = this.builds.ElementAt(i);
+
+					string teamProject = build.Key.DefinitionSpec.TeamProject;
+					string definitionName = build.Key.DefinitionSpec.Name;
+
+					// select the first build that corresponds to this build detail spec, or null
+					var result =
+						buildResults.FirstOrDefault(
+							b => b.Project.Name == teamProject &&
+							b.Definition.Name == definitionName);
+
+					if (result != null)
+					{
+						var buildResult = buildClient.GetBuildAsync(project: teamProject, buildId: result.Id).Result;
+
+						this.builds[build.Key] = buildResult;
+					}
+				}
+			}
+		}
+
+		private void QueryLib()
+		{
 			lock (this.builds)
 			{
 				var buildDetailSpecs = (from b in this.builds select b.Key).ToArray();
@@ -293,7 +391,7 @@ namespace TeamBuildScreen.Tfs.Models
 				// update the IBuildDetail associated with each IBuildDetailSpec
 				for (int i = 0; i < this.builds.Count; i++)
 				{
-					KeyValuePair<IBuildDetailSpec, IBuildDetail> build = this.builds.ElementAt(i);
+					KeyValuePair<IBuildDetailSpec, Build> build = this.builds.ElementAt(i);
 
 					string teamProject = build.Key.DefinitionSpec.TeamProject;
 					string definitionName = build.Key.DefinitionSpec.Name;
@@ -305,11 +403,32 @@ namespace TeamBuildScreen.Tfs.Models
 							b => b.BuildDefinition.TeamProject == teamProject &&
 							b.BuildDefinition.Name == definitionName));
 
-					this.builds[build.Key] = result != null ? result.Builds[0] : null;
+					if (result == null)
+					{
+						return;
+					}
+
+					this.builds[build.Key] = result != null ? GetBuild(result) : null;
 				}
 			}
+		}
 
-			this.OnQueryCompleted();
+		private static Build GetBuild(IBuildQueryResult result)
+		{
+			var buildDetail = result.Builds[0];
+
+			Build webApiBuild = new Build
+			{
+				BuildNumber = buildDetail.BuildNumber,
+				Uri = buildDetail.Uri,
+				FinishTime = buildDetail.FinishTime,
+				StartTime = buildDetail.StartTime,
+				RequestedFor = new Microsoft.VisualStudio.Services.WebApi.IdentityRef(),
+				Status = BuildStatusConverter.Convert(buildDetail.Status),
+				Result = BuildStatusConverter.ConvertToBuildResult(buildDetail.Status)
+			};
+			webApiBuild.RequestedFor.DisplayName = buildDetail.RequestedFor;
+			return webApiBuild;
 		}
 
 		#endregion
