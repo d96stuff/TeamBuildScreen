@@ -52,6 +52,7 @@
     <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="Models\ServerManifest.cs" />
     <Compile Include="Models\ServerProvider.cs" />
+    <Compile Include="Models\ServerVersion.cs" />
     <Compile Include="Models\StringEventArgs.cs" />
     <Compile Include="Models\TeamProjectNameFormat.cs" />
     <Compile Include="StringExtensions.cs" />

@@ -3,17 +3,17 @@
 	using System.Collections.Generic;
 	using System.Linq;
 
-	using Microsoft.TeamFoundation.Build.Client;
+	using Microsoft.TeamFoundation.Build.WebApi;
 	using Microsoft.TeamFoundation.TestManagement.Client;
 
 	public class TfsBuildInfo : Core.Models.BuildInfo
 	{
-		public TfsBuildInfo(IBuildDetail buildDetail, string flavour, string platform, IEnumerable<ITestRun> testRuns, ICoverageAnalysisManager coverageAnalysisManager)
+		public TfsBuildInfo(Build buildDetail, string flavour, string platform, IEnumerable<ITestRun> testRuns, ICoverageAnalysisManager coverageAnalysisManager)
 		{
 			this.Init(buildDetail, flavour, platform, testRuns, coverageAnalysisManager);
 		}
 
-		private void Init(IBuildDetail buildDetail, string flavour, string platform, IEnumerable<ITestRun> testRuns, ICoverageAnalysisManager coverageAnalysisManager)
+		private void Init(Build buildDetail, string flavour, string platform, IEnumerable<ITestRun> testRuns, ICoverageAnalysisManager coverageAnalysisManager)
 		{
 			var testRunList = testRuns as IList<ITestRun> ?? testRuns.ToList();
 			this.TestsFailed = testRunList.Select(run => run.Statistics.FailedTests).Sum();
@@ -26,24 +26,24 @@
 				this.FailedTests.Add(testCaseResult.TestCaseTitle);
 			}
 
-			var configurationSummary = InformationNodeConverters.GetConfigurationSummary(buildDetail, flavour, platform);
+			//var configurationSummary = InformationNodeConverters.GetConfigurationSummary(buildDetail, flavour, platform);
 
-			if (configurationSummary != null)
-			{
-				this.HasWarnings = configurationSummary.TotalCompilationWarnings > 0;
-			}
+			//if (configurationSummary != null)
+			//{
+			//	this.HasWarnings = configurationSummary.TotalCompilationWarnings > 0;
+			//}
 
-			this.BuildFinished = buildDetail.BuildFinished;
+			this.BuildFinished = buildDetail.FinishTime != null;
 			this.FinishTime = buildDetail.FinishTime;
-			this.Status = BuildStatusConverter.Convert(buildDetail.Status);
-			this.CompilationStatus = BuildPhaseStatusConverter.Convert(buildDetail.CompilationStatus);
-			this.TestStatus = BuildPhaseStatusConverter.Convert(buildDetail.TestStatus);
-			this.RequestedFor = buildDetail.RequestedFor;
+			this.Status = BuildStatusConverter.Convert(buildDetail.Status, buildDetail.Result);
+			//this.CompilationStatus = BuildPhaseStatusConverter.Convert(buildDetail.CompilationStatus);
+			//this.TestStatus = BuildPhaseStatusConverter.Convert(buildDetail.TestStatus);
+			this.RequestedFor = buildDetail.RequestedFor.DisplayName;
 			this.StartTime = buildDetail.StartTime;
 			this.CodeCoverage = GetCodeCoverage(buildDetail, coverageAnalysisManager);
 		}
 
-		public int? GetCodeCoverage(IBuildDetail buildDetail, ICoverageAnalysisManager analysisManager)
+		public int? GetCodeCoverage(Build buildDetail, ICoverageAnalysisManager analysisManager)
 		{
 			IBuildCoverage[] queryBuildCoverage = analysisManager.QueryBuildCoverage(buildDetail.Uri.ToString(), CoverageQueryFlags.Modules);
 			int blocksCovered = 0;

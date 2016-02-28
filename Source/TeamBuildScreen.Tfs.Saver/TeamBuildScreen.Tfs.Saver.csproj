@@ -142,6 +142,6 @@
     <Copy SourceFiles="$(TargetDir)\$(TargetName).exe.config" DestinationFiles="$(TargetDir)\$(TargetName).scr.config" SkipUnchangedFiles="true" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y $(SolutionDir)packages\Microsoft.TeamFoundationServer.ExtendedClient.14.83.2\lib\native\x86\Microsoft.WITDataStore32.dll $(TargetDir)</PostBuildEvent>
+    <PostBuildEvent>xcopy /Y $(SolutionDir)packages\Microsoft.TeamFoundationServer.ExtendedClient.14.89.0\lib\native\x86\Microsoft.WITDataStore32.dll $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
 </Project>
