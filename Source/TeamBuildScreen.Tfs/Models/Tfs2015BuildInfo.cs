@@ -34,12 +34,12 @@
 			//}
 
 			this.BuildFinished = buildDetail.FinishTime != null;
-			this.FinishTime = buildDetail.FinishTime;
+			this.FinishTime = (buildDetail.FinishTime.HasValue ? buildDetail.FinishTime.Value.ToLocalTime() : (System.DateTime?)null);
 			this.Status = BuildStatusConverter.Convert(buildDetail.Status, buildDetail.Result);
 			//this.CompilationStatus = BuildPhaseStatusConverter.Convert(buildDetail.CompilationStatus);
 			//this.TestStatus = BuildPhaseStatusConverter.Convert(buildDetail.TestStatus);
 			this.RequestedFor = buildDetail.RequestedFor.DisplayName;
-			this.StartTime = buildDetail.StartTime;
+			this.StartTime = (buildDetail.StartTime.HasValue ? buildDetail.StartTime.Value.ToLocalTime() : (System.DateTime?)null);
 			this.CodeCoverage = GetCodeCoverage(buildDetail, coverageAnalysisManager);
 		}
 
